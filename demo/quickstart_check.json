@@ -63,6 +63,20 @@
       ]
     },
     {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli case-gallery --root .",
+      "expected_outputs": [
+        "demo/case_gallery.md",
+        "demo/case_gallery.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli visual-receipt --root .",
+      "expected_outputs": [
+        "demo/visual_receipt.svg or demo/visual_receipt.html",
+        "demo/visual_receipt.json"
+      ]
+    },
+    {
       "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli fixture-doctor --root .",
       "expected_outputs": [
         "demo/fixture_doctor.md",

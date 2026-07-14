@@ -7,7 +7,7 @@ from datetime import date
 from pathlib import Path
 from typing import Any
 
-from .io import read_csv, read_csv_document
+from .io import read_csv, read_csv_document, read_json
 
 
 DISCLAIMER = (
@@ -26,6 +26,19 @@ EXPECTED_COLUMNS = [
     "confidence",
     "evidence",
     "thesis_link",
+]
+CASE_COLUMNS = [
+    "case_id",
+    "region",
+    "case_title",
+    "date",
+    "policy_area",
+    "channel",
+    "direction",
+    "confidence",
+    "evidence",
+    "route",
+    "command",
 ]
 EXPECTED_EVENTS = {"policy_signal", "macro_observation", "market_context", "thesis_note"}
 ADVICE_TERMS = ["buy", "sell", "hold", "target allocation", "price target", "guaranteed return", "prediction"]
@@ -55,6 +68,11 @@ DEMO_ARTIFACTS = [
     "demo/fixture_doctor.json",
     "demo/input_schema.md",
     "demo/input_schema.json",
+    "demo/case_gallery.md",
+    "demo/case_gallery.json",
+    "demo/visual_receipt.svg",
+    "demo/visual_receipt.html",
+    "demo/visual_receipt.json",
 ]
 COMMAND_SPECS = [
     {
@@ -84,6 +102,20 @@ COMMAND_SPECS = [
         "inputs": ["examples/macro_events.csv or bundled macro_events.csv"],
         "outputs": ["demo/static_dashboard.html"],
         "safety": "Static local rendering only.",
+    },
+    {
+        "command": "case-gallery",
+        "purpose": "Build a public-safe multi-region case gallery from static synthetic fixtures.",
+        "inputs": ["examples/public_macro_cases.csv or bundled public_macro_cases.csv"],
+        "outputs": ["demo/case_gallery.md", "demo/case_gallery.json"],
+        "safety": "Uses synthetic US, EU, and Asia examples; no live data or recommendations.",
+    },
+    {
+        "command": "visual-receipt",
+        "purpose": "Render a static SVG or HTML receipt with artifact hashes, routes, and commands.",
+        "inputs": ["repository files, demo artifacts, case gallery"],
+        "outputs": ["demo/visual_receipt.svg or demo/visual_receipt.html", "demo/visual_receipt.json"],
+        "safety": "Static receipt only; records provenance without private routes or operational workflows.",
     },
     {
         "command": "fixture-doctor",
@@ -156,6 +188,13 @@ COMMAND_SPECS = [
         "safety": "Fails closed when a private or credential-shaped token is found.",
     },
     {
+        "command": "diff-check",
+        "purpose": "Compare the saved release manifest against current file hashes.",
+        "inputs": ["demo/release_manifest.json", "repository files"],
+        "outputs": ["stdout pass/fail"],
+        "safety": "Detects artifact drift using static local hashes only.",
+    },
+    {
         "command": "selfcheck",
         "purpose": "Run source-tree checks for files, boundaries, and public scan status.",
         "inputs": ["repository files"],
@@ -198,6 +237,42 @@ def load_events(path: Path) -> list[dict[str, Any]]:
             }
         )
     return sorted(events, key=lambda item: (item["date"], item["policy_area"], item["source"]))
+
+
+def load_cases(path: Path) -> list[dict[str, Any]]:
+    header, rows = read_csv_document(path)
+    missing = [column for column in CASE_COLUMNS if column not in header]
+    if missing:
+        raise ValueError(f"{path} missing case columns: {', '.join(missing)}")
+    cases: list[dict[str, Any]] = []
+    for index, row in enumerate(rows, start=2):
+        route = required(row, "route", path, index)
+        command = required(row, "command", path, index)
+        if not route.startswith("/cases/"):
+            raise ValueError(f"{path}:{index} route must start with /cases/")
+        if not command.startswith("macro-policy-thesis-map "):
+            raise ValueError(f"{path}:{index} command must start with macro-policy-thesis-map")
+        evidence = required(row, "evidence", path, index)
+        text = f"{evidence} {required(row, 'case_title', path, index)} {command}".lower()
+        for term in ADVICE_TERMS:
+            if term in text:
+                raise ValueError(f"{path}:{index} contains advice-like term {term!r}")
+        cases.append(
+            {
+                "case_id": required(row, "case_id", path, index),
+                "region": required(row, "region", path, index),
+                "case_title": required(row, "case_title", path, index),
+                "date": required(row, "date", path, index),
+                "policy_area": required(row, "policy_area", path, index),
+                "channel": required(row, "channel", path, index),
+                "direction": required(row, "direction", path, index),
+                "confidence": parse_float(row, "confidence", path, index),
+                "evidence": evidence,
+                "route": route,
+                "command": command,
+            }
+        )
+    return sorted(cases, key=lambda item: (item["region"], item["case_id"]))
 
 
 def fixture_doctor(path: Path, *, as_of: date, max_source_age_days: int) -> dict[str, Any]:
@@ -388,7 +463,7 @@ def input_schema() -> dict[str, Any]:
         },
     ]
     return {
-        "schema_version": "0.2.0",
+        "schema_version": "0.3.0",
         "format": "csv",
         "required_columns": EXPECTED_COLUMNS,
         "columns": columns,
@@ -456,6 +531,77 @@ def build_packet(events: list[dict[str, Any]], title: str) -> dict[str, Any]:
     }
 
 
+def case_gallery(cases: list[dict[str, Any]], source_path: Path | None = None) -> dict[str, Any]:
+    by_region: dict[str, list[dict[str, Any]]] = {}
+    for case in cases:
+        by_region.setdefault(case["region"], []).append(case)
+    regions = []
+    for region, region_cases in sorted(by_region.items()):
+        regions.append(
+            {
+                "region": region,
+                "case_count": len(region_cases),
+                "policy_areas": sorted({item["policy_area"] for item in region_cases}),
+                "routes": [item["route"] for item in sorted(region_cases, key=lambda item: item["case_id"])],
+                "average_confidence": round(sum(item["confidence"] for item in region_cases) / len(region_cases), 3),
+            }
+        )
+    payload: dict[str, Any] = {
+        "title": "Public Macro Policy Case Gallery",
+        "case_count": len(cases),
+        "region_count": len(regions),
+        "regions": regions,
+        "cases": cases,
+        "fixture_type": "synthetic public-safe multi-region examples",
+        "boundaries": DISCLAIMER,
+    }
+    if source_path is not None:
+        source_label = f"examples/{source_path.name}"
+        payload["source"] = {
+            "path": source_label,
+            "bytes": source_path.stat().st_size,
+            "sha256": hashlib.sha256(source_path.read_bytes()).hexdigest(),
+        }
+    return payload
+
+
+def visual_receipt(root: Path, *, visual_format: str) -> dict[str, Any]:
+    if visual_format not in {"svg", "html"}:
+        raise ValueError("visual_format must be svg or html")
+    artifact_paths = [
+        "README.md",
+        "examples/macro_events.csv",
+        "examples/public_macro_cases.csv",
+        "demo/thesis_packet.json",
+        "demo/case_gallery.json",
+        "demo/review_ledger.json",
+        "demo/public_readiness.json",
+    ]
+    artifacts = [file_record(root, root / path) for path in artifact_paths if (root / path).exists()]
+    gallery_path = root / "demo/case_gallery.json"
+    routes: list[str] = []
+    if gallery_path.exists():
+        gallery = read_json(gallery_path)
+        routes = [str(item["route"]) for item in gallery.get("cases", []) if isinstance(item, dict) and "route" in item]
+    commands = [
+        "macro-policy-thesis-map case-gallery --root .",
+        f"macro-policy-thesis-map visual-receipt --root . --format {visual_format}",
+        "macro-policy-thesis-map public-readiness --root .",
+        "macro-policy-thesis-map diff-check --root .",
+    ]
+    return {
+        "title": "Macro Policy Visual Receipt",
+        "format": visual_format,
+        "artifact_count": len(artifacts),
+        "route_count": len(routes),
+        "command_count": len(commands),
+        "artifacts": artifacts,
+        "routes": routes,
+        "commands": commands,
+        "boundaries": DISCLAIMER,
+    }
+
+
 def compare_packets(current: dict[str, Any], prior: dict[str, Any]) -> dict[str, Any]:
     current_map = {item["policy_area"]: item for item in current["policy_areas"]}
     prior_map = {item["policy_area"]: item for item in prior["policy_areas"]}
@@ -509,6 +655,8 @@ def maturity(root: Path) -> dict[str, Any]:
         ("readme", root.joinpath("README.md").exists()),
         ("license", root.joinpath("LICENSE").exists()),
         ("examples", any(root.joinpath("examples").glob("*"))),
+        ("case_gallery", root.joinpath("examples/public_macro_cases.csv").exists() and root.joinpath("demo/case_gallery.json").exists()),
+        ("visual_receipt", root.joinpath("demo/visual_receipt.json").exists() and (root.joinpath("demo/visual_receipt.svg").exists() or root.joinpath("demo/visual_receipt.html").exists())),
         ("tests", any(root.joinpath("tests").glob("test_*.py"))),
         ("skill", root.joinpath("skills/agent/macro-policy-thesis-map/SKILL.md").exists()),
         ("no_workflows", not root.joinpath(".github/workflows").exists()),
@@ -544,7 +692,7 @@ def quickstart_check(root: Path) -> dict[str, Any]:
     commands = [
         spec
         for spec in COMMAND_SPECS
-        if spec["command"] in {"build-packet", "compare-history", "review-ledger", "fixture-doctor", "schema-export", "static-dashboard", "quickstart-check", "command-matrix"}
+        if spec["command"] in {"build-packet", "compare-history", "review-ledger", "fixture-doctor", "schema-export", "static-dashboard", "case-gallery", "visual-receipt", "quickstart-check", "command-matrix"}
     ]
     passed = sum(1 for _, ok, _ in checks)
     return {
@@ -570,6 +718,7 @@ def evidence_bundle(root: Path) -> dict[str, Any]:
         "pyproject.toml",
         "examples/macro_events.csv",
         "examples/prior_macro_events.csv",
+        "examples/public_macro_cases.csv",
         "skills/agent/macro-policy-thesis-map/SKILL.md",
         "tests/test_cli.py",
         "tests/test_safety.py",
@@ -599,6 +748,7 @@ def evidence_bundle(root: Path) -> dict[str, Any]:
             "PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_safety.py",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
+            "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
         ],
         "boundaries": DISCLAIMER,
     }
@@ -615,6 +765,8 @@ def public_readiness(root: Path) -> dict[str, Any]:
         "demo/command_matrix.json",
         "demo/fixture_doctor.json",
         "demo/input_schema.json",
+        "demo/case_gallery.json",
+        "demo/visual_receipt.json",
         "demo/evidence_bundle.json",
         "demo/cold_start_walkthrough.json",
     ]
@@ -622,6 +774,7 @@ def public_readiness(root: Path) -> dict[str, Any]:
         ("public_scan", not public_findings(root), "No private terms or credential-shaped tokens in public text."),
         ("neutral_boundaries", all(term in readme.lower() for term in ["does not fetch live data", "connect to brokers", "recommend buys", "predict returns"]), "README states static research boundaries."),
         ("demo_artifacts", all(root.joinpath(path).exists() for path in required_artifacts), "Core demo artifacts are present."),
+        ("visual_receipt", root.joinpath("demo/visual_receipt.svg").exists() or root.joinpath("demo/visual_receipt.html").exists(), "Static SVG or HTML visual receipt is present."),
         ("no_workflow_files", not root.joinpath(".github/workflows").exists(), "No repository workflow files are required for public evaluation."),
         ("zero_dependency_package", "dependencies = []" in root.joinpath("pyproject.toml").read_text(encoding="utf-8") if root.joinpath("pyproject.toml").exists() else False, "Package declares no runtime dependencies."),
     ]
@@ -665,8 +818,8 @@ def cold_start_walkthrough() -> dict[str, Any]:
         {
             "step": 5,
             "title": "Run final local checks",
-            "command": "macro-policy-thesis-map selfcheck && macro-policy-thesis-map public-scan",
-            "expected_result": "Both commands exit successfully before sharing artifacts.",
+            "command": "macro-policy-thesis-map selfcheck && macro-policy-thesis-map public-scan && macro-policy-thesis-map diff-check",
+            "expected_result": "All commands exit successfully before sharing artifacts.",
         },
     ]
     return {
@@ -684,7 +837,16 @@ def cold_start_walkthrough() -> dict[str, Any]:
 
 def release_manifest(root: Path) -> dict[str, Any]:
     files = []
-    excluded = {"demo/release_manifest.json", "demo/release_manifest.md"}
+    excluded = {
+        "demo/release_manifest.json",
+        "demo/release_manifest.md",
+        "demo/visual_receipt.json",
+        "demo/visual_receipt.md",
+        "demo/visual_receipt.svg",
+        "demo/visual_receipt.html",
+        "demo/evidence_bundle.json",
+        "demo/evidence_bundle.md",
+    }
     for base in ["README.md", "LICENSE", "pyproject.toml", "examples", "demo", "src", "tests", "skills"]:
         path = root / base
         if path.is_file():
@@ -698,6 +860,38 @@ def release_manifest(root: Path) -> dict[str, Any]:
                     if record["path"] not in excluded:
                         files.append(record)
     return {"artifact_count": len(files), "artifacts": files, "boundaries": DISCLAIMER}
+
+
+def diff_check(root: Path, manifest_path: Path) -> dict[str, Any]:
+    if not manifest_path.exists():
+        return {
+            "status": "blocked",
+            "manifest": str(manifest_path.relative_to(root)) if manifest_path.is_relative_to(root) else str(manifest_path),
+            "finding_count": 1,
+            "findings": [{"path": str(manifest_path), "finding": "manifest missing"}],
+            "boundaries": DISCLAIMER,
+        }
+    manifest = read_json(manifest_path)
+    findings = []
+    for item in manifest.get("artifacts", []):
+        if not isinstance(item, dict) or "path" not in item or "sha256" not in item:
+            findings.append({"path": "manifest", "finding": "invalid artifact record"})
+            continue
+        path = root / str(item["path"])
+        if not path.exists():
+            findings.append({"path": item["path"], "finding": "missing current file"})
+            continue
+        current = hashlib.sha256(path.read_bytes()).hexdigest()
+        if current != item["sha256"]:
+            findings.append({"path": item["path"], "finding": "hash drift", "expected": item["sha256"], "actual": current})
+    return {
+        "status": "pass" if not findings else "blocked",
+        "manifest": str(manifest_path.relative_to(root)) if manifest_path.is_relative_to(root) else str(manifest_path),
+        "checked_count": len(manifest.get("artifacts", [])),
+        "finding_count": len(findings),
+        "findings": findings,
+        "boundaries": DISCLAIMER,
+    }
 
 
 def file_record(root: Path, path: Path) -> dict[str, Any]:

@@ -18,6 +18,14 @@
       "passed": true
     },
     {
+      "name": "case_gallery",
+      "passed": true
+    },
+    {
+      "name": "visual_receipt",
+      "passed": true
+    },
+    {
       "name": "tests",
       "passed": true
     },
@@ -30,7 +38,7 @@
       "passed": true
     }
   ],
-  "max_score": 7,
-  "score": 7,
+  "max_score": 9,
+  "score": 9,
   "status": "ready"
 }

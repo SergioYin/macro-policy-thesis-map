@@ -12,7 +12,7 @@ Step count: 5
 | 2 | Build the packet from static examples | macro-policy-thesis-map build-packet | A neutral thesis packet is written as Markdown and JSON. |
 | 3 | Review evidence safety | macro-policy-thesis-map review-ledger | A review ledger flags low-confidence or advice-like input text. |
 | 4 | Check public readiness | macro-policy-thesis-map public-readiness | A public readiness report lists pass/fail gates. |
-| 5 | Run final local checks | macro-policy-thesis-map selfcheck && macro-policy-thesis-map public-scan | Both commands exit successfully before sharing artifacts. |
+| 5 | Run final local checks | macro-policy-thesis-map selfcheck && macro-policy-thesis-map public-scan && macro-policy-thesis-map diff-check | All commands exit successfully before sharing artifacts. |
 
 ## Safety Notes
 

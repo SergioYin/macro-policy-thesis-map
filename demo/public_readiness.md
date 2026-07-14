@@ -4,7 +4,7 @@ Research-only static analysis. Not investment advice. This tool does not fetch l
 
 Status: ready
 
-Passed: 5 / 5
+Passed: 6 / 6
 
 ## Checks
 
@@ -13,6 +13,7 @@ Passed: 5 / 5
 | public_scan | pass | No private terms or credential-shaped tokens in public text. |
 | neutral_boundaries | pass | README states static research boundaries. |
 | demo_artifacts | pass | Core demo artifacts are present. |
+| visual_receipt | pass | Static SVG or HTML visual receipt is present. |
 | no_workflow_files | pass | No repository workflow files are required for public evaluation. |
 | zero_dependency_package | pass | Package declares no runtime dependencies. |
 

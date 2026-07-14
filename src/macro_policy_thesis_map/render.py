@@ -175,6 +175,39 @@ Command count: {payload['command_count']}
 """
 
 
+def case_gallery_md(payload: dict[str, Any]) -> str:
+    regions = [
+        [item["region"], item["case_count"], f"{item['average_confidence']:.3f}", ", ".join(item["policy_areas"]), ", ".join(item["routes"])]
+        for item in payload["regions"]
+    ]
+    cases = [
+        [item["case_id"], item["region"], item["case_title"], item["policy_area"], item["direction"], f"{item['confidence']:.3f}", item["route"], item["command"]]
+        for item in payload["cases"]
+    ]
+    source = payload.get("source", {})
+    source_line = ""
+    if source:
+        source_line = f"\nFixture hash: {source['sha256'][:16]}\n"
+    return f"""# Public Macro Policy Case Gallery
+
+{payload['boundaries']}
+
+Fixture type: {payload['fixture_type']}
+
+Case count: {payload['case_count']}
+
+Region count: {payload['region_count']}
+{source_line}
+## Regions
+
+{table(["Region", "Cases", "Avg confidence", "Policy areas", "Routes"], regions)}
+
+## Cases
+
+{table(["Case", "Region", "Title", "Area", "Direction", "Confidence", "Route", "Command"], cases)}
+"""
+
+
 def evidence_bundle_md(payload: dict[str, Any]) -> str:
     artifacts = [[item["path"], item["bytes"], item["sha256"][:16]] for item in payload["artifacts"]]
     missing = [[item] for item in payload["missing"]] or [["none"]]
@@ -200,6 +233,93 @@ Missing count: {payload['missing_count']}
 ## Artifacts
 
 {table(["Path", "Bytes", "SHA-256 prefix"], artifacts)}
+"""
+
+
+def visual_receipt_md(payload: dict[str, Any]) -> str:
+    artifacts = [[item["path"], item["bytes"], item["sha256"][:16]] for item in payload["artifacts"]]
+    routes = [[item] for item in payload["routes"]] or [["none"]]
+    commands = [[item] for item in payload["commands"]]
+    return f"""# Macro Policy Visual Receipt
+
+{payload['boundaries']}
+
+Format: {payload['format']}
+
+Artifacts: {payload['artifact_count']}
+
+Routes: {payload['route_count']}
+
+Commands: {payload['command_count']}
+
+## Artifact Hashes
+
+{table(["Path", "Bytes", "SHA-256 prefix"], artifacts)}
+
+## Routes
+
+{table(["Route"], routes)}
+
+## Commands
+
+{table(["Command"], commands)}
+"""
+
+
+def visual_receipt_svg(payload: dict[str, Any]) -> str:
+    artifact_lines = [f"{item['path']}  {item['sha256'][:12]}" for item in payload["artifacts"][:7]]
+    route_lines = payload["routes"][:7]
+    command_lines = payload["commands"][:4]
+    rows = artifact_lines + [""] + route_lines + [""] + command_lines
+    height = 190 + len(rows) * 22
+    text_rows = "\n".join(
+        f'<text x="42" y="{180 + index * 22}" class="mono">{escape(row)}</text>'
+        for index, row in enumerate(rows)
+    )
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="960" height="{height}" viewBox="0 0 960 {height}" role="img" aria-labelledby="title desc">
+<title id="title">Macro Policy Visual Receipt</title>
+<desc id="desc">Static receipt of artifact hashes, public routes, and local commands.</desc>
+<style>
+.bg{{fill:#f8fafc}} .panel{{fill:#ffffff;stroke:#cbd5e1;stroke-width:1.5}} .title{{font:700 28px Arial,sans-serif;fill:#111827}} .label{{font:700 13px Arial,sans-serif;fill:#334155;text-transform:uppercase}} .body{{font:15px Arial,sans-serif;fill:#1f2937}} .mono{{font:13px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#111827}}
+</style>
+<rect class="bg" width="960" height="{height}"/>
+<rect class="panel" x="24" y="24" width="912" height="{height - 48}" rx="8"/>
+<text id="receipt-title" x="42" y="70" class="title">Macro Policy Visual Receipt</text>
+<text x="42" y="102" class="body">{escape(payload['boundaries'])}</text>
+<text x="42" y="138" class="label">Hashes, Routes, Commands</text>
+{text_rows}
+</svg>
+"""
+
+
+def visual_receipt_html(payload: dict[str, Any]) -> str:
+    artifact_rows = "\n".join(
+        f"<tr><td>{escape(item['path'])}</td><td>{item['bytes']}</td><td>{escape(item['sha256'][:16])}</td></tr>"
+        for item in payload["artifacts"]
+    )
+    route_rows = "\n".join(f"<tr><td>{escape(route)}</td></tr>" for route in payload["routes"])
+    command_rows = "\n".join(f"<tr><td>{escape(command)}</td></tr>" for command in payload["commands"])
+    return f"""<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Macro Policy Visual Receipt</title>
+<style>
+body{{font-family:Arial,sans-serif;margin:2rem;line-height:1.45;color:#1f2937;background:#f8fafc}}
+main{{max-width:1040px;margin:auto}} table{{border-collapse:collapse;width:100%;background:white;margin-bottom:1.5rem}}
+th,td{{border:1px solid #d1d5db;padding:.55rem;text-align:left;vertical-align:top}} th{{background:#e5e7eb}}
+.notice{{border-left:4px solid #64748b;padding:.75rem;background:white}}
+</style>
+<main>
+<h1>Macro Policy Visual Receipt</h1>
+<p class="notice">{escape(payload['boundaries'])}</p>
+<h2>Artifact Hashes</h2>
+<table><thead><tr><th>Path</th><th>Bytes</th><th>SHA-256 prefix</th></tr></thead><tbody>{artifact_rows}</tbody></table>
+<h2>Routes</h2>
+<table><thead><tr><th>Route</th></tr></thead><tbody>{route_rows}</tbody></table>
+<h2>Commands</h2>
+<table><thead><tr><th>Command</th></tr></thead><tbody>{command_rows}</tbody></table>
+</main>
+</html>
 """
 
 

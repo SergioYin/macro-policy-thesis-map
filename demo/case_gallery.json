@@ -1,0 +1,133 @@
+{
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "case_count": 6,
+  "cases": [
+    {
+      "case_id": "asia-001",
+      "case_title": "Synthetic Asia liquidity corridor",
+      "channel": "liquidity-operations",
+      "command": "macro-policy-thesis-map case-gallery",
+      "confidence": 0.63,
+      "date": "2026-06-21",
+      "direction": "accommodative",
+      "evidence": "Public-safe fixture maps routine liquidity operations to a neutral thesis route",
+      "policy_area": "monetary-policy",
+      "region": "Asia",
+      "route": "/cases/asia-001"
+    },
+    {
+      "case_id": "asia-002",
+      "case_title": "Synthetic Asia trade channel",
+      "channel": "import-demand",
+      "command": "macro-policy-thesis-map visual-receipt",
+      "confidence": 0.55,
+      "date": "2026-06-22",
+      "direction": "mixed",
+      "evidence": "Public-safe fixture records mixed trade-channel evidence without a market call",
+      "policy_area": "trade-policy",
+      "region": "Asia",
+      "route": "/cases/asia-002"
+    },
+    {
+      "case_id": "eu-001",
+      "case_title": "Synthetic EU fiscal calendar",
+      "channel": "issuance",
+      "command": "macro-policy-thesis-map compare-history",
+      "confidence": 0.59,
+      "date": "2026-06-18",
+      "direction": "expansive",
+      "evidence": "Public-safe fixture tracks calendar-heavy issuance pressure across member summaries",
+      "policy_area": "fiscal-policy",
+      "region": "EU",
+      "route": "/cases/eu-001"
+    },
+    {
+      "case_id": "eu-002",
+      "case_title": "Synthetic EU regulation consultation",
+      "channel": "capital-rules",
+      "command": "macro-policy-thesis-map fixture-doctor",
+      "confidence": 0.57,
+      "date": "2026-06-20",
+      "direction": "neutral",
+      "evidence": "Public-safe fixture keeps consultation timing unchanged across policy notes",
+      "policy_area": "financial-regulation",
+      "region": "EU",
+      "route": "/cases/eu-002"
+    },
+    {
+      "case_id": "us-001",
+      "case_title": "Synthetic US policy mix watch",
+      "channel": "rate-guidance",
+      "command": "macro-policy-thesis-map build-packet",
+      "confidence": 0.68,
+      "date": "2026-06-14",
+      "direction": "restrictive",
+      "evidence": "Public-safe fixture notes cautious rate language alongside cooling inflation",
+      "policy_area": "monetary-policy",
+      "region": "US",
+      "route": "/cases/us-001"
+    },
+    {
+      "case_id": "us-002",
+      "case_title": "Synthetic US labor moderation",
+      "channel": "wage-growth",
+      "command": "macro-policy-thesis-map review-ledger",
+      "confidence": 0.62,
+      "date": "2026-06-16",
+      "direction": "moderating",
+      "evidence": "Public-safe fixture shows wage growth easing without a return forecast",
+      "policy_area": "labor-market",
+      "region": "US",
+      "route": "/cases/us-002"
+    }
+  ],
+  "fixture_type": "synthetic public-safe multi-region examples",
+  "region_count": 3,
+  "regions": [
+    {
+      "average_confidence": 0.59,
+      "case_count": 2,
+      "policy_areas": [
+        "monetary-policy",
+        "trade-policy"
+      ],
+      "region": "Asia",
+      "routes": [
+        "/cases/asia-001",
+        "/cases/asia-002"
+      ]
+    },
+    {
+      "average_confidence": 0.58,
+      "case_count": 2,
+      "policy_areas": [
+        "financial-regulation",
+        "fiscal-policy"
+      ],
+      "region": "EU",
+      "routes": [
+        "/cases/eu-001",
+        "/cases/eu-002"
+      ]
+    },
+    {
+      "average_confidence": 0.65,
+      "case_count": 2,
+      "policy_areas": [
+        "labor-market",
+        "monetary-policy"
+      ],
+      "region": "US",
+      "routes": [
+        "/cases/us-001",
+        "/cases/us-002"
+      ]
+    }
+  ],
+  "source": {
+    "bytes": 1471,
+    "path": "examples/public_macro_cases.csv",
+    "sha256": "ee511dd457dd7aab5558074a9c173de0e2326eb9bf1618561b5c8ef8983cddc1"
+  },
+  "title": "Public Macro Policy Case Gallery"
+}

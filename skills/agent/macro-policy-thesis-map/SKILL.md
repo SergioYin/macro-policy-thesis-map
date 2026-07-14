@@ -10,9 +10,11 @@ Use this skill when an agent needs to turn static macro policy notes into a neut
 4. Run `macro-policy-thesis-map build-packet --root .` to create the primary evidence packet.
 5. Run `macro-policy-thesis-map review-ledger --root .` to surface low-confidence or advice-like text for human review.
 6. Run `macro-policy-thesis-map compare-history --root .` when a prior static event file is available.
-7. Run `macro-policy-thesis-map quickstart-check --root .` and `macro-policy-thesis-map command-matrix --root .` to publish first-evaluator command evidence.
-8. Run `macro-policy-thesis-map evidence-bundle --root .`, `macro-policy-thesis-map cold-start-walkthrough --root .`, and `macro-policy-thesis-map public-readiness --root .` for release-readiness review.
-9. Run `macro-policy-thesis-map public-scan --root .` before sharing generated files outside the working environment.
+7. Run `macro-policy-thesis-map case-gallery --root .` when public-safe US, EU, and Asia fixture examples are needed.
+8. Run `macro-policy-thesis-map visual-receipt --root .` to create a static SVG receipt with hashes, routes, and commands. Use `--format html` when an HTML receipt is preferred.
+9. Run `macro-policy-thesis-map quickstart-check --root .` and `macro-policy-thesis-map command-matrix --root .` to publish first-evaluator command evidence.
+10. Run `macro-policy-thesis-map evidence-bundle --root .`, `macro-policy-thesis-map cold-start-walkthrough --root .`, and `macro-policy-thesis-map public-readiness --root .` for release-readiness review.
+11. Run `macro-policy-thesis-map public-scan --root .` and `macro-policy-thesis-map diff-check --root .` before sharing generated files outside the working environment.
 
 ## Boundaries
 

@@ -1,6 +1,6 @@
 {
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
-  "command_count": 15,
+  "command_count": 18,
   "commands": [
     {
       "command": "build-packet",
@@ -49,6 +49,30 @@
       ],
       "purpose": "Render a no-JavaScript HTML view of the packet and review ledger.",
       "safety": "Static local rendering only."
+    },
+    {
+      "command": "case-gallery",
+      "inputs": [
+        "examples/public_macro_cases.csv or bundled public_macro_cases.csv"
+      ],
+      "outputs": [
+        "demo/case_gallery.md",
+        "demo/case_gallery.json"
+      ],
+      "purpose": "Build a public-safe multi-region case gallery from static synthetic fixtures.",
+      "safety": "Uses synthetic US, EU, and Asia examples; no live data or recommendations."
+    },
+    {
+      "command": "visual-receipt",
+      "inputs": [
+        "repository files, demo artifacts, case gallery"
+      ],
+      "outputs": [
+        "demo/visual_receipt.svg or demo/visual_receipt.html",
+        "demo/visual_receipt.json"
+      ],
+      "purpose": "Render a static SVG or HTML receipt with artifact hashes, routes, and commands.",
+      "safety": "Static receipt only; records provenance without private routes or operational workflows."
     },
     {
       "command": "fixture-doctor",
@@ -168,6 +192,18 @@
       ],
       "purpose": "Scan publishable text for private names, paths, and credential-shaped terms.",
       "safety": "Fails closed when a private or credential-shaped token is found."
+    },
+    {
+      "command": "diff-check",
+      "inputs": [
+        "demo/release_manifest.json",
+        "repository files"
+      ],
+      "outputs": [
+        "stdout pass/fail"
+      ],
+      "purpose": "Compare the saved release manifest against current file hashes.",
+      "safety": "Detects artifact drift using static local hashes only."
     },
     {
       "command": "selfcheck",

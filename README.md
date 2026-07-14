@@ -13,6 +13,8 @@ PYTHONPATH=src python -m macro_policy_thesis_map.cli review-ledger --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli fixture-doctor --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli schema-export --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli static-dashboard --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli case-gallery --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli visual-receipt --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli release-manifest --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli maturity-report --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli quickstart-check --root .
@@ -21,6 +23,7 @@ PYTHONPATH=src python -m macro_policy_thesis_map.cli cold-start-walkthrough --ro
 PYTHONPATH=src python -m macro_policy_thesis_map.cli evidence-bundle --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli public-readiness --root .
 PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .
+PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .
 PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .
 ```
 
@@ -35,11 +38,13 @@ macro-policy-thesis-map review-ledger
 macro-policy-thesis-map fixture-doctor
 macro-policy-thesis-map schema-export
 macro-policy-thesis-map static-dashboard
+macro-policy-thesis-map case-gallery
+macro-policy-thesis-map visual-receipt
 macro-policy-thesis-map quickstart-check
 macro-policy-thesis-map command-matrix
 ```
 
-The installed CLI uses bundled example CSVs for default event inputs when `examples/macro_events.csv` and `examples/prior_macro_events.csv` are not present in the current `--root`. Pass `--events`, `--current`, or `--prior` to use your own static CSVs. `selfcheck` validates the source tree and should be run from a project checkout.
+The installed CLI uses bundled example CSVs for default event and case inputs when `examples/macro_events.csv`, `examples/prior_macro_events.csv`, and `examples/public_macro_cases.csv` are not present in the current `--root`. Pass `--events`, `--current`, `--prior`, or `--cases` to use your own static CSVs. `selfcheck` and `diff-check` validate the source tree and should be run from a project checkout.
 
 ## Boundaries
 
@@ -53,6 +58,8 @@ This project is research tooling only. It does not fetch live data, connect to b
 - `demo/fixture_doctor.md` and `demo/fixture_doctor.json`
 - `demo/input_schema.md` and `demo/input_schema.json`
 - `demo/static_dashboard.html`
+- `demo/case_gallery.md` and `demo/case_gallery.json`
+- `demo/visual_receipt.md`, `demo/visual_receipt.json`, `demo/visual_receipt.svg`, and `demo/visual_receipt.html`
 - `demo/release_manifest.md` and `demo/release_manifest.json`
 - `demo/maturity_report.md` and `demo/maturity_report.json`
 - `demo/quickstart_check.md` and `demo/quickstart_check.json`
@@ -73,6 +80,14 @@ Allowed `event_type` values are `policy_signal`, `macro_observation`, `market_co
 
 Run `fixture-doctor` before generating release artifacts to validate required columns, allowed event types, confidence bounds, stale source dates, and advice-like terms. Run `schema-export` to produce a machine-readable schema and data dictionary under `demo/input_schema.json`.
 
+The public case gallery uses a separate synthetic fixture:
+
+```text
+case_id,region,case_title,date,policy_area,channel,direction,confidence,evidence,route,command
+```
+
+The bundled gallery fixture includes US, EU, and Asia examples. These rows are public-safe examples for exercising routes, commands, and visual receipt hashes; they are not live macro data and are not financial recommendations.
+
 ## Commands
 
 - `build-packet`: creates the primary JSON and Markdown thesis map.
@@ -81,9 +96,12 @@ Run `fixture-doctor` before generating release artifacts to validate required co
 - `fixture-doctor`: validates static CSV fixtures for columns, event types, confidence bounds, stale dates, and advice-like terms.
 - `schema-export`: writes the machine-readable input schema and data dictionary.
 - `static-dashboard`: writes a no-JavaScript HTML dashboard.
+- `case-gallery`: writes a public-safe multi-region case gallery as Markdown and JSON.
+- `visual-receipt`: writes a static SVG or HTML receipt plus JSON/Markdown receipt metadata.
 - `release-manifest`: records artifact paths, sizes, and hashes.
 - `selfcheck`: checks required files, boundaries, and public-scan status.
 - `public-scan`: scans publishable text for private names, private paths, and credential-shaped terms.
+- `diff-check`: compares the saved release manifest against current file hashes.
 - `maturity-report`: scores release readiness evidence.
 - `quickstart-check`: verifies first-evaluator source files and starter command outputs.
 - `command-matrix`: publishes command inputs, outputs, purposes, and safety posture.

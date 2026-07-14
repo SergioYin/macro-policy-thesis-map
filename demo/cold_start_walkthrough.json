@@ -33,8 +33,8 @@
       "title": "Check public readiness"
     },
     {
-      "command": "macro-policy-thesis-map selfcheck && macro-policy-thesis-map public-scan",
-      "expected_result": "Both commands exit successfully before sharing artifacts.",
+      "command": "macro-policy-thesis-map selfcheck && macro-policy-thesis-map public-scan && macro-policy-thesis-map diff-check",
+      "expected_result": "All commands exit successfully before sharing artifacts.",
       "step": 5,
       "title": "Run final local checks"
     }

@@ -34,8 +34,10 @@ def test_build_backend_outputs_reproducible(tmp_path):
         names = set(archive.namelist())
     assert "macro_policy_thesis_map/examples/macro_events.csv" in names
     assert "macro_policy_thesis_map/examples/prior_macro_events.csv" in names
+    assert "macro_policy_thesis_map/examples/public_macro_cases.csv" in names
 
     with tarfile.open(first / sdist) as archive:
         names = set(archive.getnames())
     assert f"{build_backend.DIST}/src/macro_policy_thesis_map/examples/macro_events.csv" in names
     assert f"{build_backend.DIST}/src/macro_policy_thesis_map/examples/prior_macro_events.csv" in names
+    assert f"{build_backend.DIST}/src/macro_policy_thesis_map/examples/public_macro_cases.csv" in names

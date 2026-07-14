@@ -1,7 +1,7 @@
 {
   "blockers": [],
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
-  "check_count": 5,
+  "check_count": 6,
   "checks": [
     {
       "detail": "No private terms or credential-shaped tokens in public text.",
@@ -19,6 +19,11 @@
       "passed": true
     },
     {
+      "detail": "Static SVG or HTML visual receipt is present.",
+      "name": "visual_receipt",
+      "passed": true
+    },
+    {
       "detail": "No repository workflow files are required for public evaluation.",
       "name": "no_workflow_files",
       "passed": true
@@ -29,6 +34,6 @@
       "passed": true
     }
   ],
-  "passed_count": 5,
+  "passed_count": 6,
   "status": "ready"
 }

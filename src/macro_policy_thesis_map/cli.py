@@ -12,12 +12,15 @@ from . import __version__
 from .core import (
     DISCLAIMER,
     build_packet,
+    case_gallery,
     cold_start_walkthrough,
     command_matrix,
     compare_packets,
+    diff_check,
     evidence_bundle,
     fixture_doctor,
     input_schema,
+    load_cases,
     load_events,
     maturity,
     public_findings,
@@ -31,6 +34,7 @@ from .render import (
     cold_start_md,
     command_matrix_md,
     comparison_md,
+    case_gallery_md,
     dashboard_html,
     evidence_bundle_md,
     fixture_doctor_md,
@@ -41,11 +45,15 @@ from .render import (
     packet_md,
     public_readiness_md,
     quickstart_md,
+    visual_receipt_html,
+    visual_receipt_md,
+    visual_receipt_svg,
 )
 
 
 DEFAULT_EVENTS = "examples/macro_events.csv"
 DEFAULT_PRIOR_EVENTS = "examples/prior_macro_events.csv"
+DEFAULT_CASES = "examples/public_macro_cases.csv"
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -90,6 +98,21 @@ def build_parser() -> argparse.ArgumentParser:
     dashboard.add_argument("--out-html", default="demo/static_dashboard.html")
     dashboard.set_defaults(func=cmd_static_dashboard)
 
+    gallery = sub.add_parser("case-gallery", help="Build a public-safe multi-region macro policy case gallery.")
+    gallery.add_argument("--root", default=".")
+    gallery.add_argument("--cases", default=DEFAULT_CASES)
+    gallery.add_argument("--out-md", default="demo/case_gallery.md")
+    gallery.add_argument("--out-json", default="demo/case_gallery.json")
+    gallery.set_defaults(func=cmd_case_gallery)
+
+    receipt = sub.add_parser("visual-receipt", help="Build a static SVG or HTML receipt with hashes, routes, and commands.")
+    receipt.add_argument("--root", default=".")
+    receipt.add_argument("--format", choices=["svg", "html"], default="svg")
+    receipt.add_argument("--out-visual", default=None)
+    receipt.add_argument("--out-md", default="demo/visual_receipt.md")
+    receipt.add_argument("--out-json", default="demo/visual_receipt.json")
+    receipt.set_defaults(func=cmd_visual_receipt)
+
     doctor = sub.add_parser("fixture-doctor", help="Validate static CSV fixtures for finance-domain quality controls.")
     add_event_args(doctor)
     doctor.add_argument("--as-of", default="2026-07-15", help="ISO date used for stale-source checks.")
@@ -117,6 +140,11 @@ def build_parser() -> argparse.ArgumentParser:
     public_scan = sub.add_parser("public-scan", help="Scan public text files for private terms and credentials.")
     public_scan.add_argument("--root", default=".")
     public_scan.set_defaults(func=cmd_public_scan)
+
+    diff = sub.add_parser("diff-check", help="Compare the saved release manifest with current file hashes.")
+    diff.add_argument("--root", default=".")
+    diff.add_argument("--manifest", default="demo/release_manifest.json")
+    diff.set_defaults(func=cmd_diff_check)
 
     mat = sub.add_parser("maturity-report", help="Write a maturity report for release review.")
     mat.add_argument("--root", default=".")
@@ -196,6 +224,28 @@ def cmd_static_dashboard(args: argparse.Namespace) -> int:
     root, packet = packet_from_args(args)
     ledger = review_ledger(packet, 0.55)
     write_text(resolve(root, args.out_html), dashboard_html(packet, ledger))
+    return 0
+
+
+def cmd_case_gallery(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    cases_path, cases = load_cases_arg(root, args.cases, DEFAULT_CASES)
+    payload = case_gallery(cases, cases_path)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), case_gallery_md(payload))
+    return 0
+
+
+def cmd_visual_receipt(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = visual_receipt_payload(root, args.format)
+    out_visual = args.out_visual or f"demo/visual_receipt.{args.format}"
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), visual_receipt_md(payload))
+    if args.format == "svg":
+        write_text(resolve(root, out_visual), visual_receipt_svg(payload))
+    else:
+        write_text(resolve(root, out_visual), visual_receipt_html(payload))
     return 0
 
 
@@ -289,6 +339,17 @@ def cmd_public_scan(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_diff_check(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = diff_check(root, resolve(root, args.manifest))
+    if payload["status"] == "pass":
+        print(f"diff check passed ({payload['checked_count']} files)")
+        return 0
+    for finding in payload["findings"]:
+        print(f"{finding['path']}: {finding['finding']}", file=sys.stderr)
+    return 1
+
+
 def cmd_selfcheck(args: argparse.Namespace) -> int:
     root = Path(args.root)
     required = [
@@ -307,6 +368,8 @@ def cmd_selfcheck(args: argparse.Namespace) -> int:
         root / "demo" / "cold_start_walkthrough.json",
         root / "demo" / "fixture_doctor.json",
         root / "demo" / "input_schema.json",
+        root / "demo" / "case_gallery.json",
+        root / "demo" / "visual_receipt.json",
     ]
     missing = [str(path.relative_to(root)) for path in required if not path.exists()]
     readme = (root / "README.md").read_text(encoding="utf-8").lower() if (root / "README.md").exists() else ""
@@ -329,6 +392,22 @@ def load_events_arg(root: Path, value: str, default_value: str) -> list[dict[str
     if value == default_value:
         return load_bundled_events(Path(default_value).name)
     raise FileNotFoundError(path)
+
+
+def load_cases_arg(root: Path, value: str, default_value: str) -> tuple[Path, list[dict[str, object]]]:
+    path = resolve(root, value)
+    if path.exists():
+        return path, load_cases(path)
+    if value == default_value:
+        with resources.as_file(bundled_event_resource(Path(default_value).name)) as bundled_path:
+            return bundled_path, load_cases(bundled_path)
+    raise FileNotFoundError(path)
+
+
+def visual_receipt_payload(root: Path, visual_format: str) -> dict[str, object]:
+    from .core import visual_receipt
+
+    return visual_receipt(root, visual_format=visual_format)
 
 
 def load_bundled_events(filename: str) -> list[dict[str, object]]:

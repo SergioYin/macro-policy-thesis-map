@@ -1,4 +1,6 @@
 from pathlib import Path
+import hashlib
+import json
 
 import pytest
 
@@ -39,6 +41,8 @@ def test_dashboard_manifest_maturity_and_selfcheck(tmp_path):
     maturity_md = tmp_path / "maturity.md"
 
     assert main(["static-dashboard", "--root", str(ROOT), "--out-html", str(dashboard)]) == 0
+    assert main(["case-gallery", "--root", str(ROOT)]) == 0
+    assert main(["visual-receipt", "--root", str(ROOT)]) == 0
     assert main(["release-manifest", "--root", str(ROOT), "--out-json", str(manifest_json), "--out-md", str(manifest_md)]) == 0
     assert main(["maturity-report", "--root", str(ROOT), "--out-json", str(maturity_json), "--out-md", str(maturity_md)]) == 0
     assert main(["selfcheck", "--root", str(ROOT)]) == 0
@@ -77,9 +81,63 @@ def test_fixture_doctor_and_schema_export(tmp_path):
     assert '"status": "pass"' in doctor_json.read_text(encoding="utf-8")
     assert "Fixture Doctor" in doctor_md.read_text(encoding="utf-8")
     schema_text = schema_json.read_text(encoding="utf-8")
-    assert '"schema_version": "0.2.0"' in schema_text
+    assert '"schema_version": "0.3.0"' in schema_text
     assert "confidence" in schema_text
     assert "Data Dictionary" in schema_md.read_text(encoding="utf-8")
+
+
+def test_case_gallery_and_visual_receipt(tmp_path):
+    gallery_json = tmp_path / "gallery.json"
+    gallery_md = tmp_path / "gallery.md"
+    receipt_json = tmp_path / "receipt.json"
+    receipt_md = tmp_path / "receipt.md"
+    receipt_svg = tmp_path / "receipt.svg"
+    receipt_html = tmp_path / "receipt.html"
+
+    assert main(["case-gallery", "--root", str(ROOT), "--out-json", str(gallery_json), "--out-md", str(gallery_md)]) == 0
+    assert (
+        main(
+            [
+                "visual-receipt",
+                "--root",
+                str(ROOT),
+                "--out-json",
+                str(receipt_json),
+                "--out-md",
+                str(receipt_md),
+                "--out-visual",
+                str(receipt_svg),
+            ]
+        )
+        == 0
+    )
+    assert (
+        main(
+            [
+                "visual-receipt",
+                "--root",
+                str(ROOT),
+                "--format",
+                "html",
+                "--out-json",
+                str(receipt_json),
+                "--out-md",
+                str(receipt_md),
+                "--out-visual",
+                str(receipt_html),
+            ]
+        )
+        == 0
+    )
+
+    gallery_text = gallery_json.read_text(encoding="utf-8")
+    assert '"region": "US"' in gallery_text
+    assert '"region": "EU"' in gallery_text
+    assert '"region": "Asia"' in gallery_text
+    assert "/cases/us-001" in gallery_md.read_text(encoding="utf-8")
+    assert "<svg" in receipt_svg.read_text(encoding="utf-8")
+    assert "<html" in receipt_html.read_text(encoding="utf-8")
+    assert "sha256" in receipt_json.read_text(encoding="utf-8")
 
 
 def test_fixture_doctor_blocks_bad_finance_fixture(tmp_path):
@@ -120,6 +178,32 @@ def test_evidence_bundle_and_public_readiness_surfaces(tmp_path):
     assert "public_scan" in readiness_json.read_text(encoding="utf-8")
 
 
+def test_diff_check_detects_manifest_drift(tmp_path):
+    source = tmp_path / "note.txt"
+    source.write_text("before\n", encoding="utf-8")
+    manifest_json = tmp_path / "manifest.json"
+    manifest_json.write_text(
+        json.dumps(
+            {
+                "artifacts": [
+                    {
+                        "path": "note.txt",
+                        "bytes": source.stat().st_size,
+                        "sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
+                    }
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    assert main(["diff-check", "--root", str(tmp_path), "--manifest", str(manifest_json)]) == 0
+
+    source.write_text("after\n", encoding="utf-8")
+
+    assert main(["diff-check", "--root", str(tmp_path), "--manifest", str(manifest_json)]) == 1
+
+
 def test_public_readiness_blocks_incomplete_tree(tmp_path):
     (tmp_path / "README.md").write_text("does not fetch live data connect to brokers recommend buys predict returns\n", encoding="utf-8")
     (tmp_path / "pyproject.toml").write_text("dependencies = []\n", encoding="utf-8")
@@ -136,6 +220,8 @@ def test_public_readiness_blocks_incomplete_tree(tmp_path):
         (["static-dashboard"], "demo/static_dashboard.html"),
         (["fixture-doctor"], "demo/fixture_doctor.json"),
         (["schema-export"], "demo/input_schema.json"),
+        (["case-gallery"], "demo/case_gallery.json"),
+        (["visual-receipt"], "demo/visual_receipt.json"),
         (["quickstart-check"], "demo/quickstart_check.json"),
         (["command-matrix"], "demo/command_matrix.json"),
         (["cold-start-walkthrough"], "demo/cold_start_walkthrough.json"),
@@ -151,3 +237,7 @@ def test_default_example_commands_work_from_empty_cwd(tmp_path, monkeypatch, arg
 
 def test_missing_custom_event_path_stays_strict(tmp_path):
     assert main(["build-packet", "--root", str(tmp_path), "--events", "missing.csv"]) == 2
+
+
+def test_missing_custom_case_path_stays_strict(tmp_path):
+    assert main(["case-gallery", "--root", str(tmp_path), "--cases", "missing.csv"]) == 2

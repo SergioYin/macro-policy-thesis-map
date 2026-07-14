@@ -25,6 +25,8 @@ Passed: 6 / 6
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli compare-history --root . | demo/history_comparison.md, demo/history_comparison.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli review-ledger --root . | demo/review_ledger.md, demo/review_ledger.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli static-dashboard --root . | demo/static_dashboard.html |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli case-gallery --root . | demo/case_gallery.md, demo/case_gallery.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli visual-receipt --root . | demo/visual_receipt.svg or demo/visual_receipt.html, demo/visual_receipt.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli fixture-doctor --root . | demo/fixture_doctor.md, demo/fixture_doctor.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli schema-export --root . | demo/input_schema.md, demo/input_schema.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli quickstart-check --root . | demo/quickstart_check.md, demo/quickstart_check.json |

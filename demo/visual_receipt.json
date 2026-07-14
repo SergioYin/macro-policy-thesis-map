@@ -1,0 +1,59 @@
+{
+  "artifact_count": 7,
+  "artifacts": [
+    {
+      "bytes": 6426,
+      "path": "README.md",
+      "sha256": "a2b7c4b9bdbce51e858ecdc84df8c944980a326f1eb1d5ddb3bb8508819ba941"
+    },
+    {
+      "bytes": 906,
+      "path": "examples/macro_events.csv",
+      "sha256": "b7410919d62dd4e390bfb147959ba1e7b0410d2ab87cd4bd41af55557875303c"
+    },
+    {
+      "bytes": 1471,
+      "path": "examples/public_macro_cases.csv",
+      "sha256": "ee511dd457dd7aab5558074a9c173de0e2326eb9bf1618561b5c8ef8983cddc1"
+    },
+    {
+      "bytes": 3659,
+      "path": "demo/thesis_packet.json",
+      "sha256": "21afd1a6478ca24314acad778cc1a07cd9ba7a0099af0afe54397d876a5d12a9"
+    },
+    {
+      "bytes": 4180,
+      "path": "demo/case_gallery.json",
+      "sha256": "526e837ce331afd0a236a41bba89d46f0065dba23d863b257a3b7da27a9056cf"
+    },
+    {
+      "bytes": 432,
+      "path": "demo/review_ledger.json",
+      "sha256": "d4f558b50d9e8366a7643dbbdd90e60af0132fcea8bafb978819d6322a40be1a"
+    },
+    {
+      "bytes": 1176,
+      "path": "demo/public_readiness.json",
+      "sha256": "6c77e1bbdc99d8e9a6a551ca5ff03e869eb43cb2f2c4aee5f31b26c9c67788eb"
+    }
+  ],
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "command_count": 4,
+  "commands": [
+    "macro-policy-thesis-map case-gallery --root .",
+    "macro-policy-thesis-map visual-receipt --root . --format svg",
+    "macro-policy-thesis-map public-readiness --root .",
+    "macro-policy-thesis-map diff-check --root ."
+  ],
+  "format": "svg",
+  "route_count": 6,
+  "routes": [
+    "/cases/asia-001",
+    "/cases/asia-002",
+    "/cases/eu-001",
+    "/cases/eu-002",
+    "/cases/us-001",
+    "/cases/us-002"
+  ],
+  "title": "Macro Policy Visual Receipt"
+}

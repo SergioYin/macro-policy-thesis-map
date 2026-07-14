@@ -1,0 +1,7 @@
+case_id,region,case_title,date,policy_area,channel,direction,confidence,evidence,route,command
+us-001,US,Synthetic US policy mix watch,2026-06-14,monetary-policy,rate-guidance,restrictive,0.68,Public-safe fixture notes cautious rate language alongside cooling inflation,/cases/us-001,macro-policy-thesis-map build-packet
+us-002,US,Synthetic US labor moderation,2026-06-16,labor-market,wage-growth,moderating,0.62,Public-safe fixture shows wage growth easing without a return forecast,/cases/us-002,macro-policy-thesis-map review-ledger
+eu-001,EU,Synthetic EU fiscal calendar,2026-06-18,fiscal-policy,issuance,expansive,0.59,Public-safe fixture tracks calendar-heavy issuance pressure across member summaries,/cases/eu-001,macro-policy-thesis-map compare-history
+eu-002,EU,Synthetic EU regulation consultation,2026-06-20,financial-regulation,capital-rules,neutral,0.57,Public-safe fixture keeps consultation timing unchanged across policy notes,/cases/eu-002,macro-policy-thesis-map fixture-doctor
+asia-001,Asia,Synthetic Asia liquidity corridor,2026-06-21,monetary-policy,liquidity-operations,accommodative,0.63,Public-safe fixture maps routine liquidity operations to a neutral thesis route,/cases/asia-001,macro-policy-thesis-map case-gallery
+asia-002,Asia,Synthetic Asia trade channel,2026-06-22,trade-policy,import-demand,mixed,0.55,Public-safe fixture records mixed trade-channel evidence without a market call,/cases/asia-002,macro-policy-thesis-map visual-receipt

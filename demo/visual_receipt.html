@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Macro Policy Visual Receipt</title>
+<style>
+body{font-family:Arial,sans-serif;margin:2rem;line-height:1.45;color:#1f2937;background:#f8fafc}
+main{max-width:1040px;margin:auto} table{border-collapse:collapse;width:100%;background:white;margin-bottom:1.5rem}
+th,td{border:1px solid #d1d5db;padding:.55rem;text-align:left;vertical-align:top} th{background:#e5e7eb}
+.notice{border-left:4px solid #64748b;padding:.75rem;background:white}
+</style>
+<main>
+<h1>Macro Policy Visual Receipt</h1>
+<p class="notice">Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.</p>
+<h2>Artifact Hashes</h2>
+<table><thead><tr><th>Path</th><th>Bytes</th><th>SHA-256 prefix</th></tr></thead><tbody><tr><td>README.md</td><td>6426</td><td>a2b7c4b9bdbce51e</td></tr>
+<tr><td>examples/macro_events.csv</td><td>906</td><td>b7410919d62dd4e3</td></tr>
+<tr><td>examples/public_macro_cases.csv</td><td>1471</td><td>ee511dd457dd7aab</td></tr>
+<tr><td>demo/thesis_packet.json</td><td>3659</td><td>21afd1a6478ca243</td></tr>
+<tr><td>demo/case_gallery.json</td><td>4180</td><td>526e837ce331afd0</td></tr>
+<tr><td>demo/review_ledger.json</td><td>432</td><td>d4f558b50d9e8366</td></tr>
+<tr><td>demo/public_readiness.json</td><td>1176</td><td>6c77e1bbdc99d8e9</td></tr></tbody></table>
+<h2>Routes</h2>
+<table><thead><tr><th>Route</th></tr></thead><tbody><tr><td>/cases/asia-001</td></tr>
+<tr><td>/cases/asia-002</td></tr>
+<tr><td>/cases/eu-001</td></tr>
+<tr><td>/cases/eu-002</td></tr>
+<tr><td>/cases/us-001</td></tr>
+<tr><td>/cases/us-002</td></tr></tbody></table>
+<h2>Commands</h2>
+<table><thead><tr><th>Command</th></tr></thead><tbody><tr><td>macro-policy-thesis-map case-gallery --root .</td></tr>
+<tr><td>macro-policy-thesis-map visual-receipt --root . --format html</td></tr>
+<tr><td>macro-policy-thesis-map public-readiness --root .</td></tr>
+<tr><td>macro-policy-thesis-map diff-check --root .</td></tr></tbody></table>
+</main>
+</html>
