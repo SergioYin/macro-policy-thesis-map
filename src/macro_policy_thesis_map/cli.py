@@ -12,6 +12,8 @@ from . import __version__
 from .core import (
     DISCLAIMER,
     build_packet,
+    adoption_notes,
+    bundle_export,
     case_gallery,
     cold_start_walkthrough,
     command_matrix,
@@ -30,6 +32,8 @@ from .core import (
     public_readiness,
     quickstart_check,
     release_manifest,
+    release_deck,
+    reviewer_scorecard,
     review_ledger,
     thesis_impact_brief,
 )
@@ -54,6 +58,10 @@ from .render import (
     visual_receipt_html,
     visual_receipt_md,
     visual_receipt_svg,
+    adoption_notes_md,
+    bundle_export_md,
+    release_deck_md,
+    reviewer_scorecard_md,
 )
 
 
@@ -186,6 +194,30 @@ def build_parser() -> argparse.ArgumentParser:
     matrix.add_argument("--out-md", default="demo/command_matrix.md")
     matrix.add_argument("--out-json", default="demo/command_matrix.json")
     matrix.set_defaults(func=cmd_command_matrix)
+
+    adoption = sub.add_parser("adoption-notes", help="Write release-owner public adoption notes.")
+    adoption.add_argument("--root", default=".")
+    adoption.add_argument("--out-md", default="demo/adoption_notes.md")
+    adoption.add_argument("--out-json", default="demo/adoption_notes.json")
+    adoption.set_defaults(func=cmd_adoption_notes)
+
+    scorecard = sub.add_parser("reviewer-scorecard", help="Write a maturity-rubric reviewer scorecard.")
+    scorecard.add_argument("--root", default=".")
+    scorecard.add_argument("--out-md", default="demo/reviewer_scorecard.md")
+    scorecard.add_argument("--out-json", default="demo/reviewer_scorecard.json")
+    scorecard.set_defaults(func=cmd_reviewer_scorecard)
+
+    deck = sub.add_parser("release-deck", help="Write a deterministic public promotion deck.")
+    deck.add_argument("--root", default=".")
+    deck.add_argument("--out-md", default="demo/release_deck.md")
+    deck.add_argument("--out-json", default="demo/release_deck.json")
+    deck.set_defaults(func=cmd_release_deck)
+
+    export = sub.add_parser("bundle-export", help="Write a public promotion bundle manifest.")
+    export.add_argument("--root", default=".")
+    export.add_argument("--out-md", default="demo/bundle_export/manifest.md")
+    export.add_argument("--out-json", default="demo/bundle_export/manifest.json")
+    export.set_defaults(func=cmd_bundle_export)
 
     bundle = sub.add_parser("evidence-bundle", help="Write a public evaluation evidence bundle.")
     bundle.add_argument("--root", default=".")
@@ -357,6 +389,38 @@ def cmd_command_matrix(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_adoption_notes(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = adoption_notes(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), adoption_notes_md(payload))
+    return 0
+
+
+def cmd_reviewer_scorecard(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = reviewer_scorecard(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), reviewer_scorecard_md(payload))
+    return 0
+
+
+def cmd_release_deck(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = release_deck(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), release_deck_md(payload))
+    return 0
+
+
+def cmd_bundle_export(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = bundle_export(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), bundle_export_md(payload))
+    return 0
+
+
 def cmd_evidence_bundle(args: argparse.Namespace) -> int:
     root = Path(args.root)
     payload = evidence_bundle(root)
@@ -419,6 +483,10 @@ def cmd_selfcheck(args: argparse.Namespace) -> int:
         root / "skills" / "agent" / "macro-policy-thesis-map" / "SKILL.md",
         root / "demo" / "quickstart_check.json",
         root / "demo" / "command_matrix.json",
+        root / "demo" / "adoption_notes.json",
+        root / "demo" / "reviewer_scorecard.json",
+        root / "demo" / "release_deck.json",
+        root / "demo" / "bundle_export" / "manifest.json",
         root / "demo" / "evidence_bundle.json",
         root / "demo" / "public_readiness.json",
         root / "demo" / "cold_start_walkthrough.json",

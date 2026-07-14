@@ -127,6 +127,34 @@
         "demo/command_matrix.md",
         "demo/command_matrix.json"
       ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli adoption-notes --root .",
+      "expected_outputs": [
+        "demo/adoption_notes.md",
+        "demo/adoption_notes.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli reviewer-scorecard --root .",
+      "expected_outputs": [
+        "demo/reviewer_scorecard.md",
+        "demo/reviewer_scorecard.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-deck --root .",
+      "expected_outputs": [
+        "demo/release_deck.md",
+        "demo/release_deck.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli bundle-export --root .",
+      "expected_outputs": [
+        "demo/bundle_export/manifest.md",
+        "demo/bundle_export/manifest.json"
+      ]
     }
   ],
   "status": "ready"

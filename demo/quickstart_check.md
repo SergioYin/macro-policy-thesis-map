@@ -35,3 +35,7 @@ Passed: 8 / 8
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli schema-export --root . | demo/input_schema.md, demo/input_schema.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli quickstart-check --root . | demo/quickstart_check.md, demo/quickstart_check.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli command-matrix --root . | demo/command_matrix.md, demo/command_matrix.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli adoption-notes --root . | demo/adoption_notes.md, demo/adoption_notes.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli reviewer-scorecard --root . | demo/reviewer_scorecard.md, demo/reviewer_scorecard.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli release-deck --root . | demo/release_deck.md, demo/release_deck.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli bundle-export --root . | demo/bundle_export/manifest.md, demo/bundle_export/manifest.json |

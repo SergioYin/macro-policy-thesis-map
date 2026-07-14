@@ -34,6 +34,10 @@
       "passed": true
     },
     {
+      "name": "release_owner_pack",
+      "passed": true
+    },
+    {
       "name": "tests",
       "passed": true
     },
@@ -46,7 +50,7 @@
       "passed": true
     }
   ],
-  "max_score": 11,
-  "score": 11,
+  "max_score": 12,
+  "score": 12,
   "status": "ready"
 }

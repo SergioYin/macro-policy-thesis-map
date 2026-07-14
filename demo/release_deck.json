@@ -1,0 +1,83 @@
+{
+  "artifact_count": 5,
+  "artifacts": [
+    {
+      "bytes": 2814,
+      "path": "demo/adoption_notes.json",
+      "sha256": "302d25c42174381a034543a9565baa1af0f098f1c91150f10abee8f1b0905e32"
+    },
+    {
+      "bytes": 10065,
+      "path": "demo/command_matrix.json",
+      "sha256": "7b08a63b9e1de027daf2a48029ef098831736a32160d2cde50599c65a3b3b312"
+    },
+    {
+      "bytes": 1176,
+      "path": "demo/public_readiness.json",
+      "sha256": "6c77e1bbdc99d8e9a6a551ca5ff03e869eb43cb2f2c4aee5f31b26c9c67788eb"
+    },
+    {
+      "bytes": 8501,
+      "path": "demo/release_manifest.json",
+      "sha256": "58f8c0a362e0152412c2e4e35818d440c1f85a45a5a497522a95be2a3cb604ed"
+    },
+    {
+      "bytes": 3149,
+      "path": "demo/reviewer_scorecard.json",
+      "sha256": "7a021d5b55da33662171858be7ac01e80517e693f017a24a8642a0000f05ecfd"
+    }
+  ],
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "slide_count": 5,
+  "slides": [
+    {
+      "points": [
+        "Version 0.5.0",
+        "24 zero-dependency CLI commands documented",
+        "Static Markdown, JSON, HTML, and SVG artifacts only"
+      ],
+      "slide": 1,
+      "title": "Release Surface"
+    },
+    {
+      "points": [
+        "50 release manifest artifacts tracked",
+        "Artifact hashes are recorded in release, evidence, visual receipt, and bundle manifests",
+        "diff-check verifies saved hashes against current local files"
+      ],
+      "slide": 2,
+      "title": "Evidence And Hashes"
+    },
+    {
+      "points": [
+        "Scorecard status: ready",
+        "Score: 5 / 5",
+        "Maturity mapping covers static inputs, review controls, package evidence, verification, and readiness"
+      ],
+      "slide": 3,
+      "title": "Reviewer Rubric"
+    },
+    {
+      "points": [
+        "Run the quickstart commands from a clean checkout.",
+        "Review demo/reviewer_scorecard.md for any maturity item marked review.",
+        "Confirm demo/public_readiness.json remains ready after local edits.",
+        "Run public-scan and diff-check before sharing the bundle."
+      ],
+      "slide": 4,
+      "title": "Cold User Path"
+    },
+    {
+      "points": [
+        "No workflow files are required for public evaluation",
+        "No private references or credential-shaped terms are allowed by public-scan",
+        "No live data, broker connections, orders, recommendations, predictions, or personalized advice",
+        "Public readiness status: ready"
+      ],
+      "slide": 5,
+      "title": "Safety Boundaries"
+    }
+  ],
+  "title": "Release Owner Promotion Deck",
+  "version": "0.5.0"
+}

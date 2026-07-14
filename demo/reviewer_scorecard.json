@@ -1,0 +1,117 @@
+{
+  "artifact_count": 7,
+  "artifacts": [
+    {
+      "bytes": 10065,
+      "path": "demo/command_matrix.json",
+      "sha256": "7b08a63b9e1de027daf2a48029ef098831736a32160d2cde50599c65a3b3b312"
+    },
+    {
+      "bytes": 7493,
+      "path": "demo/evidence_bundle.json",
+      "sha256": "dfdedc681fb28659fe73b7ae388a4df1541202db4c7ceed9157b4ac95add9792"
+    },
+    {
+      "bytes": 1088,
+      "path": "demo/maturity_report.json",
+      "sha256": "ebda2801902de5c0888b136eb94815eef1ad53761abc2e498b4a4994d590d7e3"
+    },
+    {
+      "bytes": 1176,
+      "path": "demo/public_readiness.json",
+      "sha256": "6c77e1bbdc99d8e9a6a551ca5ff03e869eb43cb2f2c4aee5f31b26c9c67788eb"
+    },
+    {
+      "bytes": 8501,
+      "path": "demo/release_manifest.json",
+      "sha256": "58f8c0a362e0152412c2e4e35818d440c1f85a45a5a497522a95be2a3cb604ed"
+    },
+    {
+      "bytes": 12490,
+      "path": "tests/test_cli.py",
+      "sha256": "fb13045aef6b55b9b49fab926d0842eb841fe4169688b41cffdcd7e679a7f2b2"
+    },
+    {
+      "bytes": 1388,
+      "path": "tests/test_safety.py",
+      "sha256": "d50fc2a2e87e8002eb697b42e3562db830a56b9088734a50569f4ac39bef5d6c"
+    }
+  ],
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "max_score": 5,
+  "rubric": [
+    {
+      "description": "Static fixtures and synthetic public examples are present.",
+      "evidence": [
+        "examples",
+        "case_gallery",
+        "sensitivity_layer",
+        "exposure_layer"
+      ],
+      "maturity_mapping": [
+        "examples",
+        "case_gallery",
+        "sensitivity_layer",
+        "exposure_layer"
+      ],
+      "name": "static_inputs",
+      "passed": true
+    },
+    {
+      "description": "Review artifacts, hashes, and owner pack are present.",
+      "evidence": [
+        "visual_receipt",
+        "release_owner_pack"
+      ],
+      "maturity_mapping": [
+        "visual_receipt",
+        "release_owner_pack"
+      ],
+      "name": "review_controls",
+      "passed": true
+    },
+    {
+      "description": "Package metadata, docs, license, and agent skill are present.",
+      "evidence": [
+        "package",
+        "readme",
+        "license",
+        "skill"
+      ],
+      "maturity_mapping": [
+        "package",
+        "readme",
+        "license",
+        "skill"
+      ],
+      "name": "public_package",
+      "passed": true
+    },
+    {
+      "description": "Tests exist and no workflow files are required.",
+      "evidence": [
+        "tests",
+        "no_workflows"
+      ],
+      "maturity_mapping": [
+        "tests",
+        "no_workflows"
+      ],
+      "name": "verification",
+      "passed": true
+    },
+    {
+      "description": "Public readiness command reports ready.",
+      "evidence": [
+        "demo/public_readiness.json"
+      ],
+      "maturity_mapping": [],
+      "name": "public_readiness",
+      "passed": true
+    }
+  ],
+  "score": 5,
+  "status": "ready",
+  "title": "Reviewer Scorecard",
+  "version": "0.5.0"
+}

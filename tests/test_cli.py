@@ -47,6 +47,10 @@ def test_dashboard_manifest_maturity_and_selfcheck(tmp_path):
     assert main(["visual-receipt", "--root", str(ROOT)]) == 0
     assert main(["release-manifest", "--root", str(ROOT), "--out-json", str(manifest_json), "--out-md", str(manifest_md)]) == 0
     assert main(["maturity-report", "--root", str(ROOT), "--out-json", str(maturity_json), "--out-md", str(maturity_md)]) == 0
+    assert main(["adoption-notes", "--root", str(ROOT)]) == 0
+    assert main(["reviewer-scorecard", "--root", str(ROOT)]) == 0
+    assert main(["release-deck", "--root", str(ROOT)]) == 0
+    assert main(["bundle-export", "--root", str(ROOT)]) == 0
     assert main(["selfcheck", "--root", str(ROOT)]) == 0
 
     assert "<html" in dashboard.read_text(encoding="utf-8")
@@ -83,7 +87,7 @@ def test_fixture_doctor_and_schema_export(tmp_path):
     assert '"status": "pass"' in doctor_json.read_text(encoding="utf-8")
     assert "Fixture Doctor" in doctor_md.read_text(encoding="utf-8")
     schema_text = schema_json.read_text(encoding="utf-8")
-    assert '"schema_version": "0.4.0"' in schema_text
+    assert '"schema_version": "0.5.0"' in schema_text
     assert "confidence" in schema_text
     assert "Data Dictionary" in schema_md.read_text(encoding="utf-8")
 
@@ -195,6 +199,28 @@ def test_evidence_bundle_and_public_readiness_surfaces(tmp_path):
     assert "public_scan" in readiness_json.read_text(encoding="utf-8")
 
 
+def test_release_owner_promotion_pack_commands(tmp_path):
+    adoption_json = tmp_path / "adoption.json"
+    adoption_md = tmp_path / "adoption.md"
+    scorecard_json = tmp_path / "scorecard.json"
+    scorecard_md = tmp_path / "scorecard.md"
+    deck_json = tmp_path / "deck.json"
+    deck_md = tmp_path / "deck.md"
+    export_json = tmp_path / "manifest.json"
+    export_md = tmp_path / "manifest.md"
+
+    assert main(["adoption-notes", "--root", str(ROOT), "--out-json", str(adoption_json), "--out-md", str(adoption_md)]) == 0
+    assert main(["reviewer-scorecard", "--root", str(ROOT), "--out-json", str(scorecard_json), "--out-md", str(scorecard_md)]) == 0
+    assert main(["release-deck", "--root", str(ROOT), "--out-json", str(deck_json), "--out-md", str(deck_md)]) == 0
+    assert main(["bundle-export", "--root", str(ROOT), "--out-json", str(export_json), "--out-md", str(export_md)]) == 0
+
+    assert '"version": "0.5.0"' in adoption_json.read_text(encoding="utf-8")
+    assert "cold_user_next_actions" in adoption_json.read_text(encoding="utf-8")
+    assert "maturity_mapping" in scorecard_json.read_text(encoding="utf-8")
+    assert "Release Owner Promotion Deck" in deck_md.read_text(encoding="utf-8")
+    assert '"export_root": "demo/bundle_export"' in export_json.read_text(encoding="utf-8")
+
+
 def test_diff_check_detects_manifest_drift(tmp_path):
     source = tmp_path / "note.txt"
     source.write_text("before\n", encoding="utf-8")
@@ -243,6 +269,10 @@ def test_public_readiness_blocks_incomplete_tree(tmp_path):
         (["visual-receipt"], "demo/visual_receipt.json"),
         (["quickstart-check"], "demo/quickstart_check.json"),
         (["command-matrix"], "demo/command_matrix.json"),
+        (["adoption-notes"], "demo/adoption_notes.json"),
+        (["reviewer-scorecard"], "demo/reviewer_scorecard.json"),
+        (["release-deck"], "demo/release_deck.json"),
+        (["bundle-export"], "demo/bundle_export/manifest.json"),
         (["cold-start-walkthrough"], "demo/cold_start_walkthrough.json"),
     ],
 )

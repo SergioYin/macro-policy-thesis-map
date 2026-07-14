@@ -1,0 +1,123 @@
+{
+  "artifact_count": 21,
+  "artifacts": [
+    {
+      "bytes": 1066,
+      "path": "LICENSE",
+      "sha256": "b13dc350cd48500c97d419a02e3bf37135989e60b46e1d99231103e0b04e780a"
+    },
+    {
+      "bytes": 8838,
+      "path": "README.md",
+      "sha256": "f7a8424248d470ec935186c2af608822130e18ee1075248a78f1a70a6c502d8b"
+    },
+    {
+      "bytes": 2814,
+      "path": "demo/adoption_notes.json",
+      "sha256": "302d25c42174381a034543a9565baa1af0f098f1c91150f10abee8f1b0905e32"
+    },
+    {
+      "bytes": 2010,
+      "path": "demo/adoption_notes.md",
+      "sha256": "4c9badddee32f69f82137157553a00dc4eda0cd7b2604bf36dba206b612081d5"
+    },
+    {
+      "bytes": 2692,
+      "path": "demo/cold_start_walkthrough.json",
+      "sha256": "c5944698c87f48f7a4f51a898e96631a2038865e58b6662a4228e4f80f6213ab"
+    },
+    {
+      "bytes": 2092,
+      "path": "demo/cold_start_walkthrough.md",
+      "sha256": "555547325adc489621be24cd74f18da1e7207dbb88219c3d8fa2160dadab8be4"
+    },
+    {
+      "bytes": 10065,
+      "path": "demo/command_matrix.json",
+      "sha256": "7b08a63b9e1de027daf2a48029ef098831736a32160d2cde50599c65a3b3b312"
+    },
+    {
+      "bytes": 6684,
+      "path": "demo/command_matrix.md",
+      "sha256": "2e8a1e32800b484c951abf39586b762cc8fc743ff071c71770d9ccca4f4ce7ad"
+    },
+    {
+      "bytes": 7493,
+      "path": "demo/evidence_bundle.json",
+      "sha256": "dfdedc681fb28659fe73b7ae388a4df1541202db4c7ceed9157b4ac95add9792"
+    },
+    {
+      "bytes": 3177,
+      "path": "demo/evidence_bundle.md",
+      "sha256": "78f27e7a1c6800e1179699ef1f7835722ec657d8801893a90b5471c060d0e470"
+    },
+    {
+      "bytes": 1088,
+      "path": "demo/maturity_report.json",
+      "sha256": "ebda2801902de5c0888b136eb94815eef1ad53761abc2e498b4a4994d590d7e3"
+    },
+    {
+      "bytes": 597,
+      "path": "demo/maturity_report.md",
+      "sha256": "df7760b77a4df93f15c43b59851868181d84d4fe2ba030bb92732d284a4daaff"
+    },
+    {
+      "bytes": 1176,
+      "path": "demo/public_readiness.json",
+      "sha256": "6c77e1bbdc99d8e9a6a551ca5ff03e869eb43cb2f2c4aee5f31b26c9c67788eb"
+    },
+    {
+      "bytes": 887,
+      "path": "demo/public_readiness.md",
+      "sha256": "19f9e31fcf6d66b5a0d15e68184f62adcca1b679b025146a537b771384392fc5"
+    },
+    {
+      "bytes": 2797,
+      "path": "demo/release_deck.json",
+      "sha256": "55cc80e1b5da9eae190778551b456edcc8d75e593274410d36dddc4a97654781"
+    },
+    {
+      "bytes": 1760,
+      "path": "demo/release_deck.md",
+      "sha256": "680c712392cf90eaa14a649e9d07d6dadc0f6787d5335e736055d4e8885b74e7"
+    },
+    {
+      "bytes": 8501,
+      "path": "demo/release_manifest.json",
+      "sha256": "58f8c0a362e0152412c2e4e35818d440c1f85a45a5a497522a95be2a3cb604ed"
+    },
+    {
+      "bytes": 3329,
+      "path": "demo/release_manifest.md",
+      "sha256": "70aafb3fb49dbfb385ae15fbac4ff237ab0977c9b2a57f8c83d3a86bc096e5d3"
+    },
+    {
+      "bytes": 3149,
+      "path": "demo/reviewer_scorecard.json",
+      "sha256": "7a021d5b55da33662171858be7ac01e80517e693f017a24a8642a0000f05ecfd"
+    },
+    {
+      "bytes": 1452,
+      "path": "demo/reviewer_scorecard.md",
+      "sha256": "f7acc687fbed25a64c9c4d104a59e0338bbf60f830fdad8594b8319a8ee99895"
+    },
+    {
+      "bytes": 819,
+      "path": "pyproject.toml",
+      "sha256": "8bc16c86630f734d8fa74945b1c9c82dd60052a7fa2d543805181648971aaa0c"
+    }
+  ],
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "export_root": "demo/bundle_export",
+  "missing": [],
+  "missing_count": 0,
+  "release_commands": [
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-deck --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli bundle-export --root .",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root ."
+  ],
+  "status": "ready",
+  "title": "Public Promotion Bundle Export",
+  "version": "0.5.0"
+}

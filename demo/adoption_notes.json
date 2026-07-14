@@ -1,0 +1,68 @@
+{
+  "artifact_count": 7,
+  "artifacts": [
+    {
+      "bytes": 8838,
+      "path": "README.md",
+      "sha256": "f7a8424248d470ec935186c2af608822130e18ee1075248a78f1a70a6c502d8b"
+    },
+    {
+      "bytes": 2692,
+      "path": "demo/cold_start_walkthrough.json",
+      "sha256": "c5944698c87f48f7a4f51a898e96631a2038865e58b6662a4228e4f80f6213ab"
+    },
+    {
+      "bytes": 10065,
+      "path": "demo/command_matrix.json",
+      "sha256": "7b08a63b9e1de027daf2a48029ef098831736a32160d2cde50599c65a3b3b312"
+    },
+    {
+      "bytes": 7493,
+      "path": "demo/evidence_bundle.json",
+      "sha256": "dfdedc681fb28659fe73b7ae388a4df1541202db4c7ceed9157b4ac95add9792"
+    },
+    {
+      "bytes": 1088,
+      "path": "demo/maturity_report.json",
+      "sha256": "ebda2801902de5c0888b136eb94815eef1ad53761abc2e498b4a4994d590d7e3"
+    },
+    {
+      "bytes": 1176,
+      "path": "demo/public_readiness.json",
+      "sha256": "6c77e1bbdc99d8e9a6a551ca5ff03e869eb43cb2f2c4aee5f31b26c9c67788eb"
+    },
+    {
+      "bytes": 8501,
+      "path": "demo/release_manifest.json",
+      "sha256": "58f8c0a362e0152412c2e4e35818d440c1f85a45a5a497522a95be2a3cb604ed"
+    }
+  ],
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "cold_user_next_actions": [
+    "Run the quickstart commands from a clean checkout.",
+    "Review demo/reviewer_scorecard.md for any maturity item marked review.",
+    "Confirm demo/public_readiness.json remains ready after local edits.",
+    "Run public-scan and diff-check before sharing the bundle."
+  ],
+  "maturity_max_score": 12,
+  "maturity_score": 12,
+  "maturity_status": "ready",
+  "public_readiness_status": "ready",
+  "release_artifact_count": 50,
+  "release_commands": [
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli adoption-notes --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli reviewer-scorecard --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-deck --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli bundle-export --root .",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root ."
+  ],
+  "safety_boundaries": [
+    "Use static files only.",
+    "Do not add workflow files, upload steps, or private references.",
+    "Do not fetch live data, connect to brokers, place orders, or provide financial advice.",
+    "Treat public-readiness blockers and reviewer-scorecard review items as release-owner follow-up."
+  ],
+  "title": "Release Owner Adoption Notes",
+  "version": "0.5.0"
+}

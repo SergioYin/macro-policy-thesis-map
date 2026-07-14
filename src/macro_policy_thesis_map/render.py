@@ -175,6 +175,126 @@ Command count: {payload['command_count']}
 """
 
 
+def adoption_notes_md(payload: dict[str, Any]) -> str:
+    artifacts = [[item["path"], item["bytes"], item["sha256"][:16]] for item in payload["artifacts"]]
+    commands = [[item] for item in payload["release_commands"]]
+    actions = [[item] for item in payload["cold_user_next_actions"]]
+    boundaries = [[item] for item in payload["safety_boundaries"]]
+    return f"""# Release Owner Adoption Notes
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Maturity: {payload['maturity_status']} ({payload['maturity_score']} / {payload['maturity_max_score']})
+
+Public readiness: {payload['public_readiness_status']}
+
+Release manifest artifacts: {payload['release_artifact_count']}
+
+## Release Commands
+
+{table(["Command"], commands)}
+
+## Cold User Next Actions
+
+{table(["Action"], actions)}
+
+## Safety Boundaries
+
+{table(["Boundary"], boundaries)}
+
+## Artifact Hashes
+
+{table(["Path", "Bytes", "SHA-256 prefix"], artifacts)}
+"""
+
+
+def reviewer_scorecard_md(payload: dict[str, Any]) -> str:
+    rows = [
+        [
+            item["name"],
+            "pass" if item["passed"] else "review",
+            item["description"],
+            ", ".join(item["maturity_mapping"]) or ", ".join(item["evidence"]),
+        ]
+        for item in payload["rubric"]
+    ]
+    artifacts = [[item["path"], item["bytes"], item["sha256"][:16]] for item in payload["artifacts"]]
+    return f"""# Reviewer Scorecard
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Status: {payload['status']}
+
+Score: {payload['score']} / {payload['max_score']}
+
+## Rubric Mapping
+
+{table(["Rubric", "Result", "Description", "Evidence mapping"], rows)}
+
+## Artifact Hashes
+
+{table(["Path", "Bytes", "SHA-256 prefix"], artifacts)}
+"""
+
+
+def release_deck_md(payload: dict[str, Any]) -> str:
+    slides = []
+    for slide in payload["slides"]:
+        points = "\n".join(f"- {point}" for point in slide["points"])
+        slides.append(f"## {slide['slide']}. {slide['title']}\n\n{points}")
+    artifacts = [[item["path"], item["bytes"], item["sha256"][:16]] for item in payload["artifacts"]]
+    return f"""# Release Owner Promotion Deck
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Slide count: {payload['slide_count']}
+
+{chr(10).join(slides)}
+
+## Artifact Hashes
+
+{table(["Path", "Bytes", "SHA-256 prefix"], artifacts)}
+"""
+
+
+def bundle_export_md(payload: dict[str, Any]) -> str:
+    artifacts = [[item["path"], item["bytes"], item["sha256"][:16]] for item in payload["artifacts"]]
+    missing = [[item] for item in payload["missing"]] or [["none"]]
+    commands = [[item] for item in payload["release_commands"]]
+    return f"""# Public Promotion Bundle Export
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Status: {payload['status']}
+
+Export root: {payload['export_root']}
+
+Artifact count: {payload['artifact_count']}
+
+Missing count: {payload['missing_count']}
+
+## Release Commands
+
+{table(["Command"], commands)}
+
+## Missing
+
+{table(["Path"], missing)}
+
+## Artifact Manifest
+
+{table(["Path", "Bytes", "SHA-256 prefix"], artifacts)}
+"""
+
+
 def case_gallery_md(payload: dict[str, Any]) -> str:
     regions = [
         [item["region"], item["case_count"], f"{item['average_confidence']:.3f}", ", ".join(item["policy_areas"]), ", ".join(item["routes"])]

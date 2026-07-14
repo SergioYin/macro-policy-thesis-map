@@ -21,6 +21,10 @@ PYTHONPATH=src python -m macro_policy_thesis_map.cli release-manifest --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli maturity-report --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli quickstart-check --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli command-matrix --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli adoption-notes --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli reviewer-scorecard --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli release-deck --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli bundle-export --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli cold-start-walkthrough --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli evidence-bundle --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli public-readiness --root .
@@ -46,6 +50,10 @@ macro-policy-thesis-map case-gallery
 macro-policy-thesis-map visual-receipt
 macro-policy-thesis-map quickstart-check
 macro-policy-thesis-map command-matrix
+macro-policy-thesis-map adoption-notes
+macro-policy-thesis-map reviewer-scorecard
+macro-policy-thesis-map release-deck
+macro-policy-thesis-map bundle-export
 ```
 
 The installed CLI uses bundled example CSVs for default event, case, sensitivity, and exposure inputs when `examples/macro_events.csv`, `examples/prior_macro_events.csv`, `examples/public_macro_cases.csv`, `examples/thesis_sensitivities.csv`, and `examples/portfolio_exposures.csv` are not present in the current `--root`. Pass `--events`, `--current`, `--prior`, `--cases`, `--sensitivities`, or `--exposures` to use your own static CSVs. `selfcheck` and `diff-check` validate the source tree and should be run from a project checkout.
@@ -70,6 +78,10 @@ This project is research tooling only. It does not fetch live data, connect to b
 - `demo/maturity_report.md` and `demo/maturity_report.json`
 - `demo/quickstart_check.md` and `demo/quickstart_check.json`
 - `demo/command_matrix.md` and `demo/command_matrix.json`
+- `demo/adoption_notes.md` and `demo/adoption_notes.json`
+- `demo/reviewer_scorecard.md` and `demo/reviewer_scorecard.json`
+- `demo/release_deck.md` and `demo/release_deck.json`
+- `demo/bundle_export/manifest.md` and `demo/bundle_export/manifest.json`
 - `demo/evidence_bundle.md` and `demo/evidence_bundle.json`
 - `demo/public_readiness.md` and `demo/public_readiness.json`
 - `demo/cold_start_walkthrough.md` and `demo/cold_start_walkthrough.json`
@@ -127,6 +139,10 @@ The bundled sensitivity and exposure rows are synthetic. `impact_score` and `exp
 - `maturity-report`: scores release readiness evidence.
 - `quickstart-check`: verifies first-evaluator source files and starter command outputs.
 - `command-matrix`: publishes command inputs, outputs, purposes, and safety posture.
+- `adoption-notes`: writes release-owner public adoption notes, release commands, artifact hashes, cold-user next actions, and safety boundaries.
+- `reviewer-scorecard`: maps maturity/readiness evidence to a public reviewer rubric with artifact hashes.
+- `release-deck`: writes a deterministic Markdown/JSON promotion deck for release owners.
+- `bundle-export`: writes a deterministic bundle manifest under `demo/bundle_export`.
 - `evidence-bundle`: collects public evaluation artifact hashes and focused check commands.
 - `public-readiness`: summarizes release-readiness gates and blockers.
 - `cold-start-walkthrough`: writes a deterministic first-run walkthrough for public evaluators.

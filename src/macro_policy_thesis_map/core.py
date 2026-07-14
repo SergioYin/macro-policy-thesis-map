@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from .io import read_csv, read_csv_document, read_json
+from . import __version__
 
 
 DISCLAIMER = (
@@ -82,6 +83,14 @@ DEMO_ARTIFACTS = [
     "demo/quickstart_check.json",
     "demo/command_matrix.md",
     "demo/command_matrix.json",
+    "demo/adoption_notes.md",
+    "demo/adoption_notes.json",
+    "demo/reviewer_scorecard.md",
+    "demo/reviewer_scorecard.json",
+    "demo/release_deck.md",
+    "demo/release_deck.json",
+    "demo/bundle_export/manifest.md",
+    "demo/bundle_export/manifest.json",
     "demo/evidence_bundle.md",
     "demo/evidence_bundle.json",
     "demo/public_readiness.md",
@@ -196,6 +205,34 @@ COMMAND_SPECS = [
         "inputs": ["built-in command metadata"],
         "outputs": ["demo/command_matrix.md", "demo/command_matrix.json"],
         "safety": "Documents capabilities without private references or operational workflows.",
+    },
+    {
+        "command": "adoption-notes",
+        "purpose": "Write release-owner notes for public evaluator adoption and next actions.",
+        "inputs": ["demo artifacts, command metadata, maturity/readiness reports"],
+        "outputs": ["demo/adoption_notes.md", "demo/adoption_notes.json"],
+        "safety": "Aggregates static artifacts only; no workflows, live data, or advice.",
+    },
+    {
+        "command": "reviewer-scorecard",
+        "purpose": "Map release evidence to a reviewer maturity rubric with artifact hashes.",
+        "inputs": ["demo artifacts, tests, README, skill docs"],
+        "outputs": ["demo/reviewer_scorecard.md", "demo/reviewer_scorecard.json"],
+        "safety": "Scores public release evidence without private references or external checks.",
+    },
+    {
+        "command": "release-deck",
+        "purpose": "Build a deterministic Markdown/JSON promotion deck for release owners.",
+        "inputs": ["release manifest, maturity report, readiness report, command matrix"],
+        "outputs": ["demo/release_deck.md", "demo/release_deck.json"],
+        "safety": "Summarizes public static release surfaces only.",
+    },
+    {
+        "command": "bundle-export",
+        "purpose": "Export a public promotion bundle manifest under demo/bundle_export.",
+        "inputs": ["release-owner pack artifacts, release manifest, evidence bundle"],
+        "outputs": ["demo/bundle_export/manifest.md", "demo/bundle_export/manifest.json"],
+        "safety": "Creates a local static manifest only; it does not upload, publish, or automate workflows.",
     },
     {
         "command": "evidence-bundle",
@@ -553,7 +590,7 @@ def input_schema() -> dict[str, Any]:
         },
     ]
     return {
-        "schema_version": "0.4.0",
+        "schema_version": "0.5.0",
         "format": "csv",
         "required_columns": EXPECTED_COLUMNS,
         "columns": columns,
@@ -848,6 +885,7 @@ def maturity(root: Path) -> dict[str, Any]:
         ("sensitivity_layer", root.joinpath("examples/thesis_sensitivities.csv").exists() and root.joinpath("demo/thesis_impact_brief.json").exists()),
         ("exposure_layer", root.joinpath("examples/portfolio_exposures.csv").exists() and root.joinpath("demo/exposure_map.json").exists()),
         ("visual_receipt", root.joinpath("demo/visual_receipt.json").exists() and (root.joinpath("demo/visual_receipt.svg").exists() or root.joinpath("demo/visual_receipt.html").exists())),
+        ("release_owner_pack", all(root.joinpath(path).exists() for path in ["demo/adoption_notes.json", "demo/reviewer_scorecard.json", "demo/release_deck.json", "demo/bundle_export/manifest.json"])),
         ("tests", any(root.joinpath("tests").glob("test_*.py"))),
         ("skill", root.joinpath("skills/agent/macro-policy-thesis-map/SKILL.md").exists()),
         ("no_workflows", not root.joinpath(".github/workflows").exists()),
@@ -898,6 +936,10 @@ def quickstart_check(root: Path) -> dict[str, Any]:
             "visual-receipt",
             "quickstart-check",
             "command-matrix",
+            "adoption-notes",
+            "reviewer-scorecard",
+            "release-deck",
+            "bundle-export",
         }
     ]
     passed = sum(1 for _, ok, _ in checks)
@@ -936,6 +978,8 @@ def evidence_bundle(root: Path) -> dict[str, Any]:
         artifact
         for artifact in DEMO_ARTIFACTS
         if not artifact.startswith("demo/release_manifest") and not artifact.startswith("demo/evidence_bundle")
+        and not artifact.startswith("demo/adoption_notes") and not artifact.startswith("demo/reviewer_scorecard")
+        and not artifact.startswith("demo/release_deck") and not artifact.startswith("demo/bundle_export")
     )
     records = []
     missing = []
@@ -956,6 +1000,7 @@ def evidence_bundle(root: Path) -> dict[str, Any]:
             "PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_safety.py",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
+            "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
         ],
         "boundaries": DISCLAIMER,
@@ -979,6 +1024,10 @@ def public_readiness(root: Path) -> dict[str, Any]:
         "demo/visual_receipt.json",
         "demo/evidence_bundle.json",
         "demo/cold_start_walkthrough.json",
+        "demo/adoption_notes.json",
+        "demo/reviewer_scorecard.json",
+        "demo/release_deck.json",
+        "demo/bundle_export/manifest.json",
     ]
     checks = [
         ("public_scan", not public_findings(root), "No private terms or credential-shaped tokens in public text."),
@@ -1027,12 +1076,24 @@ def cold_start_walkthrough() -> dict[str, Any]:
         },
         {
             "step": 5,
+            "title": "Read release-owner promotion notes",
+            "command": "macro-policy-thesis-map adoption-notes && macro-policy-thesis-map reviewer-scorecard && macro-policy-thesis-map release-deck",
+            "expected_result": "Release-owner notes, scorecard, and deck are written as Markdown and JSON.",
+        },
+        {
+            "step": 6,
+            "title": "Export the public promotion bundle manifest",
+            "command": "macro-policy-thesis-map bundle-export",
+            "expected_result": "A deterministic bundle manifest is written under demo/bundle_export/.",
+        },
+        {
+            "step": 7,
             "title": "Check public readiness",
             "command": "macro-policy-thesis-map public-readiness",
             "expected_result": "A public readiness report lists pass/fail gates.",
         },
         {
-            "step": 6,
+            "step": 8,
             "title": "Run final local checks",
             "command": "macro-policy-thesis-map selfcheck && macro-policy-thesis-map public-scan && macro-policy-thesis-map diff-check",
             "expected_result": "All commands exit successfully before sharing artifacts.",
@@ -1062,6 +1123,14 @@ def release_manifest(root: Path) -> dict[str, Any]:
         "demo/visual_receipt.html",
         "demo/evidence_bundle.json",
         "demo/evidence_bundle.md",
+        "demo/adoption_notes.json",
+        "demo/adoption_notes.md",
+        "demo/reviewer_scorecard.json",
+        "demo/reviewer_scorecard.md",
+        "demo/release_deck.json",
+        "demo/release_deck.md",
+        "demo/bundle_export/manifest.json",
+        "demo/bundle_export/manifest.md",
     }
     for base in ["README.md", "LICENSE", "pyproject.toml", "examples", "demo", "src", "tests", "skills"]:
         path = root / base
@@ -1076,6 +1145,226 @@ def release_manifest(root: Path) -> dict[str, Any]:
                     if record["path"] not in excluded:
                         files.append(record)
     return {"artifact_count": len(files), "artifacts": files, "boundaries": DISCLAIMER}
+
+
+def adoption_notes(root: Path) -> dict[str, Any]:
+    maturity_payload = read_optional_json(root / "demo/maturity_report.json")
+    readiness_payload = read_optional_json(root / "demo/public_readiness.json")
+    manifest_payload = read_optional_json(root / "demo/release_manifest.json")
+    artifacts = records_for_existing(
+        root,
+        [
+            "README.md",
+            "demo/command_matrix.json",
+            "demo/maturity_report.json",
+            "demo/public_readiness.json",
+            "demo/evidence_bundle.json",
+            "demo/release_manifest.json",
+            "demo/cold_start_walkthrough.json",
+        ],
+    )
+    next_actions = [
+        "Run the quickstart commands from a clean checkout.",
+        "Review demo/reviewer_scorecard.md for any maturity item marked review.",
+        "Confirm demo/public_readiness.json remains ready after local edits.",
+        "Run public-scan and diff-check before sharing the bundle.",
+    ]
+    release_commands = [
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli adoption-notes --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli reviewer-scorecard --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-deck --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli bundle-export --root .",
+        "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
+        "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
+    ]
+    return {
+        "title": "Release Owner Adoption Notes",
+        "version": __version__,
+        "maturity_status": maturity_payload.get("status", "missing"),
+        "maturity_score": maturity_payload.get("score", 0),
+        "maturity_max_score": maturity_payload.get("max_score", 0),
+        "public_readiness_status": readiness_payload.get("status", "missing"),
+        "release_artifact_count": manifest_payload.get("artifact_count", 0),
+        "artifact_count": len(artifacts),
+        "artifacts": artifacts,
+        "release_commands": release_commands,
+        "cold_user_next_actions": next_actions,
+        "safety_boundaries": [
+            "Use static files only.",
+            "Do not add workflow files, upload steps, or private references.",
+            "Do not fetch live data, connect to brokers, place orders, or provide financial advice.",
+            "Treat public-readiness blockers and reviewer-scorecard review items as release-owner follow-up.",
+        ],
+        "boundaries": DISCLAIMER,
+    }
+
+
+def reviewer_scorecard(root: Path) -> dict[str, Any]:
+    maturity_payload = read_optional_json(root / "demo/maturity_report.json") or maturity(root)
+    readiness_payload = read_optional_json(root / "demo/public_readiness.json")
+    rubric = [
+        ("static_inputs", ["examples", "case_gallery", "sensitivity_layer", "exposure_layer"], "Static fixtures and synthetic public examples are present."),
+        ("review_controls", ["visual_receipt", "release_owner_pack"], "Review artifacts, hashes, and owner pack are present."),
+        ("public_package", ["package", "readme", "license", "skill"], "Package metadata, docs, license, and agent skill are present."),
+        ("verification", ["tests", "no_workflows"], "Tests exist and no workflow files are required."),
+        ("public_readiness", [], "Public readiness command reports ready."),
+    ]
+    maturity_checks = {item["name"]: bool(item["passed"]) for item in maturity_payload.get("checks", []) if isinstance(item, dict)}
+    rows = []
+    for name, mapped_checks, description in rubric:
+        if name == "public_readiness":
+            passed = readiness_payload.get("status") == "ready"
+            evidence = ["demo/public_readiness.json"]
+        else:
+            passed = all(maturity_checks.get(check, False) for check in mapped_checks)
+            evidence = mapped_checks
+        rows.append(
+            {
+                "name": name,
+                "passed": passed,
+                "description": description,
+                "maturity_mapping": mapped_checks,
+                "evidence": evidence,
+            }
+        )
+    artifacts = records_for_existing(
+        root,
+        [
+            "demo/maturity_report.json",
+            "demo/public_readiness.json",
+            "demo/evidence_bundle.json",
+            "demo/release_manifest.json",
+            "demo/command_matrix.json",
+            "tests/test_cli.py",
+            "tests/test_safety.py",
+        ],
+    )
+    return {
+        "title": "Reviewer Scorecard",
+        "version": __version__,
+        "status": "ready" if all(item["passed"] for item in rows) else "needs-review",
+        "score": sum(1 for item in rows if item["passed"]),
+        "max_score": len(rows),
+        "rubric": rows,
+        "artifact_count": len(artifacts),
+        "artifacts": artifacts,
+        "boundaries": DISCLAIMER,
+    }
+
+
+def release_deck(root: Path) -> dict[str, Any]:
+    notes = read_optional_json(root / "demo/adoption_notes.json")
+    scorecard = read_optional_json(root / "demo/reviewer_scorecard.json")
+    readiness = read_optional_json(root / "demo/public_readiness.json")
+    command_payload = command_matrix()
+    slides = [
+        {
+            "slide": 1,
+            "title": "Release Surface",
+            "points": [
+                f"Version {__version__}",
+                f"{command_payload['command_count']} zero-dependency CLI commands documented",
+                "Static Markdown, JSON, HTML, and SVG artifacts only",
+            ],
+        },
+        {
+            "slide": 2,
+            "title": "Evidence And Hashes",
+            "points": [
+                f"{notes.get('release_artifact_count', 0)} release manifest artifacts tracked",
+                "Artifact hashes are recorded in release, evidence, visual receipt, and bundle manifests",
+                "diff-check verifies saved hashes against current local files",
+            ],
+        },
+        {
+            "slide": 3,
+            "title": "Reviewer Rubric",
+            "points": [
+                f"Scorecard status: {scorecard.get('status', 'missing')}",
+                f"Score: {scorecard.get('score', 0)} / {scorecard.get('max_score', 0)}",
+                "Maturity mapping covers static inputs, review controls, package evidence, verification, and readiness",
+            ],
+        },
+        {
+            "slide": 4,
+            "title": "Cold User Path",
+            "points": notes.get("cold_user_next_actions", []),
+        },
+        {
+            "slide": 5,
+            "title": "Safety Boundaries",
+            "points": [
+                "No workflow files are required for public evaluation",
+                "No private references or credential-shaped terms are allowed by public-scan",
+                "No live data, broker connections, orders, recommendations, predictions, or personalized advice",
+                f"Public readiness status: {readiness.get('status', 'missing')}",
+            ],
+        },
+    ]
+    artifacts = records_for_existing(
+        root,
+        [
+            "demo/adoption_notes.json",
+            "demo/reviewer_scorecard.json",
+            "demo/public_readiness.json",
+            "demo/release_manifest.json",
+            "demo/command_matrix.json",
+        ],
+    )
+    return {
+        "title": "Release Owner Promotion Deck",
+        "version": __version__,
+        "slide_count": len(slides),
+        "slides": slides,
+        "artifact_count": len(artifacts),
+        "artifacts": artifacts,
+        "boundaries": DISCLAIMER,
+    }
+
+
+def bundle_export(root: Path) -> dict[str, Any]:
+    include = [
+        "README.md",
+        "LICENSE",
+        "pyproject.toml",
+        "demo/adoption_notes.md",
+        "demo/adoption_notes.json",
+        "demo/reviewer_scorecard.md",
+        "demo/reviewer_scorecard.json",
+        "demo/release_deck.md",
+        "demo/release_deck.json",
+        "demo/command_matrix.md",
+        "demo/command_matrix.json",
+        "demo/maturity_report.md",
+        "demo/maturity_report.json",
+        "demo/public_readiness.md",
+        "demo/public_readiness.json",
+        "demo/evidence_bundle.md",
+        "demo/evidence_bundle.json",
+        "demo/release_manifest.md",
+        "demo/release_manifest.json",
+        "demo/cold_start_walkthrough.md",
+        "demo/cold_start_walkthrough.json",
+    ]
+    artifacts = records_for_existing(root, include)
+    missing = [path for path in include if not root.joinpath(path).exists()]
+    return {
+        "title": "Public Promotion Bundle Export",
+        "version": __version__,
+        "status": "ready" if not missing else "needs-review",
+        "export_root": "demo/bundle_export",
+        "artifact_count": len(artifacts),
+        "missing_count": len(missing),
+        "missing": missing,
+        "artifacts": artifacts,
+        "release_commands": [
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-deck --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli bundle-export --root .",
+            "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
+            "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
+        ],
+        "boundaries": DISCLAIMER,
+    }
 
 
 def diff_check(root: Path, manifest_path: Path) -> dict[str, Any]:
@@ -1117,6 +1406,17 @@ def file_record(root: Path, path: Path) -> dict[str, Any]:
         "bytes": len(data),
         "sha256": hashlib.sha256(data).hexdigest(),
     }
+
+
+def records_for_existing(root: Path, relatives: list[str]) -> list[dict[str, Any]]:
+    records = [file_record(root, root / relative) for relative in relatives if root.joinpath(relative).exists()]
+    return sorted(records, key=lambda item: item["path"])
+
+
+def read_optional_json(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {}
+    return read_json(path)
 
 
 def public_findings(root: Path) -> list[str]:

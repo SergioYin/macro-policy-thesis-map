@@ -9,7 +9,7 @@
 <text id="receipt-title" x="42" y="70" class="title">Macro Policy Visual Receipt</text>
 <text x="42" y="102" class="body">Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.</text>
 <text x="42" y="138" class="label">Hashes, Routes, Commands</text>
-<text x="42" y="180" class="mono">README.md  d1494a28d5d6</text>
+<text x="42" y="180" class="mono">README.md  f7a8424248d4</text>
 <text x="42" y="202" class="mono">examples/macro_events.csv  b7410919d62d</text>
 <text x="42" y="224" class="mono">examples/public_macro_cases.csv  ee511dd457dd</text>
 <text x="42" y="246" class="mono">examples/thesis_sensitivities.csv  ab0a6a3d0a7f</text>

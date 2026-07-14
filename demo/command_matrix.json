@@ -1,6 +1,6 @@
 {
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
-  "command_count": 20,
+  "command_count": 24,
   "commands": [
     {
       "command": "build-packet",
@@ -169,6 +169,54 @@
       ],
       "purpose": "Publish a neutral map of CLI commands, inputs, outputs, and safety posture.",
       "safety": "Documents capabilities without private references or operational workflows."
+    },
+    {
+      "command": "adoption-notes",
+      "inputs": [
+        "demo artifacts, command metadata, maturity/readiness reports"
+      ],
+      "outputs": [
+        "demo/adoption_notes.md",
+        "demo/adoption_notes.json"
+      ],
+      "purpose": "Write release-owner notes for public evaluator adoption and next actions.",
+      "safety": "Aggregates static artifacts only; no workflows, live data, or advice."
+    },
+    {
+      "command": "reviewer-scorecard",
+      "inputs": [
+        "demo artifacts, tests, README, skill docs"
+      ],
+      "outputs": [
+        "demo/reviewer_scorecard.md",
+        "demo/reviewer_scorecard.json"
+      ],
+      "purpose": "Map release evidence to a reviewer maturity rubric with artifact hashes.",
+      "safety": "Scores public release evidence without private references or external checks."
+    },
+    {
+      "command": "release-deck",
+      "inputs": [
+        "release manifest, maturity report, readiness report, command matrix"
+      ],
+      "outputs": [
+        "demo/release_deck.md",
+        "demo/release_deck.json"
+      ],
+      "purpose": "Build a deterministic Markdown/JSON promotion deck for release owners.",
+      "safety": "Summarizes public static release surfaces only."
+    },
+    {
+      "command": "bundle-export",
+      "inputs": [
+        "release-owner pack artifacts, release manifest, evidence bundle"
+      ],
+      "outputs": [
+        "demo/bundle_export/manifest.md",
+        "demo/bundle_export/manifest.json"
+      ],
+      "purpose": "Export a public promotion bundle manifest under demo/bundle_export.",
+      "safety": "Creates a local static manifest only; it does not upload, publish, or automate workflows."
     },
     {
       "command": "evidence-bundle",

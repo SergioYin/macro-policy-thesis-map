@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Command count: 20
+Command count: 24
 
 | Command | Purpose | Inputs | Outputs | Safety |
 | --- | --- | --- | --- | --- |
@@ -20,6 +20,10 @@ Command count: 20
 | maturity-report | Score basic release-readiness evidence in the source tree. | repository files | demo/maturity_report.md, demo/maturity_report.json | Checks packaging, examples, tests, skill docs, and absence of workflow files. |
 | quickstart-check | Show whether a fresh evaluator can run the documented starter commands. | repository files and bundled examples | demo/quickstart_check.md, demo/quickstart_check.json | Checks command availability and expected artifacts without network access. |
 | command-matrix | Publish a neutral map of CLI commands, inputs, outputs, and safety posture. | built-in command metadata | demo/command_matrix.md, demo/command_matrix.json | Documents capabilities without private references or operational workflows. |
+| adoption-notes | Write release-owner notes for public evaluator adoption and next actions. | demo artifacts, command metadata, maturity/readiness reports | demo/adoption_notes.md, demo/adoption_notes.json | Aggregates static artifacts only; no workflows, live data, or advice. |
+| reviewer-scorecard | Map release evidence to a reviewer maturity rubric with artifact hashes. | demo artifacts, tests, README, skill docs | demo/reviewer_scorecard.md, demo/reviewer_scorecard.json | Scores public release evidence without private references or external checks. |
+| release-deck | Build a deterministic Markdown/JSON promotion deck for release owners. | release manifest, maturity report, readiness report, command matrix | demo/release_deck.md, demo/release_deck.json | Summarizes public static release surfaces only. |
+| bundle-export | Export a public promotion bundle manifest under demo/bundle_export. | release-owner pack artifacts, release manifest, evidence bundle | demo/bundle_export/manifest.md, demo/bundle_export/manifest.json | Creates a local static manifest only; it does not upload, publish, or automate workflows. |
 | evidence-bundle | Collect public evaluation artifacts and source fixture hashes in one bundle. | examples, demo artifacts, README, tests, skill docs | demo/evidence_bundle.md, demo/evidence_bundle.json | Includes hashes and static summaries only. |
 | public-readiness | Summarize public release readiness gates and blockers. | repository files, demo artifacts, public scan | demo/public_readiness.md, demo/public_readiness.json | Requires public scan pass and explicit static research boundaries. |
 | cold-start-walkthrough | Generate a deterministic first-run walkthrough for public evaluators. | built-in command metadata | demo/cold_start_walkthrough.md, demo/cold_start_walkthrough.json | Uses local static commands and bundled examples. |

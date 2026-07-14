@@ -7,9 +7,9 @@
       "sha256": "b13dc350cd48500c97d419a02e3bf37135989e60b46e1d99231103e0b04e780a"
     },
     {
-      "bytes": 7691,
+      "bytes": 8838,
       "path": "README.md",
-      "sha256": "d1494a28d5d6a2bd989d93d5fc1855cbb28d78aded44deee173101683ca5be1a"
+      "sha256": "f7a8424248d470ec935186c2af608822130e18ee1075248a78f1a70a6c502d8b"
     },
     {
       "bytes": 4180,
@@ -22,24 +22,24 @@
       "sha256": "22a9ea47c93c5df5ad74d92748adb0d0621c3d7747015b82be9ba4221e10ca6e"
     },
     {
-      "bytes": 2115,
+      "bytes": 2692,
       "path": "demo/cold_start_walkthrough.json",
-      "sha256": "e40ad7fa1fa238cb30ba47fe3d3f7616426753a58061f834d9b2ee1eb3b7e087"
+      "sha256": "c5944698c87f48f7a4f51a898e96631a2038865e58b6662a4228e4f80f6213ab"
     },
     {
-      "bytes": 1681,
+      "bytes": 2092,
       "path": "demo/cold_start_walkthrough.md",
-      "sha256": "585045d1e2f59963fff6e4fa763f813d0d098c0f8fbc13b8edbda777aa929c63"
+      "sha256": "555547325adc489621be24cd74f18da1e7207dbb88219c3d8fa2160dadab8be4"
     },
     {
-      "bytes": 8357,
+      "bytes": 10065,
       "path": "demo/command_matrix.json",
-      "sha256": "41a25718ab752b0a9d4f0a08ba58c9213838bcd1cf2fc96fd48d104ebdca166c"
+      "sha256": "7b08a63b9e1de027daf2a48029ef098831736a32160d2cde50599c65a3b3b312"
     },
     {
-      "bytes": 5552,
+      "bytes": 6684,
       "path": "demo/command_matrix.md",
-      "sha256": "3713ac63c04be2f5eed34e04f53a388849cbd540aff124512319acf2d98acbab"
+      "sha256": "2e8a1e32800b484c951abf39586b762cc8fc743ff071c71770d9ccca4f4ce7ad"
     },
     {
       "bytes": 3334,
@@ -74,22 +74,22 @@
     {
       "bytes": 2845,
       "path": "demo/input_schema.json",
-      "sha256": "a4baac3557dc1a4500e2c76b93367cf9409530e7dcfda77536e29e15805e2e37"
+      "sha256": "e4bb653c83f4374323bc3d8d9f593ff69afb07b06b3b3175f71506471d9c73be"
     },
     {
       "bytes": 1997,
       "path": "demo/input_schema.md",
-      "sha256": "cbe126ddf4ad6d3a98934507c6aedde4dc32eba1f040a4b56252e881ac08fae0"
+      "sha256": "346dad81faae4ce22827a61e97ce0a0be93ec3285f1aab69b155464c2f5315c1"
     },
     {
-      "bytes": 1018,
+      "bytes": 1088,
       "path": "demo/maturity_report.json",
-      "sha256": "88e6f0b098611bc82b9f8e614af0505f21b8dc7ea17e90672946e29b9821daa8"
+      "sha256": "ebda2801902de5c0888b136eb94815eef1ad53761abc2e498b4a4994d590d7e3"
     },
     {
-      "bytes": 567,
+      "bytes": 597,
       "path": "demo/maturity_report.md",
-      "sha256": "d89f4f7bf9d60471a560acb560401b247c2982903fe0012b2c3211711328e210"
+      "sha256": "df7760b77a4df93f15c43b59851868181d84d4fe2ba030bb92732d284a4daaff"
     },
     {
       "bytes": 1176,
@@ -102,14 +102,14 @@
       "sha256": "19f9e31fcf6d66b5a0d15e68184f62adcca1b679b025146a537b771384392fc5"
     },
     {
-      "bytes": 3923,
+      "bytes": 4804,
       "path": "demo/quickstart_check.json",
-      "sha256": "e5354ed50f6ef346d5b68a7de5c1254f7221f0683cb44e319be6607e6c4e2306"
+      "sha256": "060b5abee6b78f3359aff6be6b065136f631631bd27c6939ff2b81a5945d8122"
     },
     {
-      "bytes": 2542,
+      "bytes": 3091,
       "path": "demo/quickstart_check.md",
-      "sha256": "d6e1560e7a0bbad585149a70b7028ef33314b90a3c524dec7858b9f0cc1244fc"
+      "sha256": "f47ea59d232cc9ae1dead3ff198d8042e6eb758c78589ef7973e08caa1ca9c7f"
     },
     {
       "bytes": 432,
@@ -149,17 +149,17 @@
     {
       "bytes": 2636,
       "path": "demo/visual_receipt.html",
-      "sha256": "b2c0ba972caca39ca011fe6192271eaf23f15863d97b63a303f5261b687ba172"
+      "sha256": "8e42d4c758bd5607a78cf1d36c8050f69ca976e4fb2df4e4688fe21495a4b0db"
     },
     {
       "bytes": 2683,
       "path": "demo/visual_receipt.json",
-      "sha256": "f605163af78543b00f778f392f6f23d26a464fbadc31a5a03c87a6e6da1dc96e"
+      "sha256": "ec41e180afdb2bae387679eb12fb242a0dbab44a9ab49a7dbd64bc96667d5676"
     },
     {
       "bytes": 2530,
       "path": "demo/visual_receipt.svg",
-      "sha256": "a15c3efc9217822a1fa3d859d71e0bf98575090b23ba1c1879a1bd7675b5b589"
+      "sha256": "72552a39acf30202775b0653fbd49668e86a963db76fca9b4f3cbaed3d2b9d4f"
     },
     {
       "bytes": 906,
@@ -189,12 +189,12 @@
     {
       "bytes": 819,
       "path": "pyproject.toml",
-      "sha256": "f60845993d627abfb153247bfc6af4b01b64b749952c02427f8f9ad02d965e3c"
+      "sha256": "8bc16c86630f734d8fa74945b1c9c82dd60052a7fa2d543805181648971aaa0c"
     },
     {
-      "bytes": 2269,
+      "bytes": 2535,
       "path": "skills/agent/macro-policy-thesis-map/SKILL.md",
-      "sha256": "dc469400e1dbf30914e919d789a9c219395e28ffe145f247201ea3ae5ac4fcaa"
+      "sha256": "69e0ab1535c4be306be18e63bbc4596445a4a688783e9df64be440bc2ff52b26"
     },
     {
       "bytes": 1615,
@@ -202,9 +202,9 @@
       "sha256": "eb712723fe64465de017daf472948e08e9a738d10003977347acff3bf719171a"
     },
     {
-      "bytes": 10690,
+      "bytes": 12490,
       "path": "tests/test_cli.py",
-      "sha256": "54c643cde31d359d6695a2328cb0c1936486d4769e2c40d277293759e4021bd7"
+      "sha256": "fb13045aef6b55b9b49fab926d0842eb841fe4169688b41cffdcd7e679a7f2b2"
     },
     {
       "bytes": 1388,
@@ -217,6 +217,7 @@
     "PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_safety.py",
     "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
     "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
     "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root ."
   ],
   "missing": [],
