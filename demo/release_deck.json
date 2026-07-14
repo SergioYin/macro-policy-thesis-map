@@ -1,60 +1,85 @@
 {
-  "artifact_count": 11,
+  "artifact_count": 16,
   "artifacts": [
     {
       "bytes": 5938,
       "path": "demo/adoption_notes.json",
-      "sha256": "67a2f9c23b0a880eb3ac29f33f599ee05de87dcba15f2123f9f61c06a1c83366"
+      "sha256": "4f24357bd142f6ab9905456461b90bab26660b25576ee18bc9a79d40e91a59c3"
+    },
+    {
+      "bytes": 37394,
+      "path": "demo/api_reference.json",
+      "sha256": "7b89c11e4d5e9b450d4c1c66cf2f17065d6f9474e1c7dee1c53b82ed4d7db9ac"
     },
     {
       "bytes": 3043,
       "path": "demo/benchmark_suite.json",
-      "sha256": "3f8b9be2e11158d924bcc416a0cab2ff5b35756f78bb59a91bf463e6cb61c414"
+      "sha256": "b491a34778eb237d8a80e95df1888a900c89db2db513e2edc4b0e791157cffce"
     },
     {
-      "bytes": 15540,
+      "bytes": 18004,
       "path": "demo/command_matrix.json",
-      "sha256": "5467cce33f686c5a0b7a9e7b6412c33da81f5a60f9bcac7c0b7f153699bd41a4"
+      "sha256": "482bdb26f8278978cad188f683f4202deb633c268e7db0ab52094b0b6d7c248a"
     },
     {
-      "bytes": 1688,
+      "bytes": 1822,
       "path": "demo/compatibility_report.json",
-      "sha256": "737f1a2d1377e5e4a3b2b0fcab0debb6ef24519e86e1ede9f6bd43385723e7c3"
+      "sha256": "d2653a328dc17a9883ef320da2341b75757e3bc5b096b59b05d563a350b0f322"
+    },
+    {
+      "bytes": 3795,
+      "path": "demo/example_pack.json",
+      "sha256": "2a5f299bb12a9fe674c93a404f3b9d02aee910468937fe4257b0744c230559ca"
     },
     {
       "bytes": 4685,
       "path": "demo/golden_fixtures.json",
-      "sha256": "43567374f2468e4acb87953a4606eb4d4c70bf7afcbc2faa12bfa5fc91278bf8"
+      "sha256": "6e7b7638818afdf7d61893590b38963a8d2e12562c68b5031aef4d30f188689c"
     },
     {
       "bytes": 3546,
       "path": "demo/integration_cookbook.json",
-      "sha256": "4412ef0248807d31777ca823e46d34efdf1586230f2a4fdf06bc943f580961f0"
+      "sha256": "71823c83d849c943b5d3d8a9f40098736dc85e87fe542448f5f871d1826bddf1"
     },
     {
-      "bytes": 2216,
+      "bytes": 6046,
+      "path": "demo/landing_page.json",
+      "sha256": "9001d5d562723f1c2cebd37ced5b662d31aeb44c96eeae1d6b88c8bb22e21807"
+    },
+    {
+      "bytes": 2322,
       "path": "demo/maintainer_guide.json",
-      "sha256": "66aeb9ddf7d2399879b761676b7e0fc71315b1897556ee9e696c168081175227"
+      "sha256": "c54064f0c7b0ab21ca464bf98bb2f497249a76c49a104824feb24249b0ef8968"
     },
     {
-      "bytes": 1732,
+      "bytes": 1923,
       "path": "demo/public_readiness.json",
-      "sha256": "4dd6c11f67f4d2c1c1f518c7db9d3842770a1c3ffbc5b196e19abf69580559ef"
+      "sha256": "15d96adf743682bef08d102ae5ec93be95b0a8c49568f421a10722d398f20619"
     },
     {
       "bytes": 1984,
       "path": "demo/regression_summary.json",
-      "sha256": "d76fb5661bd590f4dd36d956c70fd2c31a220c4871b1c2e864e2a029971fb478"
+      "sha256": "5919c7ab743c5893baaa15078db7d643f91271e0efd12227b5c88af5d66e1645"
     },
     {
-      "bytes": 12659,
+      "bytes": 15025,
       "path": "demo/release_manifest.json",
-      "sha256": "8ff93441a6d2c1a4af3b53f3f6f407d7da4038f7b982a72884e531c1125eccd5"
+      "sha256": "f2564a94855db6791bf88bb0b39832b0c45370e1230459445ca096767b20f6c3"
     },
     {
-      "bytes": 5738,
+      "bytes": 6849,
       "path": "demo/reviewer_scorecard.json",
-      "sha256": "188e8c32928cf4b8b93b0f1242304e943c30823753b905d90fe15c162c90dcfd"
+      "sha256": "8a00abc46ce472d380d02d48ac5f233a776c358baec53eac01c9f147cb628a06"
+    },
+    {
+      "bytes": 2452,
+      "path": "demo/roadmap_next.json",
+      "sha256": "5df60fe48a35e8be55bef3102368017554cdaf3f4ed1851ce13e056ac888164b"
+    },
+    {
+      "bytes": 3557,
+      "path": "demo/workflow_protocol.json",
+      "sha256": "8a210ce7d2934354fb151cd64aa9a15ed570e82c6f039c748ea8fe89c3b035a7"
     }
   ],
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
@@ -62,8 +87,8 @@
   "slides": [
     {
       "points": [
-        "Version 1.0.0",
-        "37 zero-dependency CLI commands documented",
+        "Version 1.1.0",
+        "42 zero-dependency CLI commands documented",
         "Static Markdown, JSON, HTML, and SVG artifacts only"
       ],
       "slide": 1,
@@ -71,7 +96,7 @@
     },
     {
       "points": [
-        "76 release manifest artifacts tracked",
+        "91 release manifest artifacts tracked",
         "Artifact hashes are recorded in release, evidence, visual receipt, and bundle manifests",
         "Golden fixtures record static fixture hashes, schemas, and expected output keys",
         "diff-check verifies saved hashes against current local files"
@@ -82,9 +107,10 @@
     {
       "points": [
         "Scorecard status: ready",
-        "Score: 6 / 6",
+        "Score: 7 / 7",
         "Maturity mapping covers static inputs, review controls, package evidence, verification, and readiness",
-        "Public hardening covers benchmark, integration, compatibility, maintainer, fixture, and regression surfaces"
+        "Public hardening covers benchmark, integration, compatibility, maintainer, fixture, and regression surfaces",
+        "Protocol layer covers public landing, API contracts, agent protocol, example recipes, and roadmap constraints"
       ],
       "slide": 3,
       "title": "Reviewer Rubric"
@@ -111,5 +137,5 @@
     }
   ],
   "title": "Release Owner Promotion Deck",
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

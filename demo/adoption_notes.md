@@ -2,13 +2,13 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.0.0
+Version: 1.1.0
 
-Maturity: ready (15 / 15)
+Maturity: ready (16 / 16)
 
 Public readiness: ready
 
-Release manifest artifacts: 76
+Release manifest artifacts: 91
 
 ## Release Commands
 
@@ -55,23 +55,23 @@ Release manifest artifacts: 76
 
 | Path | Bytes | SHA-256 prefix |
 | --- | --- | --- |
-| README.md | 13515 | 4366c0540cdd883c |
-| demo/assumption_registry.json | 2500 | 70aecc7f328a8430 |
-| demo/benchmark_suite.json | 3043 | 3f8b9be2e11158d9 |
-| demo/cli_help.json | 14939 | 2e0d1c169d268305 |
-| demo/cold_start_walkthrough.json | 3924 | 08c65a8acc7216b8 |
-| demo/command_matrix.json | 15540 | 5467cce33f686c5a |
-| demo/compatibility_report.json | 1688 | 737f1a2d1377e5e4 |
-| demo/data_dictionary_diff.json | 3472 | 894c3a7c3f46c635 |
-| demo/docs_export.json | 4892 | 07f7d1874faaec4c |
-| demo/evidence_bundle.json | 12337 | 50f995f62cd84c64 |
-| demo/golden_fixtures.json | 4685 | 43567374f2468e4a |
-| demo/integration_cookbook.json | 3546 | 4412ef0248807d31 |
-| demo/maintainer_guide.json | 2216 | 66aeb9ddf7d23998 |
-| demo/maturity_report.json | 1313 | 4b0c137ae12f6b3a |
-| demo/public_readiness.json | 1732 | 4dd6c11f67f4d2c1 |
-| demo/readme_snippet.json | 3080 | 94d243c825b24666 |
-| demo/regression_summary.json | 1984 | d76fb5661bd590f4 |
-| demo/release_manifest.json | 12659 | 8ff93441a6d2c1a4 |
-| demo/scenario_library.json | 2903 | 6a6dfba6bf9c54a4 |
-| demo/troubleshoot.json | 3174 | 623fae46fea5fc9e |
+| README.md | 16096 | 14c1a4e5d37ae040 |
+| demo/assumption_registry.json | 2500 | 7170c7639ab9e790 |
+| demo/benchmark_suite.json | 3043 | b491a34778eb237d |
+| demo/cli_help.json | 17246 | 035477d512f32cb2 |
+| demo/cold_start_walkthrough.json | 4389 | 544e7dc160b71aa3 |
+| demo/command_matrix.json | 18004 | 482bdb26f8278978 |
+| demo/compatibility_report.json | 1822 | d2653a328dc17a98 |
+| demo/data_dictionary_diff.json | 3472 | 3d2592dd48b9de32 |
+| demo/docs_export.json | 6178 | 2689d46f2138c12c |
+| demo/evidence_bundle.json | 15119 | 92a1e46d33c41910 |
+| demo/golden_fixtures.json | 4685 | 6e7b7638818afdf7 |
+| demo/integration_cookbook.json | 3546 | 71823c83d849c943 |
+| demo/maintainer_guide.json | 2322 | c54064f0c7b0ab21 |
+| demo/maturity_report.json | 1386 | 701cd3be902cb617 |
+| demo/public_readiness.json | 1923 | 15d96adf743682be |
+| demo/readme_snippet.json | 4028 | 2265ee4e3406200e |
+| demo/regression_summary.json | 1984 | 5919c7ab743c5893 |
+| demo/release_manifest.json | 15025 | f2564a94855db679 |
+| demo/scenario_library.json | 2903 | 62d405892fb64c52 |
+| demo/troubleshoot.json | 3174 | 9b2d5f00d46734a2 |

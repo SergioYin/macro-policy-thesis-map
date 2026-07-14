@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.0.0
+Version: 1.1.0
 
 ```bash
 PYTHONPATH=src python -m macro_policy_thesis_map.cli fixture-doctor --root .
@@ -17,6 +17,11 @@ PYTHONPATH=src python -m macro_policy_thesis_map.cli compatibility-report --root
 PYTHONPATH=src python -m macro_policy_thesis_map.cli maintainer-guide --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli golden-fixtures --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli regression-summary --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli landing-page --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli api-reference --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli workflow-protocol --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli example-pack --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli roadmap-next --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .
 PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .
 ```
@@ -36,4 +41,9 @@ PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .
 | demo/maintainer_guide.md |
 | demo/golden_fixtures.md |
 | demo/regression_summary.md |
+| demo/landing_page.md |
+| demo/api_reference.md |
+| demo/workflow_protocol.md |
+| demo/example_pack.md |
+| demo/roadmap_next.md |
 | demo/troubleshoot.md |

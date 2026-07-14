@@ -115,6 +115,21 @@ DEMO_ARTIFACTS = [
     "demo/golden_fixtures.json",
     "demo/regression_summary.md",
     "demo/regression_summary.json",
+    "demo/landing_page.md",
+    "demo/landing_page.json",
+    "demo/landing_page.html",
+    "demo/api_reference.md",
+    "demo/api_reference.json",
+    "demo/api_reference.html",
+    "demo/workflow_protocol.md",
+    "demo/workflow_protocol.json",
+    "demo/workflow_protocol.html",
+    "demo/example_pack.md",
+    "demo/example_pack.json",
+    "demo/example_pack.html",
+    "demo/roadmap_next.md",
+    "demo/roadmap_next.json",
+    "demo/roadmap_next.html",
     "demo/fixture_doctor.md",
     "demo/fixture_doctor.json",
     "demo/input_schema.md",
@@ -364,6 +379,41 @@ COMMAND_SPECS = [
         "inputs": ["demo artifacts, tests, release manifest, command metadata"],
         "outputs": ["demo/regression_summary.md", "demo/regression_summary.json"],
         "safety": "Static local gate summary only.",
+    },
+    {
+        "command": "landing-page",
+        "purpose": "Write a crisp public landing page for GitHub visitors and first-run evaluators.",
+        "inputs": ["built-in public story, command metadata, local artifact availability"],
+        "outputs": ["demo/landing_page.md", "demo/landing_page.json", "demo/landing_page.html"],
+        "safety": "Public static documentation only; no live data, advice, workflow automation, or private references.",
+    },
+    {
+        "command": "api-reference",
+        "purpose": "Write reusable command, artifact, and data-contract reference docs for agent and CLI reuse.",
+        "inputs": ["built-in command metadata and schema constants"],
+        "outputs": ["demo/api_reference.md", "demo/api_reference.json", "demo/api_reference.html"],
+        "safety": "Documents static local contracts only; no external APIs, live feeds, or trading actions.",
+    },
+    {
+        "command": "workflow-protocol",
+        "purpose": "Write a reusable protocol layer for agents that need deterministic macro-policy evidence maps.",
+        "inputs": ["built-in ordered protocol steps, command metadata, safety boundaries"],
+        "outputs": ["demo/workflow_protocol.md", "demo/workflow_protocol.json", "demo/workflow_protocol.html"],
+        "safety": "Agent protocol only; no repository workflow files, network actions, live data, or advice.",
+    },
+    {
+        "command": "example-pack",
+        "purpose": "Write a public example pack with stable command recipes and expected static artifacts.",
+        "inputs": ["bundled examples, command metadata, local artifact availability"],
+        "outputs": ["demo/example_pack.md", "demo/example_pack.json", "demo/example_pack.html"],
+        "safety": "Uses synthetic static examples only and avoids recommendations, predictions, or live data.",
+    },
+    {
+        "command": "roadmap-next",
+        "purpose": "Write bounded next-step roadmap items for public maintainers and agent reuse.",
+        "inputs": ["built-in roadmap metadata and safety constraints"],
+        "outputs": ["demo/roadmap_next.md", "demo/roadmap_next.json", "demo/roadmap_next.html"],
+        "safety": "Roadmap documentation only; excludes live data integrations, broker actions, workflows, and advice.",
     },
     {
         "command": "cold-start-walkthrough",
@@ -1118,6 +1168,260 @@ def visual_receipt(root: Path, *, visual_format: str) -> dict[str, Any]:
     }
 
 
+def landing_page(root: Path) -> dict[str, Any]:
+    primary_commands = ["landing-page", "example-pack", "workflow-protocol", "api-reference", "build-packet", "public-readiness"]
+    highlights = [
+        {
+            "name": "First-screen story",
+            "detail": "Turn static macro policy notes into a neutral evidence map that reviewers can inspect without live services.",
+        },
+        {
+            "name": "Reusable protocol layer",
+            "detail": "Agents get stable command recipes, JSON contracts, and safety gates for repeatable local runs.",
+        },
+        {
+            "name": "Public artifact pack",
+            "detail": "Markdown, JSON, HTML, and SVG demo outputs sit under demo/ with deterministic hashes.",
+        },
+    ]
+    artifact_paths = [
+        "demo/landing_page.html",
+        "demo/example_pack.json",
+        "demo/workflow_protocol.json",
+        "demo/api_reference.json",
+        "demo/public_readiness.json",
+        "demo/release_manifest.json",
+    ]
+    return {
+        "title": "Macro Policy Thesis Map",
+        "version": __version__,
+        "tagline": "Static macro policy notes in; neutral thesis evidence packets out.",
+        "audience": ["GitHub visitors", "public evaluators", "research agents", "release maintainers"],
+        "first_screen": {
+            "headline": "A zero-dependency CLI for reusable macro-policy evidence maps.",
+            "subhead": "Use static CSV fixtures or user-supplied static files to generate reviewable Markdown, JSON, and HTML artifacts without live data or advice.",
+            "primary_recipe": "PYTHONPATH=src python -m macro_policy_thesis_map.cli example-pack --root .",
+            "secondary_recipe": "PYTHONPATH=src python -m macro_policy_thesis_map.cli workflow-protocol --root .",
+        },
+        "highlights": highlights,
+        "start_here": [
+            {"step": 1, "command": "macro-policy-thesis-map landing-page --root .", "result": "Public landing page artifacts are written under demo/."},
+            {"step": 2, "command": "macro-policy-thesis-map example-pack --root .", "result": "Stable command recipes and expected outputs are recorded."},
+            {"step": 3, "command": "macro-policy-thesis-map workflow-protocol --root .", "result": "Agent-ready protocol steps and gates are documented."},
+            {"step": 4, "command": "macro-policy-thesis-map public-readiness --root .", "result": "Public release gates are checked from local files."},
+        ],
+        "featured_commands": [spec for spec in COMMAND_SPECS if spec["command"] in primary_commands],
+        "artifacts": records_for_existing(root, artifact_paths),
+        "missing_artifacts": [path for path in artifact_paths if not root.joinpath(path).exists()],
+        "boundaries": DISCLAIMER,
+    }
+
+
+def api_reference() -> dict[str, Any]:
+    data_contracts = [
+        {"name": "base_event_csv", "format": "csv", "required_columns": EXPECTED_COLUMNS, "producer": "user static CSV or bundled example", "consumer_commands": ["build-packet", "compare-history", "review-ledger", "fixture-doctor", "static-dashboard"]},
+        {"name": "case_gallery_csv", "format": "csv", "required_columns": CASE_COLUMNS, "producer": "synthetic public case fixture", "consumer_commands": ["case-gallery", "visual-receipt"]},
+        {"name": "thesis_sensitivity_csv", "format": "csv", "required_columns": SENSITIVITY_COLUMNS, "producer": "synthetic static sensitivity fixture", "consumer_commands": ["thesis-impact-brief", "exposure-map", "static-dashboard"]},
+        {"name": "portfolio_exposure_csv", "format": "csv", "required_columns": EXPOSURE_COLUMNS, "producer": "synthetic static exposure fixture", "consumer_commands": ["exposure-map", "static-dashboard"]},
+    ]
+    artifact_contracts = [
+        {"path": output, "format": output.rsplit(".", 1)[-1], "producer_command": spec["command"], "stability": "deterministic local output"}
+        for spec in COMMAND_SPECS
+        for output in spec["outputs"]
+        if output.startswith("demo/")
+    ]
+    return {
+        "title": "API Reference",
+        "version": __version__,
+        "cli_name": "macro-policy-thesis-map",
+        "python_module": "macro_policy_thesis_map.cli",
+        "commands": [{**spec, "usage": f"macro-policy-thesis-map {spec['command']} --root ."} for spec in COMMAND_SPECS],
+        "data_contracts": data_contracts,
+        "artifact_contracts": artifact_contracts,
+        "json_contract": {
+            "encoding": "utf-8",
+            "ordering": "Keys are sorted by the writer for deterministic diffs.",
+            "numbers": "Confidence, impact, and exposure scores are bounded decimals from 0 to 1.",
+            "errors": "CLI returns 2 for input errors and nonzero for blocked readiness checks.",
+        },
+        "unsupported": ["external API calls", "live market data", "broker connections", "orders", "recommendations", "personalized financial advice"],
+        "boundaries": DISCLAIMER,
+    }
+
+
+def workflow_protocol() -> dict[str, Any]:
+    phases = [
+        {
+            "phase": "inspect",
+            "goal": "Confirm local static inputs and public docs are present.",
+            "commands": ["command-matrix --root .", "schema-export --root .", "fixture-doctor --root ."],
+            "required_inputs": ["README.md", "examples/macro_events.csv"],
+            "expected_outputs": ["demo/command_matrix.json", "demo/input_schema.json", "demo/fixture_doctor.json"],
+            "gate": "fixture-doctor status is pass before packet generation.",
+        },
+        {
+            "phase": "generate",
+            "goal": "Build the evidence packet and reusable public surfaces.",
+            "commands": ["build-packet --root .", "review-ledger --root .", "example-pack --root .", "api-reference --root ."],
+            "required_inputs": ["static CSV rows or bundled examples"],
+            "expected_outputs": ["demo/thesis_packet.json", "demo/review_ledger.json", "demo/example_pack.json", "demo/api_reference.json"],
+            "gate": "review-ledger has no blocker findings before sharing.",
+        },
+        {
+            "phase": "package",
+            "goal": "Prepare public visitor and agent reuse artifacts.",
+            "commands": ["landing-page --root .", "workflow-protocol --root .", "roadmap-next --root .", "evidence-bundle --root ."],
+            "required_inputs": ["demo artifacts from generate phase"],
+            "expected_outputs": ["demo/landing_page.html", "demo/workflow_protocol.json", "demo/roadmap_next.json", "demo/evidence_bundle.json"],
+            "gate": "public-readiness can evaluate all required demo artifacts.",
+        },
+        {
+            "phase": "verify",
+            "goal": "Run local release gates and detect drift.",
+            "commands": ["public-readiness --root .", "release-manifest --root .", "public-scan --root .", "diff-check --root ."],
+            "required_inputs": ["repository files", "demo/release_manifest.json"],
+            "expected_outputs": ["demo/public_readiness.json", "demo/release_manifest.json", "stdout pass/fail"],
+            "gate": "selfcheck, public-scan, public-readiness, and diff-check exit successfully.",
+        },
+    ]
+    return {
+        "title": "Workflow Protocol",
+        "version": __version__,
+        "protocol_id": "macro-policy-thesis-map.v1.1",
+        "purpose": "Reusable local protocol for agents generating static macro-policy evidence maps.",
+        "phases": phases,
+        "agent_contract": {
+            "input_mode": "static files only",
+            "output_root": "demo/",
+            "allowed_formats": ["Markdown", "JSON", "HTML", "SVG"],
+            "state_model": "commands are deterministic and may be rerun from the repository root",
+            "handoff_files": ["demo/workflow_protocol.json", "demo/api_reference.json", "demo/example_pack.json", "demo/public_readiness.json"],
+        },
+        "stop_conditions": [
+            "Missing required static input files.",
+            "fixture-doctor reports blocked.",
+            "review-ledger reports advice-like text.",
+            "public-scan reports a private reference or credential-shaped token.",
+            "public-readiness reports blocked.",
+        ],
+        "boundaries": DISCLAIMER,
+    }
+
+
+def example_pack(root: Path) -> dict[str, Any]:
+    recipes = [
+        {
+            "recipe_id": "example-001",
+            "name": "Visitor Landing Preview",
+            "commands": ["landing-page --root ."],
+            "inputs": ["built-in public story", "local artifact availability"],
+            "outputs": ["demo/landing_page.md", "demo/landing_page.json", "demo/landing_page.html"],
+            "expected_json_keys": ["first_screen", "featured_commands", "boundaries"],
+        },
+        {
+            "recipe_id": "example-002",
+            "name": "Agent Protocol Reuse",
+            "commands": ["workflow-protocol --root .", "api-reference --root ."],
+            "inputs": ["built-in protocol metadata", "schema constants"],
+            "outputs": ["demo/workflow_protocol.json", "demo/api_reference.json"],
+            "expected_json_keys": ["phases", "agent_contract", "data_contracts"],
+        },
+        {
+            "recipe_id": "example-003",
+            "name": "Static Thesis Packet",
+            "commands": ["fixture-doctor --root .", "build-packet --root .", "review-ledger --root ."],
+            "inputs": ["examples/macro_events.csv"],
+            "outputs": ["demo/fixture_doctor.json", "demo/thesis_packet.json", "demo/review_ledger.json"],
+            "expected_json_keys": ["status", "policy_areas", "findings"],
+        },
+        {
+            "recipe_id": "example-004",
+            "name": "Public Release Gates",
+            "commands": ["public-readiness --root .", "release-manifest --root .", "diff-check --root ."],
+            "inputs": ["demo artifacts", "repository files"],
+            "outputs": ["demo/public_readiness.json", "demo/release_manifest.json", "stdout pass/fail"],
+            "expected_json_keys": ["checks", "artifacts", "status"],
+        },
+    ]
+    fixture_paths = [
+        "examples/macro_events.csv",
+        "examples/prior_macro_events.csv",
+        "examples/public_macro_cases.csv",
+        "examples/thesis_sensitivities.csv",
+        "examples/portfolio_exposures.csv",
+    ]
+    return {
+        "title": "Example Pack",
+        "version": __version__,
+        "fixture_policy": "Bundled and top-level examples are synthetic static fixtures for deterministic local evaluation.",
+        "recipe_count": len(recipes),
+        "recipes": recipes,
+        "fixtures": records_for_existing(root, fixture_paths),
+        "missing_fixtures": [path for path in fixture_paths if not root.joinpath(path).exists()],
+        "copy_free_commands": [
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli landing-page --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli workflow-protocol --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli api-reference --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli example-pack --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli roadmap-next --root .",
+        ],
+        "boundaries": DISCLAIMER,
+    }
+
+
+def roadmap_next() -> dict[str, Any]:
+    items = [
+        {
+            "roadmap_id": "next-001",
+            "theme": "Public docs",
+            "item": "Keep the landing page aligned with README and command-matrix as commands evolve.",
+            "acceptance": "landing-page, api-reference, and command-matrix agree on command count and output paths.",
+            "excluded": ["marketing claims", "private references"],
+        },
+        {
+            "roadmap_id": "next-002",
+            "theme": "Agent reuse",
+            "item": "Stabilize protocol JSON field names before adding optional adapters.",
+            "acceptance": "workflow_protocol.json remains backwards-readable by agents using protocol_id macro-policy-thesis-map.v1.1.",
+            "excluded": ["remote orchestration", "repository workflow files"],
+        },
+        {
+            "roadmap_id": "next-003",
+            "theme": "Data contracts",
+            "item": "Add optional contract examples only when they remain synthetic, static, and additive.",
+            "acceptance": "api-reference and data-dictionary-diff list the new optional fields without changing base_event_csv.",
+            "excluded": ["live feeds", "broker data", "prediction fields"],
+        },
+        {
+            "roadmap_id": "next-004",
+            "theme": "Verification",
+            "item": "Continue treating public-readiness, public-scan, selfcheck, diff-check, pytest, and wheel build as release gates.",
+            "acceptance": "regression-summary records gate names and no required gate depends on network access.",
+            "excluded": ["CI-only validation", "timing benchmarks"],
+        },
+    ]
+    return {
+        "title": "Roadmap Next",
+        "version": __version__,
+        "roadmap_count": len(items),
+        "items": items,
+        "release_principles": [
+            "Prefer deterministic local artifacts over hosted or live references.",
+            "Keep the base CSV contract stable and make optional layers additive.",
+            "Preserve zero runtime dependencies.",
+            "Keep finance boundaries explicit in every public surface.",
+        ],
+        "not_planned": [
+            "Live macro or market data fetching.",
+            "Broker connections or order routing.",
+            "Personalized financial advice.",
+            "Repository workflow automation.",
+            "Private storage or private document references.",
+        ],
+        "boundaries": DISCLAIMER,
+    }
+
+
 def compare_packets(current: dict[str, Any], prior: dict[str, Any]) -> dict[str, Any]:
     current_map = {item["policy_area"]: item for item in current["policy_areas"]}
     prior_map = {item["policy_area"]: item for item in prior["policy_areas"]}
@@ -1179,6 +1483,7 @@ def maturity(root: Path) -> dict[str, Any]:
         ("operator_surfaces", all(root.joinpath(path).exists() for path in ["demo/troubleshoot.json", "demo/docs_export.json", "demo/readme_snippet.json", "demo/cli_help.json"])),
         ("release_owner_pack", all(root.joinpath(path).exists() for path in ["demo/adoption_notes.json", "demo/reviewer_scorecard.json", "demo/release_deck.json", "demo/bundle_export/manifest.json"])),
         ("public_evaluator_hardening", all(root.joinpath(path).exists() for path in ["demo/benchmark_suite.json", "demo/integration_cookbook.json", "demo/compatibility_report.json", "demo/maintainer_guide.json", "demo/golden_fixtures.json", "demo/regression_summary.json"])),
+        ("public_protocol_layer", all(root.joinpath(path).exists() for path in ["demo/landing_page.json", "demo/api_reference.json", "demo/workflow_protocol.json", "demo/example_pack.json", "demo/roadmap_next.json"])),
         ("tests", any(root.joinpath("tests").glob("test_*.py"))),
         ("skill", root.joinpath("skills/agent/macro-policy-thesis-map/SKILL.md").exists()),
         ("no_workflows", not root.joinpath(".github/workflows").exists()),
@@ -1234,6 +1539,11 @@ def quickstart_check(root: Path) -> dict[str, Any]:
             "maintainer-guide",
             "golden-fixtures",
             "regression-summary",
+            "landing-page",
+            "api-reference",
+            "workflow-protocol",
+            "example-pack",
+            "roadmap-next",
             "case-gallery",
             "visual-receipt",
             "troubleshoot",
@@ -1356,6 +1666,11 @@ def docs_export(root: Path) -> dict[str, Any]:
         ("Maintainer guide", "demo/maintainer_guide.md", "Release duties, order, and safety invariants."),
         ("Golden fixtures", "demo/golden_fixtures.md", "Fixture hashes, schemas, and expected output counts."),
         ("Regression summary", "demo/regression_summary.md", "Static regression gate summary."),
+        ("Landing page", "demo/landing_page.md", "Public first-screen story and start-here commands."),
+        ("API reference", "demo/api_reference.md", "Command, artifact, and data-contract reference."),
+        ("Workflow protocol", "demo/workflow_protocol.md", "Agent-ready local protocol and stop conditions."),
+        ("Example pack", "demo/example_pack.md", "Stable public command recipes and expected artifacts."),
+        ("Roadmap next", "demo/roadmap_next.md", "Bounded public next steps and exclusions."),
         ("Troubleshooting", "demo/troubleshoot.md", "Operator diagnostics and recovery steps."),
         ("CLI help", "demo/cli_help.md", "Deterministic command usage lines."),
         ("README snippet", "demo/readme_snippet.md", "Compact copyable quickstart snippet."),
@@ -1400,6 +1715,11 @@ def readme_snippet() -> dict[str, Any]:
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli maintainer-guide --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli golden-fixtures --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli regression-summary --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli landing-page --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli api-reference --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli workflow-protocol --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli example-pack --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli roadmap-next --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .",
         "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
     ]
@@ -1407,7 +1727,7 @@ def readme_snippet() -> dict[str, Any]:
         "title": "README Snippet",
         "version": __version__,
         "commands": commands,
-        "outputs": ["demo/thesis_packet.md", "demo/review_ledger.md", "demo/scenario_library.md", "demo/assumption_registry.md", "demo/data_dictionary_diff.md", "demo/benchmark_suite.md", "demo/integration_cookbook.md", "demo/compatibility_report.md", "demo/maintainer_guide.md", "demo/golden_fixtures.md", "demo/regression_summary.md", "demo/troubleshoot.md"],
+        "outputs": ["demo/thesis_packet.md", "demo/review_ledger.md", "demo/scenario_library.md", "demo/assumption_registry.md", "demo/data_dictionary_diff.md", "demo/benchmark_suite.md", "demo/integration_cookbook.md", "demo/compatibility_report.md", "demo/maintainer_guide.md", "demo/golden_fixtures.md", "demo/regression_summary.md", "demo/landing_page.md", "demo/api_reference.md", "demo/workflow_protocol.md", "demo/example_pack.md", "demo/roadmap_next.md", "demo/troubleshoot.md"],
         "snippet": "\n".join(commands),
         "boundaries": DISCLAIMER,
     }
@@ -1484,6 +1804,11 @@ def evidence_bundle(root: Path) -> dict[str, Any]:
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli maintainer-guide --root .",
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli golden-fixtures --root .",
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli regression-summary --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli landing-page --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli api-reference --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli workflow-protocol --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli example-pack --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli roadmap-next --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
@@ -1522,6 +1847,11 @@ def public_readiness(root: Path) -> dict[str, Any]:
         "demo/maintainer_guide.json",
         "demo/golden_fixtures.json",
         "demo/regression_summary.json",
+        "demo/landing_page.json",
+        "demo/api_reference.json",
+        "demo/workflow_protocol.json",
+        "demo/example_pack.json",
+        "demo/roadmap_next.json",
         "demo/adoption_notes.json",
         "demo/reviewer_scorecard.json",
         "demo/release_deck.json",
@@ -1535,6 +1865,7 @@ def public_readiness(root: Path) -> dict[str, Any]:
         ("operator_surfaces", all(root.joinpath(path).exists() for path in ["demo/troubleshoot.json", "demo/docs_export.json", "demo/readme_snippet.json", "demo/cli_help.json"]), "Operator troubleshooting, docs export, README snippet, and CLI help artifacts are present."),
         ("schema_adaptation_surfaces", all(root.joinpath(path).exists() for path in ["demo/scenario_library.json", "demo/assumption_registry.json", "demo/data_dictionary_diff.json"]), "Scenario, assumption, and data dictionary diff artifacts are present."),
         ("public_evaluator_hardening", all(root.joinpath(path).exists() for path in ["demo/benchmark_suite.json", "demo/integration_cookbook.json", "demo/compatibility_report.json", "demo/maintainer_guide.json", "demo/golden_fixtures.json", "demo/regression_summary.json"]), "Benchmark, integration, compatibility, maintainer, golden fixture, and regression summary artifacts are present."),
+        ("public_protocol_layer", all(root.joinpath(path).exists() for path in ["demo/landing_page.html", "demo/api_reference.html", "demo/workflow_protocol.html", "demo/example_pack.html", "demo/roadmap_next.html"]), "Landing, API reference, workflow protocol, example pack, and roadmap HTML artifacts are present."),
         ("no_workflow_files", not root.joinpath(".github/workflows").exists(), "No repository workflow files are required for public evaluation."),
         ("zero_dependency_package", "dependencies = []" in root.joinpath("pyproject.toml").read_text(encoding="utf-8") if root.joinpath("pyproject.toml").exists() else False, "Package declares no runtime dependencies."),
     ]
@@ -1666,6 +1997,7 @@ def compatibility_report(root: Path) -> dict[str, Any]:
         ("bundled_event_fixture", root.joinpath("src/macro_policy_thesis_map/examples/macro_events.csv").exists(), "Bundled default event fixture is present."),
         ("bundled_case_fixture", root.joinpath("src/macro_policy_thesis_map/examples/public_macro_cases.csv").exists(), "Bundled public case fixture is present."),
         ("public_artifacts", all(root.joinpath(path).exists() for path in ["demo/command_matrix.json", "demo/public_readiness.json", "demo/golden_fixtures.json"]), "Public evaluator artifacts are present."),
+        ("protocol_artifacts", all(root.joinpath(path).exists() for path in ["demo/landing_page.json", "demo/api_reference.json", "demo/workflow_protocol.json", "demo/example_pack.json", "demo/roadmap_next.json"]), "Public protocol layer artifacts are present."),
         ("no_workflows", not root.joinpath(".github/workflows").exists(), "No workflow files are required."),
     ]
     return {
@@ -1708,6 +2040,11 @@ def maintainer_guide() -> dict[str, Any]:
         "scenario-library",
         "assumption-registry",
         "data-dictionary-diff",
+        "landing-page",
+        "api-reference",
+        "workflow-protocol",
+        "example-pack",
+        "roadmap-next",
         "benchmark-suite",
         "integration-cookbook",
         "compatibility-report",
@@ -1857,24 +2194,30 @@ def cold_start_walkthrough() -> dict[str, Any]:
         },
         {
             "step": 8,
+            "title": "Generate public visitor and protocol surfaces",
+            "command": "macro-policy-thesis-map landing-page && macro-policy-thesis-map api-reference && macro-policy-thesis-map workflow-protocol && macro-policy-thesis-map example-pack && macro-policy-thesis-map roadmap-next",
+            "expected_result": "Landing, API reference, workflow protocol, example pack, and roadmap artifacts are written as Markdown, JSON, and HTML.",
+        },
+        {
+            "step": 9,
             "title": "Generate public evaluator hardening surfaces",
             "command": "macro-policy-thesis-map benchmark-suite && macro-policy-thesis-map integration-cookbook && macro-policy-thesis-map compatibility-report && macro-policy-thesis-map maintainer-guide && macro-policy-thesis-map golden-fixtures && macro-policy-thesis-map regression-summary",
             "expected_result": "Benchmark, integration, compatibility, maintainer, golden fixture, and regression artifacts are written as Markdown and JSON.",
         },
         {
-            "step": 9,
+            "step": 10,
             "title": "Export the public promotion bundle manifest",
             "command": "macro-policy-thesis-map bundle-export",
             "expected_result": "A deterministic bundle manifest is written under demo/bundle_export/.",
         },
         {
-            "step": 10,
+            "step": 11,
             "title": "Check public readiness",
             "command": "macro-policy-thesis-map public-readiness",
             "expected_result": "A public readiness report lists pass/fail gates.",
         },
         {
-            "step": 11,
+            "step": 12,
             "title": "Run final local checks",
             "command": "macro-policy-thesis-map selfcheck && macro-policy-thesis-map public-scan && macro-policy-thesis-map diff-check",
             "expected_result": "All commands exit successfully before sharing artifacts.",
@@ -2012,6 +2355,7 @@ def reviewer_scorecard(root: Path) -> dict[str, Any]:
         ("static_inputs", ["examples", "case_gallery", "sensitivity_layer", "exposure_layer", "schema_adaptation_surfaces"], "Static fixtures and synthetic public examples are present."),
         ("review_controls", ["visual_receipt", "operator_surfaces", "release_owner_pack"], "Review artifacts, operator docs, hashes, and owner pack are present."),
         ("public_evaluator_hardening", ["public_evaluator_hardening"], "Benchmark, integration, compatibility, maintainer, golden fixture, and regression artifacts are present."),
+        ("public_protocol_layer", ["public_protocol_layer"], "Landing, API reference, workflow protocol, example pack, and roadmap artifacts are present."),
         ("public_package", ["package", "readme", "license", "skill"], "Package metadata, docs, license, and agent skill are present."),
         ("verification", ["tests", "no_workflows"], "Tests exist and no workflow files are required."),
         ("public_readiness", [], "Public readiness command reports ready."),
@@ -2051,6 +2395,11 @@ def reviewer_scorecard(root: Path) -> dict[str, Any]:
             "demo/maintainer_guide.json",
             "demo/golden_fixtures.json",
             "demo/regression_summary.json",
+            "demo/landing_page.json",
+            "demo/api_reference.json",
+            "demo/workflow_protocol.json",
+            "demo/example_pack.json",
+            "demo/roadmap_next.json",
             "demo/troubleshoot.json",
             "demo/docs_export.json",
             "demo/readme_snippet.json",
@@ -2105,6 +2454,7 @@ def release_deck(root: Path) -> dict[str, Any]:
                 f"Score: {scorecard.get('score', 0)} / {scorecard.get('max_score', 0)}",
                 "Maturity mapping covers static inputs, review controls, package evidence, verification, and readiness",
                 "Public hardening covers benchmark, integration, compatibility, maintainer, fixture, and regression surfaces",
+                "Protocol layer covers public landing, API contracts, agent protocol, example recipes, and roadmap constraints",
             ],
         },
         {
@@ -2137,6 +2487,11 @@ def release_deck(root: Path) -> dict[str, Any]:
             "demo/maintainer_guide.json",
             "demo/golden_fixtures.json",
             "demo/regression_summary.json",
+            "demo/landing_page.json",
+            "demo/api_reference.json",
+            "demo/workflow_protocol.json",
+            "demo/example_pack.json",
+            "demo/roadmap_next.json",
         ],
     )
     return {
@@ -2187,10 +2542,25 @@ def bundle_export(root: Path) -> dict[str, Any]:
         "demo/compatibility_report.json",
         "demo/maintainer_guide.md",
         "demo/maintainer_guide.json",
-        "demo/golden_fixtures.md",
-        "demo/golden_fixtures.json",
-        "demo/regression_summary.md",
-        "demo/regression_summary.json",
+            "demo/golden_fixtures.md",
+            "demo/golden_fixtures.json",
+            "demo/regression_summary.md",
+            "demo/regression_summary.json",
+            "demo/landing_page.md",
+            "demo/landing_page.json",
+            "demo/landing_page.html",
+            "demo/api_reference.md",
+            "demo/api_reference.json",
+            "demo/api_reference.html",
+            "demo/workflow_protocol.md",
+            "demo/workflow_protocol.json",
+            "demo/workflow_protocol.html",
+            "demo/example_pack.md",
+            "demo/example_pack.json",
+            "demo/example_pack.html",
+            "demo/roadmap_next.md",
+            "demo/roadmap_next.json",
+            "demo/roadmap_next.html",
     ]
     artifacts = records_for_existing(root, include)
     missing = [path for path in include if not root.joinpath(path).exists()]
@@ -2207,6 +2577,11 @@ def bundle_export(root: Path) -> dict[str, Any]:
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-deck --root .",
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli bundle-export --root .",
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli regression-summary --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli landing-page --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli api-reference --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli workflow-protocol --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli example-pack --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli roadmap-next --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
         ],

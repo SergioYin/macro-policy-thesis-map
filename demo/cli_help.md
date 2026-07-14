@@ -2,9 +2,9 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.0.0
+Version: 1.1.0
 
-Command count: 37
+Command count: 42
 
 | Command | Usage | Purpose | Outputs | Safety |
 | --- | --- | --- | --- | --- |
@@ -41,6 +41,11 @@ Command count: 37
 | maintainer-guide | macro-policy-thesis-map maintainer-guide --root . | Publish deterministic maintainer duties, release order, and safety invariants. | demo/maintainer_guide.md, demo/maintainer_guide.json | Documentation-only guide with no workflow automation or private references. |
 | golden-fixtures | macro-policy-thesis-map golden-fixtures --root . | Record static fixture hashes, row counts, schemas, and expected generator outputs. | demo/golden_fixtures.md, demo/golden_fixtures.json | Synthetic fixture inventory only; no live source refresh or advice. |
 | regression-summary | macro-policy-thesis-map regression-summary --root . | Summarize deterministic regression gates across tests, scans, readiness, and artifacts. | demo/regression_summary.md, demo/regression_summary.json | Static local gate summary only. |
+| landing-page | macro-policy-thesis-map landing-page --root . | Write a crisp public landing page for GitHub visitors and first-run evaluators. | demo/landing_page.md, demo/landing_page.json, demo/landing_page.html | Public static documentation only; no live data, advice, workflow automation, or private references. |
+| api-reference | macro-policy-thesis-map api-reference --root . | Write reusable command, artifact, and data-contract reference docs for agent and CLI reuse. | demo/api_reference.md, demo/api_reference.json, demo/api_reference.html | Documents static local contracts only; no external APIs, live feeds, or trading actions. |
+| workflow-protocol | macro-policy-thesis-map workflow-protocol --root . | Write a reusable protocol layer for agents that need deterministic macro-policy evidence maps. | demo/workflow_protocol.md, demo/workflow_protocol.json, demo/workflow_protocol.html | Agent protocol only; no repository workflow files, network actions, live data, or advice. |
+| example-pack | macro-policy-thesis-map example-pack --root . | Write a public example pack with stable command recipes and expected static artifacts. | demo/example_pack.md, demo/example_pack.json, demo/example_pack.html | Uses synthetic static examples only and avoids recommendations, predictions, or live data. |
+| roadmap-next | macro-policy-thesis-map roadmap-next --root . | Write bounded next-step roadmap items for public maintainers and agent reuse. | demo/roadmap_next.md, demo/roadmap_next.json, demo/roadmap_next.html | Roadmap documentation only; excludes live data integrations, broker actions, workflows, and advice. |
 | cold-start-walkthrough | macro-policy-thesis-map cold-start-walkthrough --root . | Generate a deterministic first-run walkthrough for public evaluators. | demo/cold_start_walkthrough.md, demo/cold_start_walkthrough.json | Uses local static commands and bundled examples. |
 | public-scan | macro-policy-thesis-map public-scan --root . | Scan publishable text for private names, paths, and credential-shaped terms. | stdout pass/fail | Fails closed when a private or credential-shaped token is found. |
 | diff-check | macro-policy-thesis-map diff-check --root . | Compare the saved release manifest against current file hashes. | stdout pass/fail | Detects artifact drift using static local hashes only. |

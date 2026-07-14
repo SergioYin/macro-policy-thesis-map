@@ -14,6 +14,11 @@
     "scenario-library",
     "assumption-registry",
     "data-dictionary-diff",
+    "landing-page",
+    "api-reference",
+    "workflow-protocol",
+    "example-pack",
+    "roadmap-next",
     "benchmark-suite",
     "integration-cookbook",
     "compatibility-report",
@@ -62,5 +67,5 @@
     }
   ],
   "title": "Maintainer Guide",
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

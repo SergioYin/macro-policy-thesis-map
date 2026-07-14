@@ -4,6 +4,20 @@ Zero-dependency Python CLI for turning static macro policy notes into neutral th
 
 Target users: analysts, reviewers, and research engineers who need reproducible policy-to-thesis maps from user-supplied static files.
 
+## Public Landing
+
+Macro Policy Thesis Map is a static evidence-mapping toolkit: put static macro policy CSV notes in, get neutral thesis packets, review ledgers, protocol docs, and public artifact manifests out. It is designed for GitHub visitors and agents that need stable command recipes, data contracts, and deterministic Markdown, JSON, HTML, and SVG outputs under `demo/`.
+
+Start with:
+
+```bash
+PYTHONPATH=src python -m macro_policy_thesis_map.cli landing-page --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli example-pack --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli workflow-protocol --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli api-reference --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli roadmap-next --root .
+```
+
 ## Quickstart
 
 ```bash
@@ -41,6 +55,11 @@ PYTHONPATH=src python -m macro_policy_thesis_map.cli compatibility-report --root
 PYTHONPATH=src python -m macro_policy_thesis_map.cli maintainer-guide --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli golden-fixtures --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli regression-summary --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli landing-page --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli api-reference --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli workflow-protocol --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli example-pack --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli roadmap-next --root .
 PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .
 PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .
 PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .
@@ -80,6 +99,11 @@ macro-policy-thesis-map compatibility-report
 macro-policy-thesis-map maintainer-guide
 macro-policy-thesis-map golden-fixtures
 macro-policy-thesis-map regression-summary
+macro-policy-thesis-map landing-page
+macro-policy-thesis-map api-reference
+macro-policy-thesis-map workflow-protocol
+macro-policy-thesis-map example-pack
+macro-policy-thesis-map roadmap-next
 ```
 
 The installed CLI uses bundled example CSVs for default event, case, sensitivity, and exposure inputs when `examples/macro_events.csv`, `examples/prior_macro_events.csv`, `examples/public_macro_cases.csv`, `examples/thesis_sensitivities.csv`, and `examples/portfolio_exposures.csv` are not present in the current `--root`. Pass `--events`, `--current`, `--prior`, `--cases`, `--sensitivities`, or `--exposures` to use your own static CSVs. `selfcheck` and `diff-check` validate the source tree and should be run from a project checkout.
@@ -124,6 +148,11 @@ This project is research tooling only. It does not fetch live data, connect to b
 - `demo/maintainer_guide.md` and `demo/maintainer_guide.json`
 - `demo/golden_fixtures.md` and `demo/golden_fixtures.json`
 - `demo/regression_summary.md` and `demo/regression_summary.json`
+- `demo/landing_page.md`, `demo/landing_page.json`, and `demo/landing_page.html`
+- `demo/api_reference.md`, `demo/api_reference.json`, and `demo/api_reference.html`
+- `demo/workflow_protocol.md`, `demo/workflow_protocol.json`, and `demo/workflow_protocol.html`
+- `demo/example_pack.md`, `demo/example_pack.json`, and `demo/example_pack.html`
+- `demo/roadmap_next.md`, `demo/roadmap_next.json`, and `demo/roadmap_next.html`
 
 ## Input Format
 
@@ -163,7 +192,9 @@ The bundled sensitivity and exposure rows are synthetic. `impact_score` and `exp
 
 Run `scenario-library`, `assumption-registry`, and `data-dictionary-diff` when a public evaluator needs to decide how to adapt the CSV schema. These commands use built-in static metadata, write deterministic Markdown and JSON under `demo/`, and keep scenario, assumption, and dictionary guidance synthetic and finance-safety bounded.
 
-Run `benchmark-suite`, `integration-cookbook`, `compatibility-report`, `maintainer-guide`, `golden-fixtures`, and `regression-summary` for the v1.0.0 public evaluator hardening pack. These commands write deterministic Markdown and JSON under `demo/`, use only synthetic static data or local file metadata, and avoid workflow automation, private references, live data, timing probes, and advice.
+Run `benchmark-suite`, `integration-cookbook`, `compatibility-report`, `maintainer-guide`, `golden-fixtures`, and `regression-summary` for the public evaluator hardening pack. These commands write deterministic Markdown and JSON under `demo/`, use only synthetic static data or local file metadata, and avoid workflow automation, private references, live data, timing probes, and advice.
+
+Run `landing-page`, `api-reference`, `workflow-protocol`, `example-pack`, and `roadmap-next` for the v1.1.0 public protocol layer. These commands write deterministic Markdown, JSON, and HTML under `demo/`, expose stable command recipes and data contracts, and keep all examples local, static, synthetic, and research-only.
 
 ## Commands
 
@@ -204,3 +235,8 @@ Run `benchmark-suite`, `integration-cookbook`, `compatibility-report`, `maintain
 - `maintainer-guide`: writes maintainer duties, release order, and safety invariants.
 - `golden-fixtures`: records fixture hashes, row counts, schemas, and expected output keys.
 - `regression-summary`: summarizes deterministic regression gates and release check commands.
+- `landing-page`: writes a public first-screen story, start-here commands, and matching Markdown/JSON/HTML.
+- `api-reference`: writes command, artifact, and data-contract reference docs for agent reuse.
+- `workflow-protocol`: writes a reusable local protocol layer with phases, gates, and stop conditions.
+- `example-pack`: writes stable public command recipes and expected artifact keys.
+- `roadmap-next`: writes bounded next-step roadmap items and explicit not-planned surfaces.

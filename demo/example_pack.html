@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Example Pack</title>
+<style>
+body{font-family:Arial,sans-serif;margin:2rem;line-height:1.45;color:#1f2937;background:#f8fafc}
+main{max-width:1120px;margin:auto} table{border-collapse:collapse;width:100%;background:white;margin-bottom:1.5rem}
+th,td{border:1px solid #d1d5db;padding:.55rem;text-align:left;vertical-align:top} th{background:#e5e7eb}
+.notice{border-left:4px solid #64748b;padding:.75rem;background:white} .lede{font-size:1.1rem}
+code{background:#e5e7eb;padding:.1rem .25rem}
+</style>
+<main>
+<h1>Example Pack</h1>
+<p class="notice">Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.</p>
+<p class="lede">Version 1.1.0</p>
+<h2>Recipes</h2><table><thead><tr><th>Recipe</th><th>Name</th><th>Commands</th><th>Outputs</th></tr></thead><tbody><tr><td>example-001</td><td>Visitor Landing Preview</td><td>landing-page --root .</td><td>demo/landing_page.md, demo/landing_page.json, demo/landing_page.html</td></tr>
+<tr><td>example-002</td><td>Agent Protocol Reuse</td><td>workflow-protocol --root ., api-reference --root .</td><td>demo/workflow_protocol.json, demo/api_reference.json</td></tr>
+<tr><td>example-003</td><td>Static Thesis Packet</td><td>fixture-doctor --root ., build-packet --root ., review-ledger --root .</td><td>demo/fixture_doctor.json, demo/thesis_packet.json, demo/review_ledger.json</td></tr>
+<tr><td>example-004</td><td>Public Release Gates</td><td>public-readiness --root ., release-manifest --root ., diff-check --root .</td><td>demo/public_readiness.json, demo/release_manifest.json, stdout pass/fail</td></tr></tbody></table><h2>Fixtures</h2><table><thead><tr><th>Path</th><th>Bytes</th><th>SHA-256 prefix</th></tr></thead><tbody><tr><td>examples/macro_events.csv</td><td>906</td><td>b7410919d62dd4e3</td></tr>
+<tr><td>examples/portfolio_exposures.csv</td><td>835</td><td>f9ea6de8ccd82b4d</td></tr>
+<tr><td>examples/prior_macro_events.csv</td><td>715</td><td>95f9b30ce6f88581</td></tr>
+<tr><td>examples/public_macro_cases.csv</td><td>1471</td><td>ee511dd457dd7aab</td></tr>
+<tr><td>examples/thesis_sensitivities.csv</td><td>1016</td><td>ab0a6a3d0a7f0bc9</td></tr></tbody></table><h2>Stable Commands</h2><table><thead><tr><th>Command</th></tr></thead><tbody><tr><td>PYTHONPATH=src python -m macro_policy_thesis_map.cli landing-page --root .</td></tr>
+<tr><td>PYTHONPATH=src python -m macro_policy_thesis_map.cli workflow-protocol --root .</td></tr>
+<tr><td>PYTHONPATH=src python -m macro_policy_thesis_map.cli api-reference --root .</td></tr>
+<tr><td>PYTHONPATH=src python -m macro_policy_thesis_map.cli example-pack --root .</td></tr>
+<tr><td>PYTHONPATH=src python -m macro_policy_thesis_map.cli roadmap-next --root .</td></tr></tbody></table>
+</main>
+</html>

@@ -1,0 +1,165 @@
+{
+  "artifacts": [
+    {
+      "bytes": 37394,
+      "path": "demo/api_reference.json",
+      "sha256": "7b89c11e4d5e9b450d4c1c66cf2f17065d6f9474e1c7dee1c53b82ed4d7db9ac"
+    },
+    {
+      "bytes": 3795,
+      "path": "demo/example_pack.json",
+      "sha256": "2a5f299bb12a9fe674c93a404f3b9d02aee910468937fe4257b0744c230559ca"
+    },
+    {
+      "bytes": 3860,
+      "path": "demo/landing_page.html",
+      "sha256": "bae50ffd300c50f3bac3ded2cfc10fe8c12fe46dc11a4b4e966a698a21d58be9"
+    },
+    {
+      "bytes": 1923,
+      "path": "demo/public_readiness.json",
+      "sha256": "15d96adf743682bef08d102ae5ec93be95b0a8c49568f421a10722d398f20619"
+    },
+    {
+      "bytes": 15025,
+      "path": "demo/release_manifest.json",
+      "sha256": "79d3424cf7bca40d412ac18f40b9e5ffefe387f6da14c073731f57884d94fd57"
+    },
+    {
+      "bytes": 3557,
+      "path": "demo/workflow_protocol.json",
+      "sha256": "8a210ce7d2934354fb151cd64aa9a15ed570e82c6f039c748ea8fe89c3b035a7"
+    }
+  ],
+  "audience": [
+    "GitHub visitors",
+    "public evaluators",
+    "research agents",
+    "release maintainers"
+  ],
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "featured_commands": [
+    {
+      "command": "build-packet",
+      "inputs": [
+        "examples/macro_events.csv or bundled macro_events.csv"
+      ],
+      "outputs": [
+        "demo/thesis_packet.md",
+        "demo/thesis_packet.json"
+      ],
+      "purpose": "Build the primary thesis evidence packet from static CSV events.",
+      "safety": "Static research output with no live data, orders, or recommendations."
+    },
+    {
+      "command": "public-readiness",
+      "inputs": [
+        "repository files, demo artifacts, public scan"
+      ],
+      "outputs": [
+        "demo/public_readiness.md",
+        "demo/public_readiness.json"
+      ],
+      "purpose": "Summarize public release readiness gates and blockers.",
+      "safety": "Requires public scan pass and explicit static research boundaries."
+    },
+    {
+      "command": "landing-page",
+      "inputs": [
+        "built-in public story, command metadata, local artifact availability"
+      ],
+      "outputs": [
+        "demo/landing_page.md",
+        "demo/landing_page.json",
+        "demo/landing_page.html"
+      ],
+      "purpose": "Write a crisp public landing page for GitHub visitors and first-run evaluators.",
+      "safety": "Public static documentation only; no live data, advice, workflow automation, or private references."
+    },
+    {
+      "command": "api-reference",
+      "inputs": [
+        "built-in command metadata and schema constants"
+      ],
+      "outputs": [
+        "demo/api_reference.md",
+        "demo/api_reference.json",
+        "demo/api_reference.html"
+      ],
+      "purpose": "Write reusable command, artifact, and data-contract reference docs for agent and CLI reuse.",
+      "safety": "Documents static local contracts only; no external APIs, live feeds, or trading actions."
+    },
+    {
+      "command": "workflow-protocol",
+      "inputs": [
+        "built-in ordered protocol steps, command metadata, safety boundaries"
+      ],
+      "outputs": [
+        "demo/workflow_protocol.md",
+        "demo/workflow_protocol.json",
+        "demo/workflow_protocol.html"
+      ],
+      "purpose": "Write a reusable protocol layer for agents that need deterministic macro-policy evidence maps.",
+      "safety": "Agent protocol only; no repository workflow files, network actions, live data, or advice."
+    },
+    {
+      "command": "example-pack",
+      "inputs": [
+        "bundled examples, command metadata, local artifact availability"
+      ],
+      "outputs": [
+        "demo/example_pack.md",
+        "demo/example_pack.json",
+        "demo/example_pack.html"
+      ],
+      "purpose": "Write a public example pack with stable command recipes and expected static artifacts.",
+      "safety": "Uses synthetic static examples only and avoids recommendations, predictions, or live data."
+    }
+  ],
+  "first_screen": {
+    "headline": "A zero-dependency CLI for reusable macro-policy evidence maps.",
+    "primary_recipe": "PYTHONPATH=src python -m macro_policy_thesis_map.cli example-pack --root .",
+    "secondary_recipe": "PYTHONPATH=src python -m macro_policy_thesis_map.cli workflow-protocol --root .",
+    "subhead": "Use static CSV fixtures or user-supplied static files to generate reviewable Markdown, JSON, and HTML artifacts without live data or advice."
+  },
+  "highlights": [
+    {
+      "detail": "Turn static macro policy notes into a neutral evidence map that reviewers can inspect without live services.",
+      "name": "First-screen story"
+    },
+    {
+      "detail": "Agents get stable command recipes, JSON contracts, and safety gates for repeatable local runs.",
+      "name": "Reusable protocol layer"
+    },
+    {
+      "detail": "Markdown, JSON, HTML, and SVG demo outputs sit under demo/ with deterministic hashes.",
+      "name": "Public artifact pack"
+    }
+  ],
+  "missing_artifacts": [],
+  "start_here": [
+    {
+      "command": "macro-policy-thesis-map landing-page --root .",
+      "result": "Public landing page artifacts are written under demo/.",
+      "step": 1
+    },
+    {
+      "command": "macro-policy-thesis-map example-pack --root .",
+      "result": "Stable command recipes and expected outputs are recorded.",
+      "step": 2
+    },
+    {
+      "command": "macro-policy-thesis-map workflow-protocol --root .",
+      "result": "Agent-ready protocol steps and gates are documented.",
+      "step": 3
+    },
+    {
+      "command": "macro-policy-thesis-map public-readiness --root .",
+      "result": "Public release gates are checked from local files.",
+      "step": 4
+    }
+  ],
+  "tagline": "Static macro policy notes in; neutral thesis evidence packets out.",
+  "title": "Macro Policy Thesis Map",
+  "version": "1.1.0"
+}

@@ -2,9 +2,9 @@
   "artifact_count": 14,
   "artifacts": [
     {
-      "bytes": 13515,
+      "bytes": 16096,
       "path": "README.md",
-      "sha256": "4366c0540cdd883ccc0ddb48936219a5a232e640af164180ef4be563b32af278"
+      "sha256": "14c1a4e5d37ae040c4e00514cefd2d8cf0a3dcdd67c32a6914a1b6cccc3ee113"
     },
     {
       "bytes": 906,
@@ -49,17 +49,17 @@
     {
       "bytes": 2903,
       "path": "demo/scenario_library.json",
-      "sha256": "6a6dfba6bf9c54a417753cb33fe124858fb37e2119a9b7ab1d0272d85a6ead86"
+      "sha256": "62d405892fb64c52658840381b8bb6f85b390edc177ce47321dd7b6e826ecda8"
     },
     {
       "bytes": 2500,
       "path": "demo/assumption_registry.json",
-      "sha256": "70aecc7f328a84302c7d082cccbc7a6954ec82775be27c9297e38068d271ba90"
+      "sha256": "7170c7639ab9e79069dfc3815ed1c7471aea443cd64e50af741f92c90459c99f"
     },
     {
       "bytes": 3472,
       "path": "demo/data_dictionary_diff.json",
-      "sha256": "894c3a7c3f46c6350c6cf68c682842aee24cb28025835cf377981ca208ea2dcb"
+      "sha256": "3d2592dd48b9de32933cb9357841fa54b57c0b25dca20b7ec5a37da2d029e2fe"
     },
     {
       "bytes": 432,
@@ -67,9 +67,9 @@
       "sha256": "d4f558b50d9e8366a7643dbbdd90e60af0132fcea8bafb978819d6322a40be1a"
     },
     {
-      "bytes": 1732,
+      "bytes": 1923,
       "path": "demo/public_readiness.json",
-      "sha256": "4dd6c11f67f4d2c1c1f518c7db9d3842770a1c3ffbc5b196e19abf69580559ef"
+      "sha256": "15d96adf743682bef08d102ae5ec93be95b0a8c49568f421a10722d398f20619"
     }
   ],
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",

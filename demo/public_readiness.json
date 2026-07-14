@@ -1,7 +1,7 @@
 {
   "blockers": [],
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
-  "check_count": 9,
+  "check_count": 10,
   "checks": [
     {
       "detail": "No private terms or credential-shaped tokens in public text.",
@@ -39,6 +39,11 @@
       "passed": true
     },
     {
+      "detail": "Landing, API reference, workflow protocol, example pack, and roadmap HTML artifacts are present.",
+      "name": "public_protocol_layer",
+      "passed": true
+    },
+    {
       "detail": "No repository workflow files are required for public evaluation.",
       "name": "no_workflow_files",
       "passed": true
@@ -49,6 +54,6 @@
       "passed": true
     }
   ],
-  "passed_count": 9,
+  "passed_count": 10,
   "status": "ready"
 }

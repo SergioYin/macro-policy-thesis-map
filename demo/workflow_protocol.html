@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Workflow Protocol</title>
+<style>
+body{font-family:Arial,sans-serif;margin:2rem;line-height:1.45;color:#1f2937;background:#f8fafc}
+main{max-width:1120px;margin:auto} table{border-collapse:collapse;width:100%;background:white;margin-bottom:1.5rem}
+th,td{border:1px solid #d1d5db;padding:.55rem;text-align:left;vertical-align:top} th{background:#e5e7eb}
+.notice{border-left:4px solid #64748b;padding:.75rem;background:white} .lede{font-size:1.1rem}
+code{background:#e5e7eb;padding:.1rem .25rem}
+</style>
+<main>
+<h1>Workflow Protocol</h1>
+<p class="notice">Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.</p>
+<p class="lede">Version 1.1.0</p>
+<h2>Phases</h2><table><thead><tr><th>Phase</th><th>Goal</th><th>Commands</th><th>Gate</th></tr></thead><tbody><tr><td>inspect</td><td>Confirm local static inputs and public docs are present.</td><td>command-matrix --root ., schema-export --root ., fixture-doctor --root .</td><td>fixture-doctor status is pass before packet generation.</td></tr>
+<tr><td>generate</td><td>Build the evidence packet and reusable public surfaces.</td><td>build-packet --root ., review-ledger --root ., example-pack --root ., api-reference --root .</td><td>review-ledger has no blocker findings before sharing.</td></tr>
+<tr><td>package</td><td>Prepare public visitor and agent reuse artifacts.</td><td>landing-page --root ., workflow-protocol --root ., roadmap-next --root ., evidence-bundle --root .</td><td>public-readiness can evaluate all required demo artifacts.</td></tr>
+<tr><td>verify</td><td>Run local release gates and detect drift.</td><td>public-readiness --root ., release-manifest --root ., public-scan --root ., diff-check --root .</td><td>selfcheck, public-scan, public-readiness, and diff-check exit successfully.</td></tr></tbody></table><h2>Agent Contract</h2><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>input_mode</td><td>static files only</td></tr>
+<tr><td>output_root</td><td>demo/</td></tr>
+<tr><td>allowed_formats</td><td>Markdown, JSON, HTML, SVG</td></tr>
+<tr><td>state_model</td><td>commands are deterministic and may be rerun from the repository root</td></tr>
+<tr><td>handoff_files</td><td>demo/workflow_protocol.json, demo/api_reference.json, demo/example_pack.json, demo/public_readiness.json</td></tr></tbody></table><h2>Stop Conditions</h2><table><thead><tr><th>Condition</th></tr></thead><tbody><tr><td>Missing required static input files.</td></tr>
+<tr><td>fixture-doctor reports blocked.</td></tr>
+<tr><td>review-ledger reports advice-like text.</td></tr>
+<tr><td>public-scan reports a private reference or credential-shaped token.</td></tr>
+<tr><td>public-readiness reports blocked.</td></tr></tbody></table>
+</main>
+</html>

@@ -13,6 +13,7 @@ from .core import (
     DISCLAIMER,
     build_packet,
     adoption_notes,
+    api_reference,
     assumption_registry,
     benchmark_suite,
     bundle_export,
@@ -25,11 +26,13 @@ from .core import (
     diff_check,
     docs_export,
     evidence_bundle,
+    example_pack,
     exposure_map,
     fixture_doctor,
     golden_fixtures,
     input_schema,
     integration_cookbook,
+    landing_page,
     cli_help,
     load_cases,
     load_events,
@@ -40,6 +43,7 @@ from .core import (
     public_findings,
     public_readiness,
     quickstart_check,
+    roadmap_next,
     readme_snippet,
     regression_summary,
     release_manifest,
@@ -49,6 +53,7 @@ from .core import (
     scenario_library,
     thesis_impact_brief,
     troubleshoot,
+    workflow_protocol,
 )
 from .io import read_json, resolve, write_json, write_text
 from .render import (
@@ -60,22 +65,30 @@ from .render import (
     dashboard_html,
     docs_export_md,
     evidence_bundle_md,
+    example_pack_html,
+    example_pack_md,
     exposure_map_md,
     fixture_doctor_md,
     input_schema_md,
     ledger_md,
+    landing_page_html,
+    landing_page_md,
     manifest_md,
     maturity_md,
     packet_md,
     public_readiness_md,
     quickstart_md,
     readme_snippet_md,
+    roadmap_next_html,
+    roadmap_next_md,
     thesis_impact_brief_md,
     troubleshoot_md,
     visual_receipt_html,
     visual_receipt_md,
     visual_receipt_svg,
     adoption_notes_md,
+    api_reference_html,
+    api_reference_md,
     assumption_registry_md,
     benchmark_suite_md,
     bundle_export_md,
@@ -88,6 +101,8 @@ from .render import (
     release_deck_md,
     reviewer_scorecard_md,
     scenario_library_md,
+    workflow_protocol_html,
+    workflow_protocol_md,
 )
 
 
@@ -340,6 +355,41 @@ def build_parser() -> argparse.ArgumentParser:
     regression.add_argument("--out-md", default="demo/regression_summary.md")
     regression.add_argument("--out-json", default="demo/regression_summary.json")
     regression.set_defaults(func=cmd_regression_summary)
+
+    landing = sub.add_parser("landing-page", help="Write a public landing page for GitHub visitors.")
+    landing.add_argument("--root", default=".")
+    landing.add_argument("--out-md", default="demo/landing_page.md")
+    landing.add_argument("--out-json", default="demo/landing_page.json")
+    landing.add_argument("--out-html", default="demo/landing_page.html")
+    landing.set_defaults(func=cmd_landing_page)
+
+    api = sub.add_parser("api-reference", help="Write command, artifact, and data-contract reference docs.")
+    api.add_argument("--root", default=".")
+    api.add_argument("--out-md", default="demo/api_reference.md")
+    api.add_argument("--out-json", default="demo/api_reference.json")
+    api.add_argument("--out-html", default="demo/api_reference.html")
+    api.set_defaults(func=cmd_api_reference)
+
+    protocol = sub.add_parser("workflow-protocol", help="Write a reusable local protocol layer for agents.")
+    protocol.add_argument("--root", default=".")
+    protocol.add_argument("--out-md", default="demo/workflow_protocol.md")
+    protocol.add_argument("--out-json", default="demo/workflow_protocol.json")
+    protocol.add_argument("--out-html", default="demo/workflow_protocol.html")
+    protocol.set_defaults(func=cmd_workflow_protocol)
+
+    examples = sub.add_parser("example-pack", help="Write public examples with stable command recipes.")
+    examples.add_argument("--root", default=".")
+    examples.add_argument("--out-md", default="demo/example_pack.md")
+    examples.add_argument("--out-json", default="demo/example_pack.json")
+    examples.add_argument("--out-html", default="demo/example_pack.html")
+    examples.set_defaults(func=cmd_example_pack)
+
+    roadmap = sub.add_parser("roadmap-next", help="Write bounded public roadmap next steps.")
+    roadmap.add_argument("--root", default=".")
+    roadmap.add_argument("--out-md", default="demo/roadmap_next.md")
+    roadmap.add_argument("--out-json", default="demo/roadmap_next.json")
+    roadmap.add_argument("--out-html", default="demo/roadmap_next.html")
+    roadmap.set_defaults(func=cmd_roadmap_next)
     return parser
 
 
@@ -653,6 +703,51 @@ def cmd_regression_summary(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_landing_page(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = landing_page(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), landing_page_md(payload))
+    write_text(resolve(root, args.out_html), landing_page_html(payload))
+    return 0
+
+
+def cmd_api_reference(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = api_reference()
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), api_reference_md(payload))
+    write_text(resolve(root, args.out_html), api_reference_html(payload))
+    return 0
+
+
+def cmd_workflow_protocol(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = workflow_protocol()
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), workflow_protocol_md(payload))
+    write_text(resolve(root, args.out_html), workflow_protocol_html(payload))
+    return 0
+
+
+def cmd_example_pack(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = example_pack(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), example_pack_md(payload))
+    write_text(resolve(root, args.out_html), example_pack_html(payload))
+    return 0
+
+
+def cmd_roadmap_next(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = roadmap_next()
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), roadmap_next_md(payload))
+    write_text(resolve(root, args.out_html), roadmap_next_html(payload))
+    return 0
+
+
 def cmd_public_scan(args: argparse.Namespace) -> int:
     findings = public_findings(Path(args.root))
     if findings:
@@ -704,6 +799,16 @@ def cmd_selfcheck(args: argparse.Namespace) -> int:
         root / "demo" / "maintainer_guide.json",
         root / "demo" / "golden_fixtures.json",
         root / "demo" / "regression_summary.json",
+        root / "demo" / "landing_page.json",
+        root / "demo" / "landing_page.html",
+        root / "demo" / "api_reference.json",
+        root / "demo" / "api_reference.html",
+        root / "demo" / "workflow_protocol.json",
+        root / "demo" / "workflow_protocol.html",
+        root / "demo" / "example_pack.json",
+        root / "demo" / "example_pack.html",
+        root / "demo" / "roadmap_next.json",
+        root / "demo" / "roadmap_next.html",
         root / "demo" / "fixture_doctor.json",
         root / "demo" / "input_schema.json",
         root / "demo" / "troubleshoot.json",

@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Score: 15 / 15
+Score: 16 / 16
 
 Status: ready
 
@@ -20,6 +20,7 @@ Status: ready
 | operator_surfaces | pass |
 | release_owner_pack | pass |
 | public_evaluator_hardening | pass |
+| public_protocol_layer | pass |
 | tests | pass |
 | skill | pass |
 | no_workflows | pass |

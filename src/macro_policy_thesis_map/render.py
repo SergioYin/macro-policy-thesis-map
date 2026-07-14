@@ -940,6 +940,257 @@ Blocking gates: {payload['blocking_gate_count']}
 """
 
 
+def landing_page_md(payload: dict[str, Any]) -> str:
+    highlights = [[item["name"], item["detail"]] for item in payload["highlights"]]
+    steps = [[item["step"], item["command"], item["result"]] for item in payload["start_here"]]
+    commands = [[item["command"], item["purpose"], ", ".join(item["outputs"])] for item in payload["featured_commands"]]
+    artifacts = [[item["path"], item["bytes"], item["sha256"][:16]] for item in payload["artifacts"]] or [["none", "", ""]]
+    return f"""# {payload['title']}
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Tagline: {payload['tagline']}
+
+## First Screen
+
+Headline: {payload['first_screen']['headline']}
+
+Subhead: {payload['first_screen']['subhead']}
+
+Primary recipe: `{payload['first_screen']['primary_recipe']}`
+
+Secondary recipe: `{payload['first_screen']['secondary_recipe']}`
+
+## Highlights
+
+{table(["Name", "Detail"], highlights)}
+
+## Start Here
+
+{table(["Step", "Command", "Result"], steps)}
+
+## Featured Commands
+
+{table(["Command", "Purpose", "Outputs"], commands)}
+
+## Artifact Links
+
+{table(["Path", "Bytes", "SHA-256 prefix"], artifacts)}
+"""
+
+
+def api_reference_md(payload: dict[str, Any]) -> str:
+    commands = [[item["command"], item["usage"], item["purpose"], ", ".join(item["outputs"])] for item in payload["commands"]]
+    contracts = [[item["name"], item["format"], ", ".join(item["required_columns"]), ", ".join(item["consumer_commands"])] for item in payload["data_contracts"]]
+    artifacts = [[item["path"], item["format"], item["producer_command"], item["stability"]] for item in payload["artifact_contracts"]]
+    unsupported = [[item] for item in payload["unsupported"]]
+    return f"""# API Reference
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+CLI: `{payload['cli_name']}`
+
+Python module: `{payload['python_module']}`
+
+## Commands
+
+{table(["Command", "Usage", "Purpose", "Outputs"], commands)}
+
+## Data Contracts
+
+{table(["Contract", "Format", "Required columns", "Consumers"], contracts)}
+
+## Artifact Contracts
+
+{table(["Path", "Format", "Producer", "Stability"], artifacts)}
+
+## Unsupported
+
+{table(["Surface"], unsupported)}
+"""
+
+
+def workflow_protocol_md(payload: dict[str, Any]) -> str:
+    phases = [
+        [item["phase"], item["goal"], ", ".join(item["commands"]), ", ".join(item["expected_outputs"]), item["gate"]]
+        for item in payload["phases"]
+    ]
+    contract = [[key, ", ".join(value) if isinstance(value, list) else value] for key, value in payload["agent_contract"].items()]
+    stops = [[item] for item in payload["stop_conditions"]]
+    return f"""# Workflow Protocol
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Protocol: `{payload['protocol_id']}`
+
+Purpose: {payload['purpose']}
+
+## Phases
+
+{table(["Phase", "Goal", "Commands", "Expected outputs", "Gate"], phases)}
+
+## Agent Contract
+
+{table(["Field", "Value"], contract)}
+
+## Stop Conditions
+
+{table(["Condition"], stops)}
+"""
+
+
+def example_pack_md(payload: dict[str, Any]) -> str:
+    recipes = [
+        [item["recipe_id"], item["name"], ", ".join(item["commands"]), ", ".join(item["outputs"]), ", ".join(item["expected_json_keys"])]
+        for item in payload["recipes"]
+    ]
+    fixtures = [[item["path"], item["bytes"], item["sha256"][:16]] for item in payload["fixtures"]]
+    commands = [[item] for item in payload["copy_free_commands"]]
+    return f"""# Example Pack
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Fixture policy: {payload['fixture_policy']}
+
+Recipes: {payload['recipe_count']}
+
+## Recipes
+
+{table(["Recipe", "Name", "Commands", "Outputs", "Expected JSON keys"], recipes)}
+
+## Fixtures
+
+{table(["Path", "Bytes", "SHA-256 prefix"], fixtures)}
+
+## Stable Commands
+
+{table(["Command"], commands)}
+"""
+
+
+def roadmap_next_md(payload: dict[str, Any]) -> str:
+    items = [
+        [item["roadmap_id"], item["theme"], item["item"], item["acceptance"], ", ".join(item["excluded"])]
+        for item in payload["items"]
+    ]
+    principles = [[item] for item in payload["release_principles"]]
+    not_planned = [[item] for item in payload["not_planned"]]
+    return f"""# Roadmap Next
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Roadmap items: {payload['roadmap_count']}
+
+## Items
+
+{table(["ID", "Theme", "Item", "Acceptance", "Excluded"], items)}
+
+## Release Principles
+
+{table(["Principle"], principles)}
+
+## Not Planned
+
+{table(["Surface"], not_planned)}
+"""
+
+
+def public_doc_html(payload: dict[str, Any], body_rows: list[tuple[str, list[list[Any]], list[str]]]) -> str:
+    sections = []
+    for title, rows, headers in body_rows:
+        section_rows = "\n".join(
+            "<tr>" + "".join(f"<td>{escape('' if value is None else str(value))}</td>" for value in row) + "</tr>"
+            for row in rows
+        )
+        header_row = "".join(f"<th>{escape(header)}</th>" for header in headers)
+        sections.append(f"<h2>{escape(title)}</h2><table><thead><tr>{header_row}</tr></thead><tbody>{section_rows}</tbody></table>")
+    return f"""<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>{escape(payload['title'])}</title>
+<style>
+body{{font-family:Arial,sans-serif;margin:2rem;line-height:1.45;color:#1f2937;background:#f8fafc}}
+main{{max-width:1120px;margin:auto}} table{{border-collapse:collapse;width:100%;background:white;margin-bottom:1.5rem}}
+th,td{{border:1px solid #d1d5db;padding:.55rem;text-align:left;vertical-align:top}} th{{background:#e5e7eb}}
+.notice{{border-left:4px solid #64748b;padding:.75rem;background:white}} .lede{{font-size:1.1rem}}
+code{{background:#e5e7eb;padding:.1rem .25rem}}
+</style>
+<main>
+<h1>{escape(payload['title'])}</h1>
+<p class="notice">{escape(payload['boundaries'])}</p>
+<p class="lede">Version {escape(str(payload.get('version', '')))}</p>
+{''.join(sections)}
+</main>
+</html>
+"""
+
+
+def landing_page_html(payload: dict[str, Any]) -> str:
+    return public_doc_html(
+        payload,
+        [
+            ("First Screen", [[payload["first_screen"]["headline"], payload["first_screen"]["subhead"], payload["first_screen"]["primary_recipe"]]], ["Headline", "Subhead", "Primary recipe"]),
+            ("Highlights", [[item["name"], item["detail"]] for item in payload["highlights"]], ["Name", "Detail"]),
+            ("Start Here", [[item["step"], item["command"], item["result"]] for item in payload["start_here"]], ["Step", "Command", "Result"]),
+            ("Featured Commands", [[item["command"], item["purpose"], ", ".join(item["outputs"])] for item in payload["featured_commands"]], ["Command", "Purpose", "Outputs"]),
+        ],
+    )
+
+
+def api_reference_html(payload: dict[str, Any]) -> str:
+    return public_doc_html(
+        payload,
+        [
+            ("Commands", [[item["command"], item["usage"], item["purpose"], ", ".join(item["outputs"])] for item in payload["commands"]], ["Command", "Usage", "Purpose", "Outputs"]),
+            ("Data Contracts", [[item["name"], item["format"], ", ".join(item["required_columns"]), ", ".join(item["consumer_commands"])] for item in payload["data_contracts"]], ["Contract", "Format", "Required columns", "Consumers"]),
+            ("Unsupported", [[item] for item in payload["unsupported"]], ["Surface"]),
+        ],
+    )
+
+
+def workflow_protocol_html(payload: dict[str, Any]) -> str:
+    return public_doc_html(
+        payload,
+        [
+            ("Phases", [[item["phase"], item["goal"], ", ".join(item["commands"]), item["gate"]] for item in payload["phases"]], ["Phase", "Goal", "Commands", "Gate"]),
+            ("Agent Contract", [[key, ", ".join(value) if isinstance(value, list) else value] for key, value in payload["agent_contract"].items()], ["Field", "Value"]),
+            ("Stop Conditions", [[item] for item in payload["stop_conditions"]], ["Condition"]),
+        ],
+    )
+
+
+def example_pack_html(payload: dict[str, Any]) -> str:
+    return public_doc_html(
+        payload,
+        [
+            ("Recipes", [[item["recipe_id"], item["name"], ", ".join(item["commands"]), ", ".join(item["outputs"])] for item in payload["recipes"]], ["Recipe", "Name", "Commands", "Outputs"]),
+            ("Fixtures", [[item["path"], item["bytes"], item["sha256"][:16]] for item in payload["fixtures"]], ["Path", "Bytes", "SHA-256 prefix"]),
+            ("Stable Commands", [[item] for item in payload["copy_free_commands"]], ["Command"]),
+        ],
+    )
+
+
+def roadmap_next_html(payload: dict[str, Any]) -> str:
+    return public_doc_html(
+        payload,
+        [
+            ("Items", [[item["roadmap_id"], item["theme"], item["item"], item["acceptance"]] for item in payload["items"]], ["ID", "Theme", "Item", "Acceptance"]),
+            ("Release Principles", [[item] for item in payload["release_principles"]], ["Principle"]),
+            ("Not Planned", [[item] for item in payload["not_planned"]], ["Surface"]),
+        ],
+    )
+
+
 def cold_start_md(payload: dict[str, Any]) -> str:
     steps = [[item["step"], item["title"], item["command"], item["expected_result"]] for item in payload["steps"]]
     notes = [[item] for item in payload["safety_notes"]]

@@ -1,0 +1,1152 @@
+{
+  "artifact_contracts": [
+    {
+      "format": "md",
+      "path": "demo/thesis_packet.md",
+      "producer_command": "build-packet",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/thesis_packet.json",
+      "producer_command": "build-packet",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/history_comparison.md",
+      "producer_command": "compare-history",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/history_comparison.json",
+      "producer_command": "compare-history",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/review_ledger.md",
+      "producer_command": "review-ledger",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/review_ledger.json",
+      "producer_command": "review-ledger",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "html",
+      "path": "demo/static_dashboard.html",
+      "producer_command": "static-dashboard",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/thesis_impact_brief.md",
+      "producer_command": "thesis-impact-brief",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/thesis_impact_brief.json",
+      "producer_command": "thesis-impact-brief",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/exposure_map.md",
+      "producer_command": "exposure-map",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/exposure_map.json",
+      "producer_command": "exposure-map",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/scenario_library.md",
+      "producer_command": "scenario-library",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/scenario_library.json",
+      "producer_command": "scenario-library",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/assumption_registry.md",
+      "producer_command": "assumption-registry",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/assumption_registry.json",
+      "producer_command": "assumption-registry",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/data_dictionary_diff.md",
+      "producer_command": "data-dictionary-diff",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/data_dictionary_diff.json",
+      "producer_command": "data-dictionary-diff",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/case_gallery.md",
+      "producer_command": "case-gallery",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/case_gallery.json",
+      "producer_command": "case-gallery",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "html",
+      "path": "demo/visual_receipt.svg or demo/visual_receipt.html",
+      "producer_command": "visual-receipt",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/visual_receipt.json",
+      "producer_command": "visual-receipt",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/fixture_doctor.md",
+      "producer_command": "fixture-doctor",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/fixture_doctor.json",
+      "producer_command": "fixture-doctor",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/input_schema.md",
+      "producer_command": "schema-export",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/input_schema.json",
+      "producer_command": "schema-export",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/troubleshoot.md",
+      "producer_command": "troubleshoot",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/troubleshoot.json",
+      "producer_command": "troubleshoot",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/docs_export.md",
+      "producer_command": "docs-export",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/docs_export.json",
+      "producer_command": "docs-export",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/readme_snippet.md",
+      "producer_command": "readme-snippet",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/readme_snippet.json",
+      "producer_command": "readme-snippet",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/cli_help.md",
+      "producer_command": "cli-help",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/cli_help.json",
+      "producer_command": "cli-help",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/release_manifest.md",
+      "producer_command": "release-manifest",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/release_manifest.json",
+      "producer_command": "release-manifest",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/maturity_report.md",
+      "producer_command": "maturity-report",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/maturity_report.json",
+      "producer_command": "maturity-report",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/quickstart_check.md",
+      "producer_command": "quickstart-check",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/quickstart_check.json",
+      "producer_command": "quickstart-check",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/command_matrix.md",
+      "producer_command": "command-matrix",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/command_matrix.json",
+      "producer_command": "command-matrix",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/adoption_notes.md",
+      "producer_command": "adoption-notes",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/adoption_notes.json",
+      "producer_command": "adoption-notes",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/reviewer_scorecard.md",
+      "producer_command": "reviewer-scorecard",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/reviewer_scorecard.json",
+      "producer_command": "reviewer-scorecard",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/release_deck.md",
+      "producer_command": "release-deck",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/release_deck.json",
+      "producer_command": "release-deck",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/bundle_export/manifest.md",
+      "producer_command": "bundle-export",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/bundle_export/manifest.json",
+      "producer_command": "bundle-export",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/evidence_bundle.md",
+      "producer_command": "evidence-bundle",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/evidence_bundle.json",
+      "producer_command": "evidence-bundle",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/public_readiness.md",
+      "producer_command": "public-readiness",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/public_readiness.json",
+      "producer_command": "public-readiness",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/benchmark_suite.md",
+      "producer_command": "benchmark-suite",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/benchmark_suite.json",
+      "producer_command": "benchmark-suite",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/integration_cookbook.md",
+      "producer_command": "integration-cookbook",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/integration_cookbook.json",
+      "producer_command": "integration-cookbook",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/compatibility_report.md",
+      "producer_command": "compatibility-report",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/compatibility_report.json",
+      "producer_command": "compatibility-report",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/maintainer_guide.md",
+      "producer_command": "maintainer-guide",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/maintainer_guide.json",
+      "producer_command": "maintainer-guide",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/golden_fixtures.md",
+      "producer_command": "golden-fixtures",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/golden_fixtures.json",
+      "producer_command": "golden-fixtures",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/regression_summary.md",
+      "producer_command": "regression-summary",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/regression_summary.json",
+      "producer_command": "regression-summary",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/landing_page.md",
+      "producer_command": "landing-page",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/landing_page.json",
+      "producer_command": "landing-page",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "html",
+      "path": "demo/landing_page.html",
+      "producer_command": "landing-page",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/api_reference.md",
+      "producer_command": "api-reference",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/api_reference.json",
+      "producer_command": "api-reference",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "html",
+      "path": "demo/api_reference.html",
+      "producer_command": "api-reference",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/workflow_protocol.md",
+      "producer_command": "workflow-protocol",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/workflow_protocol.json",
+      "producer_command": "workflow-protocol",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "html",
+      "path": "demo/workflow_protocol.html",
+      "producer_command": "workflow-protocol",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/example_pack.md",
+      "producer_command": "example-pack",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/example_pack.json",
+      "producer_command": "example-pack",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "html",
+      "path": "demo/example_pack.html",
+      "producer_command": "example-pack",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/roadmap_next.md",
+      "producer_command": "roadmap-next",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/roadmap_next.json",
+      "producer_command": "roadmap-next",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "html",
+      "path": "demo/roadmap_next.html",
+      "producer_command": "roadmap-next",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/cold_start_walkthrough.md",
+      "producer_command": "cold-start-walkthrough",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/cold_start_walkthrough.json",
+      "producer_command": "cold-start-walkthrough",
+      "stability": "deterministic local output"
+    }
+  ],
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "cli_name": "macro-policy-thesis-map",
+  "commands": [
+    {
+      "command": "build-packet",
+      "inputs": [
+        "examples/macro_events.csv or bundled macro_events.csv"
+      ],
+      "outputs": [
+        "demo/thesis_packet.md",
+        "demo/thesis_packet.json"
+      ],
+      "purpose": "Build the primary thesis evidence packet from static CSV events.",
+      "safety": "Static research output with no live data, orders, or recommendations.",
+      "usage": "macro-policy-thesis-map build-packet --root ."
+    },
+    {
+      "command": "compare-history",
+      "inputs": [
+        "examples/macro_events.csv",
+        "examples/prior_macro_events.csv or bundled examples"
+      ],
+      "outputs": [
+        "demo/history_comparison.md",
+        "demo/history_comparison.json"
+      ],
+      "purpose": "Compare current and prior static policy event sets.",
+      "safety": "Reports structural deltas only; does not forecast policy or market outcomes.",
+      "usage": "macro-policy-thesis-map compare-history --root ."
+    },
+    {
+      "command": "review-ledger",
+      "inputs": [
+        "examples/macro_events.csv or bundled macro_events.csv"
+      ],
+      "outputs": [
+        "demo/review_ledger.md",
+        "demo/review_ledger.json"
+      ],
+      "purpose": "Flag low-confidence areas and advice-like terms in supplied evidence.",
+      "safety": "Raises review findings instead of rewriting evidence into advice.",
+      "usage": "macro-policy-thesis-map review-ledger --root ."
+    },
+    {
+      "command": "static-dashboard",
+      "inputs": [
+        "examples/macro_events.csv plus optional bundled sensitivity and exposure fixtures"
+      ],
+      "outputs": [
+        "demo/static_dashboard.html"
+      ],
+      "purpose": "Render a no-JavaScript HTML view of the packet, review ledger, and static sensitivity summaries.",
+      "safety": "Static local rendering only.",
+      "usage": "macro-policy-thesis-map static-dashboard --root ."
+    },
+    {
+      "command": "thesis-impact-brief",
+      "inputs": [
+        "examples/thesis_sensitivities.csv or bundled thesis_sensitivities.csv"
+      ],
+      "outputs": [
+        "demo/thesis_impact_brief.md",
+        "demo/thesis_impact_brief.json"
+      ],
+      "purpose": "Summarize synthetic thesis sensitivity rows by thesis, policy area, and scenario axis.",
+      "safety": "Descriptive static sensitivity mapping only; no forecast, advice, or trade instruction.",
+      "usage": "macro-policy-thesis-map thesis-impact-brief --root ."
+    },
+    {
+      "command": "exposure-map",
+      "inputs": [
+        "examples/portfolio_exposures.csv and examples/thesis_sensitivities.csv or bundled fixtures"
+      ],
+      "outputs": [
+        "demo/exposure_map.md",
+        "demo/exposure_map.json"
+      ],
+      "purpose": "Map synthetic portfolio exposure rows to static thesis sensitivity axes.",
+      "safety": "Reports exposure coverage and static scores only; no allocation target or recommendation.",
+      "usage": "macro-policy-thesis-map exposure-map --root ."
+    },
+    {
+      "command": "scenario-library",
+      "inputs": [
+        "built-in static scenario metadata"
+      ],
+      "outputs": [
+        "demo/scenario_library.md",
+        "demo/scenario_library.json"
+      ],
+      "purpose": "Publish synthetic macro policy scenarios for schema adaptation review.",
+      "safety": "Synthetic scenario labels only; no forecasts, probabilities, trades, or recommendations.",
+      "usage": "macro-policy-thesis-map scenario-library --root ."
+    },
+    {
+      "command": "assumption-registry",
+      "inputs": [
+        "built-in static assumption metadata"
+      ],
+      "outputs": [
+        "demo/assumption_registry.md",
+        "demo/assumption_registry.json"
+      ],
+      "purpose": "Publish bounded assumptions, owners, and validation controls for public evaluators.",
+      "safety": "Documents review assumptions without live data, private workflows, or investment advice.",
+      "usage": "macro-policy-thesis-map assumption-registry --root ."
+    },
+    {
+      "command": "data-dictionary-diff",
+      "inputs": [
+        "built-in schema metadata"
+      ],
+      "outputs": [
+        "demo/data_dictionary_diff.md",
+        "demo/data_dictionary_diff.json"
+      ],
+      "purpose": "Compare base event CSV fields with optional public fixtures to guide schema adaptation.",
+      "safety": "Schema documentation only; no external data access or financial recommendation.",
+      "usage": "macro-policy-thesis-map data-dictionary-diff --root ."
+    },
+    {
+      "command": "case-gallery",
+      "inputs": [
+        "examples/public_macro_cases.csv or bundled public_macro_cases.csv"
+      ],
+      "outputs": [
+        "demo/case_gallery.md",
+        "demo/case_gallery.json"
+      ],
+      "purpose": "Build a public-safe multi-region case gallery from static synthetic fixtures.",
+      "safety": "Uses synthetic US, EU, and Asia examples; no live data or recommendations.",
+      "usage": "macro-policy-thesis-map case-gallery --root ."
+    },
+    {
+      "command": "visual-receipt",
+      "inputs": [
+        "repository files, demo artifacts, case gallery"
+      ],
+      "outputs": [
+        "demo/visual_receipt.svg or demo/visual_receipt.html",
+        "demo/visual_receipt.json"
+      ],
+      "purpose": "Render a static SVG or HTML receipt with artifact hashes, routes, and commands.",
+      "safety": "Static receipt only; records provenance without private routes or operational workflows.",
+      "usage": "macro-policy-thesis-map visual-receipt --root ."
+    },
+    {
+      "command": "fixture-doctor",
+      "inputs": [
+        "examples/macro_events.csv or bundled macro_events.csv"
+      ],
+      "outputs": [
+        "demo/fixture_doctor.md",
+        "demo/fixture_doctor.json"
+      ],
+      "purpose": "Validate static CSV fixtures for columns, event types, confidence bounds, stale dates, and advice-like terms.",
+      "safety": "Reports data-quality blockers before evidence is rendered.",
+      "usage": "macro-policy-thesis-map fixture-doctor --root ."
+    },
+    {
+      "command": "schema-export",
+      "inputs": [
+        "built-in schema metadata"
+      ],
+      "outputs": [
+        "demo/input_schema.md",
+        "demo/input_schema.json"
+      ],
+      "purpose": "Export the machine-readable input schema and data dictionary.",
+      "safety": "Documents accepted static inputs without connecting to external systems.",
+      "usage": "macro-policy-thesis-map schema-export --root ."
+    },
+    {
+      "command": "troubleshoot",
+      "inputs": [
+        "repository files, demo artifacts, command metadata"
+      ],
+      "outputs": [
+        "demo/troubleshoot.md",
+        "demo/troubleshoot.json"
+      ],
+      "purpose": "Publish deterministic operator troubleshooting checks and recovery steps.",
+      "safety": "Local static diagnostics only; no network, workflow, broker, or live-data action.",
+      "usage": "macro-policy-thesis-map troubleshoot --root ."
+    },
+    {
+      "command": "docs-export",
+      "inputs": [
+        "README, skill docs, command metadata, demo artifacts"
+      ],
+      "outputs": [
+        "demo/docs_export.md",
+        "demo/docs_export.json"
+      ],
+      "purpose": "Export an operator documentation index with key docs, artifacts, and validation commands.",
+      "safety": "Indexes public local docs only and does not publish or upload content.",
+      "usage": "macro-policy-thesis-map docs-export --root ."
+    },
+    {
+      "command": "readme-snippet",
+      "inputs": [
+        "built-in command metadata"
+      ],
+      "outputs": [
+        "demo/readme_snippet.md",
+        "demo/readme_snippet.json"
+      ],
+      "purpose": "Write a compact README-ready usage snippet for public evaluators.",
+      "safety": "Snippet preserves static research boundaries and finance disclaimers.",
+      "usage": "macro-policy-thesis-map readme-snippet --root ."
+    },
+    {
+      "command": "cli-help",
+      "inputs": [
+        "built-in command metadata"
+      ],
+      "outputs": [
+        "demo/cli_help.md",
+        "demo/cli_help.json"
+      ],
+      "purpose": "Write deterministic CLI help text and command usage lines.",
+      "safety": "Documents local commands only; it does not execute private workflows.",
+      "usage": "macro-policy-thesis-map cli-help --root ."
+    },
+    {
+      "command": "release-manifest",
+      "inputs": [
+        "repository files"
+      ],
+      "outputs": [
+        "demo/release_manifest.md",
+        "demo/release_manifest.json"
+      ],
+      "purpose": "Record deterministic paths, sizes, and hashes for release artifacts.",
+      "safety": "Excludes generated manifest self-hashes.",
+      "usage": "macro-policy-thesis-map release-manifest --root ."
+    },
+    {
+      "command": "maturity-report",
+      "inputs": [
+        "repository files"
+      ],
+      "outputs": [
+        "demo/maturity_report.md",
+        "demo/maturity_report.json"
+      ],
+      "purpose": "Score basic release-readiness evidence in the source tree.",
+      "safety": "Checks packaging, examples, tests, skill docs, and absence of workflow files.",
+      "usage": "macro-policy-thesis-map maturity-report --root ."
+    },
+    {
+      "command": "quickstart-check",
+      "inputs": [
+        "repository files and bundled examples"
+      ],
+      "outputs": [
+        "demo/quickstart_check.md",
+        "demo/quickstart_check.json"
+      ],
+      "purpose": "Show whether a fresh evaluator can run the documented starter commands.",
+      "safety": "Checks command availability and expected artifacts without network access.",
+      "usage": "macro-policy-thesis-map quickstart-check --root ."
+    },
+    {
+      "command": "command-matrix",
+      "inputs": [
+        "built-in command metadata"
+      ],
+      "outputs": [
+        "demo/command_matrix.md",
+        "demo/command_matrix.json"
+      ],
+      "purpose": "Publish a neutral map of CLI commands, inputs, outputs, and safety posture.",
+      "safety": "Documents capabilities without private references or operational workflows.",
+      "usage": "macro-policy-thesis-map command-matrix --root ."
+    },
+    {
+      "command": "adoption-notes",
+      "inputs": [
+        "demo artifacts, command metadata, maturity/readiness reports"
+      ],
+      "outputs": [
+        "demo/adoption_notes.md",
+        "demo/adoption_notes.json"
+      ],
+      "purpose": "Write release-owner notes for public evaluator adoption and next actions.",
+      "safety": "Aggregates static artifacts only; no workflows, live data, or advice.",
+      "usage": "macro-policy-thesis-map adoption-notes --root ."
+    },
+    {
+      "command": "reviewer-scorecard",
+      "inputs": [
+        "demo artifacts, tests, README, skill docs"
+      ],
+      "outputs": [
+        "demo/reviewer_scorecard.md",
+        "demo/reviewer_scorecard.json"
+      ],
+      "purpose": "Map release evidence to a reviewer maturity rubric with artifact hashes.",
+      "safety": "Scores public release evidence without private references or external checks.",
+      "usage": "macro-policy-thesis-map reviewer-scorecard --root ."
+    },
+    {
+      "command": "release-deck",
+      "inputs": [
+        "release manifest, maturity report, readiness report, command matrix"
+      ],
+      "outputs": [
+        "demo/release_deck.md",
+        "demo/release_deck.json"
+      ],
+      "purpose": "Build a deterministic Markdown/JSON promotion deck for release owners.",
+      "safety": "Summarizes public static release surfaces only.",
+      "usage": "macro-policy-thesis-map release-deck --root ."
+    },
+    {
+      "command": "bundle-export",
+      "inputs": [
+        "release-owner pack artifacts, release manifest, evidence bundle"
+      ],
+      "outputs": [
+        "demo/bundle_export/manifest.md",
+        "demo/bundle_export/manifest.json"
+      ],
+      "purpose": "Export a public promotion bundle manifest under demo/bundle_export.",
+      "safety": "Creates a local static manifest only; it does not upload, publish, or automate workflows.",
+      "usage": "macro-policy-thesis-map bundle-export --root ."
+    },
+    {
+      "command": "evidence-bundle",
+      "inputs": [
+        "examples, demo artifacts, README, tests, skill docs"
+      ],
+      "outputs": [
+        "demo/evidence_bundle.md",
+        "demo/evidence_bundle.json"
+      ],
+      "purpose": "Collect public evaluation artifacts and source fixture hashes in one bundle.",
+      "safety": "Includes hashes and static summaries only.",
+      "usage": "macro-policy-thesis-map evidence-bundle --root ."
+    },
+    {
+      "command": "public-readiness",
+      "inputs": [
+        "repository files, demo artifacts, public scan"
+      ],
+      "outputs": [
+        "demo/public_readiness.md",
+        "demo/public_readiness.json"
+      ],
+      "purpose": "Summarize public release readiness gates and blockers.",
+      "safety": "Requires public scan pass and explicit static research boundaries.",
+      "usage": "macro-policy-thesis-map public-readiness --root ."
+    },
+    {
+      "command": "benchmark-suite",
+      "inputs": [
+        "built-in benchmark metadata, command metadata, demo artifacts"
+      ],
+      "outputs": [
+        "demo/benchmark_suite.md",
+        "demo/benchmark_suite.json"
+      ],
+      "purpose": "Publish deterministic synthetic evaluator benchmarks and artifact coverage checks.",
+      "safety": "Synthetic benchmark matrix only; no timing probes, live data, network calls, or advice.",
+      "usage": "macro-policy-thesis-map benchmark-suite --root ."
+    },
+    {
+      "command": "integration-cookbook",
+      "inputs": [
+        "built-in recipe metadata and command metadata"
+      ],
+      "outputs": [
+        "demo/integration_cookbook.md",
+        "demo/integration_cookbook.json"
+      ],
+      "purpose": "Publish public-safe integration recipes for static CSV ingestion and artifact review.",
+      "safety": "Local static recipes only; no private systems, workflows, uploads, live feeds, or advice.",
+      "usage": "macro-policy-thesis-map integration-cookbook --root ."
+    },
+    {
+      "command": "compatibility-report",
+      "inputs": [
+        "pyproject.toml, source package, bundled examples, demo artifacts"
+      ],
+      "outputs": [
+        "demo/compatibility_report.md",
+        "demo/compatibility_report.json"
+      ],
+      "purpose": "Report deterministic package and artifact compatibility gates for public evaluators.",
+      "safety": "Static file and metadata checks only.",
+      "usage": "macro-policy-thesis-map compatibility-report --root ."
+    },
+    {
+      "command": "maintainer-guide",
+      "inputs": [
+        "built-in maintainer metadata, command metadata"
+      ],
+      "outputs": [
+        "demo/maintainer_guide.md",
+        "demo/maintainer_guide.json"
+      ],
+      "purpose": "Publish deterministic maintainer duties, release order, and safety invariants.",
+      "safety": "Documentation-only guide with no workflow automation or private references.",
+      "usage": "macro-policy-thesis-map maintainer-guide --root ."
+    },
+    {
+      "command": "golden-fixtures",
+      "inputs": [
+        "examples/*.csv, bundled package examples"
+      ],
+      "outputs": [
+        "demo/golden_fixtures.md",
+        "demo/golden_fixtures.json"
+      ],
+      "purpose": "Record static fixture hashes, row counts, schemas, and expected generator outputs.",
+      "safety": "Synthetic fixture inventory only; no live source refresh or advice.",
+      "usage": "macro-policy-thesis-map golden-fixtures --root ."
+    },
+    {
+      "command": "regression-summary",
+      "inputs": [
+        "demo artifacts, tests, release manifest, command metadata"
+      ],
+      "outputs": [
+        "demo/regression_summary.md",
+        "demo/regression_summary.json"
+      ],
+      "purpose": "Summarize deterministic regression gates across tests, scans, readiness, and artifacts.",
+      "safety": "Static local gate summary only.",
+      "usage": "macro-policy-thesis-map regression-summary --root ."
+    },
+    {
+      "command": "landing-page",
+      "inputs": [
+        "built-in public story, command metadata, local artifact availability"
+      ],
+      "outputs": [
+        "demo/landing_page.md",
+        "demo/landing_page.json",
+        "demo/landing_page.html"
+      ],
+      "purpose": "Write a crisp public landing page for GitHub visitors and first-run evaluators.",
+      "safety": "Public static documentation only; no live data, advice, workflow automation, or private references.",
+      "usage": "macro-policy-thesis-map landing-page --root ."
+    },
+    {
+      "command": "api-reference",
+      "inputs": [
+        "built-in command metadata and schema constants"
+      ],
+      "outputs": [
+        "demo/api_reference.md",
+        "demo/api_reference.json",
+        "demo/api_reference.html"
+      ],
+      "purpose": "Write reusable command, artifact, and data-contract reference docs for agent and CLI reuse.",
+      "safety": "Documents static local contracts only; no external APIs, live feeds, or trading actions.",
+      "usage": "macro-policy-thesis-map api-reference --root ."
+    },
+    {
+      "command": "workflow-protocol",
+      "inputs": [
+        "built-in ordered protocol steps, command metadata, safety boundaries"
+      ],
+      "outputs": [
+        "demo/workflow_protocol.md",
+        "demo/workflow_protocol.json",
+        "demo/workflow_protocol.html"
+      ],
+      "purpose": "Write a reusable protocol layer for agents that need deterministic macro-policy evidence maps.",
+      "safety": "Agent protocol only; no repository workflow files, network actions, live data, or advice.",
+      "usage": "macro-policy-thesis-map workflow-protocol --root ."
+    },
+    {
+      "command": "example-pack",
+      "inputs": [
+        "bundled examples, command metadata, local artifact availability"
+      ],
+      "outputs": [
+        "demo/example_pack.md",
+        "demo/example_pack.json",
+        "demo/example_pack.html"
+      ],
+      "purpose": "Write a public example pack with stable command recipes and expected static artifacts.",
+      "safety": "Uses synthetic static examples only and avoids recommendations, predictions, or live data.",
+      "usage": "macro-policy-thesis-map example-pack --root ."
+    },
+    {
+      "command": "roadmap-next",
+      "inputs": [
+        "built-in roadmap metadata and safety constraints"
+      ],
+      "outputs": [
+        "demo/roadmap_next.md",
+        "demo/roadmap_next.json",
+        "demo/roadmap_next.html"
+      ],
+      "purpose": "Write bounded next-step roadmap items for public maintainers and agent reuse.",
+      "safety": "Roadmap documentation only; excludes live data integrations, broker actions, workflows, and advice.",
+      "usage": "macro-policy-thesis-map roadmap-next --root ."
+    },
+    {
+      "command": "cold-start-walkthrough",
+      "inputs": [
+        "built-in command metadata"
+      ],
+      "outputs": [
+        "demo/cold_start_walkthrough.md",
+        "demo/cold_start_walkthrough.json"
+      ],
+      "purpose": "Generate a deterministic first-run walkthrough for public evaluators.",
+      "safety": "Uses local static commands and bundled examples.",
+      "usage": "macro-policy-thesis-map cold-start-walkthrough --root ."
+    },
+    {
+      "command": "public-scan",
+      "inputs": [
+        "repository text files"
+      ],
+      "outputs": [
+        "stdout pass/fail"
+      ],
+      "purpose": "Scan publishable text for private names, paths, and credential-shaped terms.",
+      "safety": "Fails closed when a private or credential-shaped token is found.",
+      "usage": "macro-policy-thesis-map public-scan --root ."
+    },
+    {
+      "command": "diff-check",
+      "inputs": [
+        "demo/release_manifest.json",
+        "repository files"
+      ],
+      "outputs": [
+        "stdout pass/fail"
+      ],
+      "purpose": "Compare the saved release manifest against current file hashes.",
+      "safety": "Detects artifact drift using static local hashes only.",
+      "usage": "macro-policy-thesis-map diff-check --root ."
+    },
+    {
+      "command": "selfcheck",
+      "inputs": [
+        "repository files"
+      ],
+      "outputs": [
+        "stdout pass/fail"
+      ],
+      "purpose": "Run source-tree checks for files, boundaries, and public scan status.",
+      "safety": "Fails closed when required public release evidence is missing.",
+      "usage": "macro-policy-thesis-map selfcheck --root ."
+    }
+  ],
+  "data_contracts": [
+    {
+      "consumer_commands": [
+        "build-packet",
+        "compare-history",
+        "review-ledger",
+        "fixture-doctor",
+        "static-dashboard"
+      ],
+      "format": "csv",
+      "name": "base_event_csv",
+      "producer": "user static CSV or bundled example",
+      "required_columns": [
+        "date",
+        "event_type",
+        "source",
+        "policy_area",
+        "channel",
+        "direction",
+        "confidence",
+        "evidence",
+        "thesis_link"
+      ]
+    },
+    {
+      "consumer_commands": [
+        "case-gallery",
+        "visual-receipt"
+      ],
+      "format": "csv",
+      "name": "case_gallery_csv",
+      "producer": "synthetic public case fixture",
+      "required_columns": [
+        "case_id",
+        "region",
+        "case_title",
+        "date",
+        "policy_area",
+        "channel",
+        "direction",
+        "confidence",
+        "evidence",
+        "route",
+        "command"
+      ]
+    },
+    {
+      "consumer_commands": [
+        "thesis-impact-brief",
+        "exposure-map",
+        "static-dashboard"
+      ],
+      "format": "csv",
+      "name": "thesis_sensitivity_csv",
+      "producer": "synthetic static sensitivity fixture",
+      "required_columns": [
+        "thesis_id",
+        "policy_area",
+        "sensitivity_axis",
+        "shock_label",
+        "impact_direction",
+        "impact_score",
+        "confidence",
+        "rationale"
+      ]
+    },
+    {
+      "consumer_commands": [
+        "exposure-map",
+        "static-dashboard"
+      ],
+      "format": "csv",
+      "name": "portfolio_exposure_csv",
+      "producer": "synthetic static exposure fixture",
+      "required_columns": [
+        "portfolio_id",
+        "sleeve",
+        "exposure_id",
+        "policy_area",
+        "thesis_id",
+        "exposure_direction",
+        "exposure_score",
+        "rationale"
+      ]
+    }
+  ],
+  "json_contract": {
+    "encoding": "utf-8",
+    "errors": "CLI returns 2 for input errors and nonzero for blocked readiness checks.",
+    "numbers": "Confidence, impact, and exposure scores are bounded decimals from 0 to 1.",
+    "ordering": "Keys are sorted by the writer for deterministic diffs."
+  },
+  "python_module": "macro_policy_thesis_map.cli",
+  "title": "API Reference",
+  "unsupported": [
+    "external API calls",
+    "live market data",
+    "broker connections",
+    "orders",
+    "recommendations",
+    "personalized financial advice"
+  ],
+  "version": "1.1.0"
+}

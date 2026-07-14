@@ -2,11 +2,11 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.0.0
+Version: 1.1.0
 
 Status: ready
 
-Passed: 8 / 8
+Passed: 9 / 9
 
 ## Checks
 
@@ -19,6 +19,7 @@ Passed: 8 / 8
 | bundled_event_fixture | pass | Bundled default event fixture is present. |
 | bundled_case_fixture | pass | Bundled public case fixture is present. |
 | public_artifacts | pass | Public evaluator artifacts are present. |
+| protocol_artifacts | pass | Public protocol layer artifacts are present. |
 | no_workflows | pass | No workflow files are required. |
 
 ## Supported Surfaces

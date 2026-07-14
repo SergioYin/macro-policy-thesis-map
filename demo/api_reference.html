@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>API Reference</title>
+<style>
+body{font-family:Arial,sans-serif;margin:2rem;line-height:1.45;color:#1f2937;background:#f8fafc}
+main{max-width:1120px;margin:auto} table{border-collapse:collapse;width:100%;background:white;margin-bottom:1.5rem}
+th,td{border:1px solid #d1d5db;padding:.55rem;text-align:left;vertical-align:top} th{background:#e5e7eb}
+.notice{border-left:4px solid #64748b;padding:.75rem;background:white} .lede{font-size:1.1rem}
+code{background:#e5e7eb;padding:.1rem .25rem}
+</style>
+<main>
+<h1>API Reference</h1>
+<p class="notice">Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.</p>
+<p class="lede">Version 1.1.0</p>
+<h2>Commands</h2><table><thead><tr><th>Command</th><th>Usage</th><th>Purpose</th><th>Outputs</th></tr></thead><tbody><tr><td>build-packet</td><td>macro-policy-thesis-map build-packet --root .</td><td>Build the primary thesis evidence packet from static CSV events.</td><td>demo/thesis_packet.md, demo/thesis_packet.json</td></tr>
+<tr><td>compare-history</td><td>macro-policy-thesis-map compare-history --root .</td><td>Compare current and prior static policy event sets.</td><td>demo/history_comparison.md, demo/history_comparison.json</td></tr>
+<tr><td>review-ledger</td><td>macro-policy-thesis-map review-ledger --root .</td><td>Flag low-confidence areas and advice-like terms in supplied evidence.</td><td>demo/review_ledger.md, demo/review_ledger.json</td></tr>
+<tr><td>static-dashboard</td><td>macro-policy-thesis-map static-dashboard --root .</td><td>Render a no-JavaScript HTML view of the packet, review ledger, and static sensitivity summaries.</td><td>demo/static_dashboard.html</td></tr>
+<tr><td>thesis-impact-brief</td><td>macro-policy-thesis-map thesis-impact-brief --root .</td><td>Summarize synthetic thesis sensitivity rows by thesis, policy area, and scenario axis.</td><td>demo/thesis_impact_brief.md, demo/thesis_impact_brief.json</td></tr>
+<tr><td>exposure-map</td><td>macro-policy-thesis-map exposure-map --root .</td><td>Map synthetic portfolio exposure rows to static thesis sensitivity axes.</td><td>demo/exposure_map.md, demo/exposure_map.json</td></tr>
+<tr><td>scenario-library</td><td>macro-policy-thesis-map scenario-library --root .</td><td>Publish synthetic macro policy scenarios for schema adaptation review.</td><td>demo/scenario_library.md, demo/scenario_library.json</td></tr>
+<tr><td>assumption-registry</td><td>macro-policy-thesis-map assumption-registry --root .</td><td>Publish bounded assumptions, owners, and validation controls for public evaluators.</td><td>demo/assumption_registry.md, demo/assumption_registry.json</td></tr>
+<tr><td>data-dictionary-diff</td><td>macro-policy-thesis-map data-dictionary-diff --root .</td><td>Compare base event CSV fields with optional public fixtures to guide schema adaptation.</td><td>demo/data_dictionary_diff.md, demo/data_dictionary_diff.json</td></tr>
+<tr><td>case-gallery</td><td>macro-policy-thesis-map case-gallery --root .</td><td>Build a public-safe multi-region case gallery from static synthetic fixtures.</td><td>demo/case_gallery.md, demo/case_gallery.json</td></tr>
+<tr><td>visual-receipt</td><td>macro-policy-thesis-map visual-receipt --root .</td><td>Render a static SVG or HTML receipt with artifact hashes, routes, and commands.</td><td>demo/visual_receipt.svg or demo/visual_receipt.html, demo/visual_receipt.json</td></tr>
+<tr><td>fixture-doctor</td><td>macro-policy-thesis-map fixture-doctor --root .</td><td>Validate static CSV fixtures for columns, event types, confidence bounds, stale dates, and advice-like terms.</td><td>demo/fixture_doctor.md, demo/fixture_doctor.json</td></tr>
+<tr><td>schema-export</td><td>macro-policy-thesis-map schema-export --root .</td><td>Export the machine-readable input schema and data dictionary.</td><td>demo/input_schema.md, demo/input_schema.json</td></tr>
+<tr><td>troubleshoot</td><td>macro-policy-thesis-map troubleshoot --root .</td><td>Publish deterministic operator troubleshooting checks and recovery steps.</td><td>demo/troubleshoot.md, demo/troubleshoot.json</td></tr>
+<tr><td>docs-export</td><td>macro-policy-thesis-map docs-export --root .</td><td>Export an operator documentation index with key docs, artifacts, and validation commands.</td><td>demo/docs_export.md, demo/docs_export.json</td></tr>
+<tr><td>readme-snippet</td><td>macro-policy-thesis-map readme-snippet --root .</td><td>Write a compact README-ready usage snippet for public evaluators.</td><td>demo/readme_snippet.md, demo/readme_snippet.json</td></tr>
+<tr><td>cli-help</td><td>macro-policy-thesis-map cli-help --root .</td><td>Write deterministic CLI help text and command usage lines.</td><td>demo/cli_help.md, demo/cli_help.json</td></tr>
+<tr><td>release-manifest</td><td>macro-policy-thesis-map release-manifest --root .</td><td>Record deterministic paths, sizes, and hashes for release artifacts.</td><td>demo/release_manifest.md, demo/release_manifest.json</td></tr>
+<tr><td>maturity-report</td><td>macro-policy-thesis-map maturity-report --root .</td><td>Score basic release-readiness evidence in the source tree.</td><td>demo/maturity_report.md, demo/maturity_report.json</td></tr>
+<tr><td>quickstart-check</td><td>macro-policy-thesis-map quickstart-check --root .</td><td>Show whether a fresh evaluator can run the documented starter commands.</td><td>demo/quickstart_check.md, demo/quickstart_check.json</td></tr>
+<tr><td>command-matrix</td><td>macro-policy-thesis-map command-matrix --root .</td><td>Publish a neutral map of CLI commands, inputs, outputs, and safety posture.</td><td>demo/command_matrix.md, demo/command_matrix.json</td></tr>
+<tr><td>adoption-notes</td><td>macro-policy-thesis-map adoption-notes --root .</td><td>Write release-owner notes for public evaluator adoption and next actions.</td><td>demo/adoption_notes.md, demo/adoption_notes.json</td></tr>
+<tr><td>reviewer-scorecard</td><td>macro-policy-thesis-map reviewer-scorecard --root .</td><td>Map release evidence to a reviewer maturity rubric with artifact hashes.</td><td>demo/reviewer_scorecard.md, demo/reviewer_scorecard.json</td></tr>
+<tr><td>release-deck</td><td>macro-policy-thesis-map release-deck --root .</td><td>Build a deterministic Markdown/JSON promotion deck for release owners.</td><td>demo/release_deck.md, demo/release_deck.json</td></tr>
+<tr><td>bundle-export</td><td>macro-policy-thesis-map bundle-export --root .</td><td>Export a public promotion bundle manifest under demo/bundle_export.</td><td>demo/bundle_export/manifest.md, demo/bundle_export/manifest.json</td></tr>
+<tr><td>evidence-bundle</td><td>macro-policy-thesis-map evidence-bundle --root .</td><td>Collect public evaluation artifacts and source fixture hashes in one bundle.</td><td>demo/evidence_bundle.md, demo/evidence_bundle.json</td></tr>
+<tr><td>public-readiness</td><td>macro-policy-thesis-map public-readiness --root .</td><td>Summarize public release readiness gates and blockers.</td><td>demo/public_readiness.md, demo/public_readiness.json</td></tr>
+<tr><td>benchmark-suite</td><td>macro-policy-thesis-map benchmark-suite --root .</td><td>Publish deterministic synthetic evaluator benchmarks and artifact coverage checks.</td><td>demo/benchmark_suite.md, demo/benchmark_suite.json</td></tr>
+<tr><td>integration-cookbook</td><td>macro-policy-thesis-map integration-cookbook --root .</td><td>Publish public-safe integration recipes for static CSV ingestion and artifact review.</td><td>demo/integration_cookbook.md, demo/integration_cookbook.json</td></tr>
+<tr><td>compatibility-report</td><td>macro-policy-thesis-map compatibility-report --root .</td><td>Report deterministic package and artifact compatibility gates for public evaluators.</td><td>demo/compatibility_report.md, demo/compatibility_report.json</td></tr>
+<tr><td>maintainer-guide</td><td>macro-policy-thesis-map maintainer-guide --root .</td><td>Publish deterministic maintainer duties, release order, and safety invariants.</td><td>demo/maintainer_guide.md, demo/maintainer_guide.json</td></tr>
+<tr><td>golden-fixtures</td><td>macro-policy-thesis-map golden-fixtures --root .</td><td>Record static fixture hashes, row counts, schemas, and expected generator outputs.</td><td>demo/golden_fixtures.md, demo/golden_fixtures.json</td></tr>
+<tr><td>regression-summary</td><td>macro-policy-thesis-map regression-summary --root .</td><td>Summarize deterministic regression gates across tests, scans, readiness, and artifacts.</td><td>demo/regression_summary.md, demo/regression_summary.json</td></tr>
+<tr><td>landing-page</td><td>macro-policy-thesis-map landing-page --root .</td><td>Write a crisp public landing page for GitHub visitors and first-run evaluators.</td><td>demo/landing_page.md, demo/landing_page.json, demo/landing_page.html</td></tr>
+<tr><td>api-reference</td><td>macro-policy-thesis-map api-reference --root .</td><td>Write reusable command, artifact, and data-contract reference docs for agent and CLI reuse.</td><td>demo/api_reference.md, demo/api_reference.json, demo/api_reference.html</td></tr>
+<tr><td>workflow-protocol</td><td>macro-policy-thesis-map workflow-protocol --root .</td><td>Write a reusable protocol layer for agents that need deterministic macro-policy evidence maps.</td><td>demo/workflow_protocol.md, demo/workflow_protocol.json, demo/workflow_protocol.html</td></tr>
+<tr><td>example-pack</td><td>macro-policy-thesis-map example-pack --root .</td><td>Write a public example pack with stable command recipes and expected static artifacts.</td><td>demo/example_pack.md, demo/example_pack.json, demo/example_pack.html</td></tr>
+<tr><td>roadmap-next</td><td>macro-policy-thesis-map roadmap-next --root .</td><td>Write bounded next-step roadmap items for public maintainers and agent reuse.</td><td>demo/roadmap_next.md, demo/roadmap_next.json, demo/roadmap_next.html</td></tr>
+<tr><td>cold-start-walkthrough</td><td>macro-policy-thesis-map cold-start-walkthrough --root .</td><td>Generate a deterministic first-run walkthrough for public evaluators.</td><td>demo/cold_start_walkthrough.md, demo/cold_start_walkthrough.json</td></tr>
+<tr><td>public-scan</td><td>macro-policy-thesis-map public-scan --root .</td><td>Scan publishable text for private names, paths, and credential-shaped terms.</td><td>stdout pass/fail</td></tr>
+<tr><td>diff-check</td><td>macro-policy-thesis-map diff-check --root .</td><td>Compare the saved release manifest against current file hashes.</td><td>stdout pass/fail</td></tr>
+<tr><td>selfcheck</td><td>macro-policy-thesis-map selfcheck --root .</td><td>Run source-tree checks for files, boundaries, and public scan status.</td><td>stdout pass/fail</td></tr></tbody></table><h2>Data Contracts</h2><table><thead><tr><th>Contract</th><th>Format</th><th>Required columns</th><th>Consumers</th></tr></thead><tbody><tr><td>base_event_csv</td><td>csv</td><td>date, event_type, source, policy_area, channel, direction, confidence, evidence, thesis_link</td><td>build-packet, compare-history, review-ledger, fixture-doctor, static-dashboard</td></tr>
+<tr><td>case_gallery_csv</td><td>csv</td><td>case_id, region, case_title, date, policy_area, channel, direction, confidence, evidence, route, command</td><td>case-gallery, visual-receipt</td></tr>
+<tr><td>thesis_sensitivity_csv</td><td>csv</td><td>thesis_id, policy_area, sensitivity_axis, shock_label, impact_direction, impact_score, confidence, rationale</td><td>thesis-impact-brief, exposure-map, static-dashboard</td></tr>
+<tr><td>portfolio_exposure_csv</td><td>csv</td><td>portfolio_id, sleeve, exposure_id, policy_area, thesis_id, exposure_direction, exposure_score, rationale</td><td>exposure-map, static-dashboard</td></tr></tbody></table><h2>Unsupported</h2><table><thead><tr><th>Surface</th></tr></thead><tbody><tr><td>external API calls</td></tr>
+<tr><td>live market data</td></tr>
+<tr><td>broker connections</td></tr>
+<tr><td>orders</td></tr>
+<tr><td>recommendations</td></tr>
+<tr><td>personalized financial advice</td></tr></tbody></table>
+</main>
+</html>

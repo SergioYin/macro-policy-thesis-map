@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Command count: 37
+Command count: 42
 
 | Command | Purpose | Inputs | Outputs | Safety |
 | --- | --- | --- | --- | --- |
@@ -39,6 +39,11 @@ Command count: 37
 | maintainer-guide | Publish deterministic maintainer duties, release order, and safety invariants. | built-in maintainer metadata, command metadata | demo/maintainer_guide.md, demo/maintainer_guide.json | Documentation-only guide with no workflow automation or private references. |
 | golden-fixtures | Record static fixture hashes, row counts, schemas, and expected generator outputs. | examples/*.csv, bundled package examples | demo/golden_fixtures.md, demo/golden_fixtures.json | Synthetic fixture inventory only; no live source refresh or advice. |
 | regression-summary | Summarize deterministic regression gates across tests, scans, readiness, and artifacts. | demo artifacts, tests, release manifest, command metadata | demo/regression_summary.md, demo/regression_summary.json | Static local gate summary only. |
+| landing-page | Write a crisp public landing page for GitHub visitors and first-run evaluators. | built-in public story, command metadata, local artifact availability | demo/landing_page.md, demo/landing_page.json, demo/landing_page.html | Public static documentation only; no live data, advice, workflow automation, or private references. |
+| api-reference | Write reusable command, artifact, and data-contract reference docs for agent and CLI reuse. | built-in command metadata and schema constants | demo/api_reference.md, demo/api_reference.json, demo/api_reference.html | Documents static local contracts only; no external APIs, live feeds, or trading actions. |
+| workflow-protocol | Write a reusable protocol layer for agents that need deterministic macro-policy evidence maps. | built-in ordered protocol steps, command metadata, safety boundaries | demo/workflow_protocol.md, demo/workflow_protocol.json, demo/workflow_protocol.html | Agent protocol only; no repository workflow files, network actions, live data, or advice. |
+| example-pack | Write a public example pack with stable command recipes and expected static artifacts. | bundled examples, command metadata, local artifact availability | demo/example_pack.md, demo/example_pack.json, demo/example_pack.html | Uses synthetic static examples only and avoids recommendations, predictions, or live data. |
+| roadmap-next | Write bounded next-step roadmap items for public maintainers and agent reuse. | built-in roadmap metadata and safety constraints | demo/roadmap_next.md, demo/roadmap_next.json, demo/roadmap_next.html | Roadmap documentation only; excludes live data integrations, broker actions, workflows, and advice. |
 | cold-start-walkthrough | Generate a deterministic first-run walkthrough for public evaluators. | built-in command metadata | demo/cold_start_walkthrough.md, demo/cold_start_walkthrough.json | Uses local static commands and bundled examples. |
 | public-scan | Scan publishable text for private names, paths, and credential-shaped terms. | repository text files | stdout pass/fail | Fails closed when a private or credential-shaped token is found. |
 | diff-check | Compare the saved release manifest against current file hashes. | demo/release_manifest.json, repository files | stdout pass/fail | Detects artifact drift using static local hashes only. |

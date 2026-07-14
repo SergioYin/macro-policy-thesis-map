@@ -4,7 +4,7 @@ Research-only static analysis. Not investment advice. This tool does not fetch l
 
 Status: ready
 
-Passed: 9 / 9
+Passed: 10 / 10
 
 ## Checks
 
@@ -17,6 +17,7 @@ Passed: 9 / 9
 | operator_surfaces | pass | Operator troubleshooting, docs export, README snippet, and CLI help artifacts are present. |
 | schema_adaptation_surfaces | pass | Scenario, assumption, and data dictionary diff artifacts are present. |
 | public_evaluator_hardening | pass | Benchmark, integration, compatibility, maintainer, golden fixture, and regression summary artifacts are present. |
+| public_protocol_layer | pass | Landing, API reference, workflow protocol, example pack, and roadmap HTML artifacts are present. |
 | no_workflow_files | pass | No repository workflow files are required for public evaluation. |
 | zero_dependency_package | pass | Package declares no runtime dependencies. |
 

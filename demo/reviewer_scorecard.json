@@ -1,100 +1,125 @@
 {
-  "artifact_count": 20,
+  "artifact_count": 25,
   "artifacts": [
+    {
+      "bytes": 37394,
+      "path": "demo/api_reference.json",
+      "sha256": "7b89c11e4d5e9b450d4c1c66cf2f17065d6f9474e1c7dee1c53b82ed4d7db9ac"
+    },
     {
       "bytes": 2500,
       "path": "demo/assumption_registry.json",
-      "sha256": "70aecc7f328a84302c7d082cccbc7a6954ec82775be27c9297e38068d271ba90"
+      "sha256": "7170c7639ab9e79069dfc3815ed1c7471aea443cd64e50af741f92c90459c99f"
     },
     {
       "bytes": 3043,
       "path": "demo/benchmark_suite.json",
-      "sha256": "3f8b9be2e11158d924bcc416a0cab2ff5b35756f78bb59a91bf463e6cb61c414"
+      "sha256": "b491a34778eb237d8a80e95df1888a900c89db2db513e2edc4b0e791157cffce"
     },
     {
-      "bytes": 14939,
+      "bytes": 17246,
       "path": "demo/cli_help.json",
-      "sha256": "2e0d1c169d268305dfbe17d280b7529ebfccfff269f8a36cd1efc4e4af931cb5"
+      "sha256": "035477d512f32cb267aca4f1236922385ec79ba2791a3f43efe102e3e7c36518"
     },
     {
-      "bytes": 15540,
+      "bytes": 18004,
       "path": "demo/command_matrix.json",
-      "sha256": "5467cce33f686c5a0b7a9e7b6412c33da81f5a60f9bcac7c0b7f153699bd41a4"
+      "sha256": "482bdb26f8278978cad188f683f4202deb633c268e7db0ab52094b0b6d7c248a"
     },
     {
-      "bytes": 1688,
+      "bytes": 1822,
       "path": "demo/compatibility_report.json",
-      "sha256": "737f1a2d1377e5e4a3b2b0fcab0debb6ef24519e86e1ede9f6bd43385723e7c3"
+      "sha256": "d2653a328dc17a9883ef320da2341b75757e3bc5b096b59b05d563a350b0f322"
     },
     {
       "bytes": 3472,
       "path": "demo/data_dictionary_diff.json",
-      "sha256": "894c3a7c3f46c6350c6cf68c682842aee24cb28025835cf377981ca208ea2dcb"
+      "sha256": "3d2592dd48b9de32933cb9357841fa54b57c0b25dca20b7ec5a37da2d029e2fe"
     },
     {
-      "bytes": 4892,
+      "bytes": 6178,
       "path": "demo/docs_export.json",
-      "sha256": "07f7d1874faaec4c790c3a5e1a816af4ed1543ecf579ba6cf6f3e863c3b252f6"
+      "sha256": "2689d46f2138c12cb55f9f13c1b2670c104c03d99c1d0237e7c27ef5d8afd2c9"
     },
     {
-      "bytes": 12337,
+      "bytes": 15119,
       "path": "demo/evidence_bundle.json",
-      "sha256": "50f995f62cd84c644b5f990f0ac89105454bff100908981bf8a86181f321efaf"
+      "sha256": "92a1e46d33c419108134a59c8eae5aab2b313ac6128f1654c644fc54a9e09983"
+    },
+    {
+      "bytes": 3795,
+      "path": "demo/example_pack.json",
+      "sha256": "2a5f299bb12a9fe674c93a404f3b9d02aee910468937fe4257b0744c230559ca"
     },
     {
       "bytes": 4685,
       "path": "demo/golden_fixtures.json",
-      "sha256": "43567374f2468e4acb87953a4606eb4d4c70bf7afcbc2faa12bfa5fc91278bf8"
+      "sha256": "6e7b7638818afdf7d61893590b38963a8d2e12562c68b5031aef4d30f188689c"
     },
     {
       "bytes": 3546,
       "path": "demo/integration_cookbook.json",
-      "sha256": "4412ef0248807d31777ca823e46d34efdf1586230f2a4fdf06bc943f580961f0"
+      "sha256": "71823c83d849c943b5d3d8a9f40098736dc85e87fe542448f5f871d1826bddf1"
     },
     {
-      "bytes": 2216,
+      "bytes": 6046,
+      "path": "demo/landing_page.json",
+      "sha256": "9001d5d562723f1c2cebd37ced5b662d31aeb44c96eeae1d6b88c8bb22e21807"
+    },
+    {
+      "bytes": 2322,
       "path": "demo/maintainer_guide.json",
-      "sha256": "66aeb9ddf7d2399879b761676b7e0fc71315b1897556ee9e696c168081175227"
+      "sha256": "c54064f0c7b0ab21ca464bf98bb2f497249a76c49a104824feb24249b0ef8968"
     },
     {
-      "bytes": 1313,
+      "bytes": 1386,
       "path": "demo/maturity_report.json",
-      "sha256": "4b0c137ae12f6b3a7ce1c8bbf444df0effd132d50d4535cd2fcbdc86fc18e637"
+      "sha256": "701cd3be902cb61785f404dcbc1a443a9829c4aa345e25787182852a184c7963"
     },
     {
-      "bytes": 1732,
+      "bytes": 1923,
       "path": "demo/public_readiness.json",
-      "sha256": "4dd6c11f67f4d2c1c1f518c7db9d3842770a1c3ffbc5b196e19abf69580559ef"
+      "sha256": "15d96adf743682bef08d102ae5ec93be95b0a8c49568f421a10722d398f20619"
     },
     {
-      "bytes": 3080,
+      "bytes": 4028,
       "path": "demo/readme_snippet.json",
-      "sha256": "94d243c825b24666925cd6151bc304b774a32ee06781a630132e0c17cfd53309"
+      "sha256": "2265ee4e3406200ec4e6736225d56dd00c059727686f14cf11fd7116d8d008fd"
     },
     {
       "bytes": 1984,
       "path": "demo/regression_summary.json",
-      "sha256": "d76fb5661bd590f4dd36d956c70fd2c31a220c4871b1c2e864e2a029971fb478"
+      "sha256": "5919c7ab743c5893baaa15078db7d643f91271e0efd12227b5c88af5d66e1645"
     },
     {
-      "bytes": 12659,
+      "bytes": 15025,
       "path": "demo/release_manifest.json",
-      "sha256": "8ff93441a6d2c1a4af3b53f3f6f407d7da4038f7b982a72884e531c1125eccd5"
+      "sha256": "f2564a94855db6791bf88bb0b39832b0c45370e1230459445ca096767b20f6c3"
+    },
+    {
+      "bytes": 2452,
+      "path": "demo/roadmap_next.json",
+      "sha256": "5df60fe48a35e8be55bef3102368017554cdaf3f4ed1851ce13e056ac888164b"
     },
     {
       "bytes": 2903,
       "path": "demo/scenario_library.json",
-      "sha256": "6a6dfba6bf9c54a417753cb33fe124858fb37e2119a9b7ab1d0272d85a6ead86"
+      "sha256": "62d405892fb64c52658840381b8bb6f85b390edc177ce47321dd7b6e826ecda8"
     },
     {
       "bytes": 3174,
       "path": "demo/troubleshoot.json",
-      "sha256": "623fae46fea5fc9ebdb431c4fb8519b7fafd2ce592df9e2fe57a9c6c842eb8d2"
+      "sha256": "9b2d5f00d46734a2cd72aa8fa634314fb5c6c206c5490ea9403b0824d087c0f9"
     },
     {
-      "bytes": 18727,
+      "bytes": 3557,
+      "path": "demo/workflow_protocol.json",
+      "sha256": "8a210ce7d2934354fb151cd64aa9a15ed570e82c6f039c748ea8fe89c3b035a7"
+    },
+    {
+      "bytes": 21480,
       "path": "tests/test_cli.py",
-      "sha256": "803740be53d67ae8590939db87c3441f5eca003650fcd5d2634f5375bdcf6358"
+      "sha256": "8e805ded13136580b39a80ec83b15bc9dbf85618e17cdefc1945bb21e35f31ec"
     },
     {
       "bytes": 1388,
@@ -103,7 +128,7 @@
     }
   ],
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
-  "max_score": 6,
+  "max_score": 7,
   "rubric": [
     {
       "description": "Static fixtures and synthetic public examples are present.",
@@ -151,6 +176,17 @@
       "passed": true
     },
     {
+      "description": "Landing, API reference, workflow protocol, example pack, and roadmap artifacts are present.",
+      "evidence": [
+        "public_protocol_layer"
+      ],
+      "maturity_mapping": [
+        "public_protocol_layer"
+      ],
+      "name": "public_protocol_layer",
+      "passed": true
+    },
+    {
       "description": "Package metadata, docs, license, and agent skill are present.",
       "evidence": [
         "package",
@@ -190,8 +226,8 @@
       "passed": true
     }
   ],
-  "score": 6,
+  "score": 7,
   "status": "ready",
   "title": "Reviewer Scorecard",
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

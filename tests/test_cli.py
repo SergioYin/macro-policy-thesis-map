@@ -97,7 +97,7 @@ def test_fixture_doctor_and_schema_export(tmp_path):
     assert '"status": "pass"' in doctor_json.read_text(encoding="utf-8")
     assert "Fixture Doctor" in doctor_md.read_text(encoding="utf-8")
     schema_text = schema_json.read_text(encoding="utf-8")
-    assert '"schema_version": "1.0.0"' in schema_text
+    assert '"schema_version": "1.1.0"' in schema_text
     assert "confidence" in schema_text
     assert "Data Dictionary" in schema_md.read_text(encoding="utf-8")
 
@@ -268,7 +268,7 @@ def test_release_owner_promotion_pack_commands(tmp_path):
     assert main(["release-deck", "--root", str(ROOT), "--out-json", str(deck_json), "--out-md", str(deck_md)]) == 0
     assert main(["bundle-export", "--root", str(ROOT), "--out-json", str(export_json), "--out-md", str(export_md)]) == 0
 
-    assert '"version": "1.0.0"' in adoption_json.read_text(encoding="utf-8")
+    assert '"version": "1.1.0"' in adoption_json.read_text(encoding="utf-8")
     assert "cold_user_next_actions" in adoption_json.read_text(encoding="utf-8")
     assert "maturity_mapping" in scorecard_json.read_text(encoding="utf-8")
     assert "Release Owner Promotion Deck" in deck_md.read_text(encoding="utf-8")
@@ -308,6 +308,46 @@ def test_public_evaluator_hardening_commands(tmp_path):
     assert "Golden Fixtures" in golden_md.read_text(encoding="utf-8")
     assert "release_checks" in regression_json.read_text(encoding="utf-8")
     assert "Regression Summary" in regression_md.read_text(encoding="utf-8")
+
+
+def test_public_protocol_layer_commands(tmp_path):
+    landing_json = tmp_path / "landing.json"
+    landing_md = tmp_path / "landing.md"
+    landing_html = tmp_path / "landing.html"
+    api_json = tmp_path / "api.json"
+    api_md = tmp_path / "api.md"
+    api_html = tmp_path / "api.html"
+    protocol_json = tmp_path / "protocol.json"
+    protocol_md = tmp_path / "protocol.md"
+    protocol_html = tmp_path / "protocol.html"
+    pack_json = tmp_path / "pack.json"
+    pack_md = tmp_path / "pack.md"
+    pack_html = tmp_path / "pack.html"
+    roadmap_json = tmp_path / "roadmap.json"
+    roadmap_md = tmp_path / "roadmap.md"
+    roadmap_html = tmp_path / "roadmap.html"
+
+    assert main(["landing-page", "--root", str(ROOT), "--out-json", str(landing_json), "--out-md", str(landing_md), "--out-html", str(landing_html)]) == 0
+    assert main(["api-reference", "--root", str(ROOT), "--out-json", str(api_json), "--out-md", str(api_md), "--out-html", str(api_html)]) == 0
+    assert main(["workflow-protocol", "--root", str(ROOT), "--out-json", str(protocol_json), "--out-md", str(protocol_md), "--out-html", str(protocol_html)]) == 0
+    assert main(["example-pack", "--root", str(ROOT), "--out-json", str(pack_json), "--out-md", str(pack_md), "--out-html", str(pack_html)]) == 0
+    assert main(["roadmap-next", "--root", str(ROOT), "--out-json", str(roadmap_json), "--out-md", str(roadmap_md), "--out-html", str(roadmap_html)]) == 0
+
+    assert "first_screen" in landing_json.read_text(encoding="utf-8")
+    assert "Macro Policy Thesis Map" in landing_md.read_text(encoding="utf-8")
+    assert "<html" in landing_html.read_text(encoding="utf-8")
+    assert "data_contracts" in api_json.read_text(encoding="utf-8")
+    assert "base_event_csv" in api_md.read_text(encoding="utf-8")
+    assert "<html" in api_html.read_text(encoding="utf-8")
+    assert "macro-policy-thesis-map.v1.1" in protocol_json.read_text(encoding="utf-8")
+    assert "Stop Conditions" in protocol_md.read_text(encoding="utf-8")
+    assert "<html" in protocol_html.read_text(encoding="utf-8")
+    assert '"recipe_count": 4' in pack_json.read_text(encoding="utf-8")
+    assert "Stable Commands" in pack_md.read_text(encoding="utf-8")
+    assert "<html" in pack_html.read_text(encoding="utf-8")
+    assert '"roadmap_count": 4' in roadmap_json.read_text(encoding="utf-8")
+    assert "Not Planned" in roadmap_md.read_text(encoding="utf-8")
+    assert "<html" in roadmap_html.read_text(encoding="utf-8")
 
 
 def test_diff_check_detects_manifest_drift(tmp_path):
@@ -376,6 +416,11 @@ def test_public_readiness_blocks_incomplete_tree(tmp_path):
         (["maintainer-guide"], "demo/maintainer_guide.json"),
         (["golden-fixtures"], "demo/golden_fixtures.json"),
         (["regression-summary"], "demo/regression_summary.json"),
+        (["landing-page"], "demo/landing_page.json"),
+        (["api-reference"], "demo/api_reference.json"),
+        (["workflow-protocol"], "demo/workflow_protocol.json"),
+        (["example-pack"], "demo/example_pack.json"),
+        (["roadmap-next"], "demo/roadmap_next.json"),
     ],
 )
 def test_default_example_commands_work_from_empty_cwd(tmp_path, monkeypatch, argv, output):

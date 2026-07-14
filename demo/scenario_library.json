@@ -80,5 +80,5 @@
     "Do not add allocation, trade, price-target, or return-prediction columns."
   ],
   "title": "Static Scenario Library",
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

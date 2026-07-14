@@ -52,3 +52,8 @@ Passed: 8 / 8
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli maintainer-guide --root . | demo/maintainer_guide.md, demo/maintainer_guide.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli golden-fixtures --root . | demo/golden_fixtures.md, demo/golden_fixtures.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli regression-summary --root . | demo/regression_summary.md, demo/regression_summary.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli landing-page --root . | demo/landing_page.md, demo/landing_page.json, demo/landing_page.html |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli api-reference --root . | demo/api_reference.md, demo/api_reference.json, demo/api_reference.html |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli workflow-protocol --root . | demo/workflow_protocol.md, demo/workflow_protocol.json, demo/workflow_protocol.html |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli example-pack --root . | demo/example_pack.md, demo/example_pack.json, demo/example_pack.html |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli roadmap-next --root . | demo/roadmap_next.md, demo/roadmap_next.json, demo/roadmap_next.html |

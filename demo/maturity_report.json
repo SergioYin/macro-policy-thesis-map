@@ -50,6 +50,10 @@
       "passed": true
     },
     {
+      "name": "public_protocol_layer",
+      "passed": true
+    },
+    {
       "name": "tests",
       "passed": true
     },
@@ -62,7 +66,7 @@
       "passed": true
     }
   ],
-  "max_score": 15,
-  "score": 15,
+  "max_score": 16,
+  "score": 16,
   "status": "ready"
 }

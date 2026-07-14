@@ -2,27 +2,28 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.0.0
+Version: 1.1.0
 
 Slide count: 5
 
 ## 1. Release Surface
 
-- Version 1.0.0
-- 37 zero-dependency CLI commands documented
+- Version 1.1.0
+- 42 zero-dependency CLI commands documented
 - Static Markdown, JSON, HTML, and SVG artifacts only
 ## 2. Evidence And Hashes
 
-- 76 release manifest artifacts tracked
+- 91 release manifest artifacts tracked
 - Artifact hashes are recorded in release, evidence, visual receipt, and bundle manifests
 - Golden fixtures record static fixture hashes, schemas, and expected output keys
 - diff-check verifies saved hashes against current local files
 ## 3. Reviewer Rubric
 
 - Scorecard status: ready
-- Score: 6 / 6
+- Score: 7 / 7
 - Maturity mapping covers static inputs, review controls, package evidence, verification, and readiness
 - Public hardening covers benchmark, integration, compatibility, maintainer, fixture, and regression surfaces
+- Protocol layer covers public landing, API contracts, agent protocol, example recipes, and roadmap constraints
 ## 4. Cold User Path
 
 - Run the quickstart commands from a clean checkout.
@@ -40,14 +41,19 @@ Slide count: 5
 
 | Path | Bytes | SHA-256 prefix |
 | --- | --- | --- |
-| demo/adoption_notes.json | 5938 | 67a2f9c23b0a880e |
-| demo/benchmark_suite.json | 3043 | 3f8b9be2e11158d9 |
-| demo/command_matrix.json | 15540 | 5467cce33f686c5a |
-| demo/compatibility_report.json | 1688 | 737f1a2d1377e5e4 |
-| demo/golden_fixtures.json | 4685 | 43567374f2468e4a |
-| demo/integration_cookbook.json | 3546 | 4412ef0248807d31 |
-| demo/maintainer_guide.json | 2216 | 66aeb9ddf7d23998 |
-| demo/public_readiness.json | 1732 | 4dd6c11f67f4d2c1 |
-| demo/regression_summary.json | 1984 | d76fb5661bd590f4 |
-| demo/release_manifest.json | 12659 | 8ff93441a6d2c1a4 |
-| demo/reviewer_scorecard.json | 5738 | 188e8c32928cf4b8 |
+| demo/adoption_notes.json | 5938 | 4f24357bd142f6ab |
+| demo/api_reference.json | 37394 | 7b89c11e4d5e9b45 |
+| demo/benchmark_suite.json | 3043 | b491a34778eb237d |
+| demo/command_matrix.json | 18004 | 482bdb26f8278978 |
+| demo/compatibility_report.json | 1822 | d2653a328dc17a98 |
+| demo/example_pack.json | 3795 | 2a5f299bb12a9fe6 |
+| demo/golden_fixtures.json | 4685 | 6e7b7638818afdf7 |
+| demo/integration_cookbook.json | 3546 | 71823c83d849c943 |
+| demo/landing_page.json | 6046 | 9001d5d562723f1c |
+| demo/maintainer_guide.json | 2322 | c54064f0c7b0ab21 |
+| demo/public_readiness.json | 1923 | 15d96adf743682be |
+| demo/regression_summary.json | 1984 | 5919c7ab743c5893 |
+| demo/release_manifest.json | 15025 | f2564a94855db679 |
+| demo/reviewer_scorecard.json | 6849 | 8a00abc46ce472d3 |
+| demo/roadmap_next.json | 2452 | 5df60fe48a35e8be |
+| demo/workflow_protocol.json | 3557 | 8a210ce7d2934354 |
