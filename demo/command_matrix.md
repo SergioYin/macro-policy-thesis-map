@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Command count: 42
+Command count: 47
 
 | Command | Purpose | Inputs | Outputs | Safety |
 | --- | --- | --- | --- | --- |
@@ -44,6 +44,11 @@ Command count: 42
 | workflow-protocol | Write a reusable protocol layer for agents that need deterministic macro-policy evidence maps. | built-in ordered protocol steps, command metadata, safety boundaries | demo/workflow_protocol.md, demo/workflow_protocol.json, demo/workflow_protocol.html | Agent protocol only; no repository workflow files, network actions, live data, or advice. |
 | example-pack | Write a public example pack with stable command recipes and expected static artifacts. | bundled examples, command metadata, local artifact availability | demo/example_pack.md, demo/example_pack.json, demo/example_pack.html | Uses synthetic static examples only and avoids recommendations, predictions, or live data. |
 | roadmap-next | Write bounded next-step roadmap items for public maintainers and agent reuse. | built-in roadmap metadata and safety constraints | demo/roadmap_next.md, demo/roadmap_next.json, demo/roadmap_next.html | Roadmap documentation only; excludes live data integrations, broker actions, workflows, and advice. |
+| trust-report | Summarize GitHub stranger trust evidence from local artifacts, safety gates, and reproducibility checks. | README, tests, package metadata, demo artifacts, public readiness, release manifest | demo/trust_report.md, demo/trust_report.json | Trust evidence is local and deterministic; no external reputation checks, live data, or advice. |
+| citation-map | Map public claims to local artifacts, paths, hashes, and producer commands. | README, command metadata, demo artifacts | demo/citation_map.md, demo/citation_map.json | Cites local artifacts only and avoids hosted, personal, or non-public references. |
+| release-faq | Write a public release FAQ for first-time GitHub visitors and evaluators. | built-in public questions, command metadata, local artifact availability | demo/release_faq.md, demo/release_faq.json | FAQ text stays descriptive, local, static, and research-only. |
+| artifact-index | Index deterministic public demo artifacts by format, producer command, size, and hash. | demo artifacts and command metadata | demo/artifact_index.md, demo/artifact_index.json | Indexes local files only; no upload destination, workflow, or private storage reference. |
+| evaluator-scorecard | Score public evaluator readiness across trust, citations, artifacts, tests, and safety boundaries. | trust report, citation map, artifact index, public readiness, tests, README | demo/evaluator_scorecard.md, demo/evaluator_scorecard.json | Scores local release evidence only and does not provide financial advice. |
 | cold-start-walkthrough | Generate a deterministic first-run walkthrough for public evaluators. | built-in command metadata | demo/cold_start_walkthrough.md, demo/cold_start_walkthrough.json | Uses local static commands and bundled examples. |
 | public-scan | Scan publishable text for private names, paths, and credential-shaped terms. | repository text files | stdout pass/fail | Fails closed when a private or credential-shaped token is found. |
 | diff-check | Compare the saved release manifest against current file hashes. | demo/release_manifest.json, repository files | stdout pass/fail | Detects artifact drift using static local hashes only. |

@@ -12,7 +12,7 @@ code{background:#e5e7eb;padding:.1rem .25rem}
 <main>
 <h1>API Reference</h1>
 <p class="notice">Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.</p>
-<p class="lede">Version 1.1.0</p>
+<p class="lede">Version 1.2.0</p>
 <h2>Commands</h2><table><thead><tr><th>Command</th><th>Usage</th><th>Purpose</th><th>Outputs</th></tr></thead><tbody><tr><td>build-packet</td><td>macro-policy-thesis-map build-packet --root .</td><td>Build the primary thesis evidence packet from static CSV events.</td><td>demo/thesis_packet.md, demo/thesis_packet.json</td></tr>
 <tr><td>compare-history</td><td>macro-policy-thesis-map compare-history --root .</td><td>Compare current and prior static policy event sets.</td><td>demo/history_comparison.md, demo/history_comparison.json</td></tr>
 <tr><td>review-ledger</td><td>macro-policy-thesis-map review-ledger --root .</td><td>Flag low-confidence areas and advice-like terms in supplied evidence.</td><td>demo/review_ledger.md, demo/review_ledger.json</td></tr>
@@ -51,6 +51,11 @@ code{background:#e5e7eb;padding:.1rem .25rem}
 <tr><td>workflow-protocol</td><td>macro-policy-thesis-map workflow-protocol --root .</td><td>Write a reusable protocol layer for agents that need deterministic macro-policy evidence maps.</td><td>demo/workflow_protocol.md, demo/workflow_protocol.json, demo/workflow_protocol.html</td></tr>
 <tr><td>example-pack</td><td>macro-policy-thesis-map example-pack --root .</td><td>Write a public example pack with stable command recipes and expected static artifacts.</td><td>demo/example_pack.md, demo/example_pack.json, demo/example_pack.html</td></tr>
 <tr><td>roadmap-next</td><td>macro-policy-thesis-map roadmap-next --root .</td><td>Write bounded next-step roadmap items for public maintainers and agent reuse.</td><td>demo/roadmap_next.md, demo/roadmap_next.json, demo/roadmap_next.html</td></tr>
+<tr><td>trust-report</td><td>macro-policy-thesis-map trust-report --root .</td><td>Summarize GitHub stranger trust evidence from local artifacts, safety gates, and reproducibility checks.</td><td>demo/trust_report.md, demo/trust_report.json</td></tr>
+<tr><td>citation-map</td><td>macro-policy-thesis-map citation-map --root .</td><td>Map public claims to local artifacts, paths, hashes, and producer commands.</td><td>demo/citation_map.md, demo/citation_map.json</td></tr>
+<tr><td>release-faq</td><td>macro-policy-thesis-map release-faq --root .</td><td>Write a public release FAQ for first-time GitHub visitors and evaluators.</td><td>demo/release_faq.md, demo/release_faq.json</td></tr>
+<tr><td>artifact-index</td><td>macro-policy-thesis-map artifact-index --root .</td><td>Index deterministic public demo artifacts by format, producer command, size, and hash.</td><td>demo/artifact_index.md, demo/artifact_index.json</td></tr>
+<tr><td>evaluator-scorecard</td><td>macro-policy-thesis-map evaluator-scorecard --root .</td><td>Score public evaluator readiness across trust, citations, artifacts, tests, and safety boundaries.</td><td>demo/evaluator_scorecard.md, demo/evaluator_scorecard.json</td></tr>
 <tr><td>cold-start-walkthrough</td><td>macro-policy-thesis-map cold-start-walkthrough --root .</td><td>Generate a deterministic first-run walkthrough for public evaluators.</td><td>demo/cold_start_walkthrough.md, demo/cold_start_walkthrough.json</td></tr>
 <tr><td>public-scan</td><td>macro-policy-thesis-map public-scan --root .</td><td>Scan publishable text for private names, paths, and credential-shaped terms.</td><td>stdout pass/fail</td></tr>
 <tr><td>diff-check</td><td>macro-policy-thesis-map diff-check --root .</td><td>Compare the saved release manifest against current file hashes.</td><td>stdout pass/fail</td></tr>

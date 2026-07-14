@@ -1,125 +1,150 @@
 {
-  "artifact_count": 25,
+  "artifact_count": 30,
   "artifacts": [
     {
-      "bytes": 37394,
+      "bytes": 41652,
       "path": "demo/api_reference.json",
-      "sha256": "7b89c11e4d5e9b450d4c1c66cf2f17065d6f9474e1c7dee1c53b82ed4d7db9ac"
+      "sha256": "459ceec67aa61f4606b6b006b9ea176cc0d37bc9d631a3edc7df9f8297064a44"
+    },
+    {
+      "bytes": 24304,
+      "path": "demo/artifact_index.json",
+      "sha256": "1fe20b2960e171da6bbfcd6f7e3587706d39fac830f5910cffe969a8b271a1b1"
     },
     {
       "bytes": 2500,
       "path": "demo/assumption_registry.json",
-      "sha256": "7170c7639ab9e79069dfc3815ed1c7471aea443cd64e50af741f92c90459c99f"
+      "sha256": "de075c9b3fb8f456109f0a851259d129bd10f427b822bd606042ffd50a9133cd"
     },
     {
       "bytes": 3043,
       "path": "demo/benchmark_suite.json",
-      "sha256": "b491a34778eb237d8a80e95df1888a900c89db2db513e2edc4b0e791157cffce"
+      "sha256": "6ee09b77f1d4f5aadc421b5fc78e150030fffb03de636e6cf3fe4b74cfa05a1f"
     },
     {
-      "bytes": 17246,
+      "bytes": 4645,
+      "path": "demo/citation_map.json",
+      "sha256": "cb3e09d776b4e334615be05b3dafe356c98a7b2d1b05100f60b4a28e2d5dabe7"
+    },
+    {
+      "bytes": 19327,
       "path": "demo/cli_help.json",
-      "sha256": "035477d512f32cb267aca4f1236922385ec79ba2791a3f43efe102e3e7c36518"
+      "sha256": "632452d87990f5f1bb413aa43774293fbb8c606df5efe77f55dccbef4c49dda3"
     },
     {
-      "bytes": 18004,
+      "bytes": 20252,
       "path": "demo/command_matrix.json",
-      "sha256": "482bdb26f8278978cad188f683f4202deb633c268e7db0ab52094b0b6d7c248a"
+      "sha256": "0eedc17d3bea61f2064371015e0f34cce899fead5034f7926566147fb62b7706"
     },
     {
-      "bytes": 1822,
+      "bytes": 1952,
       "path": "demo/compatibility_report.json",
-      "sha256": "d2653a328dc17a9883ef320da2341b75757e3bc5b096b59b05d563a350b0f322"
+      "sha256": "6c3056202895e6f5a1bd568172b8e43079af045fbfccff460d2a0515756886d6"
     },
     {
       "bytes": 3472,
       "path": "demo/data_dictionary_diff.json",
-      "sha256": "3d2592dd48b9de32933cb9357841fa54b57c0b25dca20b7ec5a37da2d029e2fe"
+      "sha256": "41ecef87918921c8e81529fed017dcbbf7b91143221864c3eba6b34f7ca46e2e"
     },
     {
-      "bytes": 6178,
+      "bytes": 7471,
       "path": "demo/docs_export.json",
-      "sha256": "2689d46f2138c12cb55f9f13c1b2670c104c03d99c1d0237e7c27ef5d8afd2c9"
+      "sha256": "71935492ff33c6e4a278f78728be70826876087c7ab4c59e1893c87c6f99ea92"
     },
     {
-      "bytes": 15119,
+      "bytes": 1762,
+      "path": "demo/evaluator_scorecard.json",
+      "sha256": "a9406e7b779c266db7db538442a98027934dd9fbd30e65c5e5ba404d4a7aaccc"
+    },
+    {
+      "bytes": 17114,
       "path": "demo/evidence_bundle.json",
-      "sha256": "92a1e46d33c419108134a59c8eae5aab2b313ac6128f1654c644fc54a9e09983"
+      "sha256": "8d272626babf708f03f0ae32bfebe79c9dabef9d905f769f6eb821b741ae9f72"
     },
     {
       "bytes": 3795,
       "path": "demo/example_pack.json",
-      "sha256": "2a5f299bb12a9fe674c93a404f3b9d02aee910468937fe4257b0744c230559ca"
+      "sha256": "7cb7f9c3f2b0fc254f4306ed01bf7b5dbfe6c294b1ec20a7ce4d37852b270f54"
     },
     {
       "bytes": 4685,
       "path": "demo/golden_fixtures.json",
-      "sha256": "6e7b7638818afdf7d61893590b38963a8d2e12562c68b5031aef4d30f188689c"
+      "sha256": "f6c5648518f62a1b62e27cd625c43888fed57a1e1b5b4d2b016dcbef0127817b"
     },
     {
       "bytes": 3546,
       "path": "demo/integration_cookbook.json",
-      "sha256": "71823c83d849c943b5d3d8a9f40098736dc85e87fe542448f5f871d1826bddf1"
+      "sha256": "8a9ed4d4f1bc0b6fa610667fb403988797ade30ed29d594d5165fcd3856458d0"
     },
     {
       "bytes": 6046,
       "path": "demo/landing_page.json",
-      "sha256": "9001d5d562723f1c2cebd37ced5b662d31aeb44c96eeae1d6b88c8bb22e21807"
+      "sha256": "1d5dd327d5deed49db657ef016849cf6930ada283694d6f29eabec8a67036d98"
     },
     {
-      "bytes": 2322,
+      "bytes": 2430,
       "path": "demo/maintainer_guide.json",
-      "sha256": "c54064f0c7b0ab21ca464bf98bb2f497249a76c49a104824feb24249b0ef8968"
+      "sha256": "de0a35b7e09010893e9e62318083cd5cf33af29f142512fd51e6867958f70d65"
     },
     {
-      "bytes": 1386,
+      "bytes": 1456,
       "path": "demo/maturity_report.json",
-      "sha256": "701cd3be902cb61785f404dcbc1a443a9829c4aa345e25787182852a184c7963"
+      "sha256": "73c8213cb4b0c095272b06511a2f5ede967cf213cac3bbd3996e52be44e23bb3"
     },
     {
-      "bytes": 1923,
+      "bytes": 2116,
       "path": "demo/public_readiness.json",
-      "sha256": "15d96adf743682bef08d102ae5ec93be95b0a8c49568f421a10722d398f20619"
+      "sha256": "ea95c96e19cefec90f6774d91e670ab20ad057bb120e1720d229639c69e5649e"
     },
     {
-      "bytes": 4028,
+      "bytes": 4982,
       "path": "demo/readme_snippet.json",
-      "sha256": "2265ee4e3406200ec4e6736225d56dd00c059727686f14cf11fd7116d8d008fd"
+      "sha256": "1b317fea0dfb9a9ff5d42edfffcd679eb39c3193d86b48fcdb7bae5b3265a5d8"
     },
     {
-      "bytes": 1984,
+      "bytes": 2275,
       "path": "demo/regression_summary.json",
-      "sha256": "5919c7ab743c5893baaa15078db7d643f91271e0efd12227b5c88af5d66e1645"
+      "sha256": "784262d381778f1f4c214fd7747f90fdd7fa54bc003b495b795a11e26384eb8f"
     },
     {
-      "bytes": 15025,
+      "bytes": 2295,
+      "path": "demo/release_faq.json",
+      "sha256": "5aafef8f95cd0962312f2066f4f568b9b2cb535d30e6621bb9a8b9139bcccd02"
+    },
+    {
+      "bytes": 16603,
       "path": "demo/release_manifest.json",
-      "sha256": "f2564a94855db6791bf88bb0b39832b0c45370e1230459445ca096767b20f6c3"
+      "sha256": "50d89640ff5572c5e88d47e9a874ddb4c2144294ca7a7cdfd90f3c7c0c1c4bbb"
     },
     {
       "bytes": 2452,
       "path": "demo/roadmap_next.json",
-      "sha256": "5df60fe48a35e8be55bef3102368017554cdaf3f4ed1851ce13e056ac888164b"
+      "sha256": "3928f2c8b8502c9a43ae31d3dd216edf70f19c7551c18d1d1571a49643b59cc4"
     },
     {
       "bytes": 2903,
       "path": "demo/scenario_library.json",
-      "sha256": "62d405892fb64c52658840381b8bb6f85b390edc177ce47321dd7b6e826ecda8"
+      "sha256": "a10db1111ec03d969f7434b1d397efa5dee99dcc0e66e782bb1b368aa9389ba6"
     },
     {
       "bytes": 3174,
       "path": "demo/troubleshoot.json",
-      "sha256": "9b2d5f00d46734a2cd72aa8fa634314fb5c6c206c5490ea9403b0824d087c0f9"
+      "sha256": "dbbbecdae18d1dc91f647d47fc7109258d82be0302bc8e643b7b5de168c6f4ff"
+    },
+    {
+      "bytes": 3747,
+      "path": "demo/trust_report.json",
+      "sha256": "90e576c5b652574486e45446fa16196f6cffdf7bb88dfde4949d6397e0f3007c"
     },
     {
       "bytes": 3557,
       "path": "demo/workflow_protocol.json",
-      "sha256": "8a210ce7d2934354fb151cd64aa9a15ed570e82c6f039c748ea8fe89c3b035a7"
+      "sha256": "d9e8eb649bda291ffbf8f4ec7e951a4e2c9fdde5124bc829f94eac6ecc0b2658"
     },
     {
-      "bytes": 21480,
+      "bytes": 23575,
       "path": "tests/test_cli.py",
-      "sha256": "8e805ded13136580b39a80ec83b15bc9dbf85618e17cdefc1945bb21e35f31ec"
+      "sha256": "e4e74cefb38973a18b7461ad167385c2c5693f96a9a11c8ae53b10cab18e93c7"
     },
     {
       "bytes": 1388,
@@ -128,7 +153,7 @@
     }
   ],
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
-  "max_score": 7,
+  "max_score": 8,
   "rubric": [
     {
       "description": "Static fixtures and synthetic public examples are present.",
@@ -187,6 +212,17 @@
       "passed": true
     },
     {
+      "description": "Trust report, citation map, release FAQ, artifact index, and evaluator scorecard are present.",
+      "evidence": [
+        "public_trust_layer"
+      ],
+      "maturity_mapping": [
+        "public_trust_layer"
+      ],
+      "name": "public_trust_layer",
+      "passed": true
+    },
+    {
       "description": "Package metadata, docs, license, and agent skill are present.",
       "evidence": [
         "package",
@@ -226,8 +262,8 @@
       "passed": true
     }
   ],
-  "score": 7,
+  "score": 8,
   "status": "ready",
   "title": "Reviewer Scorecard",
-  "version": "1.1.0"
+  "version": "1.2.0"
 }

@@ -54,6 +54,10 @@
       "passed": true
     },
     {
+      "name": "public_trust_layer",
+      "passed": true
+    },
+    {
       "name": "tests",
       "passed": true
     },
@@ -66,7 +70,7 @@
       "passed": true
     }
   ],
-  "max_score": 16,
-  "score": 16,
+  "max_score": 17,
+  "score": 17,
   "status": "ready"
 }

@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Step count: 12
+Step count: 13
 
 ## Steps
 
@@ -16,10 +16,11 @@ Step count: 12
 | 6 | Read operator support surfaces | macro-policy-thesis-map troubleshoot && macro-policy-thesis-map docs-export && macro-policy-thesis-map cli-help | Operator troubleshooting, docs export, and CLI help surfaces are written as Markdown and JSON. |
 | 7 | Read release-owner promotion notes | macro-policy-thesis-map adoption-notes && macro-policy-thesis-map reviewer-scorecard && macro-policy-thesis-map release-deck | Release-owner notes, scorecard, and deck are written as Markdown and JSON. |
 | 8 | Generate public visitor and protocol surfaces | macro-policy-thesis-map landing-page && macro-policy-thesis-map api-reference && macro-policy-thesis-map workflow-protocol && macro-policy-thesis-map example-pack && macro-policy-thesis-map roadmap-next | Landing, API reference, workflow protocol, example pack, and roadmap artifacts are written as Markdown, JSON, and HTML. |
-| 9 | Generate public evaluator hardening surfaces | macro-policy-thesis-map benchmark-suite && macro-policy-thesis-map integration-cookbook && macro-policy-thesis-map compatibility-report && macro-policy-thesis-map maintainer-guide && macro-policy-thesis-map golden-fixtures && macro-policy-thesis-map regression-summary | Benchmark, integration, compatibility, maintainer, golden fixture, and regression artifacts are written as Markdown and JSON. |
-| 10 | Export the public promotion bundle manifest | macro-policy-thesis-map bundle-export | A deterministic bundle manifest is written under demo/bundle_export/. |
-| 11 | Check public readiness | macro-policy-thesis-map public-readiness | A public readiness report lists pass/fail gates. |
-| 12 | Run final local checks | macro-policy-thesis-map selfcheck && macro-policy-thesis-map public-scan && macro-policy-thesis-map diff-check | All commands exit successfully before sharing artifacts. |
+| 9 | Generate public trust layer | macro-policy-thesis-map trust-report && macro-policy-thesis-map citation-map && macro-policy-thesis-map release-faq && macro-policy-thesis-map artifact-index && macro-policy-thesis-map evaluator-scorecard | Trust report, citation map, FAQ, artifact index, and evaluator scorecard are written as Markdown and JSON. |
+| 10 | Generate public evaluator hardening surfaces | macro-policy-thesis-map benchmark-suite && macro-policy-thesis-map integration-cookbook && macro-policy-thesis-map compatibility-report && macro-policy-thesis-map maintainer-guide && macro-policy-thesis-map golden-fixtures && macro-policy-thesis-map regression-summary | Benchmark, integration, compatibility, maintainer, golden fixture, and regression artifacts are written as Markdown and JSON. |
+| 11 | Export the public promotion bundle manifest | macro-policy-thesis-map bundle-export | A deterministic bundle manifest is written under demo/bundle_export/. |
+| 12 | Check public readiness | macro-policy-thesis-map public-readiness | A public readiness report lists pass/fail gates. |
+| 13 | Run final local checks | macro-policy-thesis-map selfcheck && macro-policy-thesis-map public-scan && macro-policy-thesis-map diff-check | All commands exit successfully before sharing artifacts. |
 
 ## Safety Notes
 

@@ -14,10 +14,12 @@ from .core import (
     build_packet,
     adoption_notes,
     api_reference,
+    artifact_index,
     assumption_registry,
     benchmark_suite,
     bundle_export,
     case_gallery,
+    citation_map,
     cold_start_walkthrough,
     command_matrix,
     compatibility_report,
@@ -26,6 +28,7 @@ from .core import (
     diff_check,
     docs_export,
     evidence_bundle,
+    evaluator_scorecard,
     example_pack,
     exposure_map,
     fixture_doctor,
@@ -46,6 +49,7 @@ from .core import (
     roadmap_next,
     readme_snippet,
     regression_summary,
+    release_faq,
     release_manifest,
     release_deck,
     reviewer_scorecard,
@@ -53,6 +57,7 @@ from .core import (
     scenario_library,
     thesis_impact_brief,
     troubleshoot,
+    trust_report,
     workflow_protocol,
 )
 from .io import read_json, resolve, write_json, write_text
@@ -81,6 +86,7 @@ from .render import (
     readme_snippet_md,
     roadmap_next_html,
     roadmap_next_md,
+    trust_report_md,
     thesis_impact_brief_md,
     troubleshoot_md,
     visual_receipt_html,
@@ -92,12 +98,16 @@ from .render import (
     assumption_registry_md,
     benchmark_suite_md,
     bundle_export_md,
+    citation_map_md,
     compatibility_report_md,
     data_dictionary_diff_md,
+    artifact_index_md,
+    evaluator_scorecard_md,
     golden_fixtures_md,
     integration_cookbook_md,
     maintainer_guide_md,
     regression_summary_md,
+    release_faq_md,
     release_deck_md,
     reviewer_scorecard_md,
     scenario_library_md,
@@ -390,6 +400,36 @@ def build_parser() -> argparse.ArgumentParser:
     roadmap.add_argument("--out-json", default="demo/roadmap_next.json")
     roadmap.add_argument("--out-html", default="demo/roadmap_next.html")
     roadmap.set_defaults(func=cmd_roadmap_next)
+
+    trust = sub.add_parser("trust-report", help="Write GitHub stranger trust evidence from local artifacts.")
+    trust.add_argument("--root", default=".")
+    trust.add_argument("--out-md", default="demo/trust_report.md")
+    trust.add_argument("--out-json", default="demo/trust_report.json")
+    trust.set_defaults(func=cmd_trust_report)
+
+    citations = sub.add_parser("citation-map", help="Map public claims to local artifact citations.")
+    citations.add_argument("--root", default=".")
+    citations.add_argument("--out-md", default="demo/citation_map.md")
+    citations.add_argument("--out-json", default="demo/citation_map.json")
+    citations.set_defaults(func=cmd_citation_map)
+
+    faq = sub.add_parser("release-faq", help="Write a public release FAQ with local citations.")
+    faq.add_argument("--root", default=".")
+    faq.add_argument("--out-md", default="demo/release_faq.md")
+    faq.add_argument("--out-json", default="demo/release_faq.json")
+    faq.set_defaults(func=cmd_release_faq)
+
+    index = sub.add_parser("artifact-index", help="Index public demo artifacts by producer, format, size, and hash.")
+    index.add_argument("--root", default=".")
+    index.add_argument("--out-md", default="demo/artifact_index.md")
+    index.add_argument("--out-json", default="demo/artifact_index.json")
+    index.set_defaults(func=cmd_artifact_index)
+
+    evaluator = sub.add_parser("evaluator-scorecard", help="Score public evaluator readiness evidence.")
+    evaluator.add_argument("--root", default=".")
+    evaluator.add_argument("--out-md", default="demo/evaluator_scorecard.md")
+    evaluator.add_argument("--out-json", default="demo/evaluator_scorecard.json")
+    evaluator.set_defaults(func=cmd_evaluator_scorecard)
     return parser
 
 
@@ -748,6 +788,46 @@ def cmd_roadmap_next(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_trust_report(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = trust_report(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), trust_report_md(payload))
+    return 0
+
+
+def cmd_citation_map(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = citation_map(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), citation_map_md(payload))
+    return 0
+
+
+def cmd_release_faq(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = release_faq(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), release_faq_md(payload))
+    return 0
+
+
+def cmd_artifact_index(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = artifact_index(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), artifact_index_md(payload))
+    return 0
+
+
+def cmd_evaluator_scorecard(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = evaluator_scorecard(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), evaluator_scorecard_md(payload))
+    return 0
+
+
 def cmd_public_scan(args: argparse.Namespace) -> int:
     findings = public_findings(Path(args.root))
     if findings:
@@ -809,6 +889,11 @@ def cmd_selfcheck(args: argparse.Namespace) -> int:
         root / "demo" / "example_pack.html",
         root / "demo" / "roadmap_next.json",
         root / "demo" / "roadmap_next.html",
+        root / "demo" / "trust_report.json",
+        root / "demo" / "citation_map.json",
+        root / "demo" / "release_faq.json",
+        root / "demo" / "artifact_index.json",
+        root / "demo" / "evaluator_scorecard.json",
         root / "demo" / "fixture_doctor.json",
         root / "demo" / "input_schema.json",
         root / "demo" / "troubleshoot.json",

@@ -1,6 +1,6 @@
 {
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
-  "command_count": 42,
+  "command_count": 47,
   "commands": [
     {
       "command": "build-packet",
@@ -462,6 +462,66 @@
       ],
       "purpose": "Write bounded next-step roadmap items for public maintainers and agent reuse.",
       "safety": "Roadmap documentation only; excludes live data integrations, broker actions, workflows, and advice."
+    },
+    {
+      "command": "trust-report",
+      "inputs": [
+        "README, tests, package metadata, demo artifacts, public readiness, release manifest"
+      ],
+      "outputs": [
+        "demo/trust_report.md",
+        "demo/trust_report.json"
+      ],
+      "purpose": "Summarize GitHub stranger trust evidence from local artifacts, safety gates, and reproducibility checks.",
+      "safety": "Trust evidence is local and deterministic; no external reputation checks, live data, or advice."
+    },
+    {
+      "command": "citation-map",
+      "inputs": [
+        "README, command metadata, demo artifacts"
+      ],
+      "outputs": [
+        "demo/citation_map.md",
+        "demo/citation_map.json"
+      ],
+      "purpose": "Map public claims to local artifacts, paths, hashes, and producer commands.",
+      "safety": "Cites local artifacts only and avoids hosted, personal, or non-public references."
+    },
+    {
+      "command": "release-faq",
+      "inputs": [
+        "built-in public questions, command metadata, local artifact availability"
+      ],
+      "outputs": [
+        "demo/release_faq.md",
+        "demo/release_faq.json"
+      ],
+      "purpose": "Write a public release FAQ for first-time GitHub visitors and evaluators.",
+      "safety": "FAQ text stays descriptive, local, static, and research-only."
+    },
+    {
+      "command": "artifact-index",
+      "inputs": [
+        "demo artifacts and command metadata"
+      ],
+      "outputs": [
+        "demo/artifact_index.md",
+        "demo/artifact_index.json"
+      ],
+      "purpose": "Index deterministic public demo artifacts by format, producer command, size, and hash.",
+      "safety": "Indexes local files only; no upload destination, workflow, or private storage reference."
+    },
+    {
+      "command": "evaluator-scorecard",
+      "inputs": [
+        "trust report, citation map, artifact index, public readiness, tests, README"
+      ],
+      "outputs": [
+        "demo/evaluator_scorecard.md",
+        "demo/evaluator_scorecard.json"
+      ],
+      "purpose": "Score public evaluator readiness across trust, citations, artifacts, tests, and safety boundaries.",
+      "safety": "Scores local release evidence only and does not provide financial advice."
     },
     {
       "command": "cold-start-walkthrough",

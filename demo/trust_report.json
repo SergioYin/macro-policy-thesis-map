@@ -1,0 +1,115 @@
+{
+  "artifacts": [
+    {
+      "bytes": 17804,
+      "path": "README.md",
+      "sha256": "2544bbba66b1aa8ff651fa828ac72b0c6cab5f833b73a3ab25e948e758a348ad"
+    },
+    {
+      "bytes": 20252,
+      "path": "demo/command_matrix.json",
+      "sha256": "0eedc17d3bea61f2064371015e0f34cce899fead5034f7926566147fb62b7706"
+    },
+    {
+      "bytes": 17114,
+      "path": "demo/evidence_bundle.json",
+      "sha256": "8d272626babf708f03f0ae32bfebe79c9dabef9d905f769f6eb821b741ae9f72"
+    },
+    {
+      "bytes": 2116,
+      "path": "demo/public_readiness.json",
+      "sha256": "ea95c96e19cefec90f6774d91e670ab20ad057bb120e1720d229639c69e5649e"
+    },
+    {
+      "bytes": 16603,
+      "path": "demo/release_manifest.json",
+      "sha256": "50d89640ff5572c5e88d47e9a874ddb4c2144294ca7a7cdfd90f3c7c0c1c4bbb"
+    },
+    {
+      "bytes": 832,
+      "path": "pyproject.toml",
+      "sha256": "d1f5f350cfc9b332d887010af8cd9842c5af8134ff3a8c5cfde9029dc9280db9"
+    },
+    {
+      "bytes": 23575,
+      "path": "tests/test_cli.py",
+      "sha256": "e4e74cefb38973a18b7461ad167385c2c5693f96a9a11c8ae53b10cab18e93c7"
+    },
+    {
+      "bytes": 1388,
+      "path": "tests/test_safety.py",
+      "sha256": "d50fc2a2e87e8002eb697b42e3562db830a56b9088734a50569f4ac39bef5d6c"
+    }
+  ],
+  "audience": "GitHub visitor with no prior project context",
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "checks": [
+    {
+      "evidence": [
+        "pyproject.toml"
+      ],
+      "name": "zero_runtime_dependencies",
+      "passed": true,
+      "trust_reason": "A stranger can inspect and install without pulling runtime packages."
+    },
+    {
+      "evidence": [
+        "examples/macro_events.csv",
+        "examples/prior_macro_events.csv",
+        "examples/public_macro_cases.csv"
+      ],
+      "name": "local_static_inputs",
+      "passed": true,
+      "trust_reason": "Default examples are committed static CSV files."
+    },
+    {
+      "evidence": [
+        "demo/command_matrix.json",
+        "demo/public_readiness.json",
+        "demo/release_manifest.json"
+      ],
+      "name": "deterministic_demo_outputs",
+      "passed": true,
+      "trust_reason": "Public command, readiness, and hash manifests are available under demo/."
+    },
+    {
+      "evidence": [
+        "tests/test_cli.py",
+        "tests/test_safety.py",
+        "demo/public_readiness.json"
+      ],
+      "name": "test_and_scan_surfaces",
+      "passed": true,
+      "trust_reason": "Tests and public scan support local verification without network access."
+    },
+    {
+      "evidence": [
+        "README.md",
+        "skills/agent/macro-policy-thesis-map/SKILL.md"
+      ],
+      "name": "finance_boundaries",
+      "passed": true,
+      "trust_reason": "Research-only limitations are visible before running the CLI."
+    },
+    {
+      "evidence": [
+        ".github/workflows"
+      ],
+      "name": "no_workflow_files",
+      "passed": true,
+      "trust_reason": "Evaluation does not depend on hidden CI or repository automation."
+    }
+  ],
+  "max_score": 6,
+  "score": 6,
+  "status": "ready",
+  "title": "Public Trust Report",
+  "verification_commands": [
+    "PYTHONPATH=src python -m pytest",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root ."
+  ],
+  "version": "1.2.0"
+}

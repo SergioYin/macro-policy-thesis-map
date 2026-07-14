@@ -56,11 +56,16 @@ def test_dashboard_manifest_maturity_and_selfcheck(tmp_path):
     assert main(["golden-fixtures", "--root", str(ROOT)]) == 0
     assert main(["regression-summary", "--root", str(ROOT)]) == 0
     assert main(["release-manifest", "--root", str(ROOT), "--out-json", str(manifest_json), "--out-md", str(manifest_md)]) == 0
-    assert main(["maturity-report", "--root", str(ROOT), "--out-json", str(maturity_json), "--out-md", str(maturity_md)]) == 0
     assert main(["adoption-notes", "--root", str(ROOT)]) == 0
     assert main(["reviewer-scorecard", "--root", str(ROOT)]) == 0
     assert main(["release-deck", "--root", str(ROOT)]) == 0
     assert main(["bundle-export", "--root", str(ROOT)]) == 0
+    assert main(["trust-report", "--root", str(ROOT)]) == 0
+    assert main(["citation-map", "--root", str(ROOT)]) == 0
+    assert main(["release-faq", "--root", str(ROOT)]) == 0
+    assert main(["artifact-index", "--root", str(ROOT)]) == 0
+    assert main(["evaluator-scorecard", "--root", str(ROOT)]) == 0
+    assert main(["maturity-report", "--root", str(ROOT), "--out-json", str(maturity_json), "--out-md", str(maturity_md)]) == 0
     assert main(["selfcheck", "--root", str(ROOT)]) == 0
 
     assert "<html" in dashboard.read_text(encoding="utf-8")
@@ -97,7 +102,7 @@ def test_fixture_doctor_and_schema_export(tmp_path):
     assert '"status": "pass"' in doctor_json.read_text(encoding="utf-8")
     assert "Fixture Doctor" in doctor_md.read_text(encoding="utf-8")
     schema_text = schema_json.read_text(encoding="utf-8")
-    assert '"schema_version": "1.1.0"' in schema_text
+    assert '"schema_version": "1.2.0"' in schema_text
     assert "confidence" in schema_text
     assert "Data Dictionary" in schema_md.read_text(encoding="utf-8")
 
@@ -268,7 +273,7 @@ def test_release_owner_promotion_pack_commands(tmp_path):
     assert main(["release-deck", "--root", str(ROOT), "--out-json", str(deck_json), "--out-md", str(deck_md)]) == 0
     assert main(["bundle-export", "--root", str(ROOT), "--out-json", str(export_json), "--out-md", str(export_md)]) == 0
 
-    assert '"version": "1.1.0"' in adoption_json.read_text(encoding="utf-8")
+    assert '"version": "1.2.0"' in adoption_json.read_text(encoding="utf-8")
     assert "cold_user_next_actions" in adoption_json.read_text(encoding="utf-8")
     assert "maturity_mapping" in scorecard_json.read_text(encoding="utf-8")
     assert "Release Owner Promotion Deck" in deck_md.read_text(encoding="utf-8")
@@ -339,7 +344,7 @@ def test_public_protocol_layer_commands(tmp_path):
     assert "data_contracts" in api_json.read_text(encoding="utf-8")
     assert "base_event_csv" in api_md.read_text(encoding="utf-8")
     assert "<html" in api_html.read_text(encoding="utf-8")
-    assert "macro-policy-thesis-map.v1.1" in protocol_json.read_text(encoding="utf-8")
+    assert "macro-policy-thesis-map.v1.2" in protocol_json.read_text(encoding="utf-8")
     assert "Stop Conditions" in protocol_md.read_text(encoding="utf-8")
     assert "<html" in protocol_html.read_text(encoding="utf-8")
     assert '"recipe_count": 4' in pack_json.read_text(encoding="utf-8")
@@ -348,6 +353,32 @@ def test_public_protocol_layer_commands(tmp_path):
     assert '"roadmap_count": 4' in roadmap_json.read_text(encoding="utf-8")
     assert "Not Planned" in roadmap_md.read_text(encoding="utf-8")
     assert "<html" in roadmap_html.read_text(encoding="utf-8")
+
+
+def test_public_trust_layer_commands(tmp_path):
+    trust_json = tmp_path / "trust.json"
+    trust_md = tmp_path / "trust.md"
+    citations_json = tmp_path / "citations.json"
+    citations_md = tmp_path / "citations.md"
+    faq_json = tmp_path / "faq.json"
+    faq_md = tmp_path / "faq.md"
+    index_json = tmp_path / "index.json"
+    index_md = tmp_path / "index.md"
+    score_json = tmp_path / "score.json"
+    score_md = tmp_path / "score.md"
+
+    assert main(["trust-report", "--root", str(ROOT), "--out-json", str(trust_json), "--out-md", str(trust_md)]) == 0
+    assert main(["citation-map", "--root", str(ROOT), "--out-json", str(citations_json), "--out-md", str(citations_md)]) == 0
+    assert main(["release-faq", "--root", str(ROOT), "--out-json", str(faq_json), "--out-md", str(faq_md)]) == 0
+    assert main(["artifact-index", "--root", str(ROOT), "--out-json", str(index_json), "--out-md", str(index_md)]) == 0
+    assert main(["evaluator-scorecard", "--root", str(ROOT), "--out-json", str(score_json), "--out-md", str(score_md)]) == 0
+
+    assert "Public Trust Report" in trust_md.read_text(encoding="utf-8")
+    assert "verification_commands" in trust_json.read_text(encoding="utf-8")
+    assert "local repository artifacts only" in citations_json.read_text(encoding="utf-8")
+    assert "Release FAQ" in faq_md.read_text(encoding="utf-8")
+    assert "producer_command" in index_json.read_text(encoding="utf-8")
+    assert "Evaluator Scorecard" in score_md.read_text(encoding="utf-8")
 
 
 def test_diff_check_detects_manifest_drift(tmp_path):
@@ -421,6 +452,11 @@ def test_public_readiness_blocks_incomplete_tree(tmp_path):
         (["workflow-protocol"], "demo/workflow_protocol.json"),
         (["example-pack"], "demo/example_pack.json"),
         (["roadmap-next"], "demo/roadmap_next.json"),
+        (["trust-report"], "demo/trust_report.json"),
+        (["citation-map"], "demo/citation_map.json"),
+        (["release-faq"], "demo/release_faq.json"),
+        (["artifact-index"], "demo/artifact_index.json"),
+        (["evaluator-scorecard"], "demo/evaluator_scorecard.json"),
     ],
 )
 def test_default_example_commands_work_from_empty_cwd(tmp_path, monkeypatch, argv, output):

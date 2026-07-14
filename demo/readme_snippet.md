@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.1.0
+Version: 1.2.0
 
 ```bash
 PYTHONPATH=src python -m macro_policy_thesis_map.cli fixture-doctor --root .
@@ -22,6 +22,11 @@ PYTHONPATH=src python -m macro_policy_thesis_map.cli api-reference --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli workflow-protocol --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli example-pack --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli roadmap-next --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli trust-report --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli citation-map --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli release-faq --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli artifact-index --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli evaluator-scorecard --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .
 PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .
 ```
@@ -46,4 +51,9 @@ PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .
 | demo/workflow_protocol.md |
 | demo/example_pack.md |
 | demo/roadmap_next.md |
+| demo/trust_report.md |
+| demo/citation_map.md |
+| demo/release_faq.md |
+| demo/artifact_index.md |
+| demo/evaluator_scorecard.md |
 | demo/troubleshoot.md |

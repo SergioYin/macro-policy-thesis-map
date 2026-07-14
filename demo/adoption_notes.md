@@ -2,13 +2,13 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.1.0
+Version: 1.2.0
 
-Maturity: ready (16 / 16)
+Maturity: ready (17 / 17)
 
 Public readiness: ready
 
-Release manifest artifacts: 91
+Release manifest artifacts: 101
 
 ## Release Commands
 
@@ -26,6 +26,11 @@ Release manifest artifacts: 91
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli maintainer-guide --root . |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli golden-fixtures --root . |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli regression-summary --root . |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli trust-report --root . |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli citation-map --root . |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli release-faq --root . |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli artifact-index --root . |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli evaluator-scorecard --root . |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli cli-help --root . |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli reviewer-scorecard --root . |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli release-deck --root . |
@@ -55,23 +60,28 @@ Release manifest artifacts: 91
 
 | Path | Bytes | SHA-256 prefix |
 | --- | --- | --- |
-| README.md | 16096 | 14c1a4e5d37ae040 |
-| demo/assumption_registry.json | 2500 | 7170c7639ab9e790 |
-| demo/benchmark_suite.json | 3043 | b491a34778eb237d |
-| demo/cli_help.json | 17246 | 035477d512f32cb2 |
-| demo/cold_start_walkthrough.json | 4389 | 544e7dc160b71aa3 |
-| demo/command_matrix.json | 18004 | 482bdb26f8278978 |
-| demo/compatibility_report.json | 1822 | d2653a328dc17a98 |
-| demo/data_dictionary_diff.json | 3472 | 3d2592dd48b9de32 |
-| demo/docs_export.json | 6178 | 2689d46f2138c12c |
-| demo/evidence_bundle.json | 15119 | 92a1e46d33c41910 |
-| demo/golden_fixtures.json | 4685 | 6e7b7638818afdf7 |
-| demo/integration_cookbook.json | 3546 | 71823c83d849c943 |
-| demo/maintainer_guide.json | 2322 | c54064f0c7b0ab21 |
-| demo/maturity_report.json | 1386 | 701cd3be902cb617 |
-| demo/public_readiness.json | 1923 | 15d96adf743682be |
-| demo/readme_snippet.json | 4028 | 2265ee4e3406200e |
-| demo/regression_summary.json | 1984 | 5919c7ab743c5893 |
-| demo/release_manifest.json | 15025 | f2564a94855db679 |
-| demo/scenario_library.json | 2903 | 62d405892fb64c52 |
-| demo/troubleshoot.json | 3174 | 9b2d5f00d46734a2 |
+| README.md | 17804 | 2544bbba66b1aa8f |
+| demo/artifact_index.json | 24304 | 1fe20b2960e171da |
+| demo/assumption_registry.json | 2500 | de075c9b3fb8f456 |
+| demo/benchmark_suite.json | 3043 | 6ee09b77f1d4f5aa |
+| demo/citation_map.json | 4645 | cb3e09d776b4e334 |
+| demo/cli_help.json | 19327 | 632452d87990f5f1 |
+| demo/cold_start_walkthrough.json | 4825 | 7b3233c8a2ac3343 |
+| demo/command_matrix.json | 20252 | 0eedc17d3bea61f2 |
+| demo/compatibility_report.json | 1952 | 6c3056202895e6f5 |
+| demo/data_dictionary_diff.json | 3472 | 41ecef87918921c8 |
+| demo/docs_export.json | 7471 | 71935492ff33c6e4 |
+| demo/evaluator_scorecard.json | 1762 | a9406e7b779c266d |
+| demo/evidence_bundle.json | 17114 | 8d272626babf708f |
+| demo/golden_fixtures.json | 4685 | f6c5648518f62a1b |
+| demo/integration_cookbook.json | 3546 | 8a9ed4d4f1bc0b6f |
+| demo/maintainer_guide.json | 2430 | de0a35b7e0901089 |
+| demo/maturity_report.json | 1456 | 73c8213cb4b0c095 |
+| demo/public_readiness.json | 2116 | ea95c96e19cefec9 |
+| demo/readme_snippet.json | 4982 | 1b317fea0dfb9a9f |
+| demo/regression_summary.json | 2275 | 784262d381778f1f |
+| demo/release_faq.json | 2295 | 5aafef8f95cd0962 |
+| demo/release_manifest.json | 16603 | 50d89640ff5572c5 |
+| demo/scenario_library.json | 2903 | a10db1111ec03d96 |
+| demo/troubleshoot.json | 3174 | dbbbecdae18d1dc9 |
+| demo/trust_report.json | 3747 | 90e576c5b6525744 |

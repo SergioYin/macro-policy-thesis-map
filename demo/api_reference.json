@@ -482,6 +482,66 @@
     },
     {
       "format": "md",
+      "path": "demo/trust_report.md",
+      "producer_command": "trust-report",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/trust_report.json",
+      "producer_command": "trust-report",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/citation_map.md",
+      "producer_command": "citation-map",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/citation_map.json",
+      "producer_command": "citation-map",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/release_faq.md",
+      "producer_command": "release-faq",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/release_faq.json",
+      "producer_command": "release-faq",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/artifact_index.md",
+      "producer_command": "artifact-index",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/artifact_index.json",
+      "producer_command": "artifact-index",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/evaluator_scorecard.md",
+      "producer_command": "evaluator-scorecard",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/evaluator_scorecard.json",
+      "producer_command": "evaluator-scorecard",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
       "path": "demo/cold_start_walkthrough.md",
       "producer_command": "cold-start-walkthrough",
       "stability": "deterministic local output"
@@ -996,6 +1056,71 @@
       "usage": "macro-policy-thesis-map roadmap-next --root ."
     },
     {
+      "command": "trust-report",
+      "inputs": [
+        "README, tests, package metadata, demo artifacts, public readiness, release manifest"
+      ],
+      "outputs": [
+        "demo/trust_report.md",
+        "demo/trust_report.json"
+      ],
+      "purpose": "Summarize GitHub stranger trust evidence from local artifacts, safety gates, and reproducibility checks.",
+      "safety": "Trust evidence is local and deterministic; no external reputation checks, live data, or advice.",
+      "usage": "macro-policy-thesis-map trust-report --root ."
+    },
+    {
+      "command": "citation-map",
+      "inputs": [
+        "README, command metadata, demo artifacts"
+      ],
+      "outputs": [
+        "demo/citation_map.md",
+        "demo/citation_map.json"
+      ],
+      "purpose": "Map public claims to local artifacts, paths, hashes, and producer commands.",
+      "safety": "Cites local artifacts only and avoids hosted, personal, or non-public references.",
+      "usage": "macro-policy-thesis-map citation-map --root ."
+    },
+    {
+      "command": "release-faq",
+      "inputs": [
+        "built-in public questions, command metadata, local artifact availability"
+      ],
+      "outputs": [
+        "demo/release_faq.md",
+        "demo/release_faq.json"
+      ],
+      "purpose": "Write a public release FAQ for first-time GitHub visitors and evaluators.",
+      "safety": "FAQ text stays descriptive, local, static, and research-only.",
+      "usage": "macro-policy-thesis-map release-faq --root ."
+    },
+    {
+      "command": "artifact-index",
+      "inputs": [
+        "demo artifacts and command metadata"
+      ],
+      "outputs": [
+        "demo/artifact_index.md",
+        "demo/artifact_index.json"
+      ],
+      "purpose": "Index deterministic public demo artifacts by format, producer command, size, and hash.",
+      "safety": "Indexes local files only; no upload destination, workflow, or private storage reference.",
+      "usage": "macro-policy-thesis-map artifact-index --root ."
+    },
+    {
+      "command": "evaluator-scorecard",
+      "inputs": [
+        "trust report, citation map, artifact index, public readiness, tests, README"
+      ],
+      "outputs": [
+        "demo/evaluator_scorecard.md",
+        "demo/evaluator_scorecard.json"
+      ],
+      "purpose": "Score public evaluator readiness across trust, citations, artifacts, tests, and safety boundaries.",
+      "safety": "Scores local release evidence only and does not provide financial advice.",
+      "usage": "macro-policy-thesis-map evaluator-scorecard --root ."
+    },
+    {
       "command": "cold-start-walkthrough",
       "inputs": [
         "built-in command metadata"
@@ -1148,5 +1273,5 @@
     "recommendations",
     "personalized financial advice"
   ],
-  "version": "1.1.0"
+  "version": "1.2.0"
 }

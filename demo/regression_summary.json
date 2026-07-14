@@ -1,7 +1,7 @@
 {
-  "blocking_gate_count": 0,
+  "blocking_gate_count": 1,
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
-  "gate_count": 6,
+  "gate_count": 7,
   "gates": [
     {
       "detail": "Full test execution is recorded by the release operator.",
@@ -34,6 +34,12 @@
       "status": "ready"
     },
     {
+      "detail": "Evaluator trust scorecard based on local artifacts.",
+      "evidence": "demo/evaluator_scorecard.json",
+      "name": "trust_layer",
+      "status": "needs-review"
+    },
+    {
       "detail": "Offline wheel build should be run when build tooling is available.",
       "evidence": "python -m build --wheel or build_backend.build_wheel",
       "name": "wheel_build",
@@ -46,9 +52,10 @@
     "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
     "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
     "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
-    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root ."
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli evaluator-scorecard --root ."
   ],
-  "status": "ready",
+  "status": "needs-review",
   "title": "Regression Summary",
-  "version": "1.1.0"
+  "version": "1.2.0"
 }

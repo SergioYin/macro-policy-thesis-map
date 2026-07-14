@@ -6,7 +6,7 @@
     "Do not add live market data, broker actions, trading recommendations, or personalized advice.",
     "Treat review-ledger blockers as release blockers until the input text is revised."
   ],
-  "step_count": 12,
+  "step_count": 13,
   "steps": [
     {
       "command": "macro-policy-thesis-map command-matrix",
@@ -57,27 +57,33 @@
       "title": "Generate public visitor and protocol surfaces"
     },
     {
+      "command": "macro-policy-thesis-map trust-report && macro-policy-thesis-map citation-map && macro-policy-thesis-map release-faq && macro-policy-thesis-map artifact-index && macro-policy-thesis-map evaluator-scorecard",
+      "expected_result": "Trust report, citation map, FAQ, artifact index, and evaluator scorecard are written as Markdown and JSON.",
+      "step": 9,
+      "title": "Generate public trust layer"
+    },
+    {
       "command": "macro-policy-thesis-map benchmark-suite && macro-policy-thesis-map integration-cookbook && macro-policy-thesis-map compatibility-report && macro-policy-thesis-map maintainer-guide && macro-policy-thesis-map golden-fixtures && macro-policy-thesis-map regression-summary",
       "expected_result": "Benchmark, integration, compatibility, maintainer, golden fixture, and regression artifacts are written as Markdown and JSON.",
-      "step": 9,
+      "step": 10,
       "title": "Generate public evaluator hardening surfaces"
     },
     {
       "command": "macro-policy-thesis-map bundle-export",
       "expected_result": "A deterministic bundle manifest is written under demo/bundle_export/.",
-      "step": 10,
+      "step": 11,
       "title": "Export the public promotion bundle manifest"
     },
     {
       "command": "macro-policy-thesis-map public-readiness",
       "expected_result": "A public readiness report lists pass/fail gates.",
-      "step": 11,
+      "step": 12,
       "title": "Check public readiness"
     },
     {
       "command": "macro-policy-thesis-map selfcheck && macro-policy-thesis-map public-scan && macro-policy-thesis-map diff-check",
       "expected_result": "All commands exit successfully before sharing artifacts.",
-      "step": 12,
+      "step": 13,
       "title": "Run final local checks"
     }
   ]

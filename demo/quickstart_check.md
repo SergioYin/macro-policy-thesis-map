@@ -57,3 +57,8 @@ Passed: 8 / 8
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli workflow-protocol --root . | demo/workflow_protocol.md, demo/workflow_protocol.json, demo/workflow_protocol.html |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli example-pack --root . | demo/example_pack.md, demo/example_pack.json, demo/example_pack.html |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli roadmap-next --root . | demo/roadmap_next.md, demo/roadmap_next.json, demo/roadmap_next.html |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli trust-report --root . | demo/trust_report.md, demo/trust_report.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli citation-map --root . | demo/citation_map.md, demo/citation_map.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli release-faq --root . | demo/release_faq.md, demo/release_faq.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli artifact-index --root . | demo/artifact_index.md, demo/artifact_index.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli evaluator-scorecard --root . | demo/evaluator_scorecard.md, demo/evaluator_scorecard.json |

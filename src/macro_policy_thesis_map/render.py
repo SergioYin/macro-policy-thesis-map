@@ -1105,6 +1105,131 @@ Roadmap items: {payload['roadmap_count']}
 """
 
 
+def trust_report_md(payload: dict[str, Any]) -> str:
+    checks = [
+        [item["name"], "pass" if item["passed"] else "review", ", ".join(item["evidence"]), item["trust_reason"]]
+        for item in payload["checks"]
+    ]
+    artifacts = [[item["path"], item["bytes"], item["sha256"][:16]] for item in payload["artifacts"]]
+    commands = [[item] for item in payload["verification_commands"]]
+    return f"""# Public Trust Report
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Audience: {payload['audience']}
+
+Status: {payload['status']}
+
+Score: {payload['score']} / {payload['max_score']}
+
+## Trust Checks
+
+{table(["Check", "Result", "Evidence", "Reason"], checks)}
+
+## Local Evidence Artifacts
+
+{table(["Path", "Bytes", "SHA-256 prefix"], artifacts)}
+
+## Verification Commands
+
+{table(["Command"], commands)}
+"""
+
+
+def citation_map_md(payload: dict[str, Any]) -> str:
+    rows = []
+    for claim in payload["claims"]:
+        citations = ", ".join(item["path"] for item in claim["citations"])
+        hashes = ", ".join(item.get("sha256", "")[:12] or "missing" for item in claim["citations"])
+        rows.append([claim["claim_id"], claim["claim"], claim["producer_command"], citations, hashes])
+    return f"""# Citation Map
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Citation policy: {payload['citation_policy']}
+
+Claims: {payload['claim_count']}
+
+Missing citations: {payload['missing_count']}
+
+{table(["Claim", "Statement", "Producer", "Local citations", "SHA-256 prefixes"], rows)}
+"""
+
+
+def release_faq_md(payload: dict[str, Any]) -> str:
+    rows = [
+        [item["question_id"], item["question"], item["answer"], ", ".join(item["local_citations"]), item["citation_status"]]
+        for item in payload["questions"]
+    ]
+    return f"""# Release FAQ
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Questions: {payload['question_count']}
+
+Ready: {payload['ready_count']} / {payload['question_count']}
+
+{table(["ID", "Question", "Answer", "Local citations", "Status"], rows)}
+"""
+
+
+def artifact_index_md(payload: dict[str, Any]) -> str:
+    formats = [[key, value] for key, value in payload["formats"].items()]
+    artifacts = [
+        [item["path"], item["status"], item["format"], item["producer_command"], item["bytes"], item.get("sha256", "")[:16]]
+        for item in payload["artifacts"]
+    ]
+    return f"""# Artifact Index
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Artifacts: {payload['artifact_count']}
+
+Present: {payload['present_count']}
+
+Missing: {payload['missing_count']}
+
+## Formats
+
+{table(["Format", "Present files"], formats)}
+
+## Artifacts
+
+{table(["Path", "Status", "Format", "Producer", "Bytes", "SHA-256 prefix"], artifacts)}
+"""
+
+
+def evaluator_scorecard_md(payload: dict[str, Any]) -> str:
+    checks = [[item["name"], "pass" if item["passed"] else "review", item["evidence"], item["detail"]] for item in payload["checks"]]
+    order = [[index, command] for index, command in enumerate(payload["recommended_order"], start=1)]
+    return f"""# Evaluator Scorecard
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Status: {payload['status']}
+
+Score: {payload['score']} / {payload['max_score']}
+
+## Checks
+
+{table(["Check", "Result", "Evidence", "Detail"], checks)}
+
+## Recommended Order
+
+{table(["Step", "Command"], order)}
+"""
+
+
 def public_doc_html(payload: dict[str, Any], body_rows: list[tuple[str, list[list[Any]], list[str]]]) -> str:
     sections = []
     for title, rows, headers in body_rows:

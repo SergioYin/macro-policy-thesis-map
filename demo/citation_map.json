@@ -1,0 +1,135 @@
+{
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "citation_policy": "Every claim cites local repository artifacts only.",
+  "claim_count": 5,
+  "claims": [
+    {
+      "citation_count": 2,
+      "citations": [
+        {
+          "bytes": 832,
+          "path": "pyproject.toml",
+          "sha256": "d1f5f350cfc9b332d887010af8cd9842c5af8134ff3a8c5cfde9029dc9280db9"
+        },
+        {
+          "bytes": 1952,
+          "path": "demo/compatibility_report.json",
+          "sha256": "6c3056202895e6f5a1bd568172b8e43079af045fbfccff460d2a0515756886d6"
+        }
+      ],
+      "claim": "The project is a zero-dependency Python CLI.",
+      "claim_id": "claim-001",
+      "missing_count": 0,
+      "producer_command": "compatibility-report"
+    },
+    {
+      "citation_count": 4,
+      "citations": [
+        {
+          "bytes": 906,
+          "path": "examples/macro_events.csv",
+          "sha256": "b7410919d62dd4e390bfb147959ba1e7b0410d2ab87cd4bd41af55557875303c"
+        },
+        {
+          "bytes": 715,
+          "path": "examples/prior_macro_events.csv",
+          "sha256": "95f9b30ce6f88581ea9ef431b885aef3941181a587eaa36ae9a39e19ad3026ed"
+        },
+        {
+          "bytes": 1471,
+          "path": "examples/public_macro_cases.csv",
+          "sha256": "ee511dd457dd7aab5558074a9c173de0e2326eb9bf1618561b5c8ef8983cddc1"
+        },
+        {
+          "bytes": 4685,
+          "path": "demo/golden_fixtures.json",
+          "sha256": "f6c5648518f62a1b62e27cd625c43888fed57a1e1b5b4d2b016dcbef0127817b"
+        }
+      ],
+      "claim": "The default examples are local static CSV fixtures.",
+      "claim_id": "claim-002",
+      "missing_count": 0,
+      "producer_command": "golden-fixtures"
+    },
+    {
+      "citation_count": 3,
+      "citations": [
+        {
+          "bytes": 20252,
+          "path": "demo/command_matrix.json",
+          "sha256": "0eedc17d3bea61f2064371015e0f34cce899fead5034f7926566147fb62b7706"
+        },
+        {
+          "bytes": 24304,
+          "path": "demo/artifact_index.json",
+          "sha256": "1fe20b2960e171da6bbfcd6f7e3587706d39fac830f5910cffe969a8b271a1b1"
+        },
+        {
+          "bytes": 16603,
+          "path": "demo/release_manifest.json",
+          "sha256": "50d89640ff5572c5e88d47e9a874ddb4c2144294ca7a7cdfd90f3c7c0c1c4bbb"
+        }
+      ],
+      "claim": "The CLI writes deterministic Markdown, JSON, HTML, and SVG artifacts under demo/.",
+      "claim_id": "claim-003",
+      "missing_count": 0,
+      "producer_command": "artifact-index"
+    },
+    {
+      "citation_count": 4,
+      "citations": [
+        {
+          "bytes": 23575,
+          "path": "tests/test_cli.py",
+          "sha256": "e4e74cefb38973a18b7461ad167385c2c5693f96a9a11c8ae53b10cab18e93c7"
+        },
+        {
+          "bytes": 1388,
+          "path": "tests/test_safety.py",
+          "sha256": "d50fc2a2e87e8002eb697b42e3562db830a56b9088734a50569f4ac39bef5d6c"
+        },
+        {
+          "bytes": 2275,
+          "path": "demo/regression_summary.json",
+          "sha256": "784262d381778f1f4c214fd7747f90fdd7fa54bc003b495b795a11e26384eb8f"
+        },
+        {
+          "bytes": 3747,
+          "path": "demo/trust_report.json",
+          "sha256": "90e576c5b652574486e45446fa16196f6cffdf7bb88dfde4949d6397e0f3007c"
+        }
+      ],
+      "claim": "Public release gates include tests, selfcheck, public scan, readiness, diff check, and wheel build.",
+      "claim_id": "claim-004",
+      "missing_count": 0,
+      "producer_command": "trust-report"
+    },
+    {
+      "citation_count": 3,
+      "citations": [
+        {
+          "bytes": 17804,
+          "path": "README.md",
+          "sha256": "2544bbba66b1aa8ff651fa828ac72b0c6cab5f833b73a3ab25e948e758a348ad"
+        },
+        {
+          "bytes": 4226,
+          "path": "skills/agent/macro-policy-thesis-map/SKILL.md",
+          "sha256": "482b63068e523668983de3377dd5debd6180200b44fbf9d4f7046dc8a8414ecb"
+        },
+        {
+          "bytes": 2116,
+          "path": "demo/public_readiness.json",
+          "sha256": "ea95c96e19cefec90f6774d91e670ab20ad057bb120e1720d229639c69e5649e"
+        }
+      ],
+      "claim": "Outputs are research-only and do not fetch live data or provide personalized financial advice.",
+      "claim_id": "claim-005",
+      "missing_count": 0,
+      "producer_command": "public-readiness"
+    }
+  ],
+  "missing_count": 0,
+  "title": "Citation Map",
+  "version": "1.2.0"
+}

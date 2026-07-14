@@ -286,6 +286,41 @@
         "demo/roadmap_next.json",
         "demo/roadmap_next.html"
       ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli trust-report --root .",
+      "expected_outputs": [
+        "demo/trust_report.md",
+        "demo/trust_report.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli citation-map --root .",
+      "expected_outputs": [
+        "demo/citation_map.md",
+        "demo/citation_map.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-faq --root .",
+      "expected_outputs": [
+        "demo/release_faq.md",
+        "demo/release_faq.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli artifact-index --root .",
+      "expected_outputs": [
+        "demo/artifact_index.md",
+        "demo/artifact_index.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli evaluator-scorecard --root .",
+      "expected_outputs": [
+        "demo/evaluator_scorecard.md",
+        "demo/evaluator_scorecard.json"
+      ]
     }
   ],
   "status": "ready"

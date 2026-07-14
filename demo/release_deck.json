@@ -1,85 +1,110 @@
 {
-  "artifact_count": 16,
+  "artifact_count": 21,
   "artifacts": [
     {
-      "bytes": 5938,
+      "bytes": 7151,
       "path": "demo/adoption_notes.json",
-      "sha256": "4f24357bd142f6ab9905456461b90bab26660b25576ee18bc9a79d40e91a59c3"
+      "sha256": "aff676f77aee44d05ad11999c4de54a8aad04da5c882e1a2c80273f7a8c5833d"
     },
     {
-      "bytes": 37394,
+      "bytes": 41652,
       "path": "demo/api_reference.json",
-      "sha256": "7b89c11e4d5e9b450d4c1c66cf2f17065d6f9474e1c7dee1c53b82ed4d7db9ac"
+      "sha256": "459ceec67aa61f4606b6b006b9ea176cc0d37bc9d631a3edc7df9f8297064a44"
+    },
+    {
+      "bytes": 24304,
+      "path": "demo/artifact_index.json",
+      "sha256": "1fe20b2960e171da6bbfcd6f7e3587706d39fac830f5910cffe969a8b271a1b1"
     },
     {
       "bytes": 3043,
       "path": "demo/benchmark_suite.json",
-      "sha256": "b491a34778eb237d8a80e95df1888a900c89db2db513e2edc4b0e791157cffce"
+      "sha256": "6ee09b77f1d4f5aadc421b5fc78e150030fffb03de636e6cf3fe4b74cfa05a1f"
     },
     {
-      "bytes": 18004,
+      "bytes": 4645,
+      "path": "demo/citation_map.json",
+      "sha256": "cb3e09d776b4e334615be05b3dafe356c98a7b2d1b05100f60b4a28e2d5dabe7"
+    },
+    {
+      "bytes": 20252,
       "path": "demo/command_matrix.json",
-      "sha256": "482bdb26f8278978cad188f683f4202deb633c268e7db0ab52094b0b6d7c248a"
+      "sha256": "0eedc17d3bea61f2064371015e0f34cce899fead5034f7926566147fb62b7706"
     },
     {
-      "bytes": 1822,
+      "bytes": 1952,
       "path": "demo/compatibility_report.json",
-      "sha256": "d2653a328dc17a9883ef320da2341b75757e3bc5b096b59b05d563a350b0f322"
+      "sha256": "6c3056202895e6f5a1bd568172b8e43079af045fbfccff460d2a0515756886d6"
+    },
+    {
+      "bytes": 1762,
+      "path": "demo/evaluator_scorecard.json",
+      "sha256": "a9406e7b779c266db7db538442a98027934dd9fbd30e65c5e5ba404d4a7aaccc"
     },
     {
       "bytes": 3795,
       "path": "demo/example_pack.json",
-      "sha256": "2a5f299bb12a9fe674c93a404f3b9d02aee910468937fe4257b0744c230559ca"
+      "sha256": "7cb7f9c3f2b0fc254f4306ed01bf7b5dbfe6c294b1ec20a7ce4d37852b270f54"
     },
     {
       "bytes": 4685,
       "path": "demo/golden_fixtures.json",
-      "sha256": "6e7b7638818afdf7d61893590b38963a8d2e12562c68b5031aef4d30f188689c"
+      "sha256": "f6c5648518f62a1b62e27cd625c43888fed57a1e1b5b4d2b016dcbef0127817b"
     },
     {
       "bytes": 3546,
       "path": "demo/integration_cookbook.json",
-      "sha256": "71823c83d849c943b5d3d8a9f40098736dc85e87fe542448f5f871d1826bddf1"
+      "sha256": "8a9ed4d4f1bc0b6fa610667fb403988797ade30ed29d594d5165fcd3856458d0"
     },
     {
       "bytes": 6046,
       "path": "demo/landing_page.json",
-      "sha256": "9001d5d562723f1c2cebd37ced5b662d31aeb44c96eeae1d6b88c8bb22e21807"
+      "sha256": "1d5dd327d5deed49db657ef016849cf6930ada283694d6f29eabec8a67036d98"
     },
     {
-      "bytes": 2322,
+      "bytes": 2430,
       "path": "demo/maintainer_guide.json",
-      "sha256": "c54064f0c7b0ab21ca464bf98bb2f497249a76c49a104824feb24249b0ef8968"
+      "sha256": "de0a35b7e09010893e9e62318083cd5cf33af29f142512fd51e6867958f70d65"
     },
     {
-      "bytes": 1923,
+      "bytes": 2116,
       "path": "demo/public_readiness.json",
-      "sha256": "15d96adf743682bef08d102ae5ec93be95b0a8c49568f421a10722d398f20619"
+      "sha256": "ea95c96e19cefec90f6774d91e670ab20ad057bb120e1720d229639c69e5649e"
     },
     {
-      "bytes": 1984,
+      "bytes": 2275,
       "path": "demo/regression_summary.json",
-      "sha256": "5919c7ab743c5893baaa15078db7d643f91271e0efd12227b5c88af5d66e1645"
+      "sha256": "784262d381778f1f4c214fd7747f90fdd7fa54bc003b495b795a11e26384eb8f"
     },
     {
-      "bytes": 15025,
+      "bytes": 2295,
+      "path": "demo/release_faq.json",
+      "sha256": "5aafef8f95cd0962312f2066f4f568b9b2cb535d30e6621bb9a8b9139bcccd02"
+    },
+    {
+      "bytes": 16603,
       "path": "demo/release_manifest.json",
-      "sha256": "f2564a94855db6791bf88bb0b39832b0c45370e1230459445ca096767b20f6c3"
+      "sha256": "50d89640ff5572c5e88d47e9a874ddb4c2144294ca7a7cdfd90f3c7c0c1c4bbb"
     },
     {
-      "bytes": 6849,
+      "bytes": 7955,
       "path": "demo/reviewer_scorecard.json",
-      "sha256": "8a00abc46ce472d380d02d48ac5f233a776c358baec53eac01c9f147cb628a06"
+      "sha256": "8c95b1f77db408b1a5228924fd502220a8e87bb0f4044e203152b8edad94b397"
     },
     {
       "bytes": 2452,
       "path": "demo/roadmap_next.json",
-      "sha256": "5df60fe48a35e8be55bef3102368017554cdaf3f4ed1851ce13e056ac888164b"
+      "sha256": "3928f2c8b8502c9a43ae31d3dd216edf70f19c7551c18d1d1571a49643b59cc4"
+    },
+    {
+      "bytes": 3747,
+      "path": "demo/trust_report.json",
+      "sha256": "90e576c5b652574486e45446fa16196f6cffdf7bb88dfde4949d6397e0f3007c"
     },
     {
       "bytes": 3557,
       "path": "demo/workflow_protocol.json",
-      "sha256": "8a210ce7d2934354fb151cd64aa9a15ed570e82c6f039c748ea8fe89c3b035a7"
+      "sha256": "d9e8eb649bda291ffbf8f4ec7e951a4e2c9fdde5124bc829f94eac6ecc0b2658"
     }
   ],
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
@@ -87,8 +112,8 @@
   "slides": [
     {
       "points": [
-        "Version 1.1.0",
-        "42 zero-dependency CLI commands documented",
+        "Version 1.2.0",
+        "47 zero-dependency CLI commands documented",
         "Static Markdown, JSON, HTML, and SVG artifacts only"
       ],
       "slide": 1,
@@ -96,7 +121,7 @@
     },
     {
       "points": [
-        "91 release manifest artifacts tracked",
+        "101 release manifest artifacts tracked",
         "Artifact hashes are recorded in release, evidence, visual receipt, and bundle manifests",
         "Golden fixtures record static fixture hashes, schemas, and expected output keys",
         "diff-check verifies saved hashes against current local files"
@@ -107,7 +132,7 @@
     {
       "points": [
         "Scorecard status: ready",
-        "Score: 7 / 7",
+        "Score: 8 / 8",
         "Maturity mapping covers static inputs, review controls, package evidence, verification, and readiness",
         "Public hardening covers benchmark, integration, compatibility, maintainer, fixture, and regression surfaces",
         "Protocol layer covers public landing, API contracts, agent protocol, example recipes, and roadmap constraints"
@@ -137,5 +162,5 @@
     }
   ],
   "title": "Release Owner Promotion Deck",
-  "version": "1.1.0"
+  "version": "1.2.0"
 }

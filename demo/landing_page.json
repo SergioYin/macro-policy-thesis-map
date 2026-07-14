@@ -23,7 +23,7 @@
     {
       "bytes": 15025,
       "path": "demo/release_manifest.json",
-      "sha256": "79d3424cf7bca40d412ac18f40b9e5ffefe387f6da14c073731f57884d94fd57"
+      "sha256": "17e1b952fe3b5010b1a6c7e259968cdbb20ba5e31e2884c0895993531261d8e4"
     },
     {
       "bytes": 3557,
@@ -161,5 +161,5 @@
   ],
   "tagline": "Static macro policy notes in; neutral thesis evidence packets out.",
   "title": "Macro Policy Thesis Map",
-  "version": "1.1.0"
+  "version": "1.2.0"
 }

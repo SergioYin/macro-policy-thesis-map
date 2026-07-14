@@ -1,6 +1,6 @@
 {
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
-  "command_count": 42,
+  "command_count": 47,
   "commands": [
     {
       "command": "build-packet",
@@ -387,6 +387,56 @@
       "usage": "macro-policy-thesis-map roadmap-next --root ."
     },
     {
+      "command": "trust-report",
+      "outputs": [
+        "demo/trust_report.md",
+        "demo/trust_report.json"
+      ],
+      "purpose": "Summarize GitHub stranger trust evidence from local artifacts, safety gates, and reproducibility checks.",
+      "safety": "Trust evidence is local and deterministic; no external reputation checks, live data, or advice.",
+      "usage": "macro-policy-thesis-map trust-report --root ."
+    },
+    {
+      "command": "citation-map",
+      "outputs": [
+        "demo/citation_map.md",
+        "demo/citation_map.json"
+      ],
+      "purpose": "Map public claims to local artifacts, paths, hashes, and producer commands.",
+      "safety": "Cites local artifacts only and avoids hosted, personal, or non-public references.",
+      "usage": "macro-policy-thesis-map citation-map --root ."
+    },
+    {
+      "command": "release-faq",
+      "outputs": [
+        "demo/release_faq.md",
+        "demo/release_faq.json"
+      ],
+      "purpose": "Write a public release FAQ for first-time GitHub visitors and evaluators.",
+      "safety": "FAQ text stays descriptive, local, static, and research-only.",
+      "usage": "macro-policy-thesis-map release-faq --root ."
+    },
+    {
+      "command": "artifact-index",
+      "outputs": [
+        "demo/artifact_index.md",
+        "demo/artifact_index.json"
+      ],
+      "purpose": "Index deterministic public demo artifacts by format, producer command, size, and hash.",
+      "safety": "Indexes local files only; no upload destination, workflow, or private storage reference.",
+      "usage": "macro-policy-thesis-map artifact-index --root ."
+    },
+    {
+      "command": "evaluator-scorecard",
+      "outputs": [
+        "demo/evaluator_scorecard.md",
+        "demo/evaluator_scorecard.json"
+      ],
+      "purpose": "Score public evaluator readiness across trust, citations, artifacts, tests, and safety boundaries.",
+      "safety": "Scores local release evidence only and does not provide financial advice.",
+      "usage": "macro-policy-thesis-map evaluator-scorecard --root ."
+    },
+    {
       "command": "cold-start-walkthrough",
       "outputs": [
         "demo/cold_start_walkthrough.md",
@@ -425,5 +475,5 @@
     }
   ],
   "title": "CLI Help Export",
-  "version": "1.1.0"
+  "version": "1.2.0"
 }

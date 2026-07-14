@@ -1,6 +1,6 @@
 {
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
-  "check_count": 9,
+  "check_count": 10,
   "checks": [
     {
       "detail": "Package declares Python 3.11 or newer.",
@@ -43,12 +43,17 @@
       "passed": true
     },
     {
+      "detail": "Public trust layer artifacts are present.",
+      "name": "trust_artifacts",
+      "passed": true
+    },
+    {
       "detail": "No workflow files are required.",
       "name": "no_workflows",
       "passed": true
     }
   ],
-  "passed_count": 9,
+  "passed_count": 10,
   "status": "ready",
   "supported_surfaces": [
     "source checkout",
@@ -63,5 +68,5 @@
     "workflow automation",
     "personalized finance advice"
   ],
-  "version": "1.1.0"
+  "version": "1.2.0"
 }

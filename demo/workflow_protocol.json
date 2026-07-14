@@ -98,7 +98,7 @@
       ]
     }
   ],
-  "protocol_id": "macro-policy-thesis-map.v1.1",
+  "protocol_id": "macro-policy-thesis-map.v1.2",
   "purpose": "Reusable local protocol for agents generating static macro-policy evidence maps.",
   "stop_conditions": [
     "Missing required static input files.",
@@ -108,5 +108,5 @@
     "public-readiness reports blocked."
   ],
   "title": "Workflow Protocol",
-  "version": "1.1.0"
+  "version": "1.2.0"
 }

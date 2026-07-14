@@ -12,7 +12,7 @@ code{background:#e5e7eb;padding:.1rem .25rem}
 <main>
 <h1>Workflow Protocol</h1>
 <p class="notice">Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.</p>
-<p class="lede">Version 1.1.0</p>
+<p class="lede">Version 1.2.0</p>
 <h2>Phases</h2><table><thead><tr><th>Phase</th><th>Goal</th><th>Commands</th><th>Gate</th></tr></thead><tbody><tr><td>inspect</td><td>Confirm local static inputs and public docs are present.</td><td>command-matrix --root ., schema-export --root ., fixture-doctor --root .</td><td>fixture-doctor status is pass before packet generation.</td></tr>
 <tr><td>generate</td><td>Build the evidence packet and reusable public surfaces.</td><td>build-packet --root ., review-ledger --root ., example-pack --root ., api-reference --root .</td><td>review-ledger has no blocker findings before sharing.</td></tr>
 <tr><td>package</td><td>Prepare public visitor and agent reuse artifacts.</td><td>landing-page --root ., workflow-protocol --root ., roadmap-next --root ., evidence-bundle --root .</td><td>public-readiness can evaluate all required demo artifacts.</td></tr>

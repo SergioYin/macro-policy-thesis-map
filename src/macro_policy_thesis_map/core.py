@@ -130,6 +130,16 @@ DEMO_ARTIFACTS = [
     "demo/roadmap_next.md",
     "demo/roadmap_next.json",
     "demo/roadmap_next.html",
+    "demo/trust_report.md",
+    "demo/trust_report.json",
+    "demo/citation_map.md",
+    "demo/citation_map.json",
+    "demo/release_faq.md",
+    "demo/release_faq.json",
+    "demo/artifact_index.md",
+    "demo/artifact_index.json",
+    "demo/evaluator_scorecard.md",
+    "demo/evaluator_scorecard.json",
     "demo/fixture_doctor.md",
     "demo/fixture_doctor.json",
     "demo/input_schema.md",
@@ -414,6 +424,41 @@ COMMAND_SPECS = [
         "inputs": ["built-in roadmap metadata and safety constraints"],
         "outputs": ["demo/roadmap_next.md", "demo/roadmap_next.json", "demo/roadmap_next.html"],
         "safety": "Roadmap documentation only; excludes live data integrations, broker actions, workflows, and advice.",
+    },
+    {
+        "command": "trust-report",
+        "purpose": "Summarize GitHub stranger trust evidence from local artifacts, safety gates, and reproducibility checks.",
+        "inputs": ["README, tests, package metadata, demo artifacts, public readiness, release manifest"],
+        "outputs": ["demo/trust_report.md", "demo/trust_report.json"],
+        "safety": "Trust evidence is local and deterministic; no external reputation checks, live data, or advice.",
+    },
+    {
+        "command": "citation-map",
+        "purpose": "Map public claims to local artifacts, paths, hashes, and producer commands.",
+        "inputs": ["README, command metadata, demo artifacts"],
+        "outputs": ["demo/citation_map.md", "demo/citation_map.json"],
+        "safety": "Cites local artifacts only and avoids hosted, personal, or non-public references.",
+    },
+    {
+        "command": "release-faq",
+        "purpose": "Write a public release FAQ for first-time GitHub visitors and evaluators.",
+        "inputs": ["built-in public questions, command metadata, local artifact availability"],
+        "outputs": ["demo/release_faq.md", "demo/release_faq.json"],
+        "safety": "FAQ text stays descriptive, local, static, and research-only.",
+    },
+    {
+        "command": "artifact-index",
+        "purpose": "Index deterministic public demo artifacts by format, producer command, size, and hash.",
+        "inputs": ["demo artifacts and command metadata"],
+        "outputs": ["demo/artifact_index.md", "demo/artifact_index.json"],
+        "safety": "Indexes local files only; no upload destination, workflow, or private storage reference.",
+    },
+    {
+        "command": "evaluator-scorecard",
+        "purpose": "Score public evaluator readiness across trust, citations, artifacts, tests, and safety boundaries.",
+        "inputs": ["trust report, citation map, artifact index, public readiness, tests, README"],
+        "outputs": ["demo/evaluator_scorecard.md", "demo/evaluator_scorecard.json"],
+        "safety": "Scores local release evidence only and does not provide financial advice.",
     },
     {
         "command": "cold-start-walkthrough",
@@ -1287,7 +1332,7 @@ def workflow_protocol() -> dict[str, Any]:
     return {
         "title": "Workflow Protocol",
         "version": __version__,
-        "protocol_id": "macro-policy-thesis-map.v1.1",
+        "protocol_id": "macro-policy-thesis-map.v1.2",
         "purpose": "Reusable local protocol for agents generating static macro-policy evidence maps.",
         "phases": phases,
         "agent_contract": {
@@ -1382,7 +1427,7 @@ def roadmap_next() -> dict[str, Any]:
             "roadmap_id": "next-002",
             "theme": "Agent reuse",
             "item": "Stabilize protocol JSON field names before adding optional adapters.",
-            "acceptance": "workflow_protocol.json remains backwards-readable by agents using protocol_id macro-policy-thesis-map.v1.1.",
+            "acceptance": "workflow_protocol.json remains backwards-readable by agents using protocol_id macro-policy-thesis-map.v1.2.",
             "excluded": ["remote orchestration", "repository workflow files"],
         },
         {
@@ -1418,6 +1463,269 @@ def roadmap_next() -> dict[str, Any]:
             "Repository workflow automation.",
             "Private storage or private document references.",
         ],
+        "boundaries": DISCLAIMER,
+    }
+
+
+def trust_report(root: Path) -> dict[str, Any]:
+    checks = [
+        {
+            "name": "zero_runtime_dependencies",
+            "passed": "dependencies = []" in root.joinpath("pyproject.toml").read_text(encoding="utf-8") if root.joinpath("pyproject.toml").exists() else False,
+            "evidence": ["pyproject.toml"],
+            "trust_reason": "A stranger can inspect and install without pulling runtime packages.",
+        },
+        {
+            "name": "local_static_inputs",
+            "passed": all(root.joinpath(path).exists() for path in ["examples/macro_events.csv", "examples/prior_macro_events.csv", "examples/public_macro_cases.csv"]),
+            "evidence": ["examples/macro_events.csv", "examples/prior_macro_events.csv", "examples/public_macro_cases.csv"],
+            "trust_reason": "Default examples are committed static CSV files.",
+        },
+        {
+            "name": "deterministic_demo_outputs",
+            "passed": all(root.joinpath(path).exists() for path in ["demo/command_matrix.json", "demo/public_readiness.json", "demo/release_manifest.json"]),
+            "evidence": ["demo/command_matrix.json", "demo/public_readiness.json", "demo/release_manifest.json"],
+            "trust_reason": "Public command, readiness, and hash manifests are available under demo/.",
+        },
+        {
+            "name": "test_and_scan_surfaces",
+            "passed": any(root.joinpath("tests").glob("test_*.py")) and not public_findings(root),
+            "evidence": ["tests/test_cli.py", "tests/test_safety.py", "demo/public_readiness.json"],
+            "trust_reason": "Tests and public scan support local verification without network access.",
+        },
+        {
+            "name": "finance_boundaries",
+            "passed": all(
+                term in (root.joinpath("README.md").read_text(encoding="utf-8").lower() if root.joinpath("README.md").exists() else "")
+                for term in ["does not fetch live data", "connect to brokers", "recommend buys", "predict returns"]
+            ),
+            "evidence": ["README.md", "skills/agent/macro-policy-thesis-map/SKILL.md"],
+            "trust_reason": "Research-only limitations are visible before running the CLI.",
+        },
+        {
+            "name": "no_workflow_files",
+            "passed": not root.joinpath(".github/workflows").exists(),
+            "evidence": [".github/workflows"],
+            "trust_reason": "Evaluation does not depend on hidden CI or repository automation.",
+        },
+    ]
+    artifacts = records_for_existing(
+        root,
+        [
+            "README.md",
+            "pyproject.toml",
+            "tests/test_cli.py",
+            "tests/test_safety.py",
+            "demo/command_matrix.json",
+            "demo/public_readiness.json",
+            "demo/release_manifest.json",
+            "demo/evidence_bundle.json",
+        ],
+    )
+    passed = sum(1 for item in checks if item["passed"])
+    return {
+        "title": "Public Trust Report",
+        "version": __version__,
+        "audience": "GitHub visitor with no prior project context",
+        "status": "ready" if passed == len(checks) else "needs-review",
+        "score": passed,
+        "max_score": len(checks),
+        "checks": checks,
+        "artifacts": artifacts,
+        "verification_commands": [
+            "PYTHONPATH=src python -m pytest",
+            "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
+            "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
+            "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
+            "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
+        ],
+        "boundaries": DISCLAIMER,
+    }
+
+
+def citation_map(root: Path) -> dict[str, Any]:
+    claims = [
+        {
+            "claim_id": "claim-001",
+            "claim": "The project is a zero-dependency Python CLI.",
+            "citations": ["pyproject.toml", "demo/compatibility_report.json"],
+            "producer_command": "compatibility-report",
+        },
+        {
+            "claim_id": "claim-002",
+            "claim": "The default examples are local static CSV fixtures.",
+            "citations": ["examples/macro_events.csv", "examples/prior_macro_events.csv", "examples/public_macro_cases.csv", "demo/golden_fixtures.json"],
+            "producer_command": "golden-fixtures",
+        },
+        {
+            "claim_id": "claim-003",
+            "claim": "The CLI writes deterministic Markdown, JSON, HTML, and SVG artifacts under demo/.",
+            "citations": ["demo/command_matrix.json", "demo/artifact_index.json", "demo/release_manifest.json"],
+            "producer_command": "artifact-index",
+        },
+        {
+            "claim_id": "claim-004",
+            "claim": "Public release gates include tests, selfcheck, public scan, readiness, diff check, and wheel build.",
+            "citations": ["tests/test_cli.py", "tests/test_safety.py", "demo/regression_summary.json", "demo/trust_report.json"],
+            "producer_command": "trust-report",
+        },
+        {
+            "claim_id": "claim-005",
+            "claim": "Outputs are research-only and do not fetch live data or provide personalized financial advice.",
+            "citations": ["README.md", "skills/agent/macro-policy-thesis-map/SKILL.md", "demo/public_readiness.json"],
+            "producer_command": "public-readiness",
+        },
+    ]
+    rows = []
+    for claim in claims:
+        citations = []
+        for relative in claim["citations"]:
+            path = root / relative
+            citations.append(file_record(root, path) if path.exists() else {"path": relative, "status": "missing"})
+        rows.append({**claim, "citations": citations, "citation_count": len(citations), "missing_count": sum(1 for item in citations if item.get("status") == "missing")})
+    return {
+        "title": "Citation Map",
+        "version": __version__,
+        "citation_policy": "Every claim cites local repository artifacts only.",
+        "claim_count": len(rows),
+        "missing_count": sum(item["missing_count"] for item in rows),
+        "claims": rows,
+        "boundaries": DISCLAIMER,
+    }
+
+
+def release_faq(root: Path) -> dict[str, Any]:
+    questions = [
+        {
+            "question_id": "faq-001",
+            "question": "What should a first-time GitHub visitor run first?",
+            "answer": "Run command-matrix, fixture-doctor, build-packet, and public-readiness from the repository root.",
+            "local_citations": ["README.md", "demo/command_matrix.md", "demo/cold_start_walkthrough.md"],
+        },
+        {
+            "question_id": "faq-002",
+            "question": "Does the project use live macro, market, or broker data?",
+            "answer": "No. The package reads static CSV inputs and bundled examples only.",
+            "local_citations": ["README.md", "demo/input_schema.md", "demo/public_readiness.md"],
+        },
+        {
+            "question_id": "faq-003",
+            "question": "How can an evaluator verify artifact drift?",
+            "answer": "Regenerate demo outputs, run release-manifest, then run diff-check against the saved manifest.",
+            "local_citations": ["demo/release_manifest.md", "demo/regression_summary.md"],
+        },
+        {
+            "question_id": "faq-004",
+            "question": "Where are public claims linked to evidence?",
+            "answer": "Use citation-map for claim-to-artifact references and artifact-index for hashes and producer commands.",
+            "local_citations": ["demo/citation_map.md", "demo/artifact_index.md"],
+        },
+        {
+            "question_id": "faq-005",
+            "question": "What is intentionally unsupported?",
+            "answer": "Live feeds, workflow automation, broker connections, trade actions, return predictions, and personalized financial advice.",
+            "local_citations": ["README.md", "demo/roadmap_next.md", "skills/agent/macro-policy-thesis-map/SKILL.md"],
+        },
+    ]
+    for item in questions:
+        item["citation_status"] = "ready" if all(root.joinpath(path).exists() for path in item["local_citations"]) else "needs-artifacts"
+    return {
+        "title": "Release FAQ",
+        "version": __version__,
+        "question_count": len(questions),
+        "ready_count": sum(1 for item in questions if item["citation_status"] == "ready"),
+        "questions": questions,
+        "boundaries": DISCLAIMER,
+    }
+
+
+def artifact_index(root: Path) -> dict[str, Any]:
+    by_output = {
+        output: spec["command"]
+        for spec in COMMAND_SPECS
+        for output in spec["outputs"]
+        if output.startswith("demo/")
+    }
+    rows = []
+    for relative in sorted(set(DEMO_ARTIFACTS) | set(by_output)):
+        path = root / relative
+        producer = by_output.get(relative, "release artifact")
+        fmt = relative.rsplit(".", 1)[-1] if "." in relative else "directory"
+        if path.exists() and path.is_file():
+            rows.append({**file_record(root, path), "format": fmt, "producer_command": producer, "status": "present"})
+        else:
+            rows.append({"path": relative, "format": fmt, "producer_command": producer, "status": "missing", "bytes": 0, "sha256": ""})
+    formats: dict[str, int] = {}
+    for row in rows:
+        if row["status"] == "present":
+            formats[row["format"]] = formats.get(row["format"], 0) + 1
+    return {
+        "title": "Artifact Index",
+        "version": __version__,
+        "artifact_count": len(rows),
+        "present_count": sum(1 for item in rows if item["status"] == "present"),
+        "missing_count": sum(1 for item in rows if item["status"] == "missing"),
+        "formats": dict(sorted(formats.items())),
+        "artifacts": rows,
+        "boundaries": DISCLAIMER,
+    }
+
+
+def evaluator_scorecard(root: Path) -> dict[str, Any]:
+    trust = read_optional_json(root / "demo/trust_report.json")
+    citations = read_optional_json(root / "demo/citation_map.json")
+    index = read_optional_json(root / "demo/artifact_index.json")
+    readiness = read_optional_json(root / "demo/public_readiness.json")
+    checks = [
+        {
+            "name": "trust_report_ready",
+            "passed": trust.get("status") == "ready",
+            "evidence": "demo/trust_report.json",
+            "detail": "Trust report scores local evidence for a first-time GitHub visitor.",
+        },
+        {
+            "name": "citation_map_complete",
+            "passed": citations.get("missing_count") == 0,
+            "evidence": "demo/citation_map.json",
+            "detail": "Public claims cite local artifacts with paths and hashes.",
+        },
+        {
+            "name": "artifact_index_complete",
+            "passed": index.get("missing_count") == 0,
+            "evidence": "demo/artifact_index.json",
+            "detail": "Demo artifacts have producer commands, formats, and hashes.",
+        },
+        {
+            "name": "public_readiness_ready",
+            "passed": readiness.get("status") == "ready",
+            "evidence": "demo/public_readiness.json",
+            "detail": "Readiness gates pass for local public release evidence.",
+        },
+        {
+            "name": "tests_present",
+            "passed": any(root.joinpath("tests").glob("test_*.py")),
+            "evidence": "tests/test_*.py",
+            "detail": "Local pytest suite is present for evaluator reruns.",
+        },
+        {
+            "name": "boundaries_visible",
+            "passed": all(
+                root.joinpath(path).exists()
+                for path in ["README.md", "skills/agent/macro-policy-thesis-map/SKILL.md", "demo/release_faq.json"]
+            ),
+            "evidence": "README.md, skills/agent/macro-policy-thesis-map/SKILL.md, demo/release_faq.json",
+            "detail": "Research-only boundaries are documented in human and agent surfaces.",
+        },
+    ]
+    score = sum(1 for item in checks if item["passed"])
+    return {
+        "title": "Evaluator Scorecard",
+        "version": __version__,
+        "status": "ready" if score == len(checks) else "needs-review",
+        "score": score,
+        "max_score": len(checks),
+        "checks": checks,
+        "recommended_order": ["trust-report", "citation-map", "release-faq", "artifact-index", "evaluator-scorecard"],
         "boundaries": DISCLAIMER,
     }
 
@@ -1484,6 +1792,7 @@ def maturity(root: Path) -> dict[str, Any]:
         ("release_owner_pack", all(root.joinpath(path).exists() for path in ["demo/adoption_notes.json", "demo/reviewer_scorecard.json", "demo/release_deck.json", "demo/bundle_export/manifest.json"])),
         ("public_evaluator_hardening", all(root.joinpath(path).exists() for path in ["demo/benchmark_suite.json", "demo/integration_cookbook.json", "demo/compatibility_report.json", "demo/maintainer_guide.json", "demo/golden_fixtures.json", "demo/regression_summary.json"])),
         ("public_protocol_layer", all(root.joinpath(path).exists() for path in ["demo/landing_page.json", "demo/api_reference.json", "demo/workflow_protocol.json", "demo/example_pack.json", "demo/roadmap_next.json"])),
+        ("public_trust_layer", all(root.joinpath(path).exists() for path in ["demo/trust_report.json", "demo/citation_map.json", "demo/release_faq.json", "demo/artifact_index.json", "demo/evaluator_scorecard.json"])),
         ("tests", any(root.joinpath("tests").glob("test_*.py"))),
         ("skill", root.joinpath("skills/agent/macro-policy-thesis-map/SKILL.md").exists()),
         ("no_workflows", not root.joinpath(".github/workflows").exists()),
@@ -1544,6 +1853,11 @@ def quickstart_check(root: Path) -> dict[str, Any]:
             "workflow-protocol",
             "example-pack",
             "roadmap-next",
+            "trust-report",
+            "citation-map",
+            "release-faq",
+            "artifact-index",
+            "evaluator-scorecard",
             "case-gallery",
             "visual-receipt",
             "troubleshoot",
@@ -1671,6 +1985,11 @@ def docs_export(root: Path) -> dict[str, Any]:
         ("Workflow protocol", "demo/workflow_protocol.md", "Agent-ready local protocol and stop conditions."),
         ("Example pack", "demo/example_pack.md", "Stable public command recipes and expected artifacts."),
         ("Roadmap next", "demo/roadmap_next.md", "Bounded public next steps and exclusions."),
+        ("Trust report", "demo/trust_report.md", "GitHub stranger trust evidence from local artifacts."),
+        ("Citation map", "demo/citation_map.md", "Public claim citations to local paths and hashes."),
+        ("Release FAQ", "demo/release_faq.md", "First-time evaluator questions with local citations."),
+        ("Artifact index", "demo/artifact_index.md", "Demo artifact producers, formats, sizes, and hashes."),
+        ("Evaluator scorecard", "demo/evaluator_scorecard.md", "Public evaluator readiness scorecard."),
         ("Troubleshooting", "demo/troubleshoot.md", "Operator diagnostics and recovery steps."),
         ("CLI help", "demo/cli_help.md", "Deterministic command usage lines."),
         ("README snippet", "demo/readme_snippet.md", "Compact copyable quickstart snippet."),
@@ -1720,6 +2039,11 @@ def readme_snippet() -> dict[str, Any]:
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli workflow-protocol --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli example-pack --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli roadmap-next --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli trust-report --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli citation-map --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-faq --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli artifact-index --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli evaluator-scorecard --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .",
         "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
     ]
@@ -1727,7 +2051,7 @@ def readme_snippet() -> dict[str, Any]:
         "title": "README Snippet",
         "version": __version__,
         "commands": commands,
-        "outputs": ["demo/thesis_packet.md", "demo/review_ledger.md", "demo/scenario_library.md", "demo/assumption_registry.md", "demo/data_dictionary_diff.md", "demo/benchmark_suite.md", "demo/integration_cookbook.md", "demo/compatibility_report.md", "demo/maintainer_guide.md", "demo/golden_fixtures.md", "demo/regression_summary.md", "demo/landing_page.md", "demo/api_reference.md", "demo/workflow_protocol.md", "demo/example_pack.md", "demo/roadmap_next.md", "demo/troubleshoot.md"],
+        "outputs": ["demo/thesis_packet.md", "demo/review_ledger.md", "demo/scenario_library.md", "demo/assumption_registry.md", "demo/data_dictionary_diff.md", "demo/benchmark_suite.md", "demo/integration_cookbook.md", "demo/compatibility_report.md", "demo/maintainer_guide.md", "demo/golden_fixtures.md", "demo/regression_summary.md", "demo/landing_page.md", "demo/api_reference.md", "demo/workflow_protocol.md", "demo/example_pack.md", "demo/roadmap_next.md", "demo/trust_report.md", "demo/citation_map.md", "demo/release_faq.md", "demo/artifact_index.md", "demo/evaluator_scorecard.md", "demo/troubleshoot.md"],
         "snippet": "\n".join(commands),
         "boundaries": DISCLAIMER,
     }
@@ -1809,6 +2133,11 @@ def evidence_bundle(root: Path) -> dict[str, Any]:
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli workflow-protocol --root .",
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli example-pack --root .",
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli roadmap-next --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli trust-report --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli citation-map --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-faq --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli artifact-index --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli evaluator-scorecard --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
@@ -1852,6 +2181,11 @@ def public_readiness(root: Path) -> dict[str, Any]:
         "demo/workflow_protocol.json",
         "demo/example_pack.json",
         "demo/roadmap_next.json",
+        "demo/trust_report.json",
+        "demo/citation_map.json",
+        "demo/release_faq.json",
+        "demo/artifact_index.json",
+        "demo/evaluator_scorecard.json",
         "demo/adoption_notes.json",
         "demo/reviewer_scorecard.json",
         "demo/release_deck.json",
@@ -1866,6 +2200,7 @@ def public_readiness(root: Path) -> dict[str, Any]:
         ("schema_adaptation_surfaces", all(root.joinpath(path).exists() for path in ["demo/scenario_library.json", "demo/assumption_registry.json", "demo/data_dictionary_diff.json"]), "Scenario, assumption, and data dictionary diff artifacts are present."),
         ("public_evaluator_hardening", all(root.joinpath(path).exists() for path in ["demo/benchmark_suite.json", "demo/integration_cookbook.json", "demo/compatibility_report.json", "demo/maintainer_guide.json", "demo/golden_fixtures.json", "demo/regression_summary.json"]), "Benchmark, integration, compatibility, maintainer, golden fixture, and regression summary artifacts are present."),
         ("public_protocol_layer", all(root.joinpath(path).exists() for path in ["demo/landing_page.html", "demo/api_reference.html", "demo/workflow_protocol.html", "demo/example_pack.html", "demo/roadmap_next.html"]), "Landing, API reference, workflow protocol, example pack, and roadmap HTML artifacts are present."),
+        ("public_trust_layer", all(root.joinpath(path).exists() for path in ["demo/trust_report.json", "demo/citation_map.json", "demo/release_faq.json", "demo/artifact_index.json", "demo/evaluator_scorecard.json"]), "Trust report, citation map, release FAQ, artifact index, and evaluator scorecard artifacts are present."),
         ("no_workflow_files", not root.joinpath(".github/workflows").exists(), "No repository workflow files are required for public evaluation."),
         ("zero_dependency_package", "dependencies = []" in root.joinpath("pyproject.toml").read_text(encoding="utf-8") if root.joinpath("pyproject.toml").exists() else False, "Package declares no runtime dependencies."),
     ]
@@ -1998,6 +2333,7 @@ def compatibility_report(root: Path) -> dict[str, Any]:
         ("bundled_case_fixture", root.joinpath("src/macro_policy_thesis_map/examples/public_macro_cases.csv").exists(), "Bundled public case fixture is present."),
         ("public_artifacts", all(root.joinpath(path).exists() for path in ["demo/command_matrix.json", "demo/public_readiness.json", "demo/golden_fixtures.json"]), "Public evaluator artifacts are present."),
         ("protocol_artifacts", all(root.joinpath(path).exists() for path in ["demo/landing_page.json", "demo/api_reference.json", "demo/workflow_protocol.json", "demo/example_pack.json", "demo/roadmap_next.json"]), "Public protocol layer artifacts are present."),
+        ("trust_artifacts", all(root.joinpath(path).exists() for path in ["demo/trust_report.json", "demo/citation_map.json", "demo/release_faq.json", "demo/artifact_index.json", "demo/evaluator_scorecard.json"]), "Public trust layer artifacts are present."),
         ("no_workflows", not root.joinpath(".github/workflows").exists(), "No workflow files are required."),
     ]
     return {
@@ -2045,6 +2381,11 @@ def maintainer_guide() -> dict[str, Any]:
         "workflow-protocol",
         "example-pack",
         "roadmap-next",
+        "trust-report",
+        "citation-map",
+        "release-faq",
+        "artifact-index",
+        "evaluator-scorecard",
         "benchmark-suite",
         "integration-cookbook",
         "compatibility-report",
@@ -2126,6 +2467,7 @@ def regression_summary(root: Path) -> dict[str, Any]:
         {"name": "public_readiness", "status": read_optional_json(root / "demo/public_readiness.json").get("status", "missing"), "evidence": "demo/public_readiness.json", "detail": "Public readiness gate summary."},
         {"name": "release_manifest", "status": "pass" if root.joinpath("demo/release_manifest.json").exists() else "missing", "evidence": "demo/release_manifest.json", "detail": "Release artifact hashes are present."},
         {"name": "golden_fixtures", "status": read_optional_json(root / "demo/golden_fixtures.json").get("status", "missing"), "evidence": "demo/golden_fixtures.json", "detail": "Fixture schema and hash inventory."},
+        {"name": "trust_layer", "status": read_optional_json(root / "demo/evaluator_scorecard.json").get("status", "missing"), "evidence": "demo/evaluator_scorecard.json", "detail": "Evaluator trust scorecard based on local artifacts."},
         {"name": "wheel_build", "status": "manual", "evidence": "python -m build --wheel or build_backend.build_wheel", "detail": "Offline wheel build should be run when build tooling is available."},
     ]
     blocking = [item for item in gates if item["status"] not in {"pass", "ready", "manual"}]
@@ -2143,6 +2485,7 @@ def regression_summary(root: Path) -> dict[str, Any]:
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli evaluator-scorecard --root .",
         ],
         "boundaries": DISCLAIMER,
     }
@@ -2200,24 +2543,30 @@ def cold_start_walkthrough() -> dict[str, Any]:
         },
         {
             "step": 9,
+            "title": "Generate public trust layer",
+            "command": "macro-policy-thesis-map trust-report && macro-policy-thesis-map citation-map && macro-policy-thesis-map release-faq && macro-policy-thesis-map artifact-index && macro-policy-thesis-map evaluator-scorecard",
+            "expected_result": "Trust report, citation map, FAQ, artifact index, and evaluator scorecard are written as Markdown and JSON.",
+        },
+        {
+            "step": 10,
             "title": "Generate public evaluator hardening surfaces",
             "command": "macro-policy-thesis-map benchmark-suite && macro-policy-thesis-map integration-cookbook && macro-policy-thesis-map compatibility-report && macro-policy-thesis-map maintainer-guide && macro-policy-thesis-map golden-fixtures && macro-policy-thesis-map regression-summary",
             "expected_result": "Benchmark, integration, compatibility, maintainer, golden fixture, and regression artifacts are written as Markdown and JSON.",
         },
         {
-            "step": 10,
+            "step": 11,
             "title": "Export the public promotion bundle manifest",
             "command": "macro-policy-thesis-map bundle-export",
             "expected_result": "A deterministic bundle manifest is written under demo/bundle_export/.",
         },
         {
-            "step": 11,
+            "step": 12,
             "title": "Check public readiness",
             "command": "macro-policy-thesis-map public-readiness",
             "expected_result": "A public readiness report lists pass/fail gates.",
         },
         {
-            "step": 12,
+            "step": 13,
             "title": "Run final local checks",
             "command": "macro-policy-thesis-map selfcheck && macro-policy-thesis-map public-scan && macro-policy-thesis-map diff-check",
             "expected_result": "All commands exit successfully before sharing artifacts.",
@@ -2298,6 +2647,11 @@ def adoption_notes(root: Path) -> dict[str, Any]:
             "demo/maintainer_guide.json",
             "demo/golden_fixtures.json",
             "demo/regression_summary.json",
+            "demo/trust_report.json",
+            "demo/citation_map.json",
+            "demo/release_faq.json",
+            "demo/artifact_index.json",
+            "demo/evaluator_scorecard.json",
         ],
     )
     next_actions = [
@@ -2319,6 +2673,11 @@ def adoption_notes(root: Path) -> dict[str, Any]:
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli maintainer-guide --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli golden-fixtures --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli regression-summary --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli trust-report --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli citation-map --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-faq --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli artifact-index --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli evaluator-scorecard --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli cli-help --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli reviewer-scorecard --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-deck --root .",
@@ -2356,6 +2715,7 @@ def reviewer_scorecard(root: Path) -> dict[str, Any]:
         ("review_controls", ["visual_receipt", "operator_surfaces", "release_owner_pack"], "Review artifacts, operator docs, hashes, and owner pack are present."),
         ("public_evaluator_hardening", ["public_evaluator_hardening"], "Benchmark, integration, compatibility, maintainer, golden fixture, and regression artifacts are present."),
         ("public_protocol_layer", ["public_protocol_layer"], "Landing, API reference, workflow protocol, example pack, and roadmap artifacts are present."),
+        ("public_trust_layer", ["public_trust_layer"], "Trust report, citation map, release FAQ, artifact index, and evaluator scorecard are present."),
         ("public_package", ["package", "readme", "license", "skill"], "Package metadata, docs, license, and agent skill are present."),
         ("verification", ["tests", "no_workflows"], "Tests exist and no workflow files are required."),
         ("public_readiness", [], "Public readiness command reports ready."),
@@ -2400,6 +2760,11 @@ def reviewer_scorecard(root: Path) -> dict[str, Any]:
             "demo/workflow_protocol.json",
             "demo/example_pack.json",
             "demo/roadmap_next.json",
+            "demo/trust_report.json",
+            "demo/citation_map.json",
+            "demo/release_faq.json",
+            "demo/artifact_index.json",
+            "demo/evaluator_scorecard.json",
             "demo/troubleshoot.json",
             "demo/docs_export.json",
             "demo/readme_snippet.json",
@@ -2492,6 +2857,11 @@ def release_deck(root: Path) -> dict[str, Any]:
             "demo/workflow_protocol.json",
             "demo/example_pack.json",
             "demo/roadmap_next.json",
+            "demo/trust_report.json",
+            "demo/citation_map.json",
+            "demo/release_faq.json",
+            "demo/artifact_index.json",
+            "demo/evaluator_scorecard.json",
         ],
     )
     return {
@@ -2561,6 +2931,16 @@ def bundle_export(root: Path) -> dict[str, Any]:
             "demo/roadmap_next.md",
             "demo/roadmap_next.json",
             "demo/roadmap_next.html",
+            "demo/trust_report.md",
+            "demo/trust_report.json",
+            "demo/citation_map.md",
+            "demo/citation_map.json",
+            "demo/release_faq.md",
+            "demo/release_faq.json",
+            "demo/artifact_index.md",
+            "demo/artifact_index.json",
+            "demo/evaluator_scorecard.md",
+            "demo/evaluator_scorecard.json",
     ]
     artifacts = records_for_existing(root, include)
     missing = [path for path in include if not root.joinpath(path).exists()]
@@ -2582,6 +2962,11 @@ def bundle_export(root: Path) -> dict[str, Any]:
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli workflow-protocol --root .",
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli example-pack --root .",
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli roadmap-next --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli trust-report --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli citation-map --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-faq --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli artifact-index --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli evaluator-scorecard --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
         ],

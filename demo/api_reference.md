@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.1.0
+Version: 1.2.0
 
 CLI: `macro-policy-thesis-map`
 
@@ -50,6 +50,11 @@ Python module: `macro_policy_thesis_map.cli`
 | workflow-protocol | macro-policy-thesis-map workflow-protocol --root . | Write a reusable protocol layer for agents that need deterministic macro-policy evidence maps. | demo/workflow_protocol.md, demo/workflow_protocol.json, demo/workflow_protocol.html |
 | example-pack | macro-policy-thesis-map example-pack --root . | Write a public example pack with stable command recipes and expected static artifacts. | demo/example_pack.md, demo/example_pack.json, demo/example_pack.html |
 | roadmap-next | macro-policy-thesis-map roadmap-next --root . | Write bounded next-step roadmap items for public maintainers and agent reuse. | demo/roadmap_next.md, demo/roadmap_next.json, demo/roadmap_next.html |
+| trust-report | macro-policy-thesis-map trust-report --root . | Summarize GitHub stranger trust evidence from local artifacts, safety gates, and reproducibility checks. | demo/trust_report.md, demo/trust_report.json |
+| citation-map | macro-policy-thesis-map citation-map --root . | Map public claims to local artifacts, paths, hashes, and producer commands. | demo/citation_map.md, demo/citation_map.json |
+| release-faq | macro-policy-thesis-map release-faq --root . | Write a public release FAQ for first-time GitHub visitors and evaluators. | demo/release_faq.md, demo/release_faq.json |
+| artifact-index | macro-policy-thesis-map artifact-index --root . | Index deterministic public demo artifacts by format, producer command, size, and hash. | demo/artifact_index.md, demo/artifact_index.json |
+| evaluator-scorecard | macro-policy-thesis-map evaluator-scorecard --root . | Score public evaluator readiness across trust, citations, artifacts, tests, and safety boundaries. | demo/evaluator_scorecard.md, demo/evaluator_scorecard.json |
 | cold-start-walkthrough | macro-policy-thesis-map cold-start-walkthrough --root . | Generate a deterministic first-run walkthrough for public evaluators. | demo/cold_start_walkthrough.md, demo/cold_start_walkthrough.json |
 | public-scan | macro-policy-thesis-map public-scan --root . | Scan publishable text for private names, paths, and credential-shaped terms. | stdout pass/fail |
 | diff-check | macro-policy-thesis-map diff-check --root . | Compare the saved release manifest against current file hashes. | stdout pass/fail |
@@ -148,6 +153,16 @@ Python module: `macro_policy_thesis_map.cli`
 | demo/roadmap_next.md | md | roadmap-next | deterministic local output |
 | demo/roadmap_next.json | json | roadmap-next | deterministic local output |
 | demo/roadmap_next.html | html | roadmap-next | deterministic local output |
+| demo/trust_report.md | md | trust-report | deterministic local output |
+| demo/trust_report.json | json | trust-report | deterministic local output |
+| demo/citation_map.md | md | citation-map | deterministic local output |
+| demo/citation_map.json | json | citation-map | deterministic local output |
+| demo/release_faq.md | md | release-faq | deterministic local output |
+| demo/release_faq.json | json | release-faq | deterministic local output |
+| demo/artifact_index.md | md | artifact-index | deterministic local output |
+| demo/artifact_index.json | json | artifact-index | deterministic local output |
+| demo/evaluator_scorecard.md | md | evaluator-scorecard | deterministic local output |
+| demo/evaluator_scorecard.json | json | evaluator-scorecard | deterministic local output |
 | demo/cold_start_walkthrough.md | md | cold-start-walkthrough | deterministic local output |
 | demo/cold_start_walkthrough.json | json | cold-start-walkthrough | deterministic local output |
 

@@ -2,9 +2,9 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.1.0
+Version: 1.2.0
 
-Protocol: `macro-policy-thesis-map.v1.1`
+Protocol: `macro-policy-thesis-map.v1.2`
 
 Purpose: Reusable local protocol for agents generating static macro-policy evidence maps.
 

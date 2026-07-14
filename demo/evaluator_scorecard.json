@@ -1,0 +1,53 @@
+{
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "checks": [
+    {
+      "detail": "Trust report scores local evidence for a first-time GitHub visitor.",
+      "evidence": "demo/trust_report.json",
+      "name": "trust_report_ready",
+      "passed": true
+    },
+    {
+      "detail": "Public claims cite local artifacts with paths and hashes.",
+      "evidence": "demo/citation_map.json",
+      "name": "citation_map_complete",
+      "passed": true
+    },
+    {
+      "detail": "Demo artifacts have producer commands, formats, and hashes.",
+      "evidence": "demo/artifact_index.json",
+      "name": "artifact_index_complete",
+      "passed": false
+    },
+    {
+      "detail": "Readiness gates pass for local public release evidence.",
+      "evidence": "demo/public_readiness.json",
+      "name": "public_readiness_ready",
+      "passed": true
+    },
+    {
+      "detail": "Local pytest suite is present for evaluator reruns.",
+      "evidence": "tests/test_*.py",
+      "name": "tests_present",
+      "passed": true
+    },
+    {
+      "detail": "Research-only boundaries are documented in human and agent surfaces.",
+      "evidence": "README.md, skills/agent/macro-policy-thesis-map/SKILL.md, demo/release_faq.json",
+      "name": "boundaries_visible",
+      "passed": true
+    }
+  ],
+  "max_score": 6,
+  "recommended_order": [
+    "trust-report",
+    "citation-map",
+    "release-faq",
+    "artifact-index",
+    "evaluator-scorecard"
+  ],
+  "score": 5,
+  "status": "needs-review",
+  "title": "Evaluator Scorecard",
+  "version": "1.2.0"
+}

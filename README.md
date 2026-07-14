@@ -60,6 +60,11 @@ PYTHONPATH=src python -m macro_policy_thesis_map.cli api-reference --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli workflow-protocol --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli example-pack --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli roadmap-next --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli trust-report --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli citation-map --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli release-faq --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli artifact-index --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli evaluator-scorecard --root .
 PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .
 PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .
 PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .
@@ -104,6 +109,11 @@ macro-policy-thesis-map api-reference
 macro-policy-thesis-map workflow-protocol
 macro-policy-thesis-map example-pack
 macro-policy-thesis-map roadmap-next
+macro-policy-thesis-map trust-report
+macro-policy-thesis-map citation-map
+macro-policy-thesis-map release-faq
+macro-policy-thesis-map artifact-index
+macro-policy-thesis-map evaluator-scorecard
 ```
 
 The installed CLI uses bundled example CSVs for default event, case, sensitivity, and exposure inputs when `examples/macro_events.csv`, `examples/prior_macro_events.csv`, `examples/public_macro_cases.csv`, `examples/thesis_sensitivities.csv`, and `examples/portfolio_exposures.csv` are not present in the current `--root`. Pass `--events`, `--current`, `--prior`, `--cases`, `--sensitivities`, or `--exposures` to use your own static CSVs. `selfcheck` and `diff-check` validate the source tree and should be run from a project checkout.
@@ -153,6 +163,11 @@ This project is research tooling only. It does not fetch live data, connect to b
 - `demo/workflow_protocol.md`, `demo/workflow_protocol.json`, and `demo/workflow_protocol.html`
 - `demo/example_pack.md`, `demo/example_pack.json`, and `demo/example_pack.html`
 - `demo/roadmap_next.md`, `demo/roadmap_next.json`, and `demo/roadmap_next.html`
+- `demo/trust_report.md` and `demo/trust_report.json`
+- `demo/citation_map.md` and `demo/citation_map.json`
+- `demo/release_faq.md` and `demo/release_faq.json`
+- `demo/artifact_index.md` and `demo/artifact_index.json`
+- `demo/evaluator_scorecard.md` and `demo/evaluator_scorecard.json`
 
 ## Input Format
 
@@ -194,7 +209,9 @@ Run `scenario-library`, `assumption-registry`, and `data-dictionary-diff` when a
 
 Run `benchmark-suite`, `integration-cookbook`, `compatibility-report`, `maintainer-guide`, `golden-fixtures`, and `regression-summary` for the public evaluator hardening pack. These commands write deterministic Markdown and JSON under `demo/`, use only synthetic static data or local file metadata, and avoid workflow automation, private references, live data, timing probes, and advice.
 
-Run `landing-page`, `api-reference`, `workflow-protocol`, `example-pack`, and `roadmap-next` for the v1.1.0 public protocol layer. These commands write deterministic Markdown, JSON, and HTML under `demo/`, expose stable command recipes and data contracts, and keep all examples local, static, synthetic, and research-only.
+Run `landing-page`, `api-reference`, `workflow-protocol`, `example-pack`, and `roadmap-next` for the public protocol layer. These commands write deterministic Markdown, JSON, and HTML under `demo/`, expose stable command recipes and data contracts, and keep all examples local, static, synthetic, and research-only.
+
+Run `trust-report`, `citation-map`, `release-faq`, `artifact-index`, and `evaluator-scorecard` for the v1.2.0 public trust layer. These commands write deterministic Markdown and JSON under `demo/`, focus on GitHub stranger trust, cite only local artifacts, and avoid hosted, personal, private, live-data, workflow, or advice references.
 
 ## Commands
 
@@ -240,3 +257,8 @@ Run `landing-page`, `api-reference`, `workflow-protocol`, `example-pack`, and `r
 - `workflow-protocol`: writes a reusable local protocol layer with phases, gates, and stop conditions.
 - `example-pack`: writes stable public command recipes and expected artifact keys.
 - `roadmap-next`: writes bounded next-step roadmap items and explicit not-planned surfaces.
+- `trust-report`: writes GitHub stranger trust evidence from local artifacts, safety gates, tests, and reproducibility commands.
+- `citation-map`: maps public claims to local artifact paths, hashes, and producer commands.
+- `release-faq`: writes first-time evaluator questions with local artifact citations.
+- `artifact-index`: indexes demo artifacts by format, producer command, size, and hash.
+- `evaluator-scorecard`: scores evaluator readiness across trust, citations, artifact coverage, tests, and boundaries.
