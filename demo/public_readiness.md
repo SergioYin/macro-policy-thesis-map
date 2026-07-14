@@ -4,7 +4,7 @@ Research-only static analysis. Not investment advice. This tool does not fetch l
 
 Status: ready
 
-Passed: 13 / 13
+Passed: 14 / 14
 
 ## Checks
 
@@ -21,6 +21,7 @@ Passed: 13 / 13
 | public_trust_layer | pass | Trust report, citation map, release FAQ, artifact index, and evaluator scorecard artifacts are present. |
 | governance_attestation_layer | pass | Boundary, provenance, reproducibility, and release notes draft artifacts are present. |
 | evaluator_onboarding_layer | pass | Final evaluator onboarding and maintainer handoff artifacts are present. |
+| release_audit_layer | pass | Final release audit summary artifact is present. |
 | no_workflow_files | pass | No repository workflow files are required for public evaluation. |
 | zero_dependency_package | pass | Package declares no runtime dependencies. |
 

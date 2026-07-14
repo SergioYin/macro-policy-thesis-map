@@ -2,129 +2,129 @@
   "artifact_count": 25,
   "artifacts": [
     {
-      "bytes": 8176,
+      "bytes": 8260,
       "path": "demo/adoption_notes.json",
-      "sha256": "ffd44ddaf8d88dbc116e39f0924fdb940b7493c9268363c5954b6f88eed6059b"
+      "sha256": "914c6001a16039b99ddde729bb89ba0c57f4f58935310df2d21241afde64191b"
     },
     {
-      "bytes": 47299,
+      "bytes": 48075,
       "path": "demo/api_reference.json",
-      "sha256": "b82a42e9cbf674379c1bd05d6ab9c645f51c7adb7d79684cf1375f976eaaff7a"
+      "sha256": "9abbaa7e95e8ef92ebd8521481d1a6d98605405c5db926be84a31fff709ad376"
     },
     {
-      "bytes": 27463,
+      "bytes": 27781,
       "path": "demo/artifact_index.json",
-      "sha256": "6e767512e0bcd303497b7fa4468ff98d55ff1c20e4a9d2c583d7072509871a00"
+      "sha256": "9b636f1a402138027e343222f05a5e4b825001d50bb95da2180557b85557c5f6"
     },
     {
       "bytes": 3043,
       "path": "demo/benchmark_suite.json",
-      "sha256": "287d3fd6ac67014fcca71276ec9a1f0ec0540b97b1a5c4a77d872c7978ce447d"
+      "sha256": "fecc433c113c786f6431b3ed47b0112010e098f68d6e483b0f6cdd2f2bd14582"
     },
     {
       "bytes": 2101,
       "path": "demo/boundary_attestation.json",
-      "sha256": "3aaf0a1cff28aa03785cd264524c816f67a7c8fde219ef33955b7f38c0eae1c1"
+      "sha256": "32d1ff7a15c7debeef0834e125d8a665b28322252949fadd5a710b9f5ae569b5"
     },
     {
-      "bytes": 5723,
+      "bytes": 5936,
       "path": "demo/citation_map.json",
-      "sha256": "1efa53e66056991dfb2b15bcfbfd2eecd2319549b49091b755736ca21384b980"
+      "sha256": "25e37ca20e0c62c1eddcafb1d772abb23697c685d202d2118db2daac6950ceee"
     },
     {
-      "bytes": 23315,
+      "bytes": 23850,
       "path": "demo/command_matrix.json",
-      "sha256": "6655681f7e4196486f62206aef6c6e1d944afdef4505321067960e1bf5153191"
+      "sha256": "5e97ff48b0bb09296664deaf112148be1eec00b32cf16c56c4fe53518bc85847"
+    },
+    {
+      "bytes": 2400,
+      "path": "demo/compatibility_report.json",
+      "sha256": "56be342014d705ad86089d21592f57c3d5c88e880c03535d5fe091d6976f6334"
     },
     {
       "bytes": 2257,
-      "path": "demo/compatibility_report.json",
-      "sha256": "0a222de323e14ab63b488e4603f6225330505cc7597f716f422acdf45ce4e65d"
-    },
-    {
-      "bytes": 2250,
       "path": "demo/evaluator_scorecard.json",
-      "sha256": "4e534075cd2001322dc8c5536edc4ac2e09bc64f8a0850f6cea613023a751915"
+      "sha256": "e87c0940fbff005dd1b14951c2dd6c9592a62aa209a002b080d7204f19021639"
     },
     {
       "bytes": 3795,
       "path": "demo/example_pack.json",
-      "sha256": "935a6dab9ce220cf74a1065b02f22d9b665e563b40ede358609f940c5c6f2c84"
+      "sha256": "80c1af31fba0976508c9b005956bbd125454c7908b58d48e0d0073866eb74671"
     },
     {
       "bytes": 4685,
       "path": "demo/golden_fixtures.json",
-      "sha256": "99a3213b8530a9a4362b7492d28c3782989c622109386afe5ceea50d551b1349"
+      "sha256": "acea7ebf0a09c9d1a9e877a3ef6a59e4a097495f56fb17cfec605a5bee886abd"
     },
     {
       "bytes": 3546,
       "path": "demo/integration_cookbook.json",
-      "sha256": "a4c794f009d7bede618c185653c37ae287f8e09024eaf7186bc95fad880bf6ba"
+      "sha256": "4cc09db548a7c957561c295d0650f804445a99c2b0a52b28940545a880722d63"
     },
     {
       "bytes": 6046,
       "path": "demo/landing_page.json",
-      "sha256": "9ff1501b33a0058f73d0ca081935070750d03fdea3d79e0143ca1cf3dec7bf63"
+      "sha256": "99596e5e7fb494f2c6ba15a4de2efa1a222e2b51d229aa37a1508a13174741d0"
     },
     {
-      "bytes": 2594,
+      "bytes": 2623,
       "path": "demo/maintainer_guide.json",
-      "sha256": "23c3bcd8b3958d2ad7c5605af7a75ac746774e84342b9d2677458e51493acf9f"
+      "sha256": "b448c5bdd76bec62f16ac49b058bcb06ef029b283eff32fd3ffacc72d00d3b64"
     },
     {
-      "bytes": 26766,
+      "bytes": 27062,
       "path": "demo/provenance_ledger.json",
-      "sha256": "16af0d34681e26e45986b44fb279c6595b1c32b5547d1e2fda70703e28445838"
+      "sha256": "ec5015ff728ecde2ed6d01b572cc82eeabb78848a8c9acf8bb448c2edee16a13"
     },
     {
-      "bytes": 2471,
+      "bytes": 2610,
       "path": "demo/public_readiness.json",
-      "sha256": "d45135eba9e8effbf61378dd00daab485b67320370eed81a56f07ae5b4ee05c8"
+      "sha256": "8b91002e3689db662b76dc2e46f51af4944528070f42a92d22ecb2cae5929e56"
     },
     {
-      "bytes": 3389,
+      "bytes": 3662,
       "path": "demo/regression_summary.json",
-      "sha256": "55721620ea052ddced8abb67447cb5d8edf620bbd013826d8e20eba09e6ed0ae"
+      "sha256": "7585f3c1dc78ba14a8482434f5a3f368532dbf9fa06c13202b7237676ddfb97c"
     },
     {
-      "bytes": 2820,
+      "bytes": 2887,
       "path": "demo/release_faq.json",
-      "sha256": "b62bd3e5721b08ca3ddcaf361fdc09228ed072836762a8e324f866ac893b2250"
+      "sha256": "0f235c2a8d40f672b3179176082521564ceed66bfd60644d988a8c711f02070b"
     },
     {
       "bytes": 18568,
       "path": "demo/release_manifest.json",
-      "sha256": "365a3a8944e17c4a554e794b89210fbac4c34717afd01d319762daf532e51a53"
+      "sha256": "dc52cccb72090ed5e9c25cf00703fabd64efdc53186c568be98583de79aac11a"
     },
     {
-      "bytes": 2124,
+      "bytes": 2248,
       "path": "demo/release_notes_draft.json",
-      "sha256": "f62415c15621be64b897ad02fa115b76cd41850f4dd2e6ee1b509d4c7948bb10"
+      "sha256": "e14d99fc40369c0febf4b5d8fe60a664262c5001eb3df78a68f58abd30716ce6"
     },
     {
-      "bytes": 10617,
+      "bytes": 10807,
       "path": "demo/reproducibility_recipe.json",
-      "sha256": "5031cf7d6615be3b46b733d2bfaf6451414953fa23cd0852b3f486e73c287aa8"
+      "sha256": "7fe88eeb7faedd9c3fb3a58f3841ca084b3026baf0fab848b65cc5dae20ee566"
     },
     {
       "bytes": 8942,
       "path": "demo/reviewer_scorecard.json",
-      "sha256": "60034f732a1c423873c95e16cb4a21e71021bc94f924a2cfb2948787055da0a1"
+      "sha256": "249bccb3df196683f47aead830d7b9d02cbcabdb8a8e5b2e8ab814cbd0136d81"
     },
     {
       "bytes": 2452,
       "path": "demo/roadmap_next.json",
-      "sha256": "394394f2afe8618fa19f95e0ff924d562b7286cb1b5d991fa3a477957ee2ef33"
+      "sha256": "629518ec9ea03f2325b1aa1a24694b8da124dade353716301a99b7ed6d145226"
     },
     {
       "bytes": 5130,
       "path": "demo/trust_report.json",
-      "sha256": "212ac784fdce584328f4b1d7faff6ae2fb762d1662e0228cc81f1b5101a433fb"
+      "sha256": "f6249b9e4c8d41714e06f011086622a59a5b3b94fca396f590ca11d8de6ab94a"
     },
     {
       "bytes": 3557,
       "path": "demo/workflow_protocol.json",
-      "sha256": "26555f1efd6289b6c1504f7c28641d7098e505cf97da1ba2678cff6911efe569"
+      "sha256": "dfa240e52ed0ec757fcdaac46e6ba482dc8b7629616d22a93b34bd8a43f25a1d"
     }
   ],
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
@@ -132,8 +132,8 @@
   "slides": [
     {
       "points": [
-        "Version 1.4.0",
-        "53 zero-dependency CLI commands documented",
+        "Version 1.5.0",
+        "54 zero-dependency CLI commands documented",
         "Static Markdown, JSON, HTML, and SVG artifacts only"
       ],
       "slide": 1,
@@ -183,5 +183,5 @@
     }
   ],
   "title": "Release Owner Promotion Deck",
-  "version": "1.4.0"
+  "version": "1.5.0"
 }

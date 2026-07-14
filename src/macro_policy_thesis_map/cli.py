@@ -54,6 +54,7 @@ from .core import (
     roadmap_next,
     readme_snippet,
     regression_summary,
+    release_audit_summary,
     release_faq,
     release_manifest,
     release_notes_draft,
@@ -114,6 +115,7 @@ from .render import (
     integration_cookbook_md,
     maintainer_guide_md,
     regression_summary_md,
+    release_audit_summary_md,
     release_faq_md,
     provenance_ledger_md,
     reproducibility_recipe_md,
@@ -461,7 +463,7 @@ def build_parser() -> argparse.ArgumentParser:
     recipe.add_argument("--out-json", default="demo/reproducibility_recipe.json")
     recipe.set_defaults(func=cmd_reproducibility_recipe)
 
-    notes = sub.add_parser("release-notes-draft", help="Write deterministic v1.4.0 release notes draft.")
+    notes = sub.add_parser("release-notes-draft", help="Write deterministic v1.5.0 release notes draft.")
     notes.add_argument("--root", default=".")
     notes.add_argument("--out-md", default="demo/release_notes_draft.md")
     notes.add_argument("--out-json", default="demo/release_notes_draft.json")
@@ -478,6 +480,12 @@ def build_parser() -> argparse.ArgumentParser:
     handoff.add_argument("--out-md", default="demo/maintainer_handoff.md")
     handoff.add_argument("--out-json", default="demo/maintainer_handoff.json")
     handoff.set_defaults(func=cmd_maintainer_handoff)
+
+    audit = sub.add_parser("release-audit-summary", help="Write final release audit evidence for public reviewers.")
+    audit.add_argument("--root", default=".")
+    audit.add_argument("--out-md", default="demo/release_audit_summary.md")
+    audit.add_argument("--out-json", default="demo/release_audit_summary.json")
+    audit.set_defaults(func=cmd_release_audit_summary)
     return parser
 
 
@@ -924,6 +932,14 @@ def cmd_maintainer_handoff(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_release_audit_summary(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = release_audit_summary(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), release_audit_summary_md(payload))
+    return 0
+
+
 def cmd_public_scan(args: argparse.Namespace) -> int:
     findings = public_findings(Path(args.root))
     if findings:
@@ -996,6 +1012,7 @@ def cmd_selfcheck(args: argparse.Namespace) -> int:
         root / "demo" / "release_notes_draft.json",
         root / "demo" / "onboarding_checklist.json",
         root / "demo" / "maintainer_handoff.json",
+        root / "demo" / "release_audit_summary.json",
         root / "demo" / "fixture_doctor.json",
         root / "demo" / "input_schema.json",
         root / "demo" / "troubleshoot.json",

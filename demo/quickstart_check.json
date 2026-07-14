@@ -349,6 +349,13 @@
         "demo/release_notes_draft.md",
         "demo/release_notes_draft.json"
       ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-audit-summary --root .",
+      "expected_outputs": [
+        "demo/release_audit_summary.md",
+        "demo/release_audit_summary.json"
+      ]
     }
   ],
   "status": "ready"

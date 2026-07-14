@@ -2,39 +2,39 @@
   "artifact_count": 29,
   "artifacts": [
     {
-      "bytes": 20213,
+      "bytes": 20613,
       "path": "README.md",
-      "sha256": "bd9e1705b4ad4609cc937cb8919d5aa80644d748d2d92aaea6f239e8a667fe7c"
+      "sha256": "71f5f2542b3a7bc98c84d6b3fc5bcc0aa2d87858a6d54d91ce7f15dff74d8fd8"
     },
     {
-      "bytes": 27463,
+      "bytes": 27781,
       "path": "demo/artifact_index.json",
-      "sha256": "6e767512e0bcd303497b7fa4468ff98d55ff1c20e4a9d2c583d7072509871a00"
+      "sha256": "9b636f1a402138027e343222f05a5e4b825001d50bb95da2180557b85557c5f6"
     },
     {
       "bytes": 2500,
       "path": "demo/assumption_registry.json",
-      "sha256": "24f1cb2faaf193e677811eb594b4fec0c77732094bf09d8eda7d35f0135a68b9"
+      "sha256": "8c9211fd74cc758551ee468f9e4c7df137b29e7a1a52c024b69e5ec0f7a0f2ce"
     },
     {
       "bytes": 3043,
       "path": "demo/benchmark_suite.json",
-      "sha256": "287d3fd6ac67014fcca71276ec9a1f0ec0540b97b1a5c4a77d872c7978ce447d"
+      "sha256": "fecc433c113c786f6431b3ed47b0112010e098f68d6e483b0f6cdd2f2bd14582"
     },
     {
       "bytes": 2101,
       "path": "demo/boundary_attestation.json",
-      "sha256": "3aaf0a1cff28aa03785cd264524c816f67a7c8fde219ef33955b7f38c0eae1c1"
+      "sha256": "32d1ff7a15c7debeef0834e125d8a665b28322252949fadd5a710b9f5ae569b5"
     },
     {
-      "bytes": 5723,
+      "bytes": 5936,
       "path": "demo/citation_map.json",
-      "sha256": "1efa53e66056991dfb2b15bcfbfd2eecd2319549b49091b755736ca21384b980"
+      "sha256": "25e37ca20e0c62c1eddcafb1d772abb23697c685d202d2118db2daac6950ceee"
     },
     {
-      "bytes": 22174,
+      "bytes": 22661,
       "path": "demo/cli_help.json",
-      "sha256": "49979ac371db2feb3da0299a6c82f3d7227e0ce84387045d6cddecee30236f75"
+      "sha256": "39e89a7e1135aff25e60d768a289fc70d17db5997774616441e95674606587f8"
     },
     {
       "bytes": 4825,
@@ -42,109 +42,109 @@
       "sha256": "7b3233c8a2ac3343327c319ab162a278e38ace5d5d2665a5fd92b554fcdfef80"
     },
     {
-      "bytes": 23315,
+      "bytes": 23850,
       "path": "demo/command_matrix.json",
-      "sha256": "6655681f7e4196486f62206aef6c6e1d944afdef4505321067960e1bf5153191"
+      "sha256": "5e97ff48b0bb09296664deaf112148be1eec00b32cf16c56c4fe53518bc85847"
     },
     {
-      "bytes": 2257,
+      "bytes": 2400,
       "path": "demo/compatibility_report.json",
-      "sha256": "0a222de323e14ab63b488e4603f6225330505cc7597f716f422acdf45ce4e65d"
+      "sha256": "56be342014d705ad86089d21592f57c3d5c88e880c03535d5fe091d6976f6334"
     },
     {
       "bytes": 3472,
       "path": "demo/data_dictionary_diff.json",
-      "sha256": "b1c9f49c0cbf3f3d973d83987aec3bf701733c83ecb24ce873802b08dc439768"
+      "sha256": "bfd4b231f59dc583349e30a921618cc80f0f478c97e457471b20236a3f23c1ba"
     },
     {
-      "bytes": 9113,
+      "bytes": 9415,
       "path": "demo/docs_export.json",
-      "sha256": "7abe99a8aeda92bf58d9b163d6cabb13e8026d1c59a3cdfac43f0af216c14913"
+      "sha256": "bb2d6fe136439981b48ffae2e251a6e0a63d774143a55f1d4cae4b710c2eff9d"
     },
     {
-      "bytes": 2250,
+      "bytes": 2257,
       "path": "demo/evaluator_scorecard.json",
-      "sha256": "4e534075cd2001322dc8c5536edc4ac2e09bc64f8a0850f6cea613023a751915"
+      "sha256": "e87c0940fbff005dd1b14951c2dd6c9592a62aa209a002b080d7204f19021639"
     },
     {
       "bytes": 19080,
       "path": "demo/evidence_bundle.json",
-      "sha256": "c2985ca1793291c85d657569bde2fab7dbe4c1c65404d916bb22a813887d5f5a"
+      "sha256": "b0bd94074e5f9486817df0f7049712e729715be379dfa1e108acba33a468a900"
     },
     {
       "bytes": 4685,
       "path": "demo/golden_fixtures.json",
-      "sha256": "99a3213b8530a9a4362b7492d28c3782989c622109386afe5ceea50d551b1349"
+      "sha256": "acea7ebf0a09c9d1a9e877a3ef6a59e4a097495f56fb17cfec605a5bee886abd"
     },
     {
       "bytes": 3546,
       "path": "demo/integration_cookbook.json",
-      "sha256": "a4c794f009d7bede618c185653c37ae287f8e09024eaf7186bc95fad880bf6ba"
+      "sha256": "4cc09db548a7c957561c295d0650f804445a99c2b0a52b28940545a880722d63"
     },
     {
-      "bytes": 2594,
+      "bytes": 2623,
       "path": "demo/maintainer_guide.json",
-      "sha256": "23c3bcd8b3958d2ad7c5605af7a75ac746774e84342b9d2677458e51493acf9f"
+      "sha256": "b448c5bdd76bec62f16ac49b058bcb06ef029b283eff32fd3ffacc72d00d3b64"
     },
     {
-      "bytes": 1622,
+      "bytes": 1685,
       "path": "demo/maturity_report.json",
-      "sha256": "02f3a3edd8df91a34b938589e0da1692f5f136e0c2a68229217ef98ae179f912"
+      "sha256": "7c6686ce06ac79b213b9b8307519fa04f141a55b8ae3b35b40ab0a99fde0f8a2"
     },
     {
-      "bytes": 26766,
+      "bytes": 27062,
       "path": "demo/provenance_ledger.json",
-      "sha256": "16af0d34681e26e45986b44fb279c6595b1c32b5547d1e2fda70703e28445838"
+      "sha256": "ec5015ff728ecde2ed6d01b572cc82eeabb78848a8c9acf8bb448c2edee16a13"
     },
     {
-      "bytes": 2471,
+      "bytes": 2610,
       "path": "demo/public_readiness.json",
-      "sha256": "d45135eba9e8effbf61378dd00daab485b67320370eed81a56f07ae5b4ee05c8"
+      "sha256": "8b91002e3689db662b76dc2e46f51af4944528070f42a92d22ecb2cae5929e56"
     },
     {
       "bytes": 6230,
       "path": "demo/readme_snippet.json",
-      "sha256": "99265ac326496199a30729704231b8c95e4f00475285f224e9c89e9df79979e5"
+      "sha256": "238a74942c1c2adbdeb2a13c7f7547b68f477533cf2a54e06dd358e2a064ecd8"
     },
     {
-      "bytes": 3389,
+      "bytes": 3662,
       "path": "demo/regression_summary.json",
-      "sha256": "55721620ea052ddced8abb67447cb5d8edf620bbd013826d8e20eba09e6ed0ae"
+      "sha256": "7585f3c1dc78ba14a8482434f5a3f368532dbf9fa06c13202b7237676ddfb97c"
     },
     {
-      "bytes": 2820,
+      "bytes": 2887,
       "path": "demo/release_faq.json",
-      "sha256": "b62bd3e5721b08ca3ddcaf361fdc09228ed072836762a8e324f866ac893b2250"
+      "sha256": "0f235c2a8d40f672b3179176082521564ceed66bfd60644d988a8c711f02070b"
     },
     {
       "bytes": 18568,
       "path": "demo/release_manifest.json",
-      "sha256": "365a3a8944e17c4a554e794b89210fbac4c34717afd01d319762daf532e51a53"
+      "sha256": "dc52cccb72090ed5e9c25cf00703fabd64efdc53186c568be98583de79aac11a"
     },
     {
-      "bytes": 2124,
+      "bytes": 2248,
       "path": "demo/release_notes_draft.json",
-      "sha256": "f62415c15621be64b897ad02fa115b76cd41850f4dd2e6ee1b509d4c7948bb10"
+      "sha256": "e14d99fc40369c0febf4b5d8fe60a664262c5001eb3df78a68f58abd30716ce6"
     },
     {
-      "bytes": 10617,
+      "bytes": 10807,
       "path": "demo/reproducibility_recipe.json",
-      "sha256": "5031cf7d6615be3b46b733d2bfaf6451414953fa23cd0852b3f486e73c287aa8"
+      "sha256": "7fe88eeb7faedd9c3fb3a58f3841ca084b3026baf0fab848b65cc5dae20ee566"
     },
     {
       "bytes": 2903,
       "path": "demo/scenario_library.json",
-      "sha256": "cc502c7edcf25d4d23e798ba6bf3b2d5acd7280ed8d713cc6b26807161381efa"
+      "sha256": "a8c13fa73022fd96156b895ec504fa8fd819b0f308aed991b0b3aa9907a4e3cd"
     },
     {
       "bytes": 3174,
       "path": "demo/troubleshoot.json",
-      "sha256": "b986a9d03a2293b74f1f8e195256b9cd4ef34619457619c9a6abd6457f0bdaf2"
+      "sha256": "f2577b71f0b54928c6712143acf5fe57864d5a012e81f1af54c90004205657bb"
     },
     {
       "bytes": 5130,
       "path": "demo/trust_report.json",
-      "sha256": "212ac784fdce584328f4b1d7faff6ae2fb762d1662e0228cc81f1b5101a433fb"
+      "sha256": "f6249b9e4c8d41714e06f011086622a59a5b3b94fca396f590ca11d8de6ab94a"
     }
   ],
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
@@ -154,9 +154,9 @@
     "Confirm demo/public_readiness.json remains ready after local edits.",
     "Run public-scan and diff-check before sharing the bundle."
   ],
-  "maturity_max_score": 19,
-  "maturity_score": 18,
-  "maturity_status": "needs-review",
+  "maturity_max_score": 20,
+  "maturity_score": 20,
+  "maturity_status": "ready",
   "public_readiness_status": "ready",
   "release_artifact_count": 113,
   "release_commands": [
@@ -185,6 +185,7 @@
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli reviewer-scorecard --root .",
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-deck --root .",
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli bundle-export --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-audit-summary --root .",
     "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
     "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root ."
   ],
@@ -195,5 +196,5 @@
     "Treat public-readiness blockers and reviewer-scorecard review items as release-owner follow-up."
   ],
   "title": "Release Owner Adoption Notes",
-  "version": "1.4.0"
+  "version": "1.5.0"
 }

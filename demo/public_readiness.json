@@ -1,7 +1,7 @@
 {
   "blockers": [],
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
-  "check_count": 13,
+  "check_count": 14,
   "checks": [
     {
       "detail": "No private terms or credential-shaped tokens in public text.",
@@ -59,6 +59,11 @@
       "passed": true
     },
     {
+      "detail": "Final release audit summary artifact is present.",
+      "name": "release_audit_layer",
+      "passed": true
+    },
+    {
       "detail": "No repository workflow files are required for public evaluation.",
       "name": "no_workflow_files",
       "passed": true
@@ -69,6 +74,6 @@
       "passed": true
     }
   ],
-  "passed_count": 13,
+  "passed_count": 14,
   "status": "ready"
 }

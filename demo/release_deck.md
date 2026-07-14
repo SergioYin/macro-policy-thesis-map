@@ -2,14 +2,14 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.4.0
+Version: 1.5.0
 
 Slide count: 5
 
 ## 1. Release Surface
 
-- Version 1.4.0
-- 53 zero-dependency CLI commands documented
+- Version 1.5.0
+- 54 zero-dependency CLI commands documented
 - Static Markdown, JSON, HTML, and SVG artifacts only
 ## 2. Evidence And Hashes
 
@@ -42,28 +42,28 @@ Slide count: 5
 
 | Path | Bytes | SHA-256 prefix |
 | --- | --- | --- |
-| demo/adoption_notes.json | 8176 | ffd44ddaf8d88dbc |
-| demo/api_reference.json | 47299 | b82a42e9cbf67437 |
-| demo/artifact_index.json | 27463 | 6e767512e0bcd303 |
-| demo/benchmark_suite.json | 3043 | 287d3fd6ac67014f |
-| demo/boundary_attestation.json | 2101 | 3aaf0a1cff28aa03 |
-| demo/citation_map.json | 5723 | 1efa53e66056991d |
-| demo/command_matrix.json | 23315 | 6655681f7e419648 |
-| demo/compatibility_report.json | 2257 | 0a222de323e14ab6 |
-| demo/evaluator_scorecard.json | 2250 | 4e534075cd200132 |
-| demo/example_pack.json | 3795 | 935a6dab9ce220cf |
-| demo/golden_fixtures.json | 4685 | 99a3213b8530a9a4 |
-| demo/integration_cookbook.json | 3546 | a4c794f009d7bede |
-| demo/landing_page.json | 6046 | 9ff1501b33a0058f |
-| demo/maintainer_guide.json | 2594 | 23c3bcd8b3958d2a |
-| demo/provenance_ledger.json | 26766 | 16af0d34681e26e4 |
-| demo/public_readiness.json | 2471 | d45135eba9e8effb |
-| demo/regression_summary.json | 3389 | 55721620ea052ddc |
-| demo/release_faq.json | 2820 | b62bd3e5721b08ca |
-| demo/release_manifest.json | 18568 | 365a3a8944e17c4a |
-| demo/release_notes_draft.json | 2124 | f62415c15621be64 |
-| demo/reproducibility_recipe.json | 10617 | 5031cf7d6615be3b |
-| demo/reviewer_scorecard.json | 8942 | 60034f732a1c4238 |
-| demo/roadmap_next.json | 2452 | 394394f2afe8618f |
-| demo/trust_report.json | 5130 | 212ac784fdce5843 |
-| demo/workflow_protocol.json | 3557 | 26555f1efd6289b6 |
+| demo/adoption_notes.json | 8260 | 914c6001a16039b9 |
+| demo/api_reference.json | 48075 | 9abbaa7e95e8ef92 |
+| demo/artifact_index.json | 27781 | 9b636f1a40213802 |
+| demo/benchmark_suite.json | 3043 | fecc433c113c786f |
+| demo/boundary_attestation.json | 2101 | 32d1ff7a15c7debe |
+| demo/citation_map.json | 5936 | 25e37ca20e0c62c1 |
+| demo/command_matrix.json | 23850 | 5e97ff48b0bb0929 |
+| demo/compatibility_report.json | 2400 | 56be342014d705ad |
+| demo/evaluator_scorecard.json | 2257 | e87c0940fbff005d |
+| demo/example_pack.json | 3795 | 80c1af31fba09765 |
+| demo/golden_fixtures.json | 4685 | acea7ebf0a09c9d1 |
+| demo/integration_cookbook.json | 3546 | 4cc09db548a7c957 |
+| demo/landing_page.json | 6046 | 99596e5e7fb494f2 |
+| demo/maintainer_guide.json | 2623 | b448c5bdd76bec62 |
+| demo/provenance_ledger.json | 27062 | ec5015ff728ecde2 |
+| demo/public_readiness.json | 2610 | 8b91002e3689db66 |
+| demo/regression_summary.json | 3662 | 7585f3c1dc78ba14 |
+| demo/release_faq.json | 2887 | 0f235c2a8d40f672 |
+| demo/release_manifest.json | 18568 | dc52cccb72090ed5 |
+| demo/release_notes_draft.json | 2248 | e14d99fc40369c0f |
+| demo/reproducibility_recipe.json | 10807 | 7fe88eeb7faedd9c |
+| demo/reviewer_scorecard.json | 8942 | 249bccb3df196683 |
+| demo/roadmap_next.json | 2452 | 629518ec9ea03f23 |
+| demo/trust_report.json | 5130 | f6249b9e4c8d4171 |
+| demo/workflow_protocol.json | 3557 | dfa240e52ed0ec75 |

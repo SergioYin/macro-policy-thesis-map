@@ -1,59 +1,59 @@
 {
   "artifacts": [
     {
-      "bytes": 20213,
+      "bytes": 20613,
       "path": "README.md",
-      "sha256": "bd9e1705b4ad4609cc937cb8919d5aa80644d748d2d92aaea6f239e8a667fe7c"
+      "sha256": "71f5f2542b3a7bc98c84d6b3fc5bcc0aa2d87858a6d54d91ce7f15dff74d8fd8"
     },
     {
       "bytes": 2101,
       "path": "demo/boundary_attestation.json",
-      "sha256": "3aaf0a1cff28aa03785cd264524c816f67a7c8fde219ef33955b7f38c0eae1c1"
+      "sha256": "32d1ff7a15c7debeef0834e125d8a665b28322252949fadd5a710b9f5ae569b5"
     },
     {
-      "bytes": 23315,
+      "bytes": 23850,
       "path": "demo/command_matrix.json",
-      "sha256": "6655681f7e4196486f62206aef6c6e1d944afdef4505321067960e1bf5153191"
+      "sha256": "5e97ff48b0bb09296664deaf112148be1eec00b32cf16c56c4fe53518bc85847"
     },
     {
       "bytes": 19080,
       "path": "demo/evidence_bundle.json",
-      "sha256": "c2985ca1793291c85d657569bde2fab7dbe4c1c65404d916bb22a813887d5f5a"
+      "sha256": "b0bd94074e5f9486817df0f7049712e729715be379dfa1e108acba33a468a900"
     },
     {
-      "bytes": 26766,
+      "bytes": 27062,
       "path": "demo/provenance_ledger.json",
-      "sha256": "16af0d34681e26e45986b44fb279c6595b1c32b5547d1e2fda70703e28445838"
+      "sha256": "ec5015ff728ecde2ed6d01b572cc82eeabb78848a8c9acf8bb448c2edee16a13"
     },
     {
-      "bytes": 2471,
+      "bytes": 2610,
       "path": "demo/public_readiness.json",
-      "sha256": "d45135eba9e8effbf61378dd00daab485b67320370eed81a56f07ae5b4ee05c8"
+      "sha256": "8b91002e3689db662b76dc2e46f51af4944528070f42a92d22ecb2cae5929e56"
     },
     {
       "bytes": 18568,
       "path": "demo/release_manifest.json",
-      "sha256": "365a3a8944e17c4a554e794b89210fbac4c34717afd01d319762daf532e51a53"
+      "sha256": "dc52cccb72090ed5e9c25cf00703fabd64efdc53186c568be98583de79aac11a"
     },
     {
-      "bytes": 2124,
+      "bytes": 2248,
       "path": "demo/release_notes_draft.json",
-      "sha256": "f62415c15621be64b897ad02fa115b76cd41850f4dd2e6ee1b509d4c7948bb10"
+      "sha256": "e14d99fc40369c0febf4b5d8fe60a664262c5001eb3df78a68f58abd30716ce6"
     },
     {
-      "bytes": 10617,
+      "bytes": 10807,
       "path": "demo/reproducibility_recipe.json",
-      "sha256": "5031cf7d6615be3b46b733d2bfaf6451414953fa23cd0852b3f486e73c287aa8"
+      "sha256": "7fe88eeb7faedd9c3fb3a58f3841ca084b3026baf0fab848b65cc5dae20ee566"
     },
     {
       "bytes": 832,
       "path": "pyproject.toml",
-      "sha256": "e2eccdcc2248f66d6d0616b9d7e7ddeba98c92147fd0b063130c8d68db6a4cc0"
+      "sha256": "76e96e006cdb2620aa2c331bd72341b0fb279e1032ca6427c9b3a7413b5480df"
     },
     {
-      "bytes": 25925,
+      "bytes": 26456,
       "path": "tests/test_cli.py",
-      "sha256": "d1fe1bd81232c338793c54950ff88aecbb7ca377c54c444eaf61a193093b2bb4"
+      "sha256": "0461a69d708e22f28b8c238da0bc32b5799bcbe88d3a70126181ff3fa0902b1c"
     },
     {
       "bytes": 1388,
@@ -146,5 +146,5 @@
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli reproducibility-recipe --root .",
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-notes-draft --root ."
   ],
-  "version": "1.4.0"
+  "version": "1.5.0"
 }

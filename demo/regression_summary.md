@@ -2,15 +2,15 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.4.0
+Version: 1.5.0
 
-Status: needs-review
+Status: ready
 
-Gates: 9
+Gates: 10
 
 Manual gates: 2
 
-Blocking gates: 1
+Blocking gates: 0
 
 ## Gates
 
@@ -21,9 +21,10 @@ Blocking gates: 1
 | public_readiness | ready | demo/public_readiness.json | Public readiness gate summary. |
 | release_manifest | pass | demo/release_manifest.json | Release artifact hashes are present. |
 | golden_fixtures | ready | demo/golden_fixtures.json | Fixture schema and hash inventory. |
-| trust_layer | needs-review | demo/evaluator_scorecard.json | Evaluator trust scorecard based on local artifacts. |
+| trust_layer | ready | demo/evaluator_scorecard.json | Evaluator trust scorecard based on local artifacts. |
 | governance_attestation_layer | ready | demo/boundary_attestation.json, demo/provenance_ledger.json, demo/reproducibility_recipe.json, demo/release_notes_draft.json | Governance layer records boundaries, provenance, reproducibility, and release notes. |
 | evaluator_onboarding_layer | ready | demo/onboarding_checklist.json, demo/maintainer_handoff.json | Final onboarding and maintainer handoff artifacts are present. |
+| release_audit_summary | pass | demo/release_audit_summary.json | Final public reviewer audit summary is present. |
 | wheel_build | manual | python -m build --wheel or build_backend.build_wheel | Offline wheel build should be run when build tooling is available. |
 
 ## Release Checks
@@ -42,3 +43,4 @@ Blocking gates: 1
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli release-notes-draft --root . |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli onboarding-checklist --root . |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli maintainer-handoff --root . |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli release-audit-summary --root . |

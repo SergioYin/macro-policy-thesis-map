@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.4.0
+Version: 1.5.0
 
 CLI: `macro-policy-thesis-map`
 
@@ -58,9 +58,10 @@ Python module: `macro_policy_thesis_map.cli`
 | boundary-attestation | macro-policy-thesis-map boundary-attestation --root . | Attest static finance boundaries, zero-dependency packaging, public scan status, and absent workflows. | demo/boundary_attestation.md, demo/boundary_attestation.json |
 | provenance-ledger | macro-policy-thesis-map provenance-ledger --root . | Record producer commands, artifact hashes, and local source evidence for public demo outputs. | demo/provenance_ledger.md, demo/provenance_ledger.json |
 | reproducibility-recipe | macro-policy-thesis-map reproducibility-recipe --root . | Publish a deterministic local regeneration order and release verification recipe. | demo/reproducibility_recipe.md, demo/reproducibility_recipe.json |
-| release-notes-draft | macro-policy-thesis-map release-notes-draft --root . | Draft v1.4.0 public release notes from local artifacts, governance, onboarding, and release gates. | demo/release_notes_draft.md, demo/release_notes_draft.json |
+| release-notes-draft | macro-policy-thesis-map release-notes-draft --root . | Draft v1.5.0 public release notes from local artifacts, governance, onboarding, and release gates. | demo/release_notes_draft.md, demo/release_notes_draft.json |
 | onboarding-checklist | macro-policy-thesis-map onboarding-checklist --root . | Write final evaluator onboarding checks, commands, artifacts, and stop conditions. | demo/onboarding_checklist.md, demo/onboarding_checklist.json |
 | maintainer-handoff | macro-policy-thesis-map maintainer-handoff --root . | Write deterministic maintainer handoff responsibilities, artifact custody, and release gates. | demo/maintainer_handoff.md, demo/maintainer_handoff.json |
+| release-audit-summary | macro-policy-thesis-map release-audit-summary --root . | Aggregate final release, verification, public safety, and promotion readiness evidence for public reviewers. | demo/release_audit_summary.md, demo/release_audit_summary.json |
 | cold-start-walkthrough | macro-policy-thesis-map cold-start-walkthrough --root . | Generate a deterministic first-run walkthrough for public evaluators. | demo/cold_start_walkthrough.md, demo/cold_start_walkthrough.json |
 | public-scan | macro-policy-thesis-map public-scan --root . | Scan publishable text for private names, paths, and credential-shaped terms. | stdout pass/fail |
 | diff-check | macro-policy-thesis-map diff-check --root . | Compare the saved release manifest against current file hashes. | stdout pass/fail |
@@ -98,7 +99,6 @@ Python module: `macro_policy_thesis_map.cli`
 | demo/data_dictionary_diff.json | json | data-dictionary-diff | deterministic local output |
 | demo/case_gallery.md | md | case-gallery | deterministic local output |
 | demo/case_gallery.json | json | case-gallery | deterministic local output |
-| demo/visual_receipt.svg or demo/visual_receipt.html | html | visual-receipt | deterministic local output |
 | demo/visual_receipt.json | json | visual-receipt | deterministic local output |
 | demo/fixture_doctor.md | md | fixture-doctor | deterministic local output |
 | demo/fixture_doctor.json | json | fixture-doctor | deterministic local output |
@@ -181,6 +181,8 @@ Python module: `macro_policy_thesis_map.cli`
 | demo/onboarding_checklist.json | json | onboarding-checklist | deterministic local output |
 | demo/maintainer_handoff.md | md | maintainer-handoff | deterministic local output |
 | demo/maintainer_handoff.json | json | maintainer-handoff | deterministic local output |
+| demo/release_audit_summary.md | md | release-audit-summary | deterministic local output |
+| demo/release_audit_summary.json | json | release-audit-summary | deterministic local output |
 | demo/cold_start_walkthrough.md | md | cold-start-walkthrough | deterministic local output |
 | demo/cold_start_walkthrough.json | json | cold-start-walkthrough | deterministic local output |
 

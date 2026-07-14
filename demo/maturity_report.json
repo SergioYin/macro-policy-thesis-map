@@ -63,7 +63,11 @@
     },
     {
       "name": "evaluator_onboarding_layer",
-      "passed": false
+      "passed": true
+    },
+    {
+      "name": "release_audit_layer",
+      "passed": true
     },
     {
       "name": "tests",
@@ -78,7 +82,7 @@
       "passed": true
     }
   ],
-  "max_score": 19,
-  "score": 18,
-  "status": "needs-review"
+  "max_score": 20,
+  "score": 20,
+  "status": "ready"
 }

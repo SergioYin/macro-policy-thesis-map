@@ -30,6 +30,7 @@
     "release-notes-draft",
     "onboarding-checklist",
     "maintainer-handoff",
+    "release-audit-summary",
     "benchmark-suite",
     "integration-cookbook",
     "compatibility-report",
@@ -78,5 +79,5 @@
     }
   ],
   "title": "Maintainer Guide",
-  "version": "1.4.0"
+  "version": "1.5.0"
 }

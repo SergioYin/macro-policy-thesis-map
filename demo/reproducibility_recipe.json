@@ -15,7 +15,7 @@
     "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
     "python -c \"import build_backend; build_backend.build_wheel('dist')\""
   ],
-  "step_count": 50,
+  "step_count": 51,
   "steps": [
     {
       "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli build-packet --root .",
@@ -258,14 +258,19 @@
       "step": 48
     },
     {
-      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli cold-start-walkthrough --root .",
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-audit-summary --root .",
       "expected": "deterministic demo artifact update",
       "step": 49
     },
     {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli cold-start-walkthrough --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 50
+    },
+    {
       "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-manifest --root .",
       "expected": "release manifest records settled hashes",
-      "step": 50
+      "step": 51
     }
   ],
   "title": "Reproducibility Recipe",
@@ -276,5 +281,5 @@
     "broker access",
     "investment advice"
   ],
-  "version": "1.4.0"
+  "version": "1.5.0"
 }

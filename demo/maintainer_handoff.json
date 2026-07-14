@@ -2,27 +2,27 @@
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
   "custody": [
     {
-      "bytes": 20213,
+      "bytes": 20613,
       "path": "README.md",
-      "sha256": "bd9e1705b4ad4609cc937cb8919d5aa80644d748d2d92aaea6f239e8a667fe7c",
+      "sha256": "71f5f2542b3a7bc98c84d6b3fc5bcc0aa2d87858a6d54d91ce7f15dff74d8fd8",
       "status": "present"
     },
     {
-      "bytes": 4775,
+      "bytes": 4869,
       "path": "skills/agent/macro-policy-thesis-map/SKILL.md",
-      "sha256": "6414e2bbb463089459b4f5b6bc99da14bc38de61a985449a1048413feac7501c",
+      "sha256": "5f0c177b4e3ec83e9ed719ea42334f2a69381e8203aa70313d34f43aa047b243",
       "status": "present"
     },
     {
-      "bytes": 2594,
+      "bytes": 2623,
       "path": "demo/maintainer_guide.json",
-      "sha256": "23c3bcd8b3958d2ad7c5605af7a75ac746774e84342b9d2677458e51493acf9f",
+      "sha256": "b448c5bdd76bec62f16ac49b058bcb06ef029b283eff32fd3ffacc72d00d3b64",
       "status": "present"
     },
     {
       "bytes": 2593,
       "path": "demo/onboarding_checklist.json",
-      "sha256": "e3944b057ecfcc8b18de580d0f960e9cf7521b732fd28c38c6b3251bf14fc0a3",
+      "sha256": "0b0183d29083835a308906c353dce2a07c61d3bdbe189fd2bc7c8360bd905813",
       "status": "present"
     },
     {
@@ -34,7 +34,7 @@
     {
       "bytes": 19080,
       "path": "demo/evidence_bundle.json",
-      "sha256": "1396ff6300e90c749d51ea52f226a3b7ede45b1a3da4a972a71a4aa682696520",
+      "sha256": "c2985ca1793291c85d657569bde2fab7dbe4c1c65404d916bb22a813887d5f5a",
       "status": "present"
     },
     {
@@ -79,5 +79,5 @@
   ],
   "status": "ready",
   "title": "Maintainer Handoff",
-  "version": "1.4.0"
+  "version": "1.5.0"
 }

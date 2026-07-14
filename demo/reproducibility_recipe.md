@@ -2,11 +2,11 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.4.0
+Version: 1.5.0
 
 Policy: Run from a source checkout with static files only; commands do not require network access.
 
-Steps: 50
+Steps: 51
 
 ## Regeneration Steps
 
@@ -60,8 +60,9 @@ Steps: 50
 | 46 | PYTHONPATH=src python -m macro_policy_thesis_map.cli release-notes-draft --root . | deterministic demo artifact update |
 | 47 | PYTHONPATH=src python -m macro_policy_thesis_map.cli onboarding-checklist --root . | deterministic demo artifact update |
 | 48 | PYTHONPATH=src python -m macro_policy_thesis_map.cli maintainer-handoff --root . | deterministic demo artifact update |
-| 49 | PYTHONPATH=src python -m macro_policy_thesis_map.cli cold-start-walkthrough --root . | deterministic demo artifact update |
-| 50 | PYTHONPATH=src python -m macro_policy_thesis_map.cli release-manifest --root . | release manifest records settled hashes |
+| 49 | PYTHONPATH=src python -m macro_policy_thesis_map.cli release-audit-summary --root . | deterministic demo artifact update |
+| 50 | PYTHONPATH=src python -m macro_policy_thesis_map.cli cold-start-walkthrough --root . | deterministic demo artifact update |
+| 51 | PYTHONPATH=src python -m macro_policy_thesis_map.cli release-manifest --root . | release manifest records settled hashes |
 
 ## Release Gates
 

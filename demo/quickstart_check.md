@@ -66,3 +66,4 @@ Passed: 8 / 8
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli provenance-ledger --root . | demo/provenance_ledger.md, demo/provenance_ledger.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli reproducibility-recipe --root . | demo/reproducibility_recipe.md, demo/reproducibility_recipe.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli release-notes-draft --root . | demo/release_notes_draft.md, demo/release_notes_draft.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli release-audit-summary --root . | demo/release_audit_summary.md, demo/release_audit_summary.json |

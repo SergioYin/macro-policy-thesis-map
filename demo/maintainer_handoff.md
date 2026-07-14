@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.4.0
+Version: 1.5.0
 
 Status: ready
 
@@ -36,10 +36,10 @@ Missing: 0
 
 | Path | Status | Bytes | SHA-256 prefix |
 | --- | --- | --- | --- |
-| README.md | present | 20213 | bd9e1705b4ad4609 |
-| skills/agent/macro-policy-thesis-map/SKILL.md | present | 4775 | 6414e2bbb4630894 |
-| demo/maintainer_guide.json | present | 2594 | 23c3bcd8b3958d2a |
-| demo/onboarding_checklist.json | present | 2593 | e3944b057ecfcc8b |
+| README.md | present | 20613 | 71f5f2542b3a7bc9 |
+| skills/agent/macro-policy-thesis-map/SKILL.md | present | 4869 | 5f0c177b4e3ec83e |
+| demo/maintainer_guide.json | present | 2623 | b448c5bdd76bec62 |
+| demo/onboarding_checklist.json | present | 2593 | 0b0183d29083835a |
 | demo/public_readiness.json | present | 2471 | d45135eba9e8effb |
-| demo/evidence_bundle.json | present | 19080 | 1396ff6300e90c74 |
+| demo/evidence_bundle.json | present | 19080 | c2985ca1793291c8 |
 | demo/regression_summary.json | present | 3389 | 55721620ea052ddc |

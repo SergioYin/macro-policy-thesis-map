@@ -9,12 +9,12 @@
         {
           "bytes": 832,
           "path": "pyproject.toml",
-          "sha256": "e2eccdcc2248f66d6d0616b9d7e7ddeba98c92147fd0b063130c8d68db6a4cc0"
+          "sha256": "76e96e006cdb2620aa2c331bd72341b0fb279e1032ca6427c9b3a7413b5480df"
         },
         {
-          "bytes": 2257,
+          "bytes": 2400,
           "path": "demo/compatibility_report.json",
-          "sha256": "0a222de323e14ab63b488e4603f6225330505cc7597f716f422acdf45ce4e65d"
+          "sha256": "56be342014d705ad86089d21592f57c3d5c88e880c03535d5fe091d6976f6334"
         }
       ],
       "claim": "The project is a zero-dependency Python CLI.",
@@ -43,7 +43,7 @@
         {
           "bytes": 4685,
           "path": "demo/golden_fixtures.json",
-          "sha256": "99a3213b8530a9a4362b7492d28c3782989c622109386afe5ceea50d551b1349"
+          "sha256": "acea7ebf0a09c9d1a9e877a3ef6a59e4a097495f56fb17cfec605a5bee886abd"
         }
       ],
       "claim": "The default examples are local static CSV fixtures.",
@@ -55,19 +55,19 @@
       "citation_count": 3,
       "citations": [
         {
-          "bytes": 23315,
+          "bytes": 23850,
           "path": "demo/command_matrix.json",
-          "sha256": "6655681f7e4196486f62206aef6c6e1d944afdef4505321067960e1bf5153191"
+          "sha256": "5e97ff48b0bb09296664deaf112148be1eec00b32cf16c56c4fe53518bc85847"
         },
         {
-          "bytes": 27463,
+          "bytes": 27781,
           "path": "demo/artifact_index.json",
-          "sha256": "6e767512e0bcd303497b7fa4468ff98d55ff1c20e4a9d2c583d7072509871a00"
+          "sha256": "9b636f1a402138027e343222f05a5e4b825001d50bb95da2180557b85557c5f6"
         },
         {
           "bytes": 18568,
           "path": "demo/release_manifest.json",
-          "sha256": "365a3a8944e17c4a554e794b89210fbac4c34717afd01d319762daf532e51a53"
+          "sha256": "dc52cccb72090ed5e9c25cf00703fabd64efdc53186c568be98583de79aac11a"
         }
       ],
       "claim": "The CLI writes deterministic Markdown, JSON, HTML, and SVG artifacts under demo/.",
@@ -79,9 +79,9 @@
       "citation_count": 4,
       "citations": [
         {
-          "bytes": 25925,
+          "bytes": 26456,
           "path": "tests/test_cli.py",
-          "sha256": "d1fe1bd81232c338793c54950ff88aecbb7ca377c54c444eaf61a193093b2bb4"
+          "sha256": "0461a69d708e22f28b8c238da0bc32b5799bcbe88d3a70126181ff3fa0902b1c"
         },
         {
           "bytes": 1388,
@@ -89,14 +89,14 @@
           "sha256": "d50fc2a2e87e8002eb697b42e3562db830a56b9088734a50569f4ac39bef5d6c"
         },
         {
-          "bytes": 3389,
+          "bytes": 3662,
           "path": "demo/regression_summary.json",
-          "sha256": "55721620ea052ddced8abb67447cb5d8edf620bbd013826d8e20eba09e6ed0ae"
+          "sha256": "7585f3c1dc78ba14a8482434f5a3f368532dbf9fa06c13202b7237676ddfb97c"
         },
         {
           "bytes": 5130,
           "path": "demo/trust_report.json",
-          "sha256": "212ac784fdce584328f4b1d7faff6ae2fb762d1662e0228cc81f1b5101a433fb"
+          "sha256": "a2589cb792e1af6251dfba58816c40a6a629375b139fadb10c423af7624d09f5"
         }
       ],
       "claim": "Public release gates include tests, selfcheck, public scan, readiness, diff check, and wheel build.",
@@ -108,19 +108,19 @@
       "citation_count": 3,
       "citations": [
         {
-          "bytes": 20213,
+          "bytes": 20613,
           "path": "README.md",
-          "sha256": "bd9e1705b4ad4609cc937cb8919d5aa80644d748d2d92aaea6f239e8a667fe7c"
+          "sha256": "71f5f2542b3a7bc98c84d6b3fc5bcc0aa2d87858a6d54d91ce7f15dff74d8fd8"
         },
         {
-          "bytes": 4775,
+          "bytes": 4869,
           "path": "skills/agent/macro-policy-thesis-map/SKILL.md",
-          "sha256": "6414e2bbb463089459b4f5b6bc99da14bc38de61a985449a1048413feac7501c"
+          "sha256": "5f0c177b4e3ec83e9ed719ea42334f2a69381e8203aa70313d34f43aa047b243"
         },
         {
-          "bytes": 2471,
+          "bytes": 2610,
           "path": "demo/public_readiness.json",
-          "sha256": "d45135eba9e8effbf61378dd00daab485b67320370eed81a56f07ae5b4ee05c8"
+          "sha256": "8b91002e3689db662b76dc2e46f51af4944528070f42a92d22ecb2cae5929e56"
         }
       ],
       "claim": "Outputs are research-only and do not fetch live data or provide personalized financial advice.",
@@ -129,36 +129,41 @@
       "producer_command": "public-readiness"
     },
     {
-      "citation_count": 4,
+      "citation_count": 5,
       "citations": [
         {
           "bytes": 2101,
           "path": "demo/boundary_attestation.json",
-          "sha256": "3aaf0a1cff28aa03785cd264524c816f67a7c8fde219ef33955b7f38c0eae1c1"
+          "sha256": "32d1ff7a15c7debeef0834e125d8a665b28322252949fadd5a710b9f5ae569b5"
         },
         {
-          "bytes": 26766,
+          "bytes": 27062,
           "path": "demo/provenance_ledger.json",
-          "sha256": "16af0d34681e26e45986b44fb279c6595b1c32b5547d1e2fda70703e28445838"
+          "sha256": "ec5015ff728ecde2ed6d01b572cc82eeabb78848a8c9acf8bb448c2edee16a13"
         },
         {
-          "bytes": 10617,
+          "bytes": 10807,
           "path": "demo/reproducibility_recipe.json",
-          "sha256": "5031cf7d6615be3b46b733d2bfaf6451414953fa23cd0852b3f486e73c287aa8"
+          "sha256": "7fe88eeb7faedd9c3fb3a58f3841ca084b3026baf0fab848b65cc5dae20ee566"
         },
         {
-          "bytes": 2124,
+          "bytes": 2248,
           "path": "demo/release_notes_draft.json",
-          "sha256": "f62415c15621be64b897ad02fa115b76cd41850f4dd2e6ee1b509d4c7948bb10"
+          "sha256": "e14d99fc40369c0febf4b5d8fe60a664262c5001eb3df78a68f58abd30716ce6"
+        },
+        {
+          "bytes": 8590,
+          "path": "demo/release_audit_summary.json",
+          "sha256": "4f6509528f406afe20ac6fa59c20878ac0abb1ade6a18ebbbf876b5f0cda17a9"
         }
       ],
-      "claim": "The v1.4.0 onboarding layer records boundaries, provenance, reproducibility, release notes, evaluator onboarding, and maintainer handoff locally.",
+      "claim": "The v1.5.0 final audit layer records boundaries, provenance, reproducibility, release notes, evaluator onboarding, maintainer handoff, and audit summary evidence locally.",
       "claim_id": "claim-006",
       "missing_count": 0,
-      "producer_command": "release-notes-draft"
+      "producer_command": "release-audit-summary"
     }
   ],
   "missing_count": 0,
   "title": "Citation Map",
-  "version": "1.4.0"
+  "version": "1.5.0"
 }

@@ -115,12 +115,6 @@
       "stability": "deterministic local output"
     },
     {
-      "format": "html",
-      "path": "demo/visual_receipt.svg or demo/visual_receipt.html",
-      "producer_command": "visual-receipt",
-      "stability": "deterministic local output"
-    },
-    {
       "format": "json",
       "path": "demo/visual_receipt.json",
       "producer_command": "visual-receipt",
@@ -610,6 +604,18 @@
       "format": "json",
       "path": "demo/maintainer_handoff.json",
       "producer_command": "maintainer-handoff",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "md",
+      "path": "demo/release_audit_summary.md",
+      "producer_command": "release-audit-summary",
+      "stability": "deterministic local output"
+    },
+    {
+      "format": "json",
+      "path": "demo/release_audit_summary.json",
+      "producer_command": "release-audit-summary",
       "stability": "deterministic local output"
     },
     {
@@ -1240,7 +1246,7 @@
         "demo/release_notes_draft.md",
         "demo/release_notes_draft.json"
       ],
-      "purpose": "Draft v1.4.0 public release notes from local artifacts, governance, onboarding, and release gates.",
+      "purpose": "Draft v1.5.0 public release notes from local artifacts, governance, onboarding, and release gates.",
       "safety": "Draft notes are descriptive release metadata only and contain no advice, private references, or workflow steps.",
       "usage": "macro-policy-thesis-map release-notes-draft --root ."
     },
@@ -1269,6 +1275,19 @@
       "purpose": "Write deterministic maintainer handoff responsibilities, artifact custody, and release gates.",
       "safety": "Documentation-only handoff for public static artifacts; no private systems, uploads, workflows, live data, or advice.",
       "usage": "macro-policy-thesis-map maintainer-handoff --root ."
+    },
+    {
+      "command": "release-audit-summary",
+      "inputs": [
+        "release artifacts, verification artifacts, safety attestations, promotion artifacts"
+      ],
+      "outputs": [
+        "demo/release_audit_summary.md",
+        "demo/release_audit_summary.json"
+      ],
+      "purpose": "Aggregate final release, verification, public safety, and promotion readiness evidence for public reviewers.",
+      "safety": "Reads local public artifacts only; no live data, private references, workflow automation, or advice.",
+      "usage": "macro-policy-thesis-map release-audit-summary --root ."
     },
     {
       "command": "cold-start-walkthrough",
@@ -1423,5 +1442,5 @@
     "recommendations",
     "personalized financial advice"
   ],
-  "version": "1.4.0"
+  "version": "1.5.0"
 }

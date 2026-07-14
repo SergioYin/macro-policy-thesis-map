@@ -17,7 +17,7 @@
       "detail": "Demo artifacts have producer commands, formats, and hashes.",
       "evidence": "demo/artifact_index.json",
       "name": "artifact_index_complete",
-      "passed": false
+      "passed": true
     },
     {
       "detail": "Readiness gates pass for local public release evidence.",
@@ -38,7 +38,7 @@
       "passed": true
     },
     {
-      "detail": "v1.4.0 governance, onboarding, and maintainer handoff artifacts are available for public release review.",
+      "detail": "v1.5.0 governance, onboarding, maintainer handoff, and release audit artifacts are available for public release review.",
       "evidence": "demo/boundary_attestation.json, demo/provenance_ledger.json, demo/reproducibility_recipe.json, demo/release_notes_draft.json",
       "name": "governance_layer_present",
       "passed": true
@@ -56,8 +56,8 @@
     "reproducibility-recipe",
     "release-notes-draft"
   ],
-  "score": 6,
-  "status": "needs-review",
+  "score": 7,
+  "status": "ready",
   "title": "Evaluator Scorecard",
-  "version": "1.4.0"
+  "version": "1.5.0"
 }

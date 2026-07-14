@@ -102,7 +102,7 @@ def test_fixture_doctor_and_schema_export(tmp_path):
     assert '"status": "pass"' in doctor_json.read_text(encoding="utf-8")
     assert "Fixture Doctor" in doctor_md.read_text(encoding="utf-8")
     schema_text = schema_json.read_text(encoding="utf-8")
-    assert '"schema_version": "1.4.0"' in schema_text
+    assert '"schema_version": "1.5.0"' in schema_text
     assert "confidence" in schema_text
     assert "Data Dictionary" in schema_md.read_text(encoding="utf-8")
 
@@ -152,7 +152,7 @@ def test_governance_attestation_commands(tmp_path):
     assert "Provenance Ledger" in provenance_md.read_text(encoding="utf-8")
     assert "release_gates" in recipe_json.read_text(encoding="utf-8")
     assert "Reproducibility Recipe" in recipe_md.read_text(encoding="utf-8")
-    assert "v1.4.0 evaluator onboarding" in notes_json.read_text(encoding="utf-8")
+    assert "v1.5.0 final release audit" in notes_json.read_text(encoding="utf-8")
     assert "Release Notes Draft" in notes_md.read_text(encoding="utf-8")
 
 
@@ -169,6 +169,18 @@ def test_onboarding_and_handoff_commands(tmp_path):
     assert "Evaluator Onboarding Checklist" in onboarding_md.read_text(encoding="utf-8")
     assert "release_gates" in handoff_json.read_text(encoding="utf-8")
     assert "Maintainer Handoff" in handoff_md.read_text(encoding="utf-8")
+
+
+def test_release_audit_summary_command(tmp_path):
+    audit_json = tmp_path / "audit.json"
+    audit_md = tmp_path / "audit.md"
+
+    assert main(["release-audit-summary", "--root", str(ROOT), "--out-json", str(audit_json), "--out-md", str(audit_md)]) == 0
+
+    text = audit_json.read_text(encoding="utf-8")
+    assert "promotion_readiness" in text
+    assert "public_safety" in text
+    assert "Release Audit Summary" in audit_md.read_text(encoding="utf-8")
 
 
 def test_thesis_impact_brief_and_exposure_map(tmp_path):
@@ -313,7 +325,7 @@ def test_release_owner_promotion_pack_commands(tmp_path):
     assert main(["release-deck", "--root", str(ROOT), "--out-json", str(deck_json), "--out-md", str(deck_md)]) == 0
     assert main(["bundle-export", "--root", str(ROOT), "--out-json", str(export_json), "--out-md", str(export_md)]) == 0
 
-    assert '"version": "1.4.0"' in adoption_json.read_text(encoding="utf-8")
+    assert '"version": "1.5.0"' in adoption_json.read_text(encoding="utf-8")
     assert "cold_user_next_actions" in adoption_json.read_text(encoding="utf-8")
     assert "maturity_mapping" in scorecard_json.read_text(encoding="utf-8")
     assert "Release Owner Promotion Deck" in deck_md.read_text(encoding="utf-8")
@@ -497,6 +509,7 @@ def test_public_readiness_blocks_incomplete_tree(tmp_path):
         (["release-faq"], "demo/release_faq.json"),
         (["artifact-index"], "demo/artifact_index.json"),
         (["evaluator-scorecard"], "demo/evaluator_scorecard.json"),
+        (["release-audit-summary"], "demo/release_audit_summary.json"),
     ],
 )
 def test_default_example_commands_work_from_empty_cwd(tmp_path, monkeypatch, argv, output):

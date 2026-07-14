@@ -1433,6 +1433,54 @@ Missing: {payload['missing_count']}
 """
 
 
+def release_audit_summary_md(payload: dict[str, Any]) -> str:
+    sections = [[item["section"], item["present_count"], item["evidence_count"]] for item in payload["sections"]]
+    evidence = [
+        [
+            item["section"],
+            item["name"],
+            "present" if item["present"] else "missing",
+            item["path"],
+            item["field"],
+            item["value"],
+            item["record"].get("sha256", "")[:16],
+        ]
+        for item in payload["evidence"]
+    ]
+    blockers = [[item] for item in payload["blockers"]] or [["none"]]
+    focus = [[item] for item in payload["reviewer_focus"]]
+    return f"""# Release Audit Summary
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Status: {payload['status']}
+
+Evidence: {payload['evidence_count']}
+
+Missing: {payload['missing_count']}
+
+Blockers: {payload['blocker_count']}
+
+## Sections
+
+{table(["Section", "Present", "Evidence"], sections)}
+
+## Evidence
+
+{table(["Section", "Name", "Status", "Path", "Field", "Value", "SHA-256 prefix"], evidence)}
+
+## Reviewer Focus
+
+{table(["Focus"], focus)}
+
+## Blockers
+
+{table(["Blocker"], blockers)}
+"""
+
+
 def public_doc_html(payload: dict[str, Any], body_rows: list[tuple[str, list[list[Any]], list[str]]]) -> str:
     sections = []
     for title, rows, headers in body_rows:

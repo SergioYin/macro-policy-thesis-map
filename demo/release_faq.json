@@ -56,13 +56,14 @@
       "question_id": "faq-005"
     },
     {
-      "answer": "Use boundary-attestation, provenance-ledger, reproducibility-recipe, release-notes-draft, onboarding-checklist, and maintainer-handoff for v1.4.0 onboarding evidence.",
+      "answer": "Use boundary-attestation, provenance-ledger, reproducibility-recipe, release-notes-draft, onboarding-checklist, maintainer-handoff, and release-audit-summary for v1.5.0 final release evidence.",
       "citation_status": "ready",
       "local_citations": [
         "demo/boundary_attestation.md",
         "demo/provenance_ledger.md",
         "demo/reproducibility_recipe.md",
-        "demo/release_notes_draft.md"
+        "demo/release_notes_draft.md",
+        "demo/release_audit_summary.md"
       ],
       "question": "Where is the governance and attestation layer?",
       "question_id": "faq-006"
@@ -70,5 +71,5 @@
   ],
   "ready_count": 6,
   "title": "Release FAQ",
-  "version": "1.4.0"
+  "version": "1.5.0"
 }

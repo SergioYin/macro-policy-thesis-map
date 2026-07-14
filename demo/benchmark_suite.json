@@ -87,5 +87,5 @@
   ],
   "suite_type": "static synthetic deterministic benchmarks",
   "title": "Public Evaluator Benchmark Suite",
-  "version": "1.4.0"
+  "version": "1.5.0"
 }

@@ -1,0 +1,280 @@
+{
+  "blocker_count": 0,
+  "blockers": [],
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "evidence": [
+    {
+      "detail": "release artifact hashes",
+      "field": "artifact_count",
+      "name": "release_manifest",
+      "path": "demo/release_manifest.json",
+      "present": true,
+      "record": {
+        "bytes": 18568,
+        "path": "demo/release_manifest.json",
+        "sha256": "70bc1fb99bb5eabdf1ff6355c029edd5fd38eacd94a5371cd150414a60c61da6"
+      },
+      "section": "release",
+      "value": 113
+    },
+    {
+      "detail": "release note readiness",
+      "field": "status",
+      "name": "release_notes",
+      "path": "demo/release_notes_draft.json",
+      "present": true,
+      "record": {
+        "bytes": 2248,
+        "path": "demo/release_notes_draft.json",
+        "sha256": "e14d99fc40369c0febf4b5d8fe60a664262c5001eb3df78a68f58abd30716ce6"
+      },
+      "section": "release",
+      "value": "ready"
+    },
+    {
+      "detail": "local provenance records",
+      "field": "present_artifact_count",
+      "name": "provenance",
+      "path": "demo/provenance_ledger.json",
+      "present": true,
+      "record": {
+        "bytes": 27062,
+        "path": "demo/provenance_ledger.json",
+        "sha256": "ec5015ff728ecde2ed6d01b572cc82eeabb78848a8c9acf8bb448c2edee16a13"
+      },
+      "section": "release",
+      "value": 107
+    },
+    {
+      "detail": "deterministic regeneration steps",
+      "field": "step_count",
+      "name": "reproducibility",
+      "path": "demo/reproducibility_recipe.json",
+      "present": true,
+      "record": {
+        "bytes": 10807,
+        "path": "demo/reproducibility_recipe.json",
+        "sha256": "7fe88eeb7faedd9c3fb3a58f3841ca084b3026baf0fab848b65cc5dae20ee566"
+      },
+      "section": "release",
+      "value": 51
+    },
+    {
+      "detail": "regression gate summary",
+      "field": "status",
+      "name": "regression",
+      "path": "demo/regression_summary.json",
+      "present": true,
+      "record": {
+        "bytes": 3662,
+        "path": "demo/regression_summary.json",
+        "sha256": "7585f3c1dc78ba14a8482434f5a3f368532dbf9fa06c13202b7237676ddfb97c"
+      },
+      "section": "verification",
+      "value": "ready"
+    },
+    {
+      "detail": "public readiness gate",
+      "field": "status",
+      "name": "public_readiness",
+      "path": "demo/public_readiness.json",
+      "present": true,
+      "record": {
+        "bytes": 2610,
+        "path": "demo/public_readiness.json",
+        "sha256": "8b91002e3689db662b76dc2e46f51af4944528070f42a92d22ecb2cae5929e56"
+      },
+      "section": "verification",
+      "value": "ready"
+    },
+    {
+      "detail": "fixture schema and hash inventory",
+      "field": "status",
+      "name": "golden_fixtures",
+      "path": "demo/golden_fixtures.json",
+      "present": true,
+      "record": {
+        "bytes": 4685,
+        "path": "demo/golden_fixtures.json",
+        "sha256": "acea7ebf0a09c9d1a9e877a3ef6a59e4a097495f56fb17cfec605a5bee886abd"
+      },
+      "section": "verification",
+      "value": "ready"
+    },
+    {
+      "detail": "package compatibility gates",
+      "field": "status",
+      "name": "compatibility",
+      "path": "demo/compatibility_report.json",
+      "present": true,
+      "record": {
+        "bytes": 2400,
+        "path": "demo/compatibility_report.json",
+        "sha256": "56be342014d705ad86089d21592f57c3d5c88e880c03535d5fe091d6976f6334"
+      },
+      "section": "verification",
+      "value": "ready"
+    },
+    {
+      "detail": "static finance boundary attestation",
+      "field": "status",
+      "name": "boundary_attestation",
+      "path": "demo/boundary_attestation.json",
+      "present": true,
+      "record": {
+        "bytes": 2101,
+        "path": "demo/boundary_attestation.json",
+        "sha256": "32d1ff7a15c7debeef0834e125d8a665b28322252949fadd5a710b9f5ae569b5"
+      },
+      "section": "public_safety",
+      "value": "attested"
+    },
+    {
+      "detail": "public trust report",
+      "field": "status",
+      "name": "trust_report",
+      "path": "demo/trust_report.json",
+      "present": true,
+      "record": {
+        "bytes": 5130,
+        "path": "demo/trust_report.json",
+        "sha256": "902eafc01db7213262c9f7f98accb282ac894171a8ee1b03c65c1dbba927d1dd"
+      },
+      "section": "public_safety",
+      "value": "ready"
+    },
+    {
+      "detail": "local claim citation gaps",
+      "field": "missing_count",
+      "name": "citation_map",
+      "path": "demo/citation_map.json",
+      "present": true,
+      "record": {
+        "bytes": 5936,
+        "path": "demo/citation_map.json",
+        "sha256": "1c3b7eff9d04cd1d5e59e579e086a9b2b9c2f12b02822c30539785829d2c9f5e"
+      },
+      "section": "public_safety",
+      "value": 0
+    },
+    {
+      "detail": "reviewer-facing readiness score",
+      "field": "status",
+      "name": "evaluator_scorecard",
+      "path": "demo/evaluator_scorecard.json",
+      "present": true,
+      "record": {
+        "bytes": 2257,
+        "path": "demo/evaluator_scorecard.json",
+        "sha256": "e87c0940fbff005dd1b14951c2dd6c9592a62aa209a002b080d7204f19021639"
+      },
+      "section": "public_safety",
+      "value": "ready"
+    },
+    {
+      "detail": "release-owner adoption status",
+      "field": "public_readiness_status",
+      "name": "adoption_notes",
+      "path": "demo/adoption_notes.json",
+      "present": true,
+      "record": {
+        "bytes": 8260,
+        "path": "demo/adoption_notes.json",
+        "sha256": "7440970ffd5317e1e46fe95da4bfb85ca8d23321044c5c73fe1d72d74533ccb9"
+      },
+      "section": "promotion_readiness",
+      "value": "ready"
+    },
+    {
+      "detail": "reviewer rubric status",
+      "field": "status",
+      "name": "reviewer_scorecard",
+      "path": "demo/reviewer_scorecard.json",
+      "present": true,
+      "record": {
+        "bytes": 8942,
+        "path": "demo/reviewer_scorecard.json",
+        "sha256": "99477329b486f41b7367714a137be9bf3f5abe79a0bee7c3f291207bf95268b2"
+      },
+      "section": "promotion_readiness",
+      "value": "ready"
+    },
+    {
+      "detail": "promotion deck slide count",
+      "field": "slide_count",
+      "name": "release_deck",
+      "path": "demo/release_deck.json",
+      "present": true,
+      "record": {
+        "bytes": 6461,
+        "path": "demo/release_deck.json",
+        "sha256": "a97490a0e4c3565f229ecb4aaeb492b048ba72eebaa9eed0c666028609e4f9a1"
+      },
+      "section": "promotion_readiness",
+      "value": 5
+    },
+    {
+      "detail": "promotion bundle manifest",
+      "field": "status",
+      "name": "bundle_export",
+      "path": "demo/bundle_export/manifest.json",
+      "present": true,
+      "record": {
+        "bytes": 14017,
+        "path": "demo/bundle_export/manifest.json",
+        "sha256": "8d6ae90c9ea2b3d006a6f11f62de625c4bdd7db9c40c14fed0704856ac30aa4b"
+      },
+      "section": "promotion_readiness",
+      "value": "ready"
+    },
+    {
+      "detail": "public evidence bundle",
+      "field": "status",
+      "name": "evidence_bundle",
+      "path": "demo/evidence_bundle.json",
+      "present": true,
+      "record": {
+        "bytes": 19080,
+        "path": "demo/evidence_bundle.json",
+        "sha256": "b0bd94074e5f9486817df0f7049712e729715be379dfa1e108acba33a468a900"
+      },
+      "section": "promotion_readiness",
+      "value": "ready"
+    }
+  ],
+  "evidence_count": 17,
+  "missing_count": 0,
+  "public_scan_findings": [],
+  "reviewer_focus": [
+    "Release evidence: manifest, notes, provenance, and reproducibility recipe.",
+    "Verification evidence: regression summary, readiness, golden fixtures, and compatibility report.",
+    "Public safety evidence: boundary attestation, trust report, citation map, and evaluator scorecard.",
+    "Promotion readiness evidence: adoption notes, reviewer scorecard, release deck, bundle export, and evidence bundle."
+  ],
+  "section_count": 4,
+  "sections": [
+    {
+      "evidence_count": 4,
+      "present_count": 4,
+      "section": "release"
+    },
+    {
+      "evidence_count": 4,
+      "present_count": 4,
+      "section": "verification"
+    },
+    {
+      "evidence_count": 4,
+      "present_count": 4,
+      "section": "public_safety"
+    },
+    {
+      "evidence_count": 5,
+      "present_count": 5,
+      "section": "promotion_readiness"
+    }
+  ],
+  "status": "ready",
+  "title": "Release Audit Summary",
+  "version": "1.5.0"
+}

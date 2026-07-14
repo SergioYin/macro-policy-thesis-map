@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.4.0
+Version: 1.5.0
 
 Tagline: Static macro policy notes in; neutral thesis evidence packets out.
 
@@ -48,9 +48,9 @@ Secondary recipe: `PYTHONPATH=src python -m macro_policy_thesis_map.cli workflow
 
 | Path | Bytes | SHA-256 prefix |
 | --- | --- | --- |
-| demo/api_reference.json | 45374 | 9babdb9e89dfc5ee |
-| demo/example_pack.json | 3795 | b2704c9a6deba147 |
-| demo/landing_page.html | 3860 | 07cb9a57d8c08c24 |
-| demo/public_readiness.json | 2301 | b2e51d04d172c6ca |
-| demo/release_manifest.json | 17914 | e974d283d5fe2244 |
-| demo/workflow_protocol.json | 3557 | 01116e3fb6b402c8 |
+| demo/api_reference.json | 47299 | b82a42e9cbf67437 |
+| demo/example_pack.json | 3795 | 935a6dab9ce220cf |
+| demo/landing_page.html | 3860 | 2e0c917e4863319d |
+| demo/public_readiness.json | 2471 | d45135eba9e8effb |
+| demo/release_manifest.json | 18568 | 67a6799b249c505a |
+| demo/workflow_protocol.json | 3557 | 26555f1efd6289b6 |

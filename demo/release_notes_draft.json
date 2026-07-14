@@ -5,7 +5,8 @@
     "demo/reproducibility_recipe.md",
     "demo/release_notes_draft.md",
     "demo/onboarding_checklist.md",
-    "demo/maintainer_handoff.md"
+    "demo/maintainer_handoff.md",
+    "demo/release_audit_summary.md"
   ],
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
   "gate_summary": {
@@ -15,15 +16,16 @@
     "provenance_present_artifacts": 105,
     "public_readiness_status": "ready",
     "regression_status": "needs-review",
-    "reproducibility_steps": 50
+    "release_audit_status": "missing",
+    "reproducibility_steps": 51
   },
   "highlights": [
-    "Added onboarding-checklist for final evaluator start-here gates, stop conditions, and artifact route checks.",
-    "Added maintainer-handoff for custody, release gates, version duties, and public static finance boundaries.",
-    "Kept governance artifacts, provenance, reproducibility, and release notes tied to deterministic local evidence.",
+    "Added release-audit-summary for final reviewer evidence across release, verification, public safety, and promotion readiness.",
+    "Kept onboarding-checklist and maintainer-handoff tied to custody, release gates, version duties, and public static finance boundaries.",
+    "Kept governance artifacts, provenance, reproducibility, release notes, and final audit evidence tied to deterministic local files.",
     "Preserved zero runtime dependencies, static bundled fixtures, and no workflow automation."
   ],
-  "release_name": "v1.4.0 evaluator onboarding and maintainer handoff layer",
+  "release_name": "v1.5.0 final release audit summary layer",
   "status": "ready",
   "title": "Release Notes Draft",
   "upgrade_notes": [
@@ -39,5 +41,5 @@
     "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
     "python -c \"import build_backend; build_backend.build_wheel('dist')\""
   ],
-  "version": "1.4.0"
+  "version": "1.5.0"
 }

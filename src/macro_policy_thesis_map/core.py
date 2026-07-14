@@ -152,6 +152,8 @@ DEMO_ARTIFACTS = [
     "demo/onboarding_checklist.json",
     "demo/maintainer_handoff.md",
     "demo/maintainer_handoff.json",
+    "demo/release_audit_summary.md",
+    "demo/release_audit_summary.json",
     "demo/fixture_doctor.md",
     "demo/fixture_doctor.json",
     "demo/input_schema.md",
@@ -495,7 +497,7 @@ COMMAND_SPECS = [
     },
     {
         "command": "release-notes-draft",
-        "purpose": "Draft v1.4.0 public release notes from local artifacts, governance, onboarding, and release gates.",
+        "purpose": "Draft v1.5.0 public release notes from local artifacts, governance, onboarding, and release gates.",
         "inputs": ["governance artifacts, command matrix, readiness, regression summary"],
         "outputs": ["demo/release_notes_draft.md", "demo/release_notes_draft.json"],
         "safety": "Draft notes are descriptive release metadata only and contain no advice, private references, or workflow steps.",
@@ -513,6 +515,13 @@ COMMAND_SPECS = [
         "inputs": ["maintainer guide, onboarding checklist, release manifest, readiness, evidence, regression artifacts"],
         "outputs": ["demo/maintainer_handoff.md", "demo/maintainer_handoff.json"],
         "safety": "Documentation-only handoff for public static artifacts; no private systems, uploads, workflows, live data, or advice.",
+    },
+    {
+        "command": "release-audit-summary",
+        "purpose": "Aggregate final release, verification, public safety, and promotion readiness evidence for public reviewers.",
+        "inputs": ["release artifacts, verification artifacts, safety attestations, promotion artifacts"],
+        "outputs": ["demo/release_audit_summary.md", "demo/release_audit_summary.json"],
+        "safety": "Reads local public artifacts only; no live data, private references, workflow automation, or advice.",
     },
     {
         "command": "cold-start-walkthrough",
@@ -1327,7 +1336,7 @@ def api_reference() -> dict[str, Any]:
         {"path": output, "format": output.rsplit(".", 1)[-1], "producer_command": spec["command"], "stability": "deterministic local output"}
         for spec in COMMAND_SPECS
         for output in spec["outputs"]
-        if output.startswith("demo/")
+        if output.startswith("demo/") and " or " not in output
     ]
     return {
         "title": "API Reference",
@@ -1645,9 +1654,9 @@ def citation_map(root: Path) -> dict[str, Any]:
         },
         {
             "claim_id": "claim-006",
-            "claim": "The v1.4.0 onboarding layer records boundaries, provenance, reproducibility, release notes, evaluator onboarding, and maintainer handoff locally.",
-            "citations": ["demo/boundary_attestation.json", "demo/provenance_ledger.json", "demo/reproducibility_recipe.json", "demo/release_notes_draft.json"],
-            "producer_command": "release-notes-draft",
+            "claim": "The v1.5.0 final audit layer records boundaries, provenance, reproducibility, release notes, evaluator onboarding, maintainer handoff, and audit summary evidence locally.",
+            "citations": ["demo/boundary_attestation.json", "demo/provenance_ledger.json", "demo/reproducibility_recipe.json", "demo/release_notes_draft.json", "demo/release_audit_summary.json"],
+            "producer_command": "release-audit-summary",
         },
     ]
     rows = []
@@ -1703,8 +1712,8 @@ def release_faq(root: Path) -> dict[str, Any]:
         {
             "question_id": "faq-006",
             "question": "Where is the governance and attestation layer?",
-            "answer": "Use boundary-attestation, provenance-ledger, reproducibility-recipe, release-notes-draft, onboarding-checklist, and maintainer-handoff for v1.4.0 onboarding evidence.",
-            "local_citations": ["demo/boundary_attestation.md", "demo/provenance_ledger.md", "demo/reproducibility_recipe.md", "demo/release_notes_draft.md"],
+            "answer": "Use boundary-attestation, provenance-ledger, reproducibility-recipe, release-notes-draft, onboarding-checklist, maintainer-handoff, and release-audit-summary for v1.5.0 final release evidence.",
+            "local_citations": ["demo/boundary_attestation.md", "demo/provenance_ledger.md", "demo/reproducibility_recipe.md", "demo/release_notes_draft.md", "demo/release_audit_summary.md"],
         },
     ]
     for item in questions:
@@ -1724,7 +1733,7 @@ def artifact_index(root: Path) -> dict[str, Any]:
         output: spec["command"]
         for spec in COMMAND_SPECS
         for output in spec["outputs"]
-        if output.startswith("demo/")
+        if output.startswith("demo/") and " or " not in output
     }
     rows = []
     for relative in sorted(set(DEMO_ARTIFACTS) | set(by_output)):
@@ -1797,7 +1806,7 @@ def evaluator_scorecard(root: Path) -> dict[str, Any]:
             "name": "governance_layer_present",
             "passed": all(root.joinpath(path).exists() for path in ["demo/boundary_attestation.json", "demo/provenance_ledger.json", "demo/reproducibility_recipe.json", "demo/release_notes_draft.json"]),
             "evidence": "demo/boundary_attestation.json, demo/provenance_ledger.json, demo/reproducibility_recipe.json, demo/release_notes_draft.json",
-            "detail": "v1.4.0 governance, onboarding, and maintainer handoff artifacts are available for public release review.",
+            "detail": "v1.5.0 governance, onboarding, maintainer handoff, and release audit artifacts are available for public release review.",
         },
     ]
     score = sum(1 for item in checks if item["passed"])
@@ -1874,7 +1883,7 @@ def provenance_ledger(root: Path) -> dict[str, Any]:
         output: spec["command"]
         for spec in COMMAND_SPECS
         for output in spec["outputs"]
-        if output.startswith("demo/")
+        if output.startswith("demo/") and " or " not in output
     }
     source_paths = [
         "README.md",
@@ -1957,12 +1966,12 @@ def release_notes_draft(root: Path) -> dict[str, Any]:
     return {
         "title": "Release Notes Draft",
         "version": __version__,
-        "release_name": "v1.4.0 evaluator onboarding and maintainer handoff layer",
+        "release_name": "v1.5.0 final release audit summary layer",
         "status": "ready" if readiness.get("status") == "ready" and boundary.get("status") == "attested" else "needs-review",
         "highlights": [
-            "Added onboarding-checklist for final evaluator start-here gates, stop conditions, and artifact route checks.",
-            "Added maintainer-handoff for custody, release gates, version duties, and public static finance boundaries.",
-            "Kept governance artifacts, provenance, reproducibility, and release notes tied to deterministic local evidence.",
+            "Added release-audit-summary for final reviewer evidence across release, verification, public safety, and promotion readiness.",
+            "Kept onboarding-checklist and maintainer-handoff tied to custody, release gates, version duties, and public static finance boundaries.",
+            "Kept governance artifacts, provenance, reproducibility, release notes, and final audit evidence tied to deterministic local files.",
             "Preserved zero runtime dependencies, static bundled fixtures, and no workflow automation.",
         ],
         "artifact_links": [
@@ -1972,6 +1981,7 @@ def release_notes_draft(root: Path) -> dict[str, Any]:
             "demo/release_notes_draft.md",
             "demo/onboarding_checklist.md",
             "demo/maintainer_handoff.md",
+            "demo/release_audit_summary.md",
         ],
         "gate_summary": {
             "public_readiness_status": readiness.get("status", "missing"),
@@ -1981,6 +1991,7 @@ def release_notes_draft(root: Path) -> dict[str, Any]:
             "reproducibility_steps": recipe.get("step_count", 0),
             "onboarding_status": read_optional_json(root / "demo/onboarding_checklist.json").get("status", "missing"),
             "handoff_status": read_optional_json(root / "demo/maintainer_handoff.json").get("status", "missing"),
+            "release_audit_status": read_optional_json(root / "demo/release_audit_summary.json").get("status", "missing"),
         },
         "verification_commands": [
             "PYTHONPATH=src python -m pytest",
@@ -2136,6 +2147,114 @@ def maintainer_handoff(root: Path) -> dict[str, Any]:
     }
 
 
+def release_audit_summary(root: Path) -> dict[str, Any]:
+    sections = [
+        {
+            "section": "release",
+            "evidence": [
+                ("release_manifest", "demo/release_manifest.json", "artifact_count", "release artifact hashes"),
+                ("release_notes", "demo/release_notes_draft.json", "status", "release note readiness"),
+                ("provenance", "demo/provenance_ledger.json", "present_artifact_count", "local provenance records"),
+                ("reproducibility", "demo/reproducibility_recipe.json", "step_count", "deterministic regeneration steps"),
+            ],
+        },
+        {
+            "section": "verification",
+            "evidence": [
+                ("regression", "demo/regression_summary.json", "status", "regression gate summary"),
+                ("public_readiness", "demo/public_readiness.json", "status", "public readiness gate"),
+                ("golden_fixtures", "demo/golden_fixtures.json", "status", "fixture schema and hash inventory"),
+                ("compatibility", "demo/compatibility_report.json", "status", "package compatibility gates"),
+            ],
+        },
+        {
+            "section": "public_safety",
+            "evidence": [
+                ("boundary_attestation", "demo/boundary_attestation.json", "status", "static finance boundary attestation"),
+                ("trust_report", "demo/trust_report.json", "status", "public trust report"),
+                ("citation_map", "demo/citation_map.json", "missing_count", "local claim citation gaps"),
+                ("evaluator_scorecard", "demo/evaluator_scorecard.json", "status", "reviewer-facing readiness score"),
+            ],
+        },
+        {
+            "section": "promotion_readiness",
+            "evidence": [
+                ("adoption_notes", "demo/adoption_notes.json", "public_readiness_status", "release-owner adoption status"),
+                ("reviewer_scorecard", "demo/reviewer_scorecard.json", "status", "reviewer rubric status"),
+                ("release_deck", "demo/release_deck.json", "slide_count", "promotion deck slide count"),
+                ("bundle_export", "demo/bundle_export/manifest.json", "status", "promotion bundle manifest"),
+                ("evidence_bundle", "demo/evidence_bundle.json", "status", "public evidence bundle"),
+            ],
+        },
+    ]
+    rows = []
+    missing: list[str] = []
+    for section in sections:
+        for name, relative, field, detail in section["evidence"]:
+            path = root / relative
+            payload = read_optional_json(path)
+            present = path.exists()
+            if not present:
+                missing.append(relative)
+            value = payload.get(field, "missing")
+            rows.append(
+                {
+                    "section": section["section"],
+                    "name": name,
+                    "path": relative,
+                    "present": present,
+                    "field": field,
+                    "value": value,
+                    "detail": detail,
+                    "record": file_record(root, path) if present and path.is_file() else {"path": relative, "bytes": 0, "sha256": "", "status": "missing"},
+                }
+            )
+    status_by_name = {item["name"]: item["value"] for item in rows}
+    public_scan_findings = public_findings(root)
+    blockers = []
+    if missing:
+        blockers.extend(f"missing {path}" for path in missing)
+    if public_scan_findings:
+        blockers.extend(public_scan_findings)
+    for name in ["public_readiness", "regression", "golden_fixtures", "compatibility", "trust_report", "evaluator_scorecard", "reviewer_scorecard", "bundle_export", "evidence_bundle"]:
+        if status_by_name.get(name) not in {"ready", "pass"}:
+            blockers.append(f"{name} status is {status_by_name.get(name, 'missing')}")
+    if status_by_name.get("boundary_attestation") != "attested":
+        blockers.append(f"boundary_attestation status is {status_by_name.get('boundary_attestation', 'missing')}")
+    if status_by_name.get("citation_map") != 0:
+        blockers.append(f"citation_map missing_count is {status_by_name.get('citation_map', 'missing')}")
+    section_summaries = []
+    for section in sections:
+        section_rows = [item for item in rows if item["section"] == section["section"]]
+        section_summaries.append(
+            {
+                "section": section["section"],
+                "evidence_count": len(section_rows),
+                "present_count": sum(1 for item in section_rows if item["present"]),
+            }
+        )
+    return {
+        "title": "Release Audit Summary",
+        "version": __version__,
+        "status": "ready" if not blockers else "needs-review",
+        "section_count": len(section_summaries),
+        "evidence_count": len(rows),
+        "missing_count": len(missing),
+        "blocker_count": len(blockers),
+        "sections": section_summaries,
+        "evidence": rows,
+        "blockers": blockers,
+        "public_scan_findings": public_scan_findings,
+        "reviewer_focus": [
+            "Release evidence: manifest, notes, provenance, and reproducibility recipe.",
+            "Verification evidence: regression summary, readiness, golden fixtures, and compatibility report.",
+            "Public safety evidence: boundary attestation, trust report, citation map, and evaluator scorecard.",
+            "Promotion readiness evidence: adoption notes, reviewer scorecard, release deck, bundle export, and evidence bundle.",
+        ],
+        "boundaries": DISCLAIMER,
+    }
+
+
 def compare_packets(current: dict[str, Any], prior: dict[str, Any]) -> dict[str, Any]:
     current_map = {item["policy_area"]: item for item in current["policy_areas"]}
     prior_map = {item["policy_area"]: item for item in prior["policy_areas"]}
@@ -2201,6 +2320,7 @@ def maturity(root: Path) -> dict[str, Any]:
         ("public_trust_layer", all(root.joinpath(path).exists() for path in ["demo/trust_report.json", "demo/citation_map.json", "demo/release_faq.json", "demo/artifact_index.json", "demo/evaluator_scorecard.json"])),
         ("governance_attestation_layer", all(root.joinpath(path).exists() for path in ["demo/boundary_attestation.json", "demo/provenance_ledger.json", "demo/reproducibility_recipe.json", "demo/release_notes_draft.json"])),
         ("evaluator_onboarding_layer", all(root.joinpath(path).exists() for path in ["demo/onboarding_checklist.json", "demo/maintainer_handoff.json"])),
+        ("release_audit_layer", root.joinpath("demo/release_audit_summary.json").exists()),
         ("tests", any(root.joinpath("tests").glob("test_*.py"))),
         ("skill", root.joinpath("skills/agent/macro-policy-thesis-map/SKILL.md").exists()),
         ("no_workflows", not root.joinpath(".github/workflows").exists()),
@@ -2282,6 +2402,7 @@ def quickstart_check(root: Path) -> dict[str, Any]:
             "reviewer-scorecard",
             "release-deck",
             "bundle-export",
+            "release-audit-summary",
         }
     ]
     passed = sum(1 for _, ok, _ in checks)
@@ -2405,9 +2526,10 @@ def docs_export(root: Path) -> dict[str, Any]:
         ("Boundary attestation", "demo/boundary_attestation.md", "Static finance boundary and public release attestation."),
         ("Provenance ledger", "demo/provenance_ledger.md", "Local source and artifact hash provenance."),
         ("Reproducibility recipe", "demo/reproducibility_recipe.md", "Deterministic regeneration order and release gates."),
-        ("Release notes draft", "demo/release_notes_draft.md", "v1.4.0 public release notes draft."),
+        ("Release notes draft", "demo/release_notes_draft.md", "v1.5.0 public release notes draft."),
         ("Evaluator onboarding checklist", "demo/onboarding_checklist.md", "Final evaluator onboarding checks and stop conditions."),
         ("Maintainer handoff", "demo/maintainer_handoff.md", "Maintainer artifact custody, release gates, and boundary duties."),
+        ("Release audit summary", "demo/release_audit_summary.md", "Final release, verification, public safety, and promotion readiness evidence."),
         ("Troubleshooting", "demo/troubleshoot.md", "Operator diagnostics and recovery steps."),
         ("CLI help", "demo/cli_help.md", "Deterministic command usage lines."),
         ("README snippet", "demo/readme_snippet.md", "Compact copyable quickstart snippet."),
@@ -2525,6 +2647,7 @@ def evidence_bundle(root: Path) -> dict[str, Any]:
         if not artifact.startswith("demo/release_manifest") and not artifact.startswith("demo/evidence_bundle")
         and not artifact.startswith("demo/adoption_notes") and not artifact.startswith("demo/reviewer_scorecard")
         and not artifact.startswith("demo/release_deck") and not artifact.startswith("demo/bundle_export")
+        and not artifact.startswith("demo/release_audit_summary")
     )
     records = []
     missing = []
@@ -2618,6 +2741,7 @@ def public_readiness(root: Path) -> dict[str, Any]:
         "demo/reviewer_scorecard.json",
         "demo/release_deck.json",
         "demo/bundle_export/manifest.json",
+        "demo/release_audit_summary.json",
     ]
     checks = [
         ("public_scan", not public_findings(root), "No private terms or credential-shaped tokens in public text."),
@@ -2631,6 +2755,7 @@ def public_readiness(root: Path) -> dict[str, Any]:
         ("public_trust_layer", all(root.joinpath(path).exists() for path in ["demo/trust_report.json", "demo/citation_map.json", "demo/release_faq.json", "demo/artifact_index.json", "demo/evaluator_scorecard.json"]), "Trust report, citation map, release FAQ, artifact index, and evaluator scorecard artifacts are present."),
         ("governance_attestation_layer", all(root.joinpath(path).exists() for path in ["demo/boundary_attestation.json", "demo/provenance_ledger.json", "demo/reproducibility_recipe.json", "demo/release_notes_draft.json"]), "Boundary, provenance, reproducibility, and release notes draft artifacts are present."),
         ("evaluator_onboarding_layer", all(root.joinpath(path).exists() for path in ["demo/onboarding_checklist.json", "demo/maintainer_handoff.json"]), "Final evaluator onboarding and maintainer handoff artifacts are present."),
+        ("release_audit_layer", root.joinpath("demo/release_audit_summary.json").exists(), "Final release audit summary artifact is present."),
         ("no_workflow_files", not root.joinpath(".github/workflows").exists(), "No repository workflow files are required for public evaluation."),
         ("zero_dependency_package", "dependencies = []" in root.joinpath("pyproject.toml").read_text(encoding="utf-8") if root.joinpath("pyproject.toml").exists() else False, "Package declares no runtime dependencies."),
     ]
@@ -2766,6 +2891,7 @@ def compatibility_report(root: Path) -> dict[str, Any]:
         ("trust_artifacts", all(root.joinpath(path).exists() for path in ["demo/trust_report.json", "demo/citation_map.json", "demo/release_faq.json", "demo/artifact_index.json", "demo/evaluator_scorecard.json"]), "Public trust layer artifacts are present."),
         ("governance_artifacts", all(root.joinpath(path).exists() for path in ["demo/boundary_attestation.json", "demo/provenance_ledger.json", "demo/reproducibility_recipe.json", "demo/release_notes_draft.json"]), "Governance and attestation layer artifacts are present."),
         ("onboarding_artifacts", all(root.joinpath(path).exists() for path in ["demo/onboarding_checklist.json", "demo/maintainer_handoff.json"]), "Evaluator onboarding and maintainer handoff artifacts are present."),
+        ("release_audit_artifacts", root.joinpath("demo/release_audit_summary.json").exists(), "Final release audit summary artifact is present."),
         ("no_workflows", not root.joinpath(".github/workflows").exists(), "No workflow files are required."),
     ]
     return {
@@ -2824,6 +2950,7 @@ def maintainer_guide() -> dict[str, Any]:
         "release-notes-draft",
         "onboarding-checklist",
         "maintainer-handoff",
+        "release-audit-summary",
         "benchmark-suite",
         "integration-cookbook",
         "compatibility-report",
@@ -2908,6 +3035,7 @@ def regression_summary(root: Path) -> dict[str, Any]:
         {"name": "trust_layer", "status": read_optional_json(root / "demo/evaluator_scorecard.json").get("status", "missing"), "evidence": "demo/evaluator_scorecard.json", "detail": "Evaluator trust scorecard based on local artifacts."},
         {"name": "governance_attestation_layer", "status": "ready" if all(root.joinpath(path).exists() for path in ["demo/boundary_attestation.json", "demo/provenance_ledger.json", "demo/reproducibility_recipe.json", "demo/release_notes_draft.json"]) else "missing", "evidence": "demo/boundary_attestation.json, demo/provenance_ledger.json, demo/reproducibility_recipe.json, demo/release_notes_draft.json", "detail": "Governance layer records boundaries, provenance, reproducibility, and release notes."},
         {"name": "evaluator_onboarding_layer", "status": "ready" if all(root.joinpath(path).exists() for path in ["demo/onboarding_checklist.json", "demo/maintainer_handoff.json"]) else "missing", "evidence": "demo/onboarding_checklist.json, demo/maintainer_handoff.json", "detail": "Final onboarding and maintainer handoff artifacts are present."},
+        {"name": "release_audit_summary", "status": "pass" if root.joinpath("demo/release_audit_summary.json").exists() else "missing", "evidence": "demo/release_audit_summary.json", "detail": "Final public reviewer audit summary is present."},
         {"name": "wheel_build", "status": "manual", "evidence": "python -m build --wheel or build_backend.build_wheel", "detail": "Offline wheel build should be run when build tooling is available."},
     ]
     blocking = [item for item in gates if item["status"] not in {"pass", "ready", "manual"}]
@@ -2932,6 +3060,7 @@ def regression_summary(root: Path) -> dict[str, Any]:
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-notes-draft --root .",
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli onboarding-checklist --root .",
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli maintainer-handoff --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-audit-summary --root .",
         ],
         "boundaries": DISCLAIMER,
     }
@@ -3050,6 +3179,8 @@ def release_manifest(root: Path) -> dict[str, Any]:
         "demo/release_deck.md",
         "demo/bundle_export/manifest.json",
         "demo/bundle_export/manifest.md",
+        "demo/release_audit_summary.json",
+        "demo/release_audit_summary.md",
     }
     for base in ["README.md", "LICENSE", "pyproject.toml", "examples", "demo", "src", "tests", "skills"]:
         path = root / base
@@ -3136,6 +3267,7 @@ def adoption_notes(root: Path) -> dict[str, Any]:
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli reviewer-scorecard --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-deck --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli bundle-export --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-audit-summary --root .",
         "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
         "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
     ]
@@ -3413,6 +3545,8 @@ def bundle_export(root: Path) -> dict[str, Any]:
             "demo/reproducibility_recipe.json",
             "demo/release_notes_draft.md",
             "demo/release_notes_draft.json",
+            "demo/release_audit_summary.md",
+            "demo/release_audit_summary.json",
     ]
     artifacts = records_for_existing(root, include)
     missing = [path for path in include if not root.joinpath(path).exists()]
@@ -3443,6 +3577,7 @@ def bundle_export(root: Path) -> dict[str, Any]:
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli provenance-ledger --root .",
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli reproducibility-recipe --root .",
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-notes-draft --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-audit-summary --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
         ],
