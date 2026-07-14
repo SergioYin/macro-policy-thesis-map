@@ -14,7 +14,7 @@ Commands: 9
 
 | Path | Bytes | SHA-256 prefix |
 | --- | --- | --- |
-| README.md | 19492 | 7cd2fe9dcb70f4ae |
+| README.md | 20213 | bd9e1705b4ad4609 |
 | examples/macro_events.csv | 906 | b7410919d62dd4e3 |
 | examples/public_macro_cases.csv | 1471 | ee511dd457dd7aab |
 | examples/thesis_sensitivities.csv | 1016 | ab0a6a3d0a7f0bc9 |
@@ -23,11 +23,11 @@ Commands: 9
 | demo/case_gallery.json | 4180 | 526e837ce331afd0 |
 | demo/thesis_impact_brief.json | 4389 | 941fcf40523e63ae |
 | demo/exposure_map.json | 3334 | e99f1a3387a9baa5 |
-| demo/scenario_library.json | 2903 | 8997f1e9baaefcfa |
-| demo/assumption_registry.json | 2500 | 496daa362b79b90a |
-| demo/data_dictionary_diff.json | 3472 | 510e5713493d6f3d |
+| demo/scenario_library.json | 2903 | cc502c7edcf25d4d |
+| demo/assumption_registry.json | 2500 | 24f1cb2faaf193e6 |
+| demo/data_dictionary_diff.json | 3472 | b1c9f49c0cbf3f3d |
 | demo/review_ledger.json | 432 | d4f558b50d9e8366 |
-| demo/public_readiness.json | 2301 | b2e51d04d172c6ca |
+| demo/public_readiness.json | 2471 | d45135eba9e8effb |
 
 ## Routes
 

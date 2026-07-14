@@ -1,6 +1,6 @@
 {
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
-  "command_count": 51,
+  "command_count": 53,
   "commands": [
     {
       "command": "build-packet",
@@ -568,8 +568,32 @@
         "demo/release_notes_draft.md",
         "demo/release_notes_draft.json"
       ],
-      "purpose": "Draft v1.3.0 public release notes from local artifacts, governance layer, and release gates.",
+      "purpose": "Draft v1.4.0 public release notes from local artifacts, governance, onboarding, and release gates.",
       "safety": "Draft notes are descriptive release metadata only and contain no advice, private references, or workflow steps."
+    },
+    {
+      "command": "onboarding-checklist",
+      "inputs": [
+        "README, skill docs, command matrix, readiness, evidence, governance artifacts"
+      ],
+      "outputs": [
+        "demo/onboarding_checklist.md",
+        "demo/onboarding_checklist.json"
+      ],
+      "purpose": "Write final evaluator onboarding checks, commands, artifacts, and stop conditions.",
+      "safety": "Documentation-only onboarding for local static research artifacts; no live data, workflows, broker access, or advice."
+    },
+    {
+      "command": "maintainer-handoff",
+      "inputs": [
+        "maintainer guide, onboarding checklist, release manifest, readiness, evidence, regression artifacts"
+      ],
+      "outputs": [
+        "demo/maintainer_handoff.md",
+        "demo/maintainer_handoff.json"
+      ],
+      "purpose": "Write deterministic maintainer handoff responsibilities, artifact custody, and release gates.",
+      "safety": "Documentation-only handoff for public static artifacts; no private systems, uploads, workflows, live data, or advice."
     },
     {
       "command": "cold-start-walkthrough",

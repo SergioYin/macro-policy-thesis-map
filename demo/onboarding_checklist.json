@@ -1,0 +1,63 @@
+{
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "check_count": 5,
+  "checks": [
+    {
+      "action": "Confirm the evaluator understands this is static research tooling, not investment advice.",
+      "artifact": "README.md",
+      "name": "read_boundaries",
+      "passed": true
+    },
+    {
+      "action": "Review command inputs, outputs, and safety posture before running generators.",
+      "artifact": "demo/command_matrix.json",
+      "name": "inspect_command_matrix",
+      "passed": true
+    },
+    {
+      "action": "Use local hashes and fixture records as the starting evidence set.",
+      "artifact": "demo/evidence_bundle.json",
+      "name": "review_evidence_bundle",
+      "passed": true
+    },
+    {
+      "action": "Treat readiness blockers as stop conditions before sharing artifacts.",
+      "artifact": "demo/public_readiness.json",
+      "name": "confirm_public_readiness",
+      "passed": true
+    },
+    {
+      "action": "Verify no live data, workflows, private references, broker actions, or advice are in scope.",
+      "artifact": "demo/boundary_attestation.json",
+      "name": "confirm_boundary_attestation",
+      "passed": true
+    }
+  ],
+  "handoff_artifacts": [
+    "demo/onboarding_checklist.md",
+    "demo/onboarding_checklist.json",
+    "demo/maintainer_handoff.md",
+    "demo/maintainer_handoff.json"
+  ],
+  "missing_artifacts": [],
+  "missing_count": 0,
+  "onboarding_commands": [
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli fixture-doctor --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli command-matrix --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli evidence-bundle --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli public-readiness --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli evaluator-scorecard --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli onboarding-checklist --root ."
+  ],
+  "passed_count": 5,
+  "status": "ready",
+  "stop_conditions": [
+    "public-readiness is not ready",
+    "boundary-attestation is not attested",
+    "fixture-doctor reports blockers",
+    "public-scan reports private or credential-shaped text",
+    "requested output requires live data, broker access, trading instructions, or personalized financial advice"
+  ],
+  "title": "Evaluator Onboarding Checklist",
+  "version": "1.4.0"
+}

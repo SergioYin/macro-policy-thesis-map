@@ -1,0 +1,83 @@
+{
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "custody": [
+    {
+      "bytes": 20213,
+      "path": "README.md",
+      "sha256": "bd9e1705b4ad4609cc937cb8919d5aa80644d748d2d92aaea6f239e8a667fe7c",
+      "status": "present"
+    },
+    {
+      "bytes": 4775,
+      "path": "skills/agent/macro-policy-thesis-map/SKILL.md",
+      "sha256": "6414e2bbb463089459b4f5b6bc99da14bc38de61a985449a1048413feac7501c",
+      "status": "present"
+    },
+    {
+      "bytes": 2594,
+      "path": "demo/maintainer_guide.json",
+      "sha256": "23c3bcd8b3958d2ad7c5605af7a75ac746774e84342b9d2677458e51493acf9f",
+      "status": "present"
+    },
+    {
+      "bytes": 2593,
+      "path": "demo/onboarding_checklist.json",
+      "sha256": "e3944b057ecfcc8b18de580d0f960e9cf7521b732fd28c38c6b3251bf14fc0a3",
+      "status": "present"
+    },
+    {
+      "bytes": 2471,
+      "path": "demo/public_readiness.json",
+      "sha256": "d45135eba9e8effbf61378dd00daab485b67320370eed81a56f07ae5b4ee05c8",
+      "status": "present"
+    },
+    {
+      "bytes": 19080,
+      "path": "demo/evidence_bundle.json",
+      "sha256": "1396ff6300e90c749d51ea52f226a3b7ede45b1a3da4a972a71a4aa682696520",
+      "status": "present"
+    },
+    {
+      "bytes": 3389,
+      "path": "demo/regression_summary.json",
+      "sha256": "55721620ea052ddced8abb67447cb5d8edf620bbd013826d8e20eba09e6ed0ae",
+      "status": "present"
+    }
+  ],
+  "custody_count": 7,
+  "handoff_policy": "Maintain local deterministic public artifacts only; do not introduce dependencies, private systems, workflows, live finance feeds, or advice.",
+  "missing_count": 0,
+  "release_gates": [
+    "PYTHONPATH=src python -m pytest",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
+    "python -c \"import build_backend; build_backend.build_wheel('dist')\""
+  ],
+  "responsibilities": [
+    {
+      "area": "versioning",
+      "evidence": "pyproject.toml, src/macro_policy_thesis_map/__init__.py, demo/compatibility_report.json",
+      "owner_action": "Keep pyproject.toml, package __version__, README, skill protocol, tests, and generated artifacts synchronized."
+    },
+    {
+      "area": "artifact custody",
+      "evidence": "demo/onboarding_checklist.json, demo/maintainer_handoff.json, demo/release_manifest.json",
+      "owner_action": "Regenerate onboarding, handoff, evidence, readiness, release notes, and manifest files after source changes."
+    },
+    {
+      "area": "finance boundary",
+      "evidence": "README.md, demo/boundary_attestation.json, demo/public_readiness.json",
+      "owner_action": "Reject live data, workflow automation, broker actions, trade instructions, forecasts, and personalized advice."
+    },
+    {
+      "area": "release gates",
+      "evidence": "demo/regression_summary.json, demo/reproducibility_recipe.json",
+      "owner_action": "Run pytest, selfcheck, public-scan, public-readiness, diff-check, and wheel build before release handoff."
+    }
+  ],
+  "status": "ready",
+  "title": "Maintainer Handoff",
+  "version": "1.4.0"
+}

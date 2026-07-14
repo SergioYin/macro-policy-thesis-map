@@ -59,6 +59,10 @@
     },
     {
       "name": "governance_attestation_layer",
+      "passed": true
+    },
+    {
+      "name": "evaluator_onboarding_layer",
       "passed": false
     },
     {
@@ -74,7 +78,7 @@
       "passed": true
     }
   ],
-  "max_score": 18,
-  "score": 17,
+  "max_score": 19,
+  "score": 18,
   "status": "needs-review"
 }

@@ -1361,6 +1361,78 @@ Status: {payload['status']}
 """
 
 
+def onboarding_checklist_md(payload: dict[str, Any]) -> str:
+    checks = [[item["name"], "pass" if item["passed"] else "review", item["artifact"], item["action"]] for item in payload["checks"]]
+    missing = [[item] for item in payload["missing_artifacts"]] or [["none"]]
+    commands = [[item] for item in payload["onboarding_commands"]]
+    stops = [[item] for item in payload["stop_conditions"]]
+    handoff = [[item] for item in payload["handoff_artifacts"]]
+    return f"""# Evaluator Onboarding Checklist
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Status: {payload['status']}
+
+Passed: {payload['passed_count']} / {payload['check_count']}
+
+Missing: {payload['missing_count']}
+
+## Checks
+
+{table(["Check", "Result", "Artifact", "Action"], checks)}
+
+## Onboarding Commands
+
+{table(["Command"], commands)}
+
+## Stop Conditions
+
+{table(["Condition"], stops)}
+
+## Handoff Artifacts
+
+{table(["Path"], handoff)}
+
+## Missing Artifacts
+
+{table(["Path"], missing)}
+"""
+
+
+def maintainer_handoff_md(payload: dict[str, Any]) -> str:
+    custody = [[item["path"], item["status"], item["bytes"], item.get("sha256", "")[:16]] for item in payload["custody"]]
+    responsibilities = [[item["area"], item["owner_action"], item["evidence"]] for item in payload["responsibilities"]]
+    gates = [[item] for item in payload["release_gates"]]
+    return f"""# Maintainer Handoff
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Status: {payload['status']}
+
+Policy: {payload['handoff_policy']}
+
+Custody: {payload['custody_count']}
+
+Missing: {payload['missing_count']}
+
+## Responsibilities
+
+{table(["Area", "Owner action", "Evidence"], responsibilities)}
+
+## Release Gates
+
+{table(["Command"], gates)}
+
+## Artifact Custody
+
+{table(["Path", "Status", "Bytes", "SHA-256 prefix"], custody)}
+"""
+
+
 def public_doc_html(payload: dict[str, Any], body_rows: list[tuple[str, list[list[Any]], list[str]]]) -> str:
     sections = []
     for title, rows, headers in body_rows:

@@ -102,7 +102,7 @@ def test_fixture_doctor_and_schema_export(tmp_path):
     assert '"status": "pass"' in doctor_json.read_text(encoding="utf-8")
     assert "Fixture Doctor" in doctor_md.read_text(encoding="utf-8")
     schema_text = schema_json.read_text(encoding="utf-8")
-    assert '"schema_version": "1.3.0"' in schema_text
+    assert '"schema_version": "1.4.0"' in schema_text
     assert "confidence" in schema_text
     assert "Data Dictionary" in schema_md.read_text(encoding="utf-8")
 
@@ -152,8 +152,23 @@ def test_governance_attestation_commands(tmp_path):
     assert "Provenance Ledger" in provenance_md.read_text(encoding="utf-8")
     assert "release_gates" in recipe_json.read_text(encoding="utf-8")
     assert "Reproducibility Recipe" in recipe_md.read_text(encoding="utf-8")
-    assert "v1.3.0 governance" in notes_json.read_text(encoding="utf-8")
+    assert "v1.4.0 evaluator onboarding" in notes_json.read_text(encoding="utf-8")
     assert "Release Notes Draft" in notes_md.read_text(encoding="utf-8")
+
+
+def test_onboarding_and_handoff_commands(tmp_path):
+    onboarding_json = tmp_path / "onboarding.json"
+    onboarding_md = tmp_path / "onboarding.md"
+    handoff_json = tmp_path / "handoff.json"
+    handoff_md = tmp_path / "handoff.md"
+
+    assert main(["onboarding-checklist", "--root", str(ROOT), "--out-json", str(onboarding_json), "--out-md", str(onboarding_md)]) == 0
+    assert main(["maintainer-handoff", "--root", str(ROOT), "--out-json", str(handoff_json), "--out-md", str(handoff_md)]) == 0
+
+    assert "stop_conditions" in onboarding_json.read_text(encoding="utf-8")
+    assert "Evaluator Onboarding Checklist" in onboarding_md.read_text(encoding="utf-8")
+    assert "release_gates" in handoff_json.read_text(encoding="utf-8")
+    assert "Maintainer Handoff" in handoff_md.read_text(encoding="utf-8")
 
 
 def test_thesis_impact_brief_and_exposure_map(tmp_path):
@@ -298,7 +313,7 @@ def test_release_owner_promotion_pack_commands(tmp_path):
     assert main(["release-deck", "--root", str(ROOT), "--out-json", str(deck_json), "--out-md", str(deck_md)]) == 0
     assert main(["bundle-export", "--root", str(ROOT), "--out-json", str(export_json), "--out-md", str(export_md)]) == 0
 
-    assert '"version": "1.3.0"' in adoption_json.read_text(encoding="utf-8")
+    assert '"version": "1.4.0"' in adoption_json.read_text(encoding="utf-8")
     assert "cold_user_next_actions" in adoption_json.read_text(encoding="utf-8")
     assert "maturity_mapping" in scorecard_json.read_text(encoding="utf-8")
     assert "Release Owner Promotion Deck" in deck_md.read_text(encoding="utf-8")

@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.3.0
+Version: 1.4.0
 
 Audience: GitHub visitor with no prior project context
 
@@ -26,17 +26,17 @@ Score: 7 / 7
 
 | Path | Bytes | SHA-256 prefix |
 | --- | --- | --- |
-| README.md | 19492 | 7cd2fe9dcb70f4ae |
-| demo/boundary_attestation.json | 2101 | 521ff58189d124c5 |
-| demo/command_matrix.json | 22248 | 7f61d38fdb211d10 |
-| demo/evidence_bundle.json | 18426 | a3c4962c0db96247 |
-| demo/provenance_ledger.json | 25808 | b41da876e3c9d36b |
-| demo/public_readiness.json | 2301 | b2e51d04d172c6ca |
-| demo/release_manifest.json | 17914 | e209ffc1f60d18a8 |
-| demo/release_notes_draft.json | 1922 | c1819fef3ab960e5 |
-| demo/reproducibility_recipe.json | 10241 | c171be145870f412 |
-| pyproject.toml | 832 | 4849cdc7abe57512 |
-| tests/test_cli.py | 25101 | dc9f2c894fc63c8d |
+| README.md | 20213 | bd9e1705b4ad4609 |
+| demo/boundary_attestation.json | 2101 | 3aaf0a1cff28aa03 |
+| demo/command_matrix.json | 23315 | 6655681f7e419648 |
+| demo/evidence_bundle.json | 19080 | c2985ca1793291c8 |
+| demo/provenance_ledger.json | 26766 | 16af0d34681e26e4 |
+| demo/public_readiness.json | 2471 | d45135eba9e8effb |
+| demo/release_manifest.json | 18568 | 365a3a8944e17c4a |
+| demo/release_notes_draft.json | 2124 | f62415c15621be64 |
+| demo/reproducibility_recipe.json | 10617 | 5031cf7d6615be3b |
+| pyproject.toml | 832 | e2eccdcc2248f66d |
+| tests/test_cli.py | 25925 | d1fe1bd81232c338 |
 | tests/test_safety.py | 1388 | d50fc2a2e87e8002 |
 
 ## Verification Commands

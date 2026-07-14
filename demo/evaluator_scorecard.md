@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.3.0
+Version: 1.4.0
 
 Status: needs-review
 
@@ -18,7 +18,7 @@ Score: 6 / 7
 | public_readiness_ready | pass | demo/public_readiness.json | Readiness gates pass for local public release evidence. |
 | tests_present | pass | tests/test_*.py | Local pytest suite is present for evaluator reruns. |
 | boundaries_visible | pass | README.md, skills/agent/macro-policy-thesis-map/SKILL.md, demo/release_faq.json, demo/boundary_attestation.json | Research-only boundaries are documented in human and agent surfaces. |
-| governance_layer_present | pass | demo/boundary_attestation.json, demo/provenance_ledger.json, demo/reproducibility_recipe.json, demo/release_notes_draft.json | v1.3.0 governance artifacts are available for public release review. |
+| governance_layer_present | pass | demo/boundary_attestation.json, demo/provenance_ledger.json, demo/reproducibility_recipe.json, demo/release_notes_draft.json | v1.4.0 governance, onboarding, and maintainer handoff artifacts are available for public release review. |
 
 ## Recommended Order
 

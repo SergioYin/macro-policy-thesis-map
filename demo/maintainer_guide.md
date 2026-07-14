@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.3.0
+Version: 1.4.0
 
 Section count: 4
 
@@ -40,17 +40,19 @@ Section count: 4
 | 19 | provenance-ledger |
 | 20 | reproducibility-recipe |
 | 21 | release-notes-draft |
-| 22 | benchmark-suite |
-| 23 | integration-cookbook |
-| 24 | compatibility-report |
-| 25 | maintainer-guide |
-| 26 | golden-fixtures |
-| 27 | regression-summary |
-| 28 | maturity-report |
-| 29 | evidence-bundle |
-| 30 | public-readiness |
-| 31 | release-manifest |
-| 32 | diff-check |
+| 22 | onboarding-checklist |
+| 23 | maintainer-handoff |
+| 24 | benchmark-suite |
+| 25 | integration-cookbook |
+| 26 | compatibility-report |
+| 27 | maintainer-guide |
+| 28 | golden-fixtures |
+| 29 | regression-summary |
+| 30 | maturity-report |
+| 31 | evidence-bundle |
+| 32 | public-readiness |
+| 33 | release-manifest |
+| 34 | diff-check |
 
 ## Invariants
 

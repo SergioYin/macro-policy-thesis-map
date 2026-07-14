@@ -2,9 +2,9 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.3.0
+Version: 1.4.0
 
-Release: v1.3.0 governance and attestation layer
+Release: v1.4.0 evaluator onboarding and maintainer handoff layer
 
 Status: ready
 
@@ -12,10 +12,10 @@ Status: ready
 
 | Highlight |
 | --- |
-| Added boundary-attestation for explicit static finance, zero-dependency, public scan, and no-workflow checks. |
-| Added provenance-ledger for local source and demo artifact hashes with producer commands. |
-| Added reproducibility-recipe for deterministic regeneration order and release gates. |
-| Added release-notes-draft so public release notes cite local governance artifacts. |
+| Added onboarding-checklist for final evaluator start-here gates, stop conditions, and artifact route checks. |
+| Added maintainer-handoff for custody, release gates, version duties, and public static finance boundaries. |
+| Kept governance artifacts, provenance, reproducibility, and release notes tied to deterministic local evidence. |
+| Preserved zero runtime dependencies, static bundled fixtures, and no workflow automation. |
 
 ## Governance Artifacts
 
@@ -25,6 +25,8 @@ Status: ready
 | demo/provenance_ledger.md |
 | demo/reproducibility_recipe.md |
 | demo/release_notes_draft.md |
+| demo/onboarding_checklist.md |
+| demo/maintainer_handoff.md |
 
 ## Gate Summary
 
@@ -33,8 +35,10 @@ Status: ready
 | public_readiness_status | ready |
 | regression_status | needs-review |
 | boundary_status | attested |
-| provenance_present_artifacts | 101 |
-| reproducibility_steps | 48 |
+| provenance_present_artifacts | 105 |
+| reproducibility_steps | 50 |
+| onboarding_status | ready |
+| handoff_status | ready |
 
 ## Verification Commands
 

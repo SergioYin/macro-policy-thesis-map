@@ -56,7 +56,7 @@
       "question_id": "faq-005"
     },
     {
-      "answer": "Use boundary-attestation, provenance-ledger, reproducibility-recipe, and release-notes-draft for v1.3.0 governance evidence.",
+      "answer": "Use boundary-attestation, provenance-ledger, reproducibility-recipe, release-notes-draft, onboarding-checklist, and maintainer-handoff for v1.4.0 onboarding evidence.",
       "citation_status": "ready",
       "local_citations": [
         "demo/boundary_attestation.md",
@@ -70,5 +70,5 @@
   ],
   "ready_count": 6,
   "title": "Release FAQ",
-  "version": "1.3.0"
+  "version": "1.4.0"
 }

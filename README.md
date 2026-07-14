@@ -69,6 +69,8 @@ PYTHONPATH=src python -m macro_policy_thesis_map.cli boundary-attestation --root
 PYTHONPATH=src python -m macro_policy_thesis_map.cli provenance-ledger --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli reproducibility-recipe --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli release-notes-draft --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli onboarding-checklist --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli maintainer-handoff --root .
 PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .
 PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .
 PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .
@@ -122,6 +124,8 @@ macro-policy-thesis-map boundary-attestation
 macro-policy-thesis-map provenance-ledger
 macro-policy-thesis-map reproducibility-recipe
 macro-policy-thesis-map release-notes-draft
+macro-policy-thesis-map onboarding-checklist
+macro-policy-thesis-map maintainer-handoff
 ```
 
 The installed CLI uses bundled example CSVs for default event, case, sensitivity, and exposure inputs when `examples/macro_events.csv`, `examples/prior_macro_events.csv`, `examples/public_macro_cases.csv`, `examples/thesis_sensitivities.csv`, and `examples/portfolio_exposures.csv` are not present in the current `--root`. Pass `--events`, `--current`, `--prior`, `--cases`, `--sensitivities`, or `--exposures` to use your own static CSVs. `selfcheck` and `diff-check` validate the source tree and should be run from a project checkout.
@@ -180,6 +184,8 @@ This project is research tooling only. It does not fetch live data, connect to b
 - `demo/provenance_ledger.md` and `demo/provenance_ledger.json`
 - `demo/reproducibility_recipe.md` and `demo/reproducibility_recipe.json`
 - `demo/release_notes_draft.md` and `demo/release_notes_draft.json`
+- `demo/onboarding_checklist.md` and `demo/onboarding_checklist.json`
+- `demo/maintainer_handoff.md` and `demo/maintainer_handoff.json`
 
 ## Input Format
 
@@ -225,7 +231,7 @@ Run `landing-page`, `api-reference`, `workflow-protocol`, `example-pack`, and `r
 
 Run `trust-report`, `citation-map`, `release-faq`, `artifact-index`, and `evaluator-scorecard` for the public trust layer. These commands write deterministic Markdown and JSON under `demo/`, focus on GitHub stranger trust, cite only local artifacts, and avoid hosted, personal, private, live-data, workflow, or advice references.
 
-Run `boundary-attestation`, `provenance-ledger`, `reproducibility-recipe`, and `release-notes-draft` for the v1.3.0 governance and attestation layer. These commands write deterministic Markdown and JSON under `demo/`, attest static finance boundaries, record local artifact hashes and producer commands, publish a reproducible regeneration order, and draft public release notes without live data, private references, workflow automation, or advice.
+Run `boundary-attestation`, `provenance-ledger`, `reproducibility-recipe`, `release-notes-draft`, `onboarding-checklist`, and `maintainer-handoff` for the v1.4.0 governance, evaluator onboarding, and maintainer handoff layer. These commands write deterministic Markdown and JSON under `demo/`, attest static finance boundaries, record local artifact hashes and producer commands, publish a reproducible regeneration order, draft public release notes, and document final handoff checks without live data, private references, workflow automation, or advice.
 
 ## Commands
 
@@ -279,4 +285,6 @@ Run `boundary-attestation`, `provenance-ledger`, `reproducibility-recipe`, and `
 - `boundary-attestation`: attests static finance boundaries, zero dependencies, public scan status, synthetic fixtures, and absent workflows.
 - `provenance-ledger`: records local source and demo artifact hashes with producer commands.
 - `reproducibility-recipe`: writes the deterministic local regeneration order and release verification gates.
-- `release-notes-draft`: drafts v1.3.0 release notes from governance artifacts, readiness, and regression evidence.
+- `release-notes-draft`: drafts v1.4.0 release notes from governance, onboarding, readiness, and regression evidence.
+- `onboarding-checklist`: writes final evaluator onboarding checks, commands, artifacts, and stop conditions.
+- `maintainer-handoff`: writes maintainer artifact custody, release gates, responsibilities, and boundary duties.

@@ -2,11 +2,11 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.3.0
+Version: 1.4.0
 
 Status: ready
 
-Passed: 11 / 11
+Passed: 12 / 12
 
 ## Checks
 
@@ -22,6 +22,7 @@ Passed: 11 / 11
 | protocol_artifacts | pass | Public protocol layer artifacts are present. |
 | trust_artifacts | pass | Public trust layer artifacts are present. |
 | governance_artifacts | pass | Governance and attestation layer artifacts are present. |
+| onboarding_artifacts | pass | Evaluator onboarding and maintainer handoff artifacts are present. |
 | no_workflows | pass | No workflow files are required. |
 
 ## Supported Surfaces

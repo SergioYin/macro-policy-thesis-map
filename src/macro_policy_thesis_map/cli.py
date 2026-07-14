@@ -42,8 +42,10 @@ from .core import (
     load_events,
     load_exposures,
     load_sensitivities,
+    maintainer_handoff,
     maintainer_guide,
     maturity,
+    onboarding_checklist,
     public_findings,
     public_readiness,
     quickstart_check,
@@ -117,6 +119,8 @@ from .render import (
     reproducibility_recipe_md,
     release_deck_md,
     release_notes_draft_md,
+    maintainer_handoff_md,
+    onboarding_checklist_md,
     reviewer_scorecard_md,
     scenario_library_md,
     workflow_protocol_html,
@@ -457,11 +461,23 @@ def build_parser() -> argparse.ArgumentParser:
     recipe.add_argument("--out-json", default="demo/reproducibility_recipe.json")
     recipe.set_defaults(func=cmd_reproducibility_recipe)
 
-    notes = sub.add_parser("release-notes-draft", help="Write deterministic v1.3.0 release notes draft.")
+    notes = sub.add_parser("release-notes-draft", help="Write deterministic v1.4.0 release notes draft.")
     notes.add_argument("--root", default=".")
     notes.add_argument("--out-md", default="demo/release_notes_draft.md")
     notes.add_argument("--out-json", default="demo/release_notes_draft.json")
     notes.set_defaults(func=cmd_release_notes_draft)
+
+    onboarding = sub.add_parser("onboarding-checklist", help="Write final evaluator onboarding checklist and stop conditions.")
+    onboarding.add_argument("--root", default=".")
+    onboarding.add_argument("--out-md", default="demo/onboarding_checklist.md")
+    onboarding.add_argument("--out-json", default="demo/onboarding_checklist.json")
+    onboarding.set_defaults(func=cmd_onboarding_checklist)
+
+    handoff = sub.add_parser("maintainer-handoff", help="Write deterministic maintainer handoff and artifact custody notes.")
+    handoff.add_argument("--root", default=".")
+    handoff.add_argument("--out-md", default="demo/maintainer_handoff.md")
+    handoff.add_argument("--out-json", default="demo/maintainer_handoff.json")
+    handoff.set_defaults(func=cmd_maintainer_handoff)
     return parser
 
 
@@ -892,6 +908,22 @@ def cmd_release_notes_draft(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_onboarding_checklist(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = onboarding_checklist(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), onboarding_checklist_md(payload))
+    return 0
+
+
+def cmd_maintainer_handoff(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = maintainer_handoff(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), maintainer_handoff_md(payload))
+    return 0
+
+
 def cmd_public_scan(args: argparse.Namespace) -> int:
     findings = public_findings(Path(args.root))
     if findings:
@@ -962,6 +994,8 @@ def cmd_selfcheck(args: argparse.Namespace) -> int:
         root / "demo" / "provenance_ledger.json",
         root / "demo" / "reproducibility_recipe.json",
         root / "demo" / "release_notes_draft.json",
+        root / "demo" / "onboarding_checklist.json",
+        root / "demo" / "maintainer_handoff.json",
         root / "demo" / "fixture_doctor.json",
         root / "demo" / "input_schema.json",
         root / "demo" / "troubleshoot.json",
