@@ -101,6 +101,14 @@ DEMO_ARTIFACTS = [
     "demo/fixture_doctor.json",
     "demo/input_schema.md",
     "demo/input_schema.json",
+    "demo/troubleshoot.md",
+    "demo/troubleshoot.json",
+    "demo/docs_export.md",
+    "demo/docs_export.json",
+    "demo/readme_snippet.md",
+    "demo/readme_snippet.json",
+    "demo/cli_help.md",
+    "demo/cli_help.json",
     "demo/case_gallery.md",
     "demo/case_gallery.json",
     "demo/visual_receipt.svg",
@@ -177,6 +185,34 @@ COMMAND_SPECS = [
         "inputs": ["built-in schema metadata"],
         "outputs": ["demo/input_schema.md", "demo/input_schema.json"],
         "safety": "Documents accepted static inputs without connecting to external systems.",
+    },
+    {
+        "command": "troubleshoot",
+        "purpose": "Publish deterministic operator troubleshooting checks and recovery steps.",
+        "inputs": ["repository files, demo artifacts, command metadata"],
+        "outputs": ["demo/troubleshoot.md", "demo/troubleshoot.json"],
+        "safety": "Local static diagnostics only; no network, workflow, broker, or live-data action.",
+    },
+    {
+        "command": "docs-export",
+        "purpose": "Export an operator documentation index with key docs, artifacts, and validation commands.",
+        "inputs": ["README, skill docs, command metadata, demo artifacts"],
+        "outputs": ["demo/docs_export.md", "demo/docs_export.json"],
+        "safety": "Indexes public local docs only and does not publish or upload content.",
+    },
+    {
+        "command": "readme-snippet",
+        "purpose": "Write a compact README-ready usage snippet for public evaluators.",
+        "inputs": ["built-in command metadata"],
+        "outputs": ["demo/readme_snippet.md", "demo/readme_snippet.json"],
+        "safety": "Snippet preserves static research boundaries and finance disclaimers.",
+    },
+    {
+        "command": "cli-help",
+        "purpose": "Write deterministic CLI help text and command usage lines.",
+        "inputs": ["built-in command metadata"],
+        "outputs": ["demo/cli_help.md", "demo/cli_help.json"],
+        "safety": "Documents local commands only; it does not execute private workflows.",
     },
     {
         "command": "release-manifest",
@@ -590,7 +626,7 @@ def input_schema() -> dict[str, Any]:
         },
     ]
     return {
-        "schema_version": "0.5.0",
+        "schema_version": __version__,
         "format": "csv",
         "required_columns": EXPECTED_COLUMNS,
         "columns": columns,
@@ -885,6 +921,7 @@ def maturity(root: Path) -> dict[str, Any]:
         ("sensitivity_layer", root.joinpath("examples/thesis_sensitivities.csv").exists() and root.joinpath("demo/thesis_impact_brief.json").exists()),
         ("exposure_layer", root.joinpath("examples/portfolio_exposures.csv").exists() and root.joinpath("demo/exposure_map.json").exists()),
         ("visual_receipt", root.joinpath("demo/visual_receipt.json").exists() and (root.joinpath("demo/visual_receipt.svg").exists() or root.joinpath("demo/visual_receipt.html").exists())),
+        ("operator_surfaces", all(root.joinpath(path).exists() for path in ["demo/troubleshoot.json", "demo/docs_export.json", "demo/readme_snippet.json", "demo/cli_help.json"])),
         ("release_owner_pack", all(root.joinpath(path).exists() for path in ["demo/adoption_notes.json", "demo/reviewer_scorecard.json", "demo/release_deck.json", "demo/bundle_export/manifest.json"])),
         ("tests", any(root.joinpath("tests").glob("test_*.py"))),
         ("skill", root.joinpath("skills/agent/macro-policy-thesis-map/SKILL.md").exists()),
@@ -934,6 +971,10 @@ def quickstart_check(root: Path) -> dict[str, Any]:
             "exposure-map",
             "case-gallery",
             "visual-receipt",
+            "troubleshoot",
+            "docs-export",
+            "readme-snippet",
+            "cli-help",
             "quickstart-check",
             "command-matrix",
             "adoption-notes",
@@ -955,6 +996,150 @@ def quickstart_check(root: Path) -> dict[str, Any]:
             }
             for spec in commands
         ],
+        "boundaries": DISCLAIMER,
+    }
+
+
+def troubleshoot(root: Path) -> dict[str, Any]:
+    required_paths = [
+        "README.md",
+        "pyproject.toml",
+        "examples/macro_events.csv",
+        "demo/fixture_doctor.json",
+        "demo/command_matrix.json",
+        "demo/public_readiness.json",
+        "demo/release_manifest.json",
+    ]
+    checks = [
+        {
+            "name": "missing_required_file",
+            "symptom": "A command exits with a file-not-found error.",
+            "evidence": required_paths,
+            "status": "pass" if all(root.joinpath(path).exists() for path in required_paths) else "review",
+            "resolution": "Run from the repository root or pass --root with a directory containing the documented static files.",
+        },
+        {
+            "name": "fixture_quality_blocker",
+            "symptom": "fixture-doctor returns blocked.",
+            "evidence": ["demo/fixture_doctor.json", "examples/macro_events.csv"],
+            "status": read_optional_json(root / "demo/fixture_doctor.json").get("status", "missing"),
+            "resolution": "Fix missing columns, unsupported event types, invalid confidence values, stale dates, or advice-like terms in the static CSV.",
+        },
+        {
+            "name": "public_readiness_blocker",
+            "symptom": "public-readiness returns blocked.",
+            "evidence": ["demo/public_readiness.json"],
+            "status": read_optional_json(root / "demo/public_readiness.json").get("status", "missing"),
+            "resolution": "Review the blockers list, regenerate missing demo artifacts, and keep README finance boundaries explicit.",
+        },
+        {
+            "name": "manifest_drift",
+            "symptom": "diff-check reports hash drift.",
+            "evidence": ["demo/release_manifest.json"],
+            "status": "pass" if root.joinpath("demo/release_manifest.json").exists() else "missing",
+            "resolution": "Regenerate changed demo artifacts, then run release-manifest followed by diff-check.",
+        },
+        {
+            "name": "operator_docs_missing",
+            "symptom": "An evaluator cannot find command usage or docs surfaces.",
+            "evidence": ["demo/docs_export.json", "demo/readme_snippet.json", "demo/cli_help.json", "demo/command_matrix.json"],
+            "status": "pass"
+            if all(root.joinpath(path).exists() for path in ["demo/docs_export.json", "demo/readme_snippet.json", "demo/cli_help.json", "demo/command_matrix.json"])
+            else "review",
+            "resolution": "Run docs-export, readme-snippet, cli-help, and command-matrix from the repository root.",
+        },
+    ]
+    review_count = sum(1 for item in checks if item["status"] not in {"pass", "ready"})
+    return {
+        "title": "Operator Troubleshooting Guide",
+        "version": __version__,
+        "status": "ready" if review_count == 0 else "needs-review",
+        "check_count": len(checks),
+        "review_count": review_count,
+        "checks": checks,
+        "validation_commands": [
+            "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
+            "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
+            "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
+            "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
+        ],
+        "boundaries": DISCLAIMER,
+    }
+
+
+def docs_export(root: Path) -> dict[str, Any]:
+    docs = [
+        ("README", "README.md", "Primary operator and evaluator documentation."),
+        ("Agent skill", "skills/agent/macro-policy-thesis-map/SKILL.md", "Agent protocol and finance boundaries."),
+        ("Command matrix", "demo/command_matrix.md", "Command inputs, outputs, and safety posture."),
+        ("Input schema", "demo/input_schema.md", "Static CSV schema and data dictionary."),
+        ("Troubleshooting", "demo/troubleshoot.md", "Operator diagnostics and recovery steps."),
+        ("CLI help", "demo/cli_help.md", "Deterministic command usage lines."),
+        ("README snippet", "demo/readme_snippet.md", "Compact copyable quickstart snippet."),
+    ]
+    records = []
+    missing = []
+    for title, relative, purpose in docs:
+        path = root / relative
+        if path.exists():
+            records.append({**file_record(root, path), "title": title, "purpose": purpose})
+        else:
+            missing.append({"title": title, "path": relative, "purpose": purpose})
+    return {
+        "title": "Operator Documentation Export",
+        "version": __version__,
+        "status": "ready" if not missing else "needs-review",
+        "doc_count": len(records),
+        "missing_count": len(missing),
+        "documents": sorted(records, key=lambda item: item["path"]),
+        "missing": missing,
+        "validation_commands": [
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli docs-export --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli readme-snippet --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli cli-help --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .",
+        ],
+        "boundaries": DISCLAIMER,
+    }
+
+
+def readme_snippet() -> dict[str, Any]:
+    commands = [
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli fixture-doctor --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli build-packet --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli review-ledger --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .",
+        "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
+    ]
+    return {
+        "title": "README Snippet",
+        "version": __version__,
+        "commands": commands,
+        "outputs": ["demo/thesis_packet.md", "demo/review_ledger.md", "demo/troubleshoot.md"],
+        "snippet": "\n".join(commands),
+        "boundaries": DISCLAIMER,
+    }
+
+
+def cli_help() -> dict[str, Any]:
+    rows = []
+    for spec in COMMAND_SPECS:
+        command = spec["command"]
+        usage = f"macro-policy-thesis-map {command} --root ." if command not in {"public-scan", "diff-check", "selfcheck"} else f"macro-policy-thesis-map {command} --root ."
+        rows.append(
+            {
+                "command": command,
+                "usage": usage,
+                "purpose": spec["purpose"],
+                "outputs": spec["outputs"],
+                "safety": spec["safety"],
+            }
+        )
+    return {
+        "title": "CLI Help Export",
+        "version": __version__,
+        "command_count": len(rows),
+        "commands": rows,
         "boundaries": DISCLAIMER,
     }
 
@@ -999,6 +1184,8 @@ def evidence_bundle(root: Path) -> dict[str, Any]:
         "evaluation_commands": [
             "PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_safety.py",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli docs-export --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
@@ -1018,6 +1205,10 @@ def public_readiness(root: Path) -> dict[str, Any]:
         "demo/command_matrix.json",
         "demo/fixture_doctor.json",
         "demo/input_schema.json",
+        "demo/troubleshoot.json",
+        "demo/docs_export.json",
+        "demo/readme_snippet.json",
+        "demo/cli_help.json",
         "demo/case_gallery.json",
         "demo/thesis_impact_brief.json",
         "demo/exposure_map.json",
@@ -1034,6 +1225,7 @@ def public_readiness(root: Path) -> dict[str, Any]:
         ("neutral_boundaries", all(term in readme.lower() for term in ["does not fetch live data", "connect to brokers", "recommend buys", "predict returns"]), "README states static research boundaries."),
         ("demo_artifacts", all(root.joinpath(path).exists() for path in required_artifacts), "Core demo artifacts are present."),
         ("visual_receipt", root.joinpath("demo/visual_receipt.svg").exists() or root.joinpath("demo/visual_receipt.html").exists(), "Static SVG or HTML visual receipt is present."),
+        ("operator_surfaces", all(root.joinpath(path).exists() for path in ["demo/troubleshoot.json", "demo/docs_export.json", "demo/readme_snippet.json", "demo/cli_help.json"]), "Operator troubleshooting, docs export, README snippet, and CLI help artifacts are present."),
         ("no_workflow_files", not root.joinpath(".github/workflows").exists(), "No repository workflow files are required for public evaluation."),
         ("zero_dependency_package", "dependencies = []" in root.joinpath("pyproject.toml").read_text(encoding="utf-8") if root.joinpath("pyproject.toml").exists() else False, "Package declares no runtime dependencies."),
     ]
@@ -1076,24 +1268,30 @@ def cold_start_walkthrough() -> dict[str, Any]:
         },
         {
             "step": 5,
+            "title": "Read operator support surfaces",
+            "command": "macro-policy-thesis-map troubleshoot && macro-policy-thesis-map docs-export && macro-policy-thesis-map cli-help",
+            "expected_result": "Operator troubleshooting, docs export, and CLI help surfaces are written as Markdown and JSON.",
+        },
+        {
+            "step": 6,
             "title": "Read release-owner promotion notes",
             "command": "macro-policy-thesis-map adoption-notes && macro-policy-thesis-map reviewer-scorecard && macro-policy-thesis-map release-deck",
             "expected_result": "Release-owner notes, scorecard, and deck are written as Markdown and JSON.",
         },
         {
-            "step": 6,
+            "step": 7,
             "title": "Export the public promotion bundle manifest",
             "command": "macro-policy-thesis-map bundle-export",
             "expected_result": "A deterministic bundle manifest is written under demo/bundle_export/.",
         },
         {
-            "step": 7,
+            "step": 8,
             "title": "Check public readiness",
             "command": "macro-policy-thesis-map public-readiness",
             "expected_result": "A public readiness report lists pass/fail gates.",
         },
         {
-            "step": 8,
+            "step": 9,
             "title": "Run final local checks",
             "command": "macro-policy-thesis-map selfcheck && macro-policy-thesis-map public-scan && macro-policy-thesis-map diff-check",
             "expected_result": "All commands exit successfully before sharing artifacts.",
@@ -1156,6 +1354,10 @@ def adoption_notes(root: Path) -> dict[str, Any]:
         [
             "README.md",
             "demo/command_matrix.json",
+            "demo/troubleshoot.json",
+            "demo/docs_export.json",
+            "demo/readme_snippet.json",
+            "demo/cli_help.json",
             "demo/maturity_report.json",
             "demo/public_readiness.json",
             "demo/evidence_bundle.json",
@@ -1171,6 +1373,9 @@ def adoption_notes(root: Path) -> dict[str, Any]:
     ]
     release_commands = [
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli adoption-notes --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli docs-export --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli cli-help --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli reviewer-scorecard --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-deck --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli bundle-export --root .",
@@ -1204,7 +1409,7 @@ def reviewer_scorecard(root: Path) -> dict[str, Any]:
     readiness_payload = read_optional_json(root / "demo/public_readiness.json")
     rubric = [
         ("static_inputs", ["examples", "case_gallery", "sensitivity_layer", "exposure_layer"], "Static fixtures and synthetic public examples are present."),
-        ("review_controls", ["visual_receipt", "release_owner_pack"], "Review artifacts, hashes, and owner pack are present."),
+        ("review_controls", ["visual_receipt", "operator_surfaces", "release_owner_pack"], "Review artifacts, operator docs, hashes, and owner pack are present."),
         ("public_package", ["package", "readme", "license", "skill"], "Package metadata, docs, license, and agent skill are present."),
         ("verification", ["tests", "no_workflows"], "Tests exist and no workflow files are required."),
         ("public_readiness", [], "Public readiness command reports ready."),
@@ -1235,6 +1440,10 @@ def reviewer_scorecard(root: Path) -> dict[str, Any]:
             "demo/evidence_bundle.json",
             "demo/release_manifest.json",
             "demo/command_matrix.json",
+            "demo/troubleshoot.json",
+            "demo/docs_export.json",
+            "demo/readme_snippet.json",
+            "demo/cli_help.json",
             "tests/test_cli.py",
             "tests/test_safety.py",
         ],

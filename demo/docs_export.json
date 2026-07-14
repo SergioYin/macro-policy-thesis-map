@@ -1,0 +1,66 @@
+{
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "doc_count": 7,
+  "documents": [
+    {
+      "bytes": 10220,
+      "path": "README.md",
+      "purpose": "Primary operator and evaluator documentation.",
+      "sha256": "eaa234fbd5b55e4bd69f5f1cfeca03701b628d15a99d957528616ec5627dac1e",
+      "title": "README"
+    },
+    {
+      "bytes": 7728,
+      "path": "demo/cli_help.md",
+      "purpose": "Deterministic command usage lines.",
+      "sha256": "8a67e4481f61330109ad3b1081057f806725f6ea3986cb559404629c02396d2b",
+      "title": "CLI help"
+    },
+    {
+      "bytes": 7693,
+      "path": "demo/command_matrix.md",
+      "purpose": "Command inputs, outputs, and safety posture.",
+      "sha256": "3a370f34dc533f51d4b37e37bbc0d202462154ca3f3fb55821c55c2c564db686",
+      "title": "Command matrix"
+    },
+    {
+      "bytes": 1997,
+      "path": "demo/input_schema.md",
+      "purpose": "Static CSV schema and data dictionary.",
+      "sha256": "3cf4632070a11834f9e01f41a16d2380a346c968029e02e40002930472c97834",
+      "title": "Input schema"
+    },
+    {
+      "bytes": 785,
+      "path": "demo/readme_snippet.md",
+      "purpose": "Compact copyable quickstart snippet.",
+      "sha256": "d47dd5186caf62b6e7e49b49fa37a9eeaf29afcc6f6b60d264f90146564ddd56",
+      "title": "README snippet"
+    },
+    {
+      "bytes": 2053,
+      "path": "demo/troubleshoot.md",
+      "purpose": "Operator diagnostics and recovery steps.",
+      "sha256": "ab8727285b47c4ac4920030447288a0ac97fe3512995b0e454a711f683c735e8",
+      "title": "Troubleshooting"
+    },
+    {
+      "bytes": 2782,
+      "path": "skills/agent/macro-policy-thesis-map/SKILL.md",
+      "purpose": "Agent protocol and finance boundaries.",
+      "sha256": "b60e5d1ad66a76390ba8ac8772aaaf4acb2b362e32a83cd6af795b4c35c50a57",
+      "title": "Agent skill"
+    }
+  ],
+  "missing": [],
+  "missing_count": 0,
+  "status": "ready",
+  "title": "Operator Documentation Export",
+  "validation_commands": [
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli docs-export --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli readme-snippet --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli cli-help --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root ."
+  ],
+  "version": "0.6.0"
+}

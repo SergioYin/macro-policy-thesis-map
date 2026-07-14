@@ -1,35 +1,55 @@
 {
-  "artifact_count": 7,
+  "artifact_count": 11,
   "artifacts": [
     {
-      "bytes": 10065,
+      "bytes": 11169,
+      "path": "demo/cli_help.json",
+      "sha256": "fe922417f2a1ede90a8eca76ebce1f1f04e13d84bb6ccb41debe46faf38c1668"
+    },
+    {
+      "bytes": 11650,
       "path": "demo/command_matrix.json",
-      "sha256": "7b08a63b9e1de027daf2a48029ef098831736a32160d2cde50599c65a3b3b312"
+      "sha256": "1eb66dbe9204a2faacbc28fa4c6bf5c0853f42b4e0cd20e990da706763ababf5"
     },
     {
-      "bytes": 7493,
+      "bytes": 2521,
+      "path": "demo/docs_export.json",
+      "sha256": "27404a3954d073b7bf6af84aebd0700922f2fcb2abfdd2265406d97c9374928a"
+    },
+    {
+      "bytes": 8900,
       "path": "demo/evidence_bundle.json",
-      "sha256": "dfdedc681fb28659fe73b7ae388a4df1541202db4c7ceed9157b4ac95add9792"
+      "sha256": "8a4daf5c8c2f5c000e0c5b9c75702be6a682035a5398af888f427feb5b35f81e"
     },
     {
-      "bytes": 1088,
+      "bytes": 1157,
       "path": "demo/maturity_report.json",
-      "sha256": "ebda2801902de5c0888b136eb94815eef1ad53761abc2e498b4a4994d590d7e3"
+      "sha256": "96cf4d616ecea361cc786ceebcb8450a9a88a7fddf3db07d33acced63a05efc4"
     },
     {
-      "bytes": 1176,
+      "bytes": 1355,
       "path": "demo/public_readiness.json",
-      "sha256": "6c77e1bbdc99d8e9a6a551ca5ff03e869eb43cb2f2c4aee5f31b26c9c67788eb"
+      "sha256": "26e502baf3e00996e08bb9c31f2c5e939737f9da5d5cde170dc347f9a6363c56"
     },
     {
-      "bytes": 8501,
+      "bytes": 1253,
+      "path": "demo/readme_snippet.json",
+      "sha256": "ecb716a85d3e4108d713499fd893d3657d873d4ef62bae7fdc439ca3cc47de72"
+    },
+    {
+      "bytes": 9745,
       "path": "demo/release_manifest.json",
-      "sha256": "58f8c0a362e0152412c2e4e35818d440c1f85a45a5a497522a95be2a3cb604ed"
+      "sha256": "5e498ecb61fc230f5df8b8c259a50755f1a870adbaa8899abed8cb35c3201a78"
     },
     {
-      "bytes": 12490,
+      "bytes": 2732,
+      "path": "demo/troubleshoot.json",
+      "sha256": "7cf26ad10b2879054bf2206dce4a9cfc6d3803932d1ffb873bc4dff34fc27536"
+    },
+    {
+      "bytes": 14315,
       "path": "tests/test_cli.py",
-      "sha256": "fb13045aef6b55b9b49fab926d0842eb841fe4169688b41cffdcd7e679a7f2b2"
+      "sha256": "1086bc049a77329d97ee3629dbd4edeac2242d6667eee4eb5f17a2a35fb6a6ee"
     },
     {
       "bytes": 1388,
@@ -58,13 +78,15 @@
       "passed": true
     },
     {
-      "description": "Review artifacts, hashes, and owner pack are present.",
+      "description": "Review artifacts, operator docs, hashes, and owner pack are present.",
       "evidence": [
         "visual_receipt",
+        "operator_surfaces",
         "release_owner_pack"
       ],
       "maturity_mapping": [
         "visual_receipt",
+        "operator_surfaces",
         "release_owner_pack"
       ],
       "name": "review_controls",
@@ -113,5 +135,5 @@
   "score": 5,
   "status": "ready",
   "title": "Reviewer Scorecard",
-  "version": "0.5.0"
+  "version": "0.6.0"
 }

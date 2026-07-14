@@ -1,0 +1,38 @@
+# CLI Help Export
+
+Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
+
+Version: 0.6.0
+
+Command count: 28
+
+| Command | Usage | Purpose | Outputs | Safety |
+| --- | --- | --- | --- | --- |
+| build-packet | macro-policy-thesis-map build-packet --root . | Build the primary thesis evidence packet from static CSV events. | demo/thesis_packet.md, demo/thesis_packet.json | Static research output with no live data, orders, or recommendations. |
+| compare-history | macro-policy-thesis-map compare-history --root . | Compare current and prior static policy event sets. | demo/history_comparison.md, demo/history_comparison.json | Reports structural deltas only; does not forecast policy or market outcomes. |
+| review-ledger | macro-policy-thesis-map review-ledger --root . | Flag low-confidence areas and advice-like terms in supplied evidence. | demo/review_ledger.md, demo/review_ledger.json | Raises review findings instead of rewriting evidence into advice. |
+| static-dashboard | macro-policy-thesis-map static-dashboard --root . | Render a no-JavaScript HTML view of the packet, review ledger, and static sensitivity summaries. | demo/static_dashboard.html | Static local rendering only. |
+| thesis-impact-brief | macro-policy-thesis-map thesis-impact-brief --root . | Summarize synthetic thesis sensitivity rows by thesis, policy area, and scenario axis. | demo/thesis_impact_brief.md, demo/thesis_impact_brief.json | Descriptive static sensitivity mapping only; no forecast, advice, or trade instruction. |
+| exposure-map | macro-policy-thesis-map exposure-map --root . | Map synthetic portfolio exposure rows to static thesis sensitivity axes. | demo/exposure_map.md, demo/exposure_map.json | Reports exposure coverage and static scores only; no allocation target or recommendation. |
+| case-gallery | macro-policy-thesis-map case-gallery --root . | Build a public-safe multi-region case gallery from static synthetic fixtures. | demo/case_gallery.md, demo/case_gallery.json | Uses synthetic US, EU, and Asia examples; no live data or recommendations. |
+| visual-receipt | macro-policy-thesis-map visual-receipt --root . | Render a static SVG or HTML receipt with artifact hashes, routes, and commands. | demo/visual_receipt.svg or demo/visual_receipt.html, demo/visual_receipt.json | Static receipt only; records provenance without private routes or operational workflows. |
+| fixture-doctor | macro-policy-thesis-map fixture-doctor --root . | Validate static CSV fixtures for columns, event types, confidence bounds, stale dates, and advice-like terms. | demo/fixture_doctor.md, demo/fixture_doctor.json | Reports data-quality blockers before evidence is rendered. |
+| schema-export | macro-policy-thesis-map schema-export --root . | Export the machine-readable input schema and data dictionary. | demo/input_schema.md, demo/input_schema.json | Documents accepted static inputs without connecting to external systems. |
+| troubleshoot | macro-policy-thesis-map troubleshoot --root . | Publish deterministic operator troubleshooting checks and recovery steps. | demo/troubleshoot.md, demo/troubleshoot.json | Local static diagnostics only; no network, workflow, broker, or live-data action. |
+| docs-export | macro-policy-thesis-map docs-export --root . | Export an operator documentation index with key docs, artifacts, and validation commands. | demo/docs_export.md, demo/docs_export.json | Indexes public local docs only and does not publish or upload content. |
+| readme-snippet | macro-policy-thesis-map readme-snippet --root . | Write a compact README-ready usage snippet for public evaluators. | demo/readme_snippet.md, demo/readme_snippet.json | Snippet preserves static research boundaries and finance disclaimers. |
+| cli-help | macro-policy-thesis-map cli-help --root . | Write deterministic CLI help text and command usage lines. | demo/cli_help.md, demo/cli_help.json | Documents local commands only; it does not execute private workflows. |
+| release-manifest | macro-policy-thesis-map release-manifest --root . | Record deterministic paths, sizes, and hashes for release artifacts. | demo/release_manifest.md, demo/release_manifest.json | Excludes generated manifest self-hashes. |
+| maturity-report | macro-policy-thesis-map maturity-report --root . | Score basic release-readiness evidence in the source tree. | demo/maturity_report.md, demo/maturity_report.json | Checks packaging, examples, tests, skill docs, and absence of workflow files. |
+| quickstart-check | macro-policy-thesis-map quickstart-check --root . | Show whether a fresh evaluator can run the documented starter commands. | demo/quickstart_check.md, demo/quickstart_check.json | Checks command availability and expected artifacts without network access. |
+| command-matrix | macro-policy-thesis-map command-matrix --root . | Publish a neutral map of CLI commands, inputs, outputs, and safety posture. | demo/command_matrix.md, demo/command_matrix.json | Documents capabilities without private references or operational workflows. |
+| adoption-notes | macro-policy-thesis-map adoption-notes --root . | Write release-owner notes for public evaluator adoption and next actions. | demo/adoption_notes.md, demo/adoption_notes.json | Aggregates static artifacts only; no workflows, live data, or advice. |
+| reviewer-scorecard | macro-policy-thesis-map reviewer-scorecard --root . | Map release evidence to a reviewer maturity rubric with artifact hashes. | demo/reviewer_scorecard.md, demo/reviewer_scorecard.json | Scores public release evidence without private references or external checks. |
+| release-deck | macro-policy-thesis-map release-deck --root . | Build a deterministic Markdown/JSON promotion deck for release owners. | demo/release_deck.md, demo/release_deck.json | Summarizes public static release surfaces only. |
+| bundle-export | macro-policy-thesis-map bundle-export --root . | Export a public promotion bundle manifest under demo/bundle_export. | demo/bundle_export/manifest.md, demo/bundle_export/manifest.json | Creates a local static manifest only; it does not upload, publish, or automate workflows. |
+| evidence-bundle | macro-policy-thesis-map evidence-bundle --root . | Collect public evaluation artifacts and source fixture hashes in one bundle. | demo/evidence_bundle.md, demo/evidence_bundle.json | Includes hashes and static summaries only. |
+| public-readiness | macro-policy-thesis-map public-readiness --root . | Summarize public release readiness gates and blockers. | demo/public_readiness.md, demo/public_readiness.json | Requires public scan pass and explicit static research boundaries. |
+| cold-start-walkthrough | macro-policy-thesis-map cold-start-walkthrough --root . | Generate a deterministic first-run walkthrough for public evaluators. | demo/cold_start_walkthrough.md, demo/cold_start_walkthrough.json | Uses local static commands and bundled examples. |
+| public-scan | macro-policy-thesis-map public-scan --root . | Scan publishable text for private names, paths, and credential-shaped terms. | stdout pass/fail | Fails closed when a private or credential-shaped token is found. |
+| diff-check | macro-policy-thesis-map diff-check --root . | Compare the saved release manifest against current file hashes. | stdout pass/fail | Detects artifact drift using static local hashes only. |
+| selfcheck | macro-policy-thesis-map selfcheck --root . | Run source-tree checks for files, boundaries, and public scan status. | stdout pass/fail | Fails closed when required public release evidence is missing. |

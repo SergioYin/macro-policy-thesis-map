@@ -113,6 +113,95 @@ Required columns: {", ".join(payload['required_columns'])}
 """
 
 
+def troubleshoot_md(payload: dict[str, Any]) -> str:
+    checks = [
+        [item["name"], item["status"], item["symptom"], ", ".join(item["evidence"]), item["resolution"]]
+        for item in payload["checks"]
+    ]
+    commands = [[item] for item in payload["validation_commands"]]
+    return f"""# Operator Troubleshooting Guide
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Status: {payload['status']}
+
+Reviews: {payload['review_count']} / {payload['check_count']}
+
+## Checks
+
+{table(["Check", "Status", "Symptom", "Evidence", "Resolution"], checks)}
+
+## Validation Commands
+
+{table(["Command"], commands)}
+"""
+
+
+def docs_export_md(payload: dict[str, Any]) -> str:
+    docs = [[item["title"], item["path"], item["bytes"], item["sha256"][:16], item["purpose"]] for item in payload["documents"]]
+    missing = [[item["title"], item["path"], item["purpose"]] for item in payload["missing"]] or [["none", "none", "none"]]
+    commands = [[item] for item in payload["validation_commands"]]
+    return f"""# Operator Documentation Export
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Status: {payload['status']}
+
+Documents: {payload['doc_count']}
+
+Missing: {payload['missing_count']}
+
+## Documents
+
+{table(["Title", "Path", "Bytes", "SHA-256 prefix", "Purpose"], docs)}
+
+## Missing
+
+{table(["Title", "Path", "Purpose"], missing)}
+
+## Validation Commands
+
+{table(["Command"], commands)}
+"""
+
+
+def readme_snippet_md(payload: dict[str, Any]) -> str:
+    commands = "\n".join(payload["commands"])
+    outputs = [[item] for item in payload["outputs"]]
+    return f"""# README Snippet
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+```bash
+{commands}
+```
+
+## Expected Outputs
+
+{table(["Path"], outputs)}
+"""
+
+
+def cli_help_md(payload: dict[str, Any]) -> str:
+    rows = [[item["command"], item["usage"], item["purpose"], ", ".join(item["outputs"]), item["safety"]] for item in payload["commands"]]
+    return f"""# CLI Help Export
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Command count: {payload['command_count']}
+
+{table(["Command", "Usage", "Purpose", "Outputs", "Safety"], rows)}
+"""
+
+
 def manifest_md(payload: dict[str, Any]) -> str:
     rows = [[item["path"], item["bytes"], item["sha256"][:16]] for item in payload["artifacts"]]
     return f"""# Release Manifest

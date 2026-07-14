@@ -1,0 +1,71 @@
+{
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "check_count": 5,
+  "checks": [
+    {
+      "evidence": [
+        "README.md",
+        "pyproject.toml",
+        "examples/macro_events.csv",
+        "demo/fixture_doctor.json",
+        "demo/command_matrix.json",
+        "demo/public_readiness.json",
+        "demo/release_manifest.json"
+      ],
+      "name": "missing_required_file",
+      "resolution": "Run from the repository root or pass --root with a directory containing the documented static files.",
+      "status": "pass",
+      "symptom": "A command exits with a file-not-found error."
+    },
+    {
+      "evidence": [
+        "demo/fixture_doctor.json",
+        "examples/macro_events.csv"
+      ],
+      "name": "fixture_quality_blocker",
+      "resolution": "Fix missing columns, unsupported event types, invalid confidence values, stale dates, or advice-like terms in the static CSV.",
+      "status": "pass",
+      "symptom": "fixture-doctor returns blocked."
+    },
+    {
+      "evidence": [
+        "demo/public_readiness.json"
+      ],
+      "name": "public_readiness_blocker",
+      "resolution": "Review the blockers list, regenerate missing demo artifacts, and keep README finance boundaries explicit.",
+      "status": "ready",
+      "symptom": "public-readiness returns blocked."
+    },
+    {
+      "evidence": [
+        "demo/release_manifest.json"
+      ],
+      "name": "manifest_drift",
+      "resolution": "Regenerate changed demo artifacts, then run release-manifest followed by diff-check.",
+      "status": "pass",
+      "symptom": "diff-check reports hash drift."
+    },
+    {
+      "evidence": [
+        "demo/docs_export.json",
+        "demo/readme_snippet.json",
+        "demo/cli_help.json",
+        "demo/command_matrix.json"
+      ],
+      "name": "operator_docs_missing",
+      "resolution": "Run docs-export, readme-snippet, cli-help, and command-matrix from the repository root.",
+      "status": "pass",
+      "symptom": "An evaluator cannot find command usage or docs surfaces."
+    }
+  ],
+  "review_count": 0,
+  "status": "ready",
+  "title": "Operator Troubleshooting Guide",
+  "validation_commands": [
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root ."
+  ],
+  "version": "0.6.0"
+}

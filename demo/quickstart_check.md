@@ -33,6 +33,10 @@ Passed: 8 / 8
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli visual-receipt --root . | demo/visual_receipt.svg or demo/visual_receipt.html, demo/visual_receipt.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli fixture-doctor --root . | demo/fixture_doctor.md, demo/fixture_doctor.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli schema-export --root . | demo/input_schema.md, demo/input_schema.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root . | demo/troubleshoot.md, demo/troubleshoot.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli docs-export --root . | demo/docs_export.md, demo/docs_export.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli readme-snippet --root . | demo/readme_snippet.md, demo/readme_snippet.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli cli-help --root . | demo/cli_help.md, demo/cli_help.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli quickstart-check --root . | demo/quickstart_check.md, demo/quickstart_check.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli command-matrix --root . | demo/command_matrix.md, demo/command_matrix.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli adoption-notes --root . | demo/adoption_notes.md, demo/adoption_notes.json |

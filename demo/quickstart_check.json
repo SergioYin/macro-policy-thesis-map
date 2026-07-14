@@ -115,6 +115,34 @@
       ]
     },
     {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .",
+      "expected_outputs": [
+        "demo/troubleshoot.md",
+        "demo/troubleshoot.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli docs-export --root .",
+      "expected_outputs": [
+        "demo/docs_export.md",
+        "demo/docs_export.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli readme-snippet --root .",
+      "expected_outputs": [
+        "demo/readme_snippet.md",
+        "demo/readme_snippet.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli cli-help --root .",
+      "expected_outputs": [
+        "demo/cli_help.md",
+        "demo/cli_help.json"
+      ]
+    },
+    {
       "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli quickstart-check --root .",
       "expected_outputs": [
         "demo/quickstart_check.md",

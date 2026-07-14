@@ -12,6 +12,10 @@ PYTHONPATH=src python -m macro_policy_thesis_map.cli compare-history --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli review-ledger --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli fixture-doctor --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli schema-export --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli docs-export --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli readme-snippet --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli cli-help --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli static-dashboard --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli thesis-impact-brief --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli exposure-map --root .
@@ -43,6 +47,10 @@ macro-policy-thesis-map compare-history
 macro-policy-thesis-map review-ledger
 macro-policy-thesis-map fixture-doctor
 macro-policy-thesis-map schema-export
+macro-policy-thesis-map troubleshoot
+macro-policy-thesis-map docs-export
+macro-policy-thesis-map readme-snippet
+macro-policy-thesis-map cli-help
 macro-policy-thesis-map static-dashboard
 macro-policy-thesis-map thesis-impact-brief
 macro-policy-thesis-map exposure-map
@@ -69,6 +77,10 @@ This project is research tooling only. It does not fetch live data, connect to b
 - `demo/review_ledger.md` and `demo/review_ledger.json`
 - `demo/fixture_doctor.md` and `demo/fixture_doctor.json`
 - `demo/input_schema.md` and `demo/input_schema.json`
+- `demo/troubleshoot.md` and `demo/troubleshoot.json`
+- `demo/docs_export.md` and `demo/docs_export.json`
+- `demo/readme_snippet.md` and `demo/readme_snippet.json`
+- `demo/cli_help.md` and `demo/cli_help.json`
 - `demo/static_dashboard.html`
 - `demo/thesis_impact_brief.md` and `demo/thesis_impact_brief.json`
 - `demo/exposure_map.md` and `demo/exposure_map.json`
@@ -97,6 +109,8 @@ date,event_type,source,policy_area,channel,direction,confidence,evidence,thesis_
 Allowed `event_type` values are `policy_signal`, `macro_observation`, `market_context`, and `thesis_note`. Confidence is a decimal from `0` to `1`. The CLI does not validate whether a policy view is correct; it only organizes supplied evidence and flags static review issues.
 
 Run `fixture-doctor` before generating release artifacts to validate required columns, allowed event types, confidence bounds, stale source dates, and advice-like terms. Run `schema-export` to produce a machine-readable schema and data dictionary under `demo/input_schema.json`.
+
+Run `troubleshoot`, `docs-export`, `readme-snippet`, and `cli-help` when handing the project to an operator or reviewer who needs deterministic support surfaces under `demo/`. These commands only read local files and built-in command metadata; they do not fetch data, publish content, create workflow files, or perform broker or trading actions.
 
 The public case gallery uses a separate synthetic fixture:
 
@@ -127,6 +141,10 @@ The bundled sensitivity and exposure rows are synthetic. `impact_score` and `exp
 - `review-ledger`: flags low-confidence or advice-like text in static inputs.
 - `fixture-doctor`: validates static CSV fixtures for columns, event types, confidence bounds, stale dates, and advice-like terms.
 - `schema-export`: writes the machine-readable input schema and data dictionary.
+- `troubleshoot`: writes deterministic operator checks, symptoms, evidence paths, and recovery steps.
+- `docs-export`: writes an operator documentation index with hashes for key docs and support artifacts.
+- `readme-snippet`: writes a compact README-ready quickstart snippet with static research boundaries.
+- `cli-help`: writes deterministic command usage lines and safety posture.
 - `static-dashboard`: writes a no-JavaScript HTML dashboard.
 - `thesis-impact-brief`: writes a deterministic Markdown/JSON brief for synthetic thesis sensitivities.
 - `exposure-map`: writes a deterministic Markdown/JSON map from synthetic exposure rows to thesis sensitivity coverage.

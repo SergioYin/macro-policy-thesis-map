@@ -4,7 +4,7 @@ Research-only static analysis. Not investment advice. This tool does not fetch l
 
 Status: ready
 
-Passed: 6 / 6
+Passed: 7 / 7
 
 ## Checks
 
@@ -14,6 +14,7 @@ Passed: 6 / 6
 | neutral_boundaries | pass | README states static research boundaries. |
 | demo_artifacts | pass | Core demo artifacts are present. |
 | visual_receipt | pass | Static SVG or HTML visual receipt is present. |
+| operator_surfaces | pass | Operator troubleshooting, docs export, README snippet, and CLI help artifacts are present. |
 | no_workflow_files | pass | No repository workflow files are required for public evaluation. |
 | zero_dependency_package | pass | Package declares no runtime dependencies. |
 

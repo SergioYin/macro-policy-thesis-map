@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 0.5.0
+Version: 0.6.0
 
 Status: ready
 
@@ -32,23 +32,23 @@ Missing count: 0
 | Path | Bytes | SHA-256 prefix |
 | --- | --- | --- |
 | LICENSE | 1066 | b13dc350cd48500c |
-| README.md | 8838 | f7a8424248d470ec |
-| demo/adoption_notes.json | 2814 | 302d25c42174381a |
-| demo/adoption_notes.md | 2010 | 4c9badddee32f69f |
-| demo/cold_start_walkthrough.json | 2692 | c5944698c87f48f7 |
-| demo/cold_start_walkthrough.md | 2092 | 555547325adc4896 |
-| demo/command_matrix.json | 10065 | 7b08a63b9e1de027 |
-| demo/command_matrix.md | 6684 | 2e8a1e32800b484c |
-| demo/evidence_bundle.json | 7493 | dfdedc681fb28659 |
-| demo/evidence_bundle.md | 3177 | 78f27e7a1c6800e1 |
-| demo/maturity_report.json | 1088 | ebda2801902de5c0 |
-| demo/maturity_report.md | 597 | df7760b77a4df93f |
-| demo/public_readiness.json | 1176 | 6c77e1bbdc99d8e9 |
-| demo/public_readiness.md | 887 | 19f9e31fcf6d66b5 |
-| demo/release_deck.json | 2797 | 55cc80e1b5da9eae |
-| demo/release_deck.md | 1760 | 680c712392cf90ea |
-| demo/release_manifest.json | 8501 | 58f8c0a362e01524 |
-| demo/release_manifest.md | 3329 | 70aafb3fb49dbfb3 |
-| demo/reviewer_scorecard.json | 3149 | 7a021d5b55da3366 |
-| demo/reviewer_scorecard.md | 1452 | f7acc687fbed25a6 |
-| pyproject.toml | 819 | 8bc16c86630f734d |
+| README.md | 10220 | eaa234fbd5b55e4b |
+| demo/adoption_notes.json | 3683 | 7aa9621cd8f222ac |
+| demo/adoption_notes.md | 2453 | 94383c8ebe7b8bc6 |
+| demo/cold_start_walkthrough.json | 3025 | f4ad9938520ac395 |
+| demo/cold_start_walkthrough.md | 2342 | af4c5c761e9da9be |
+| demo/command_matrix.json | 11650 | 1eb66dbe9204a2fa |
+| demo/command_matrix.md | 7693 | 3a370f34dc533f51 |
+| demo/evidence_bundle.json | 8900 | 8a4daf5c8c2f5c00 |
+| demo/evidence_bundle.md | 3746 | 60a808fe291a0779 |
+| demo/maturity_report.json | 1157 | 96cf4d616ecea361 |
+| demo/maturity_report.md | 626 | d9da010a8013055d |
+| demo/public_readiness.json | 1355 | 26e502baf3e00996 |
+| demo/public_readiness.md | 1009 | c248789cc8208e76 |
+| demo/release_deck.json | 2797 | 3017982e8ad6fd1d |
+| demo/release_deck.md | 1760 | 86beec8cac7ab2af |
+| demo/release_manifest.json | 9745 | 5e498ecb61fc230f |
+| demo/release_manifest.md | 3741 | 8cb42bebadd0b968 |
+| demo/reviewer_scorecard.json | 3849 | 43ddcac602b834e0 |
+| demo/reviewer_scorecard.md | 1696 | ee624339d79e2b0c |
+| pyproject.toml | 819 | ee15e3f8b5d693b1 |

@@ -34,6 +34,10 @@
       "passed": true
     },
     {
+      "name": "operator_surfaces",
+      "passed": true
+    },
+    {
       "name": "release_owner_pack",
       "passed": true
     },
@@ -50,7 +54,7 @@
       "passed": true
     }
   ],
-  "max_score": 12,
-  "score": 12,
+  "max_score": 13,
+  "score": 13,
   "status": "ready"
 }

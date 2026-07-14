@@ -1,40 +1,60 @@
 {
-  "artifact_count": 7,
+  "artifact_count": 11,
   "artifacts": [
     {
-      "bytes": 8838,
+      "bytes": 10220,
       "path": "README.md",
-      "sha256": "f7a8424248d470ec935186c2af608822130e18ee1075248a78f1a70a6c502d8b"
+      "sha256": "eaa234fbd5b55e4bd69f5f1cfeca03701b628d15a99d957528616ec5627dac1e"
     },
     {
-      "bytes": 2692,
+      "bytes": 11169,
+      "path": "demo/cli_help.json",
+      "sha256": "fe922417f2a1ede90a8eca76ebce1f1f04e13d84bb6ccb41debe46faf38c1668"
+    },
+    {
+      "bytes": 3025,
       "path": "demo/cold_start_walkthrough.json",
-      "sha256": "c5944698c87f48f7a4f51a898e96631a2038865e58b6662a4228e4f80f6213ab"
+      "sha256": "f4ad9938520ac395c0ee5f13ebc64fef82b34254b4463c2c392a760dbdbac6d9"
     },
     {
-      "bytes": 10065,
+      "bytes": 11650,
       "path": "demo/command_matrix.json",
-      "sha256": "7b08a63b9e1de027daf2a48029ef098831736a32160d2cde50599c65a3b3b312"
+      "sha256": "1eb66dbe9204a2faacbc28fa4c6bf5c0853f42b4e0cd20e990da706763ababf5"
     },
     {
-      "bytes": 7493,
+      "bytes": 2521,
+      "path": "demo/docs_export.json",
+      "sha256": "27404a3954d073b7bf6af84aebd0700922f2fcb2abfdd2265406d97c9374928a"
+    },
+    {
+      "bytes": 8900,
       "path": "demo/evidence_bundle.json",
-      "sha256": "dfdedc681fb28659fe73b7ae388a4df1541202db4c7ceed9157b4ac95add9792"
+      "sha256": "8a4daf5c8c2f5c000e0c5b9c75702be6a682035a5398af888f427feb5b35f81e"
     },
     {
-      "bytes": 1088,
+      "bytes": 1157,
       "path": "demo/maturity_report.json",
-      "sha256": "ebda2801902de5c0888b136eb94815eef1ad53761abc2e498b4a4994d590d7e3"
+      "sha256": "96cf4d616ecea361cc786ceebcb8450a9a88a7fddf3db07d33acced63a05efc4"
     },
     {
-      "bytes": 1176,
+      "bytes": 1355,
       "path": "demo/public_readiness.json",
-      "sha256": "6c77e1bbdc99d8e9a6a551ca5ff03e869eb43cb2f2c4aee5f31b26c9c67788eb"
+      "sha256": "26e502baf3e00996e08bb9c31f2c5e939737f9da5d5cde170dc347f9a6363c56"
     },
     {
-      "bytes": 8501,
+      "bytes": 1253,
+      "path": "demo/readme_snippet.json",
+      "sha256": "ecb716a85d3e4108d713499fd893d3657d873d4ef62bae7fdc439ca3cc47de72"
+    },
+    {
+      "bytes": 9745,
       "path": "demo/release_manifest.json",
-      "sha256": "58f8c0a362e0152412c2e4e35818d440c1f85a45a5a497522a95be2a3cb604ed"
+      "sha256": "5e498ecb61fc230f5df8b8c259a50755f1a870adbaa8899abed8cb35c3201a78"
+    },
+    {
+      "bytes": 2732,
+      "path": "demo/troubleshoot.json",
+      "sha256": "7cf26ad10b2879054bf2206dce4a9cfc6d3803932d1ffb873bc4dff34fc27536"
     }
   ],
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
@@ -44,13 +64,16 @@
     "Confirm demo/public_readiness.json remains ready after local edits.",
     "Run public-scan and diff-check before sharing the bundle."
   ],
-  "maturity_max_score": 12,
-  "maturity_score": 12,
+  "maturity_max_score": 13,
+  "maturity_score": 13,
   "maturity_status": "ready",
   "public_readiness_status": "ready",
-  "release_artifact_count": 50,
+  "release_artifact_count": 58,
   "release_commands": [
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli adoption-notes --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli docs-export --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli cli-help --root .",
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli reviewer-scorecard --root .",
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-deck --root .",
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli bundle-export --root .",
@@ -64,5 +87,5 @@
     "Treat public-readiness blockers and reviewer-scorecard review items as release-owner follow-up."
   ],
   "title": "Release Owner Adoption Notes",
-  "version": "0.5.0"
+  "version": "0.6.0"
 }

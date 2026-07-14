@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Command count: 24
+Command count: 28
 
 | Command | Purpose | Inputs | Outputs | Safety |
 | --- | --- | --- | --- | --- |
@@ -16,6 +16,10 @@ Command count: 24
 | visual-receipt | Render a static SVG or HTML receipt with artifact hashes, routes, and commands. | repository files, demo artifacts, case gallery | demo/visual_receipt.svg or demo/visual_receipt.html, demo/visual_receipt.json | Static receipt only; records provenance without private routes or operational workflows. |
 | fixture-doctor | Validate static CSV fixtures for columns, event types, confidence bounds, stale dates, and advice-like terms. | examples/macro_events.csv or bundled macro_events.csv | demo/fixture_doctor.md, demo/fixture_doctor.json | Reports data-quality blockers before evidence is rendered. |
 | schema-export | Export the machine-readable input schema and data dictionary. | built-in schema metadata | demo/input_schema.md, demo/input_schema.json | Documents accepted static inputs without connecting to external systems. |
+| troubleshoot | Publish deterministic operator troubleshooting checks and recovery steps. | repository files, demo artifacts, command metadata | demo/troubleshoot.md, demo/troubleshoot.json | Local static diagnostics only; no network, workflow, broker, or live-data action. |
+| docs-export | Export an operator documentation index with key docs, artifacts, and validation commands. | README, skill docs, command metadata, demo artifacts | demo/docs_export.md, demo/docs_export.json | Indexes public local docs only and does not publish or upload content. |
+| readme-snippet | Write a compact README-ready usage snippet for public evaluators. | built-in command metadata | demo/readme_snippet.md, demo/readme_snippet.json | Snippet preserves static research boundaries and finance disclaimers. |
+| cli-help | Write deterministic CLI help text and command usage lines. | built-in command metadata | demo/cli_help.md, demo/cli_help.json | Documents local commands only; it does not execute private workflows. |
 | release-manifest | Record deterministic paths, sizes, and hashes for release artifacts. | repository files | demo/release_manifest.md, demo/release_manifest.json | Excludes generated manifest self-hashes. |
 | maturity-report | Score basic release-readiness evidence in the source tree. | repository files | demo/maturity_report.md, demo/maturity_report.json | Checks packaging, examples, tests, skill docs, and absence of workflow files. |
 | quickstart-check | Show whether a fresh evaluator can run the documented starter commands. | repository files and bundled examples | demo/quickstart_check.md, demo/quickstart_check.json | Checks command availability and expected artifacts without network access. |

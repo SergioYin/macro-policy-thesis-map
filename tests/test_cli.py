@@ -45,6 +45,10 @@ def test_dashboard_manifest_maturity_and_selfcheck(tmp_path):
     assert main(["exposure-map", "--root", str(ROOT)]) == 0
     assert main(["case-gallery", "--root", str(ROOT)]) == 0
     assert main(["visual-receipt", "--root", str(ROOT)]) == 0
+    assert main(["troubleshoot", "--root", str(ROOT)]) == 0
+    assert main(["docs-export", "--root", str(ROOT)]) == 0
+    assert main(["readme-snippet", "--root", str(ROOT)]) == 0
+    assert main(["cli-help", "--root", str(ROOT)]) == 0
     assert main(["release-manifest", "--root", str(ROOT), "--out-json", str(manifest_json), "--out-md", str(manifest_md)]) == 0
     assert main(["maturity-report", "--root", str(ROOT), "--out-json", str(maturity_json), "--out-md", str(maturity_md)]) == 0
     assert main(["adoption-notes", "--root", str(ROOT)]) == 0
@@ -87,9 +91,33 @@ def test_fixture_doctor_and_schema_export(tmp_path):
     assert '"status": "pass"' in doctor_json.read_text(encoding="utf-8")
     assert "Fixture Doctor" in doctor_md.read_text(encoding="utf-8")
     schema_text = schema_json.read_text(encoding="utf-8")
-    assert '"schema_version": "0.5.0"' in schema_text
+    assert '"schema_version": "0.6.0"' in schema_text
     assert "confidence" in schema_text
     assert "Data Dictionary" in schema_md.read_text(encoding="utf-8")
+
+
+def test_operator_usability_surfaces(tmp_path):
+    trouble_json = tmp_path / "troubleshoot.json"
+    trouble_md = tmp_path / "troubleshoot.md"
+    docs_json = tmp_path / "docs.json"
+    docs_md = tmp_path / "docs.md"
+    snippet_json = tmp_path / "snippet.json"
+    snippet_md = tmp_path / "snippet.md"
+    help_json = tmp_path / "help.json"
+    help_md = tmp_path / "help.md"
+
+    assert main(["troubleshoot", "--root", str(ROOT), "--out-json", str(trouble_json), "--out-md", str(trouble_md)]) == 0
+    assert main(["docs-export", "--root", str(ROOT), "--out-json", str(docs_json), "--out-md", str(docs_md)]) == 0
+    assert main(["readme-snippet", "--root", str(ROOT), "--out-json", str(snippet_json), "--out-md", str(snippet_md)]) == 0
+    assert main(["cli-help", "--root", str(ROOT), "--out-json", str(help_json), "--out-md", str(help_md)]) == 0
+
+    assert "Operator Troubleshooting Guide" in trouble_md.read_text(encoding="utf-8")
+    assert "validation_commands" in trouble_json.read_text(encoding="utf-8")
+    assert "Operator Documentation Export" in docs_md.read_text(encoding="utf-8")
+    assert "documents" in docs_json.read_text(encoding="utf-8")
+    assert "fixture-doctor --root ." in snippet_md.read_text(encoding="utf-8")
+    assert "CLI Help Export" in help_md.read_text(encoding="utf-8")
+    assert "troubleshoot" in help_json.read_text(encoding="utf-8")
 
 
 def test_thesis_impact_brief_and_exposure_map(tmp_path):
@@ -214,7 +242,7 @@ def test_release_owner_promotion_pack_commands(tmp_path):
     assert main(["release-deck", "--root", str(ROOT), "--out-json", str(deck_json), "--out-md", str(deck_md)]) == 0
     assert main(["bundle-export", "--root", str(ROOT), "--out-json", str(export_json), "--out-md", str(export_md)]) == 0
 
-    assert '"version": "0.5.0"' in adoption_json.read_text(encoding="utf-8")
+    assert '"version": "0.6.0"' in adoption_json.read_text(encoding="utf-8")
     assert "cold_user_next_actions" in adoption_json.read_text(encoding="utf-8")
     assert "maturity_mapping" in scorecard_json.read_text(encoding="utf-8")
     assert "Release Owner Promotion Deck" in deck_md.read_text(encoding="utf-8")
@@ -265,6 +293,10 @@ def test_public_readiness_blocks_incomplete_tree(tmp_path):
         (["exposure-map"], "demo/exposure_map.json"),
         (["fixture-doctor"], "demo/fixture_doctor.json"),
         (["schema-export"], "demo/input_schema.json"),
+        (["troubleshoot"], "demo/troubleshoot.json"),
+        (["docs-export"], "demo/docs_export.json"),
+        (["readme-snippet"], "demo/readme_snippet.json"),
+        (["cli-help"], "demo/cli_help.json"),
         (["case-gallery"], "demo/case_gallery.json"),
         (["visual-receipt"], "demo/visual_receipt.json"),
         (["quickstart-check"], "demo/quickstart_check.json"),

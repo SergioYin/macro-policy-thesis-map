@@ -14,7 +14,7 @@ Commands: 6
 
 | Path | Bytes | SHA-256 prefix |
 | --- | --- | --- |
-| README.md | 8838 | f7a8424248d470ec |
+| README.md | 10220 | eaa234fbd5b55e4b |
 | examples/macro_events.csv | 906 | b7410919d62dd4e3 |
 | examples/public_macro_cases.csv | 1471 | ee511dd457dd7aab |
 | examples/thesis_sensitivities.csv | 1016 | ab0a6a3d0a7f0bc9 |
@@ -24,7 +24,7 @@ Commands: 6
 | demo/thesis_impact_brief.json | 4389 | 941fcf40523e63ae |
 | demo/exposure_map.json | 3334 | e99f1a3387a9baa5 |
 | demo/review_ledger.json | 432 | d4f558b50d9e8366 |
-| demo/public_readiness.json | 1176 | 6c77e1bbdc99d8e9 |
+| demo/public_readiness.json | 1355 | 26e502baf3e00996 |
 
 ## Routes
 

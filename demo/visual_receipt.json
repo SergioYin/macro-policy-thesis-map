@@ -2,9 +2,9 @@
   "artifact_count": 11,
   "artifacts": [
     {
-      "bytes": 8838,
+      "bytes": 10220,
       "path": "README.md",
-      "sha256": "f7a8424248d470ec935186c2af608822130e18ee1075248a78f1a70a6c502d8b"
+      "sha256": "eaa234fbd5b55e4bd69f5f1cfeca03701b628d15a99d957528616ec5627dac1e"
     },
     {
       "bytes": 906,
@@ -52,9 +52,9 @@
       "sha256": "d4f558b50d9e8366a7643dbbdd90e60af0132fcea8bafb978819d6322a40be1a"
     },
     {
-      "bytes": 1176,
+      "bytes": 1355,
       "path": "demo/public_readiness.json",
-      "sha256": "6c77e1bbdc99d8e9a6a551ca5ff03e869eb43cb2f2c4aee5f31b26c9c67788eb"
+      "sha256": "26e502baf3e00996e08bb9c31f2c5e939737f9da5d5cde170dc347f9a6363c56"
     }
   ],
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",

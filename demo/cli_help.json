@@ -4,337 +4,281 @@
   "commands": [
     {
       "command": "build-packet",
-      "inputs": [
-        "examples/macro_events.csv or bundled macro_events.csv"
-      ],
       "outputs": [
         "demo/thesis_packet.md",
         "demo/thesis_packet.json"
       ],
       "purpose": "Build the primary thesis evidence packet from static CSV events.",
-      "safety": "Static research output with no live data, orders, or recommendations."
+      "safety": "Static research output with no live data, orders, or recommendations.",
+      "usage": "macro-policy-thesis-map build-packet --root ."
     },
     {
       "command": "compare-history",
-      "inputs": [
-        "examples/macro_events.csv",
-        "examples/prior_macro_events.csv or bundled examples"
-      ],
       "outputs": [
         "demo/history_comparison.md",
         "demo/history_comparison.json"
       ],
       "purpose": "Compare current and prior static policy event sets.",
-      "safety": "Reports structural deltas only; does not forecast policy or market outcomes."
+      "safety": "Reports structural deltas only; does not forecast policy or market outcomes.",
+      "usage": "macro-policy-thesis-map compare-history --root ."
     },
     {
       "command": "review-ledger",
-      "inputs": [
-        "examples/macro_events.csv or bundled macro_events.csv"
-      ],
       "outputs": [
         "demo/review_ledger.md",
         "demo/review_ledger.json"
       ],
       "purpose": "Flag low-confidence areas and advice-like terms in supplied evidence.",
-      "safety": "Raises review findings instead of rewriting evidence into advice."
+      "safety": "Raises review findings instead of rewriting evidence into advice.",
+      "usage": "macro-policy-thesis-map review-ledger --root ."
     },
     {
       "command": "static-dashboard",
-      "inputs": [
-        "examples/macro_events.csv plus optional bundled sensitivity and exposure fixtures"
-      ],
       "outputs": [
         "demo/static_dashboard.html"
       ],
       "purpose": "Render a no-JavaScript HTML view of the packet, review ledger, and static sensitivity summaries.",
-      "safety": "Static local rendering only."
+      "safety": "Static local rendering only.",
+      "usage": "macro-policy-thesis-map static-dashboard --root ."
     },
     {
       "command": "thesis-impact-brief",
-      "inputs": [
-        "examples/thesis_sensitivities.csv or bundled thesis_sensitivities.csv"
-      ],
       "outputs": [
         "demo/thesis_impact_brief.md",
         "demo/thesis_impact_brief.json"
       ],
       "purpose": "Summarize synthetic thesis sensitivity rows by thesis, policy area, and scenario axis.",
-      "safety": "Descriptive static sensitivity mapping only; no forecast, advice, or trade instruction."
+      "safety": "Descriptive static sensitivity mapping only; no forecast, advice, or trade instruction.",
+      "usage": "macro-policy-thesis-map thesis-impact-brief --root ."
     },
     {
       "command": "exposure-map",
-      "inputs": [
-        "examples/portfolio_exposures.csv and examples/thesis_sensitivities.csv or bundled fixtures"
-      ],
       "outputs": [
         "demo/exposure_map.md",
         "demo/exposure_map.json"
       ],
       "purpose": "Map synthetic portfolio exposure rows to static thesis sensitivity axes.",
-      "safety": "Reports exposure coverage and static scores only; no allocation target or recommendation."
+      "safety": "Reports exposure coverage and static scores only; no allocation target or recommendation.",
+      "usage": "macro-policy-thesis-map exposure-map --root ."
     },
     {
       "command": "case-gallery",
-      "inputs": [
-        "examples/public_macro_cases.csv or bundled public_macro_cases.csv"
-      ],
       "outputs": [
         "demo/case_gallery.md",
         "demo/case_gallery.json"
       ],
       "purpose": "Build a public-safe multi-region case gallery from static synthetic fixtures.",
-      "safety": "Uses synthetic US, EU, and Asia examples; no live data or recommendations."
+      "safety": "Uses synthetic US, EU, and Asia examples; no live data or recommendations.",
+      "usage": "macro-policy-thesis-map case-gallery --root ."
     },
     {
       "command": "visual-receipt",
-      "inputs": [
-        "repository files, demo artifacts, case gallery"
-      ],
       "outputs": [
         "demo/visual_receipt.svg or demo/visual_receipt.html",
         "demo/visual_receipt.json"
       ],
       "purpose": "Render a static SVG or HTML receipt with artifact hashes, routes, and commands.",
-      "safety": "Static receipt only; records provenance without private routes or operational workflows."
+      "safety": "Static receipt only; records provenance without private routes or operational workflows.",
+      "usage": "macro-policy-thesis-map visual-receipt --root ."
     },
     {
       "command": "fixture-doctor",
-      "inputs": [
-        "examples/macro_events.csv or bundled macro_events.csv"
-      ],
       "outputs": [
         "demo/fixture_doctor.md",
         "demo/fixture_doctor.json"
       ],
       "purpose": "Validate static CSV fixtures for columns, event types, confidence bounds, stale dates, and advice-like terms.",
-      "safety": "Reports data-quality blockers before evidence is rendered."
+      "safety": "Reports data-quality blockers before evidence is rendered.",
+      "usage": "macro-policy-thesis-map fixture-doctor --root ."
     },
     {
       "command": "schema-export",
-      "inputs": [
-        "built-in schema metadata"
-      ],
       "outputs": [
         "demo/input_schema.md",
         "demo/input_schema.json"
       ],
       "purpose": "Export the machine-readable input schema and data dictionary.",
-      "safety": "Documents accepted static inputs without connecting to external systems."
+      "safety": "Documents accepted static inputs without connecting to external systems.",
+      "usage": "macro-policy-thesis-map schema-export --root ."
     },
     {
       "command": "troubleshoot",
-      "inputs": [
-        "repository files, demo artifacts, command metadata"
-      ],
       "outputs": [
         "demo/troubleshoot.md",
         "demo/troubleshoot.json"
       ],
       "purpose": "Publish deterministic operator troubleshooting checks and recovery steps.",
-      "safety": "Local static diagnostics only; no network, workflow, broker, or live-data action."
+      "safety": "Local static diagnostics only; no network, workflow, broker, or live-data action.",
+      "usage": "macro-policy-thesis-map troubleshoot --root ."
     },
     {
       "command": "docs-export",
-      "inputs": [
-        "README, skill docs, command metadata, demo artifacts"
-      ],
       "outputs": [
         "demo/docs_export.md",
         "demo/docs_export.json"
       ],
       "purpose": "Export an operator documentation index with key docs, artifacts, and validation commands.",
-      "safety": "Indexes public local docs only and does not publish or upload content."
+      "safety": "Indexes public local docs only and does not publish or upload content.",
+      "usage": "macro-policy-thesis-map docs-export --root ."
     },
     {
       "command": "readme-snippet",
-      "inputs": [
-        "built-in command metadata"
-      ],
       "outputs": [
         "demo/readme_snippet.md",
         "demo/readme_snippet.json"
       ],
       "purpose": "Write a compact README-ready usage snippet for public evaluators.",
-      "safety": "Snippet preserves static research boundaries and finance disclaimers."
+      "safety": "Snippet preserves static research boundaries and finance disclaimers.",
+      "usage": "macro-policy-thesis-map readme-snippet --root ."
     },
     {
       "command": "cli-help",
-      "inputs": [
-        "built-in command metadata"
-      ],
       "outputs": [
         "demo/cli_help.md",
         "demo/cli_help.json"
       ],
       "purpose": "Write deterministic CLI help text and command usage lines.",
-      "safety": "Documents local commands only; it does not execute private workflows."
+      "safety": "Documents local commands only; it does not execute private workflows.",
+      "usage": "macro-policy-thesis-map cli-help --root ."
     },
     {
       "command": "release-manifest",
-      "inputs": [
-        "repository files"
-      ],
       "outputs": [
         "demo/release_manifest.md",
         "demo/release_manifest.json"
       ],
       "purpose": "Record deterministic paths, sizes, and hashes for release artifacts.",
-      "safety": "Excludes generated manifest self-hashes."
+      "safety": "Excludes generated manifest self-hashes.",
+      "usage": "macro-policy-thesis-map release-manifest --root ."
     },
     {
       "command": "maturity-report",
-      "inputs": [
-        "repository files"
-      ],
       "outputs": [
         "demo/maturity_report.md",
         "demo/maturity_report.json"
       ],
       "purpose": "Score basic release-readiness evidence in the source tree.",
-      "safety": "Checks packaging, examples, tests, skill docs, and absence of workflow files."
+      "safety": "Checks packaging, examples, tests, skill docs, and absence of workflow files.",
+      "usage": "macro-policy-thesis-map maturity-report --root ."
     },
     {
       "command": "quickstart-check",
-      "inputs": [
-        "repository files and bundled examples"
-      ],
       "outputs": [
         "demo/quickstart_check.md",
         "demo/quickstart_check.json"
       ],
       "purpose": "Show whether a fresh evaluator can run the documented starter commands.",
-      "safety": "Checks command availability and expected artifacts without network access."
+      "safety": "Checks command availability and expected artifacts without network access.",
+      "usage": "macro-policy-thesis-map quickstart-check --root ."
     },
     {
       "command": "command-matrix",
-      "inputs": [
-        "built-in command metadata"
-      ],
       "outputs": [
         "demo/command_matrix.md",
         "demo/command_matrix.json"
       ],
       "purpose": "Publish a neutral map of CLI commands, inputs, outputs, and safety posture.",
-      "safety": "Documents capabilities without private references or operational workflows."
+      "safety": "Documents capabilities without private references or operational workflows.",
+      "usage": "macro-policy-thesis-map command-matrix --root ."
     },
     {
       "command": "adoption-notes",
-      "inputs": [
-        "demo artifacts, command metadata, maturity/readiness reports"
-      ],
       "outputs": [
         "demo/adoption_notes.md",
         "demo/adoption_notes.json"
       ],
       "purpose": "Write release-owner notes for public evaluator adoption and next actions.",
-      "safety": "Aggregates static artifacts only; no workflows, live data, or advice."
+      "safety": "Aggregates static artifacts only; no workflows, live data, or advice.",
+      "usage": "macro-policy-thesis-map adoption-notes --root ."
     },
     {
       "command": "reviewer-scorecard",
-      "inputs": [
-        "demo artifacts, tests, README, skill docs"
-      ],
       "outputs": [
         "demo/reviewer_scorecard.md",
         "demo/reviewer_scorecard.json"
       ],
       "purpose": "Map release evidence to a reviewer maturity rubric with artifact hashes.",
-      "safety": "Scores public release evidence without private references or external checks."
+      "safety": "Scores public release evidence without private references or external checks.",
+      "usage": "macro-policy-thesis-map reviewer-scorecard --root ."
     },
     {
       "command": "release-deck",
-      "inputs": [
-        "release manifest, maturity report, readiness report, command matrix"
-      ],
       "outputs": [
         "demo/release_deck.md",
         "demo/release_deck.json"
       ],
       "purpose": "Build a deterministic Markdown/JSON promotion deck for release owners.",
-      "safety": "Summarizes public static release surfaces only."
+      "safety": "Summarizes public static release surfaces only.",
+      "usage": "macro-policy-thesis-map release-deck --root ."
     },
     {
       "command": "bundle-export",
-      "inputs": [
-        "release-owner pack artifacts, release manifest, evidence bundle"
-      ],
       "outputs": [
         "demo/bundle_export/manifest.md",
         "demo/bundle_export/manifest.json"
       ],
       "purpose": "Export a public promotion bundle manifest under demo/bundle_export.",
-      "safety": "Creates a local static manifest only; it does not upload, publish, or automate workflows."
+      "safety": "Creates a local static manifest only; it does not upload, publish, or automate workflows.",
+      "usage": "macro-policy-thesis-map bundle-export --root ."
     },
     {
       "command": "evidence-bundle",
-      "inputs": [
-        "examples, demo artifacts, README, tests, skill docs"
-      ],
       "outputs": [
         "demo/evidence_bundle.md",
         "demo/evidence_bundle.json"
       ],
       "purpose": "Collect public evaluation artifacts and source fixture hashes in one bundle.",
-      "safety": "Includes hashes and static summaries only."
+      "safety": "Includes hashes and static summaries only.",
+      "usage": "macro-policy-thesis-map evidence-bundle --root ."
     },
     {
       "command": "public-readiness",
-      "inputs": [
-        "repository files, demo artifacts, public scan"
-      ],
       "outputs": [
         "demo/public_readiness.md",
         "demo/public_readiness.json"
       ],
       "purpose": "Summarize public release readiness gates and blockers.",
-      "safety": "Requires public scan pass and explicit static research boundaries."
+      "safety": "Requires public scan pass and explicit static research boundaries.",
+      "usage": "macro-policy-thesis-map public-readiness --root ."
     },
     {
       "command": "cold-start-walkthrough",
-      "inputs": [
-        "built-in command metadata"
-      ],
       "outputs": [
         "demo/cold_start_walkthrough.md",
         "demo/cold_start_walkthrough.json"
       ],
       "purpose": "Generate a deterministic first-run walkthrough for public evaluators.",
-      "safety": "Uses local static commands and bundled examples."
+      "safety": "Uses local static commands and bundled examples.",
+      "usage": "macro-policy-thesis-map cold-start-walkthrough --root ."
     },
     {
       "command": "public-scan",
-      "inputs": [
-        "repository text files"
-      ],
       "outputs": [
         "stdout pass/fail"
       ],
       "purpose": "Scan publishable text for private names, paths, and credential-shaped terms.",
-      "safety": "Fails closed when a private or credential-shaped token is found."
+      "safety": "Fails closed when a private or credential-shaped token is found.",
+      "usage": "macro-policy-thesis-map public-scan --root ."
     },
     {
       "command": "diff-check",
-      "inputs": [
-        "demo/release_manifest.json",
-        "repository files"
-      ],
       "outputs": [
         "stdout pass/fail"
       ],
       "purpose": "Compare the saved release manifest against current file hashes.",
-      "safety": "Detects artifact drift using static local hashes only."
+      "safety": "Detects artifact drift using static local hashes only.",
+      "usage": "macro-policy-thesis-map diff-check --root ."
     },
     {
       "command": "selfcheck",
-      "inputs": [
-        "repository files"
-      ],
       "outputs": [
         "stdout pass/fail"
       ],
       "purpose": "Run source-tree checks for files, boundaries, and public scan status.",
-      "safety": "Fails closed when required public release evidence is missing."
+      "safety": "Fails closed when required public release evidence is missing.",
+      "usage": "macro-policy-thesis-map selfcheck --root ."
     }
-  ]
+  ],
+  "title": "CLI Help Export",
+  "version": "0.6.0"
 }

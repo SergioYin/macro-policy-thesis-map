@@ -19,10 +19,12 @@ from .core import (
     command_matrix,
     compare_packets,
     diff_check,
+    docs_export,
     evidence_bundle,
     exposure_map,
     fixture_doctor,
     input_schema,
+    cli_help,
     load_cases,
     load_events,
     load_exposures,
@@ -31,11 +33,13 @@ from .core import (
     public_findings,
     public_readiness,
     quickstart_check,
+    readme_snippet,
     release_manifest,
     release_deck,
     reviewer_scorecard,
     review_ledger,
     thesis_impact_brief,
+    troubleshoot,
 )
 from .io import read_json, resolve, write_json, write_text
 from .render import (
@@ -43,7 +47,9 @@ from .render import (
     command_matrix_md,
     comparison_md,
     case_gallery_md,
+    cli_help_md,
     dashboard_html,
+    docs_export_md,
     evidence_bundle_md,
     exposure_map_md,
     fixture_doctor_md,
@@ -54,7 +60,9 @@ from .render import (
     packet_md,
     public_readiness_md,
     quickstart_md,
+    readme_snippet_md,
     thesis_impact_brief_md,
+    troubleshoot_md,
     visual_receipt_html,
     visual_receipt_md,
     visual_receipt_svg,
@@ -157,6 +165,30 @@ def build_parser() -> argparse.ArgumentParser:
     schema.add_argument("--out-md", default="demo/input_schema.md")
     schema.add_argument("--out-json", default="demo/input_schema.json")
     schema.set_defaults(func=cmd_schema_export)
+
+    trouble = sub.add_parser("troubleshoot", help="Write deterministic operator troubleshooting checks.")
+    trouble.add_argument("--root", default=".")
+    trouble.add_argument("--out-md", default="demo/troubleshoot.md")
+    trouble.add_argument("--out-json", default="demo/troubleshoot.json")
+    trouble.set_defaults(func=cmd_troubleshoot)
+
+    docs = sub.add_parser("docs-export", help="Write an operator documentation index.")
+    docs.add_argument("--root", default=".")
+    docs.add_argument("--out-md", default="demo/docs_export.md")
+    docs.add_argument("--out-json", default="demo/docs_export.json")
+    docs.set_defaults(func=cmd_docs_export)
+
+    snippet = sub.add_parser("readme-snippet", help="Write a compact README-ready usage snippet.")
+    snippet.add_argument("--root", default=".")
+    snippet.add_argument("--out-md", default="demo/readme_snippet.md")
+    snippet.add_argument("--out-json", default="demo/readme_snippet.json")
+    snippet.set_defaults(func=cmd_readme_snippet)
+
+    help_export = sub.add_parser("cli-help", help="Write deterministic CLI help and usage lines.")
+    help_export.add_argument("--root", default=".")
+    help_export.add_argument("--out-md", default="demo/cli_help.md")
+    help_export.add_argument("--out-json", default="demo/cli_help.json")
+    help_export.set_defaults(func=cmd_cli_help)
 
     manifest = sub.add_parser("release-manifest", help="Build a deterministic public release manifest.")
     manifest.add_argument("--root", default=".")
@@ -357,6 +389,38 @@ def cmd_schema_export(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_troubleshoot(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = troubleshoot(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), troubleshoot_md(payload))
+    return 0
+
+
+def cmd_docs_export(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = docs_export(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), docs_export_md(payload))
+    return 0
+
+
+def cmd_readme_snippet(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = readme_snippet()
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), readme_snippet_md(payload))
+    return 0
+
+
+def cmd_cli_help(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = cli_help()
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), cli_help_md(payload))
+    return 0
+
+
 def cmd_release_manifest(args: argparse.Namespace) -> int:
     root = Path(args.root)
     payload = release_manifest(root)
@@ -492,6 +556,10 @@ def cmd_selfcheck(args: argparse.Namespace) -> int:
         root / "demo" / "cold_start_walkthrough.json",
         root / "demo" / "fixture_doctor.json",
         root / "demo" / "input_schema.json",
+        root / "demo" / "troubleshoot.json",
+        root / "demo" / "docs_export.json",
+        root / "demo" / "readme_snippet.json",
+        root / "demo" / "cli_help.json",
         root / "demo" / "case_gallery.json",
         root / "demo" / "visual_receipt.json",
         root / "demo" / "thesis_impact_brief.json",
