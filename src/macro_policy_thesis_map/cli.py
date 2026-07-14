@@ -14,10 +14,12 @@ from .core import (
     build_packet,
     adoption_notes,
     assumption_registry,
+    benchmark_suite,
     bundle_export,
     case_gallery,
     cold_start_walkthrough,
     command_matrix,
+    compatibility_report,
     compare_packets,
     data_dictionary_diff,
     diff_check,
@@ -25,17 +27,21 @@ from .core import (
     evidence_bundle,
     exposure_map,
     fixture_doctor,
+    golden_fixtures,
     input_schema,
+    integration_cookbook,
     cli_help,
     load_cases,
     load_events,
     load_exposures,
     load_sensitivities,
+    maintainer_guide,
     maturity,
     public_findings,
     public_readiness,
     quickstart_check,
     readme_snippet,
+    regression_summary,
     release_manifest,
     release_deck,
     reviewer_scorecard,
@@ -71,8 +77,14 @@ from .render import (
     visual_receipt_svg,
     adoption_notes_md,
     assumption_registry_md,
+    benchmark_suite_md,
     bundle_export_md,
+    compatibility_report_md,
     data_dictionary_diff_md,
+    golden_fixtures_md,
+    integration_cookbook_md,
+    maintainer_guide_md,
+    regression_summary_md,
     release_deck_md,
     reviewer_scorecard_md,
     scenario_library_md,
@@ -292,6 +304,42 @@ def build_parser() -> argparse.ArgumentParser:
     cold.add_argument("--out-md", default="demo/cold_start_walkthrough.md")
     cold.add_argument("--out-json", default="demo/cold_start_walkthrough.json")
     cold.set_defaults(func=cmd_cold_start_walkthrough)
+
+    bench = sub.add_parser("benchmark-suite", help="Write deterministic synthetic public evaluator benchmarks.")
+    bench.add_argument("--root", default=".")
+    bench.add_argument("--out-md", default="demo/benchmark_suite.md")
+    bench.add_argument("--out-json", default="demo/benchmark_suite.json")
+    bench.set_defaults(func=cmd_benchmark_suite)
+
+    cookbook = sub.add_parser("integration-cookbook", help="Write public-safe local integration recipes.")
+    cookbook.add_argument("--root", default=".")
+    cookbook.add_argument("--out-md", default="demo/integration_cookbook.md")
+    cookbook.add_argument("--out-json", default="demo/integration_cookbook.json")
+    cookbook.set_defaults(func=cmd_integration_cookbook)
+
+    compat = sub.add_parser("compatibility-report", help="Write deterministic package and artifact compatibility gates.")
+    compat.add_argument("--root", default=".")
+    compat.add_argument("--out-md", default="demo/compatibility_report.md")
+    compat.add_argument("--out-json", default="demo/compatibility_report.json")
+    compat.set_defaults(func=cmd_compatibility_report)
+
+    maintainer = sub.add_parser("maintainer-guide", help="Write deterministic maintainer duties and safety invariants.")
+    maintainer.add_argument("--root", default=".")
+    maintainer.add_argument("--out-md", default="demo/maintainer_guide.md")
+    maintainer.add_argument("--out-json", default="demo/maintainer_guide.json")
+    maintainer.set_defaults(func=cmd_maintainer_guide)
+
+    golden = sub.add_parser("golden-fixtures", help="Write static fixture hashes, schemas, and expected outputs.")
+    golden.add_argument("--root", default=".")
+    golden.add_argument("--out-md", default="demo/golden_fixtures.md")
+    golden.add_argument("--out-json", default="demo/golden_fixtures.json")
+    golden.set_defaults(func=cmd_golden_fixtures)
+
+    regression = sub.add_parser("regression-summary", help="Write deterministic regression gate summary.")
+    regression.add_argument("--root", default=".")
+    regression.add_argument("--out-md", default="demo/regression_summary.md")
+    regression.add_argument("--out-json", default="demo/regression_summary.json")
+    regression.set_defaults(func=cmd_regression_summary)
     return parser
 
 
@@ -557,6 +605,54 @@ def cmd_cold_start_walkthrough(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_benchmark_suite(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = benchmark_suite(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), benchmark_suite_md(payload))
+    return 0
+
+
+def cmd_integration_cookbook(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = integration_cookbook()
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), integration_cookbook_md(payload))
+    return 0
+
+
+def cmd_compatibility_report(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = compatibility_report(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), compatibility_report_md(payload))
+    return 0
+
+
+def cmd_maintainer_guide(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = maintainer_guide()
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), maintainer_guide_md(payload))
+    return 0
+
+
+def cmd_golden_fixtures(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = golden_fixtures(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), golden_fixtures_md(payload))
+    return 0
+
+
+def cmd_regression_summary(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = regression_summary(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), regression_summary_md(payload))
+    return 0
+
+
 def cmd_public_scan(args: argparse.Namespace) -> int:
     findings = public_findings(Path(args.root))
     if findings:
@@ -602,6 +698,12 @@ def cmd_selfcheck(args: argparse.Namespace) -> int:
         root / "demo" / "evidence_bundle.json",
         root / "demo" / "public_readiness.json",
         root / "demo" / "cold_start_walkthrough.json",
+        root / "demo" / "benchmark_suite.json",
+        root / "demo" / "integration_cookbook.json",
+        root / "demo" / "compatibility_report.json",
+        root / "demo" / "maintainer_guide.json",
+        root / "demo" / "golden_fixtures.json",
+        root / "demo" / "regression_summary.json",
         root / "demo" / "fixture_doctor.json",
         root / "demo" / "input_schema.json",
         root / "demo" / "troubleshoot.json",

@@ -2,9 +2,9 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 0.7.0
+Version: 1.0.0
 
-Command count: 31
+Command count: 37
 
 | Command | Usage | Purpose | Outputs | Safety |
 | --- | --- | --- | --- | --- |
@@ -35,6 +35,12 @@ Command count: 31
 | bundle-export | macro-policy-thesis-map bundle-export --root . | Export a public promotion bundle manifest under demo/bundle_export. | demo/bundle_export/manifest.md, demo/bundle_export/manifest.json | Creates a local static manifest only; it does not upload, publish, or automate workflows. |
 | evidence-bundle | macro-policy-thesis-map evidence-bundle --root . | Collect public evaluation artifacts and source fixture hashes in one bundle. | demo/evidence_bundle.md, demo/evidence_bundle.json | Includes hashes and static summaries only. |
 | public-readiness | macro-policy-thesis-map public-readiness --root . | Summarize public release readiness gates and blockers. | demo/public_readiness.md, demo/public_readiness.json | Requires public scan pass and explicit static research boundaries. |
+| benchmark-suite | macro-policy-thesis-map benchmark-suite --root . | Publish deterministic synthetic evaluator benchmarks and artifact coverage checks. | demo/benchmark_suite.md, demo/benchmark_suite.json | Synthetic benchmark matrix only; no timing probes, live data, network calls, or advice. |
+| integration-cookbook | macro-policy-thesis-map integration-cookbook --root . | Publish public-safe integration recipes for static CSV ingestion and artifact review. | demo/integration_cookbook.md, demo/integration_cookbook.json | Local static recipes only; no private systems, workflows, uploads, live feeds, or advice. |
+| compatibility-report | macro-policy-thesis-map compatibility-report --root . | Report deterministic package and artifact compatibility gates for public evaluators. | demo/compatibility_report.md, demo/compatibility_report.json | Static file and metadata checks only. |
+| maintainer-guide | macro-policy-thesis-map maintainer-guide --root . | Publish deterministic maintainer duties, release order, and safety invariants. | demo/maintainer_guide.md, demo/maintainer_guide.json | Documentation-only guide with no workflow automation or private references. |
+| golden-fixtures | macro-policy-thesis-map golden-fixtures --root . | Record static fixture hashes, row counts, schemas, and expected generator outputs. | demo/golden_fixtures.md, demo/golden_fixtures.json | Synthetic fixture inventory only; no live source refresh or advice. |
+| regression-summary | macro-policy-thesis-map regression-summary --root . | Summarize deterministic regression gates across tests, scans, readiness, and artifacts. | demo/regression_summary.md, demo/regression_summary.json | Static local gate summary only. |
 | cold-start-walkthrough | macro-policy-thesis-map cold-start-walkthrough --root . | Generate a deterministic first-run walkthrough for public evaluators. | demo/cold_start_walkthrough.md, demo/cold_start_walkthrough.json | Uses local static commands and bundled examples. |
 | public-scan | macro-policy-thesis-map public-scan --root . | Scan publishable text for private names, paths, and credential-shaped terms. | stdout pass/fail | Fails closed when a private or credential-shaped token is found. |
 | diff-check | macro-policy-thesis-map diff-check --root . | Compare the saved release manifest against current file hashes. | stdout pass/fail | Detects artifact drift using static local hashes only. |

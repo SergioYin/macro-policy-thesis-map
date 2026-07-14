@@ -6,7 +6,7 @@
     "Do not add live market data, broker actions, trading recommendations, or personalized advice.",
     "Treat review-ledger blockers as release blockers until the input text is revised."
   ],
-  "step_count": 10,
+  "step_count": 11,
   "steps": [
     {
       "command": "macro-policy-thesis-map command-matrix",
@@ -51,21 +51,27 @@
       "title": "Read release-owner promotion notes"
     },
     {
+      "command": "macro-policy-thesis-map benchmark-suite && macro-policy-thesis-map integration-cookbook && macro-policy-thesis-map compatibility-report && macro-policy-thesis-map maintainer-guide && macro-policy-thesis-map golden-fixtures && macro-policy-thesis-map regression-summary",
+      "expected_result": "Benchmark, integration, compatibility, maintainer, golden fixture, and regression artifacts are written as Markdown and JSON.",
+      "step": 8,
+      "title": "Generate public evaluator hardening surfaces"
+    },
+    {
       "command": "macro-policy-thesis-map bundle-export",
       "expected_result": "A deterministic bundle manifest is written under demo/bundle_export/.",
-      "step": 8,
+      "step": 9,
       "title": "Export the public promotion bundle manifest"
     },
     {
       "command": "macro-policy-thesis-map public-readiness",
       "expected_result": "A public readiness report lists pass/fail gates.",
-      "step": 9,
+      "step": 10,
       "title": "Check public readiness"
     },
     {
       "command": "macro-policy-thesis-map selfcheck && macro-policy-thesis-map public-scan && macro-policy-thesis-map diff-check",
       "expected_result": "All commands exit successfully before sharing artifacts.",
-      "step": 10,
+      "step": 11,
       "title": "Run final local checks"
     }
   ]

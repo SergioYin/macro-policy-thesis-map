@@ -5,7 +5,7 @@ backend-path = ["."]
 
 [project]
 name = "macro-policy-thesis-map"
-version = "0.7.0"
+version = "1.0.0"
 description = "Zero-dependency static macro policy thesis mapping CLI."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -13,7 +13,7 @@ license = "MIT"
 authors = [{ name = "Macro Policy Thesis Map Contributors" }]
 keywords = ["macro", "policy", "research", "thesis", "static-analysis"]
 classifiers = [
-  "Development Status :: 4 - Beta",
+  "Development Status :: 5 - Production/Stable",
   "Environment :: Console",
   "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",

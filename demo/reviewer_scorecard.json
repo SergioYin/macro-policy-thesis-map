@@ -1,70 +1,100 @@
 {
-  "artifact_count": 14,
+  "artifact_count": 20,
   "artifacts": [
     {
       "bytes": 2500,
       "path": "demo/assumption_registry.json",
-      "sha256": "eaef6265dd5bc3881e5be0c9206e4365a72976cf4091887fce0396339b2c8dba"
+      "sha256": "70aecc7f328a84302c7d082cccbc7a6954ec82775be27c9297e38068d271ba90"
     },
     {
-      "bytes": 12469,
+      "bytes": 3043,
+      "path": "demo/benchmark_suite.json",
+      "sha256": "3f8b9be2e11158d924bcc416a0cab2ff5b35756f78bb59a91bf463e6cb61c414"
+    },
+    {
+      "bytes": 14939,
       "path": "demo/cli_help.json",
-      "sha256": "194440fbdd3c019318f8519fcab441c56f08f84385db20a45123a94e64cedf29"
+      "sha256": "2e0d1c169d268305dfbe17d280b7529ebfccfff269f8a36cd1efc4e4af931cb5"
     },
     {
-      "bytes": 12945,
+      "bytes": 15540,
       "path": "demo/command_matrix.json",
-      "sha256": "9cd774a589d103c952269569167e7adfbeb610fd274152e223d0af5a23266f47"
+      "sha256": "5467cce33f686c5a0b7a9e7b6412c33da81f5a60f9bcac7c0b7f153699bd41a4"
+    },
+    {
+      "bytes": 1688,
+      "path": "demo/compatibility_report.json",
+      "sha256": "737f1a2d1377e5e4a3b2b0fcab0debb6ef24519e86e1ede9f6bd43385723e7c3"
     },
     {
       "bytes": 3472,
       "path": "demo/data_dictionary_diff.json",
-      "sha256": "dfa75a46af746035bb5bf3c22788800ab65e6686977ed0977651634ef0d95f7a"
+      "sha256": "894c3a7c3f46c6350c6cf68c682842aee24cb28025835cf377981ca208ea2dcb"
     },
     {
-      "bytes": 3333,
+      "bytes": 4892,
       "path": "demo/docs_export.json",
-      "sha256": "e58db956e3fbd5d803533aa74d41e4134d77fa62443815025d590a9b83e307f7"
+      "sha256": "07f7d1874faaec4c790c3a5e1a816af4ed1543ecf579ba6cf6f3e863c3b252f6"
     },
     {
-      "bytes": 9875,
+      "bytes": 12337,
       "path": "demo/evidence_bundle.json",
-      "sha256": "fa03db93b320d05b9e4fe586bc0cb4c2400310338d1a75d91fff9a9b235be61e"
+      "sha256": "50f995f62cd84c644b5f990f0ac89105454bff100908981bf8a86181f321efaf"
     },
     {
-      "bytes": 1235,
+      "bytes": 4685,
+      "path": "demo/golden_fixtures.json",
+      "sha256": "43567374f2468e4acb87953a4606eb4d4c70bf7afcbc2faa12bfa5fc91278bf8"
+    },
+    {
+      "bytes": 3546,
+      "path": "demo/integration_cookbook.json",
+      "sha256": "4412ef0248807d31777ca823e46d34efdf1586230f2a4fdf06bc943f580961f0"
+    },
+    {
+      "bytes": 2216,
+      "path": "demo/maintainer_guide.json",
+      "sha256": "66aeb9ddf7d2399879b761676b7e0fc71315b1897556ee9e696c168081175227"
+    },
+    {
+      "bytes": 1313,
       "path": "demo/maturity_report.json",
-      "sha256": "c07499edebed7b3e058e4f803d4687d8c8207a5d62b6ba48694167cfc8ee0a1b"
+      "sha256": "4b0c137ae12f6b3a7ce1c8bbf444df0effd132d50d4535cd2fcbdc86fc18e637"
     },
     {
-      "bytes": 1522,
+      "bytes": 1732,
       "path": "demo/public_readiness.json",
-      "sha256": "9dccc86d5ebed1d58d99e689ceac6cc60b27dd021b365fd89fc794568d918798"
+      "sha256": "4dd6c11f67f4d2c1c1f518c7db9d3842770a1c3ffbc5b196e19abf69580559ef"
     },
     {
-      "bytes": 1868,
+      "bytes": 3080,
       "path": "demo/readme_snippet.json",
-      "sha256": "a47fbc7eee8ad796082ff63d2cf0d9b7b47371dbd36d29185cd2b0adda79479f"
+      "sha256": "94d243c825b24666925cd6151bc304b774a32ee06781a630132e0c17cfd53309"
     },
     {
-      "bytes": 10720,
+      "bytes": 1984,
+      "path": "demo/regression_summary.json",
+      "sha256": "d76fb5661bd590f4dd36d956c70fd2c31a220c4871b1c2e864e2a029971fb478"
+    },
+    {
+      "bytes": 12659,
       "path": "demo/release_manifest.json",
-      "sha256": "4b602d8cc944613e9840df4612228b7935f524cf1dffa6e3ef1bb8875f4bdcd0"
+      "sha256": "8ff93441a6d2c1a4af3b53f3f6f407d7da4038f7b982a72884e531c1125eccd5"
     },
     {
       "bytes": 2903,
       "path": "demo/scenario_library.json",
-      "sha256": "44d3f23eafdadeb307a9bb29b5663fa3494b81b4f34e10494da38ac30b833ed6"
+      "sha256": "6a6dfba6bf9c54a417753cb33fe124858fb37e2119a9b7ab1d0272d85a6ead86"
     },
     {
       "bytes": 3174,
       "path": "demo/troubleshoot.json",
-      "sha256": "fbd09082b63e674afbb7dc4636f48cefac084a3f53ce32ca36ba5ac613b124de"
+      "sha256": "623fae46fea5fc9ebdb431c4fb8519b7fafd2ce592df9e2fe57a9c6c842eb8d2"
     },
     {
-      "bytes": 15692,
+      "bytes": 18727,
       "path": "tests/test_cli.py",
-      "sha256": "dabaea10614c2404076cd73b4fee8006f6c909e05738dcc2858e40bc44a14119"
+      "sha256": "803740be53d67ae8590939db87c3441f5eca003650fcd5d2634f5375bdcf6358"
     },
     {
       "bytes": 1388,
@@ -73,7 +103,7 @@
     }
   ],
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
-  "max_score": 5,
+  "max_score": 6,
   "rubric": [
     {
       "description": "Static fixtures and synthetic public examples are present.",
@@ -107,6 +137,17 @@
         "release_owner_pack"
       ],
       "name": "review_controls",
+      "passed": true
+    },
+    {
+      "description": "Benchmark, integration, compatibility, maintainer, golden fixture, and regression artifacts are present.",
+      "evidence": [
+        "public_evaluator_hardening"
+      ],
+      "maturity_mapping": [
+        "public_evaluator_hardening"
+      ],
+      "name": "public_evaluator_hardening",
       "passed": true
     },
     {
@@ -149,8 +190,8 @@
       "passed": true
     }
   ],
-  "score": 5,
+  "score": 6,
   "status": "ready",
   "title": "Reviewer Scorecard",
-  "version": "0.7.0"
+  "version": "1.0.0"
 }

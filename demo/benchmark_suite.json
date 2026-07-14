@@ -1,0 +1,91 @@
+{
+  "benchmark_count": 4,
+  "benchmarks": [
+    {
+      "benchmark_id": "bench-001",
+      "commands": [
+        "build-packet",
+        "review-ledger",
+        "fixture-doctor"
+      ],
+      "deterministic_assertion": "Event count, policy-area count, and fixture-doctor status remain stable for bundled examples.",
+      "expected_artifacts": [
+        "demo/thesis_packet.json",
+        "demo/review_ledger.json",
+        "demo/fixture_doctor.json"
+      ],
+      "fixture_paths": [
+        "examples/macro_events.csv"
+      ],
+      "missing": [],
+      "name": "default_packet_generation",
+      "status": "ready"
+    },
+    {
+      "benchmark_id": "bench-002",
+      "commands": [
+        "scenario-library",
+        "assumption-registry",
+        "data-dictionary-diff"
+      ],
+      "deterministic_assertion": "Built-in synthetic metadata writes identical command counts and schema guidance across runs.",
+      "expected_artifacts": [
+        "demo/scenario_library.json",
+        "demo/assumption_registry.json",
+        "demo/data_dictionary_diff.json"
+      ],
+      "fixture_paths": [],
+      "missing": [],
+      "name": "schema_adaptation_surfaces",
+      "status": "ready"
+    },
+    {
+      "benchmark_id": "bench-003",
+      "commands": [
+        "case-gallery",
+        "visual-receipt"
+      ],
+      "deterministic_assertion": "Case routes, receipt command list, and artifact hash prefixes are derived from static local files.",
+      "expected_artifacts": [
+        "demo/case_gallery.json",
+        "demo/visual_receipt.json"
+      ],
+      "fixture_paths": [
+        "examples/public_macro_cases.csv"
+      ],
+      "missing": [],
+      "name": "public_case_and_receipt",
+      "status": "ready"
+    },
+    {
+      "benchmark_id": "bench-004",
+      "commands": [
+        "maturity-report",
+        "evidence-bundle",
+        "public-readiness",
+        "regression-summary"
+      ],
+      "deterministic_assertion": "Gate names and pass/block statuses are computed from local files only.",
+      "expected_artifacts": [
+        "demo/maturity_report.json",
+        "demo/evidence_bundle.json",
+        "demo/public_readiness.json",
+        "demo/regression_summary.json"
+      ],
+      "fixture_paths": [],
+      "missing": [],
+      "name": "release_readiness_pack",
+      "status": "ready"
+    }
+  ],
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "ready_count": 4,
+  "run_policy": [
+    "Benchmarks describe deterministic artifact expectations and do not measure wall-clock performance.",
+    "Use bundled static fixtures or user-supplied static CSVs only.",
+    "Treat any missing expected artifact as a regeneration task, not as a live-data fetch request."
+  ],
+  "suite_type": "static synthetic deterministic benchmarks",
+  "title": "Public Evaluator Benchmark Suite",
+  "version": "1.0.0"
+}

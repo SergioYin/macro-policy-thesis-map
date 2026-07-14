@@ -1,0 +1,189 @@
+{
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "expected_outputs": [
+    {
+      "command": "build-packet",
+      "json_path": "demo/thesis_packet.json",
+      "key": "event_count",
+      "observed_value": 5,
+      "status": "recorded"
+    },
+    {
+      "command": "case-gallery",
+      "json_path": "demo/case_gallery.json",
+      "key": "case_count",
+      "observed_value": 6,
+      "status": "recorded"
+    },
+    {
+      "command": "thesis-impact-brief",
+      "json_path": "demo/thesis_impact_brief.json",
+      "key": "sensitivity_count",
+      "observed_value": 6,
+      "status": "recorded"
+    },
+    {
+      "command": "exposure-map",
+      "json_path": "demo/exposure_map.json",
+      "key": "exposure_count",
+      "observed_value": 5,
+      "status": "recorded"
+    }
+  ],
+  "fixture_count": 5,
+  "fixtures": [
+    {
+      "actual_columns": [
+        "date",
+        "event_type",
+        "source",
+        "policy_area",
+        "channel",
+        "direction",
+        "confidence",
+        "evidence",
+        "thesis_link"
+      ],
+      "bytes": 906,
+      "expected_columns": [
+        "date",
+        "event_type",
+        "source",
+        "policy_area",
+        "channel",
+        "direction",
+        "confidence",
+        "evidence",
+        "thesis_link"
+      ],
+      "fixture_type": "event_current",
+      "path": "examples/macro_events.csv",
+      "row_count": 5,
+      "schema_status": "pass",
+      "sha256": "b7410919d62dd4e390bfb147959ba1e7b0410d2ab87cd4bd41af55557875303c"
+    },
+    {
+      "actual_columns": [
+        "date",
+        "event_type",
+        "source",
+        "policy_area",
+        "channel",
+        "direction",
+        "confidence",
+        "evidence",
+        "thesis_link"
+      ],
+      "bytes": 715,
+      "expected_columns": [
+        "date",
+        "event_type",
+        "source",
+        "policy_area",
+        "channel",
+        "direction",
+        "confidence",
+        "evidence",
+        "thesis_link"
+      ],
+      "fixture_type": "event_prior",
+      "path": "examples/prior_macro_events.csv",
+      "row_count": 4,
+      "schema_status": "pass",
+      "sha256": "95f9b30ce6f88581ea9ef431b885aef3941181a587eaa36ae9a39e19ad3026ed"
+    },
+    {
+      "actual_columns": [
+        "case_id",
+        "region",
+        "case_title",
+        "date",
+        "policy_area",
+        "channel",
+        "direction",
+        "confidence",
+        "evidence",
+        "route",
+        "command"
+      ],
+      "bytes": 1471,
+      "expected_columns": [
+        "case_id",
+        "region",
+        "case_title",
+        "date",
+        "policy_area",
+        "channel",
+        "direction",
+        "confidence",
+        "evidence",
+        "route",
+        "command"
+      ],
+      "fixture_type": "case_gallery",
+      "path": "examples/public_macro_cases.csv",
+      "row_count": 6,
+      "schema_status": "pass",
+      "sha256": "ee511dd457dd7aab5558074a9c173de0e2326eb9bf1618561b5c8ef8983cddc1"
+    },
+    {
+      "actual_columns": [
+        "thesis_id",
+        "policy_area",
+        "sensitivity_axis",
+        "shock_label",
+        "impact_direction",
+        "impact_score",
+        "confidence",
+        "rationale"
+      ],
+      "bytes": 1016,
+      "expected_columns": [
+        "thesis_id",
+        "policy_area",
+        "sensitivity_axis",
+        "shock_label",
+        "impact_direction",
+        "impact_score",
+        "confidence",
+        "rationale"
+      ],
+      "fixture_type": "thesis_sensitivity",
+      "path": "examples/thesis_sensitivities.csv",
+      "row_count": 6,
+      "schema_status": "pass",
+      "sha256": "ab0a6a3d0a7f0bc9c9044b924a0d0eab5a9bbb34fb7de8fd9ceb92cae3a0b59d"
+    },
+    {
+      "actual_columns": [
+        "portfolio_id",
+        "sleeve",
+        "exposure_id",
+        "policy_area",
+        "thesis_id",
+        "exposure_direction",
+        "exposure_score",
+        "rationale"
+      ],
+      "bytes": 835,
+      "expected_columns": [
+        "portfolio_id",
+        "sleeve",
+        "exposure_id",
+        "policy_area",
+        "thesis_id",
+        "exposure_direction",
+        "exposure_score",
+        "rationale"
+      ],
+      "fixture_type": "portfolio_exposure",
+      "path": "examples/portfolio_exposures.csv",
+      "row_count": 5,
+      "schema_status": "pass",
+      "sha256": "f9ea6de8ccd82b4dc49a189d61f7512e6ccc8a387d11e4fcaf89e82029eb3489"
+    }
+  ],
+  "status": "ready",
+  "title": "Golden Fixtures",
+  "version": "1.0.0"
+}

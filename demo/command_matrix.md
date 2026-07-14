@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Command count: 31
+Command count: 37
 
 | Command | Purpose | Inputs | Outputs | Safety |
 | --- | --- | --- | --- | --- |
@@ -33,6 +33,12 @@ Command count: 31
 | bundle-export | Export a public promotion bundle manifest under demo/bundle_export. | release-owner pack artifacts, release manifest, evidence bundle | demo/bundle_export/manifest.md, demo/bundle_export/manifest.json | Creates a local static manifest only; it does not upload, publish, or automate workflows. |
 | evidence-bundle | Collect public evaluation artifacts and source fixture hashes in one bundle. | examples, demo artifacts, README, tests, skill docs | demo/evidence_bundle.md, demo/evidence_bundle.json | Includes hashes and static summaries only. |
 | public-readiness | Summarize public release readiness gates and blockers. | repository files, demo artifacts, public scan | demo/public_readiness.md, demo/public_readiness.json | Requires public scan pass and explicit static research boundaries. |
+| benchmark-suite | Publish deterministic synthetic evaluator benchmarks and artifact coverage checks. | built-in benchmark metadata, command metadata, demo artifacts | demo/benchmark_suite.md, demo/benchmark_suite.json | Synthetic benchmark matrix only; no timing probes, live data, network calls, or advice. |
+| integration-cookbook | Publish public-safe integration recipes for static CSV ingestion and artifact review. | built-in recipe metadata and command metadata | demo/integration_cookbook.md, demo/integration_cookbook.json | Local static recipes only; no private systems, workflows, uploads, live feeds, or advice. |
+| compatibility-report | Report deterministic package and artifact compatibility gates for public evaluators. | pyproject.toml, source package, bundled examples, demo artifacts | demo/compatibility_report.md, demo/compatibility_report.json | Static file and metadata checks only. |
+| maintainer-guide | Publish deterministic maintainer duties, release order, and safety invariants. | built-in maintainer metadata, command metadata | demo/maintainer_guide.md, demo/maintainer_guide.json | Documentation-only guide with no workflow automation or private references. |
+| golden-fixtures | Record static fixture hashes, row counts, schemas, and expected generator outputs. | examples/*.csv, bundled package examples | demo/golden_fixtures.md, demo/golden_fixtures.json | Synthetic fixture inventory only; no live source refresh or advice. |
+| regression-summary | Summarize deterministic regression gates across tests, scans, readiness, and artifacts. | demo artifacts, tests, release manifest, command metadata | demo/regression_summary.md, demo/regression_summary.json | Static local gate summary only. |
 | cold-start-walkthrough | Generate a deterministic first-run walkthrough for public evaluators. | built-in command metadata | demo/cold_start_walkthrough.md, demo/cold_start_walkthrough.json | Uses local static commands and bundled examples. |
 | public-scan | Scan publishable text for private names, paths, and credential-shaped terms. | repository text files | stdout pass/fail | Fails closed when a private or credential-shaped token is found. |
 | diff-check | Compare the saved release manifest against current file hashes. | demo/release_manifest.json, repository files | stdout pass/fail | Detects artifact drift using static local hashes only. |

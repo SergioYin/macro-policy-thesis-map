@@ -204,6 +204,48 @@
         "demo/bundle_export/manifest.md",
         "demo/bundle_export/manifest.json"
       ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli benchmark-suite --root .",
+      "expected_outputs": [
+        "demo/benchmark_suite.md",
+        "demo/benchmark_suite.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli integration-cookbook --root .",
+      "expected_outputs": [
+        "demo/integration_cookbook.md",
+        "demo/integration_cookbook.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli compatibility-report --root .",
+      "expected_outputs": [
+        "demo/compatibility_report.md",
+        "demo/compatibility_report.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli maintainer-guide --root .",
+      "expected_outputs": [
+        "demo/maintainer_guide.md",
+        "demo/maintainer_guide.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli golden-fixtures --root .",
+      "expected_outputs": [
+        "demo/golden_fixtures.md",
+        "demo/golden_fixtures.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli regression-summary --root .",
+      "expected_outputs": [
+        "demo/regression_summary.md",
+        "demo/regression_summary.json"
+      ]
     }
   ],
   "status": "ready"

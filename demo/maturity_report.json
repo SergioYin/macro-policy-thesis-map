@@ -46,6 +46,10 @@
       "passed": true
     },
     {
+      "name": "public_evaluator_hardening",
+      "passed": true
+    },
+    {
       "name": "tests",
       "passed": true
     },
@@ -58,7 +62,7 @@
       "passed": true
     }
   ],
-  "max_score": 14,
-  "score": 14,
+  "max_score": 15,
+  "score": 15,
   "status": "ready"
 }

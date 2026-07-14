@@ -1,0 +1,66 @@
+{
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "invariants": [
+    "Runtime dependencies remain empty.",
+    "Generated public artifacts are deterministic Markdown, JSON, HTML, or SVG under demo/.",
+    "All example data remains static and synthetic.",
+    "No live finance data, advice, private references, or workflow automation is introduced."
+  ],
+  "release_order": [
+    "fixture-doctor",
+    "schema-export",
+    "build-packet",
+    "review-ledger",
+    "scenario-library",
+    "assumption-registry",
+    "data-dictionary-diff",
+    "benchmark-suite",
+    "integration-cookbook",
+    "compatibility-report",
+    "maintainer-guide",
+    "golden-fixtures",
+    "regression-summary",
+    "maturity-report",
+    "evidence-bundle",
+    "public-readiness",
+    "release-manifest",
+    "diff-check"
+  ],
+  "section_count": 4,
+  "sections": [
+    {
+      "duties": [
+        "Keep pyproject.toml and package __version__ synchronized.",
+        "Regenerate demo artifacts after version changes.",
+        "Update release manifest after generated files settle."
+      ],
+      "section": "versioning"
+    },
+    {
+      "duties": [
+        "Use synthetic static CSV rows only.",
+        "Run fixture-doctor and golden-fixtures after fixture edits.",
+        "Keep bundled package examples in sync with top-level examples."
+      ],
+      "section": "fixtures"
+    },
+    {
+      "duties": [
+        "Run public-scan before sharing artifacts.",
+        "Keep README and skill boundaries explicit.",
+        "Do not add workflow files, private references, live finance feeds, or advice language."
+      ],
+      "section": "public safety"
+    },
+    {
+      "duties": [
+        "Run pytest, selfcheck, public-readiness, diff-check, and wheel build when feasible.",
+        "Regenerate regression-summary with the final local status.",
+        "Treat readiness blockers as release blockers."
+      ],
+      "section": "regression gates"
+    }
+  ],
+  "title": "Maintainer Guide",
+  "version": "1.0.0"
+}

@@ -46,3 +46,9 @@ Passed: 8 / 8
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli reviewer-scorecard --root . | demo/reviewer_scorecard.md, demo/reviewer_scorecard.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli release-deck --root . | demo/release_deck.md, demo/release_deck.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli bundle-export --root . | demo/bundle_export/manifest.md, demo/bundle_export/manifest.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli benchmark-suite --root . | demo/benchmark_suite.md, demo/benchmark_suite.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli integration-cookbook --root . | demo/integration_cookbook.md, demo/integration_cookbook.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli compatibility-report --root . | demo/compatibility_report.md, demo/compatibility_report.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli maintainer-guide --root . | demo/maintainer_guide.md, demo/maintainer_guide.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli golden-fixtures --root . | demo/golden_fixtures.md, demo/golden_fixtures.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli regression-summary --root . | demo/regression_summary.md, demo/regression_summary.json |

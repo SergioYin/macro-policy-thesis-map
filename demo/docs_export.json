@@ -1,75 +1,117 @@
 {
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
-  "doc_count": 10,
+  "doc_count": 16,
   "documents": [
     {
-      "bytes": 11457,
+      "bytes": 13515,
       "path": "README.md",
       "purpose": "Primary operator and evaluator documentation.",
-      "sha256": "c3f6dcc9a6f908cea1b097ac0f116e65ad22a30350647e4865f97e1432f10733",
+      "sha256": "4366c0540cdd883ccc0ddb48936219a5a232e640af164180ef4be563b32af278",
       "title": "README"
     },
     {
       "bytes": 1980,
       "path": "demo/assumption_registry.md",
       "purpose": "Bounded public assumptions and validation controls.",
-      "sha256": "04fe2e3e4e6d56c7f1d2d053399c0da14897b3131a2deb775d7e94b4bd0939ba",
+      "sha256": "2b961c66ef2d33ccb2b41c5d18c6e9ce4e1107b978e1af53cf3f72f3fca6790c",
       "title": "Assumption registry"
     },
     {
-      "bytes": 8653,
+      "bytes": 1916,
+      "path": "demo/benchmark_suite.md",
+      "purpose": "Static synthetic evaluator benchmark matrix.",
+      "sha256": "18115fdb4f1ca70f1c5c0c75651ca020bedfce46b7fcdafe12f7d72987dde8d7",
+      "title": "Benchmark suite"
+    },
+    {
+      "bytes": 10373,
       "path": "demo/cli_help.md",
       "purpose": "Deterministic command usage lines.",
-      "sha256": "ee93ddaf0b9436ec8852b9f0a4a41565105a897f684f3cbb7d0a989d7a15acf0",
+      "sha256": "6d51f91a2bb2b6e9c8af8e6e2e86d9a3f4c70dec69ec7f53ce7224fde847e82c",
       "title": "CLI help"
     },
     {
-      "bytes": 8556,
+      "bytes": 10287,
       "path": "demo/command_matrix.md",
       "purpose": "Command inputs, outputs, and safety posture.",
-      "sha256": "c85741c8d658518fe217c88f213b7ced6f11ea4f965f304bd33e99911b285ade",
+      "sha256": "94c79f2821d3b898ba38f8d8a43f84fc8de315a176398281d0d11bc370a8da53",
       "title": "Command matrix"
+    },
+    {
+      "bytes": 1207,
+      "path": "demo/compatibility_report.md",
+      "purpose": "Package and artifact compatibility gates.",
+      "sha256": "e140522e762b8cfcaeedb7b61d94e56f0de13ace0cdca2cd27b7dde0de6aa43c",
+      "title": "Compatibility report"
     },
     {
       "bytes": 2177,
       "path": "demo/data_dictionary_diff.md",
       "purpose": "Base and optional CSV dictionary comparison.",
-      "sha256": "86f1198eb0785c72d89faad3ffc7301d5e39d8c79da7e3c5dae4efc9161d0c47",
+      "sha256": "6af63ab579f72a45573bb4b77ac8193f61811f41ddc9af1703f8627585e4b54f",
       "title": "Data dictionary diff"
+    },
+    {
+      "bytes": 1287,
+      "path": "demo/golden_fixtures.md",
+      "purpose": "Fixture hashes, schemas, and expected output counts.",
+      "sha256": "0787d7af95d65426f7108920ce617657d37f45fdccd53a7594997f8f65e5e7bc",
+      "title": "Golden fixtures"
     },
     {
       "bytes": 1997,
       "path": "demo/input_schema.md",
       "purpose": "Static CSV schema and data dictionary.",
-      "sha256": "3a6c9b953a7de268826cac1587e4cb56c9f1fff61a7546915c55a89f95db8130",
+      "sha256": "754ab856318b51546e323de5759d333557428866131de172a17ed2c02320d0ef",
       "title": "Input schema"
     },
     {
-      "bytes": 1123,
+      "bytes": 2480,
+      "path": "demo/integration_cookbook.md",
+      "purpose": "Public-safe local integration recipes.",
+      "sha256": "bb099ed382e4560856f4c16e447d6c925b67fc497960513b352e332fefc85cd3",
+      "title": "Integration cookbook"
+    },
+    {
+      "bytes": 1926,
+      "path": "demo/maintainer_guide.md",
+      "purpose": "Release duties, order, and safety invariants.",
+      "sha256": "a5c3b705b6a3865ccebc28b2c6063cef1e212096954ae42b7d0ee5b949ce5aec",
+      "title": "Maintainer guide"
+    },
+    {
+      "bytes": 1787,
       "path": "demo/readme_snippet.md",
       "purpose": "Compact copyable quickstart snippet.",
-      "sha256": "7e2cd08dda5284ff2eff896fdf44507b7856c93b5bffa0e00f32bf2a5dc1eb43",
+      "sha256": "46296fe71995bdb3dbc026718a1fcdf70f0d3b57321c07d04b6e6031e4724c3a",
       "title": "README snippet"
+    },
+    {
+      "bytes": 1501,
+      "path": "demo/regression_summary.md",
+      "purpose": "Static regression gate summary.",
+      "sha256": "d049beb5ad27eab2cbf47d87c61704bc31f22caf6cb711c6f7dafed7f2c3b659",
+      "title": "Regression summary"
     },
     {
       "bytes": 1936,
       "path": "demo/scenario_library.md",
       "purpose": "Synthetic scenarios for public schema adaptation review.",
-      "sha256": "02371cfe666cccda6b030621c4fd3df8bcf84ca9a5fb17f22f5a2920a4b7a31f",
+      "sha256": "422c35b095ebd318f5a0f183ce1ff49793d80df0a3d37a51c77a146f390b1d55",
       "title": "Scenario library"
     },
     {
       "bytes": 2357,
       "path": "demo/troubleshoot.md",
       "purpose": "Operator diagnostics and recovery steps.",
-      "sha256": "1de5bb412b1b2059ab976c672ba479ac2fb65105d531682d4a601a574573640b",
+      "sha256": "46dc6e206ba46b5bb84705f183a8e7a4c6028b1537ce67f58c37cdd0386d8ede",
       "title": "Troubleshooting"
     },
     {
-      "bytes": 3062,
+      "bytes": 3447,
       "path": "skills/agent/macro-policy-thesis-map/SKILL.md",
       "purpose": "Agent protocol and finance boundaries.",
-      "sha256": "3e2ac9bf3e85192a9318b7b3132d99795f7124477666d6a588c01b0e1aa4108a",
+      "sha256": "ad2a3aa4466577664baf452b50f304ae4465a6b3272150d3a339891fc56c6594",
       "title": "Agent skill"
     }
   ],
@@ -83,5 +125,5 @@
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli cli-help --root .",
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root ."
   ],
-  "version": "0.7.0"
+  "version": "1.0.0"
 }

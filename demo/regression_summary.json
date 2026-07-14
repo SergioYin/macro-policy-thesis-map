@@ -1,0 +1,54 @@
+{
+  "blocking_gate_count": 0,
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "gate_count": 6,
+  "gates": [
+    {
+      "detail": "Full test execution is recorded by the release operator.",
+      "evidence": "Run PYTHONPATH=src python -m pytest",
+      "name": "pytest_suite",
+      "status": "manual"
+    },
+    {
+      "detail": "Required files and public scan findings are checked locally.",
+      "evidence": "macro-policy-thesis-map selfcheck --root .",
+      "name": "selfcheck",
+      "status": "pass"
+    },
+    {
+      "detail": "Public readiness gate summary.",
+      "evidence": "demo/public_readiness.json",
+      "name": "public_readiness",
+      "status": "ready"
+    },
+    {
+      "detail": "Release artifact hashes are present.",
+      "evidence": "demo/release_manifest.json",
+      "name": "release_manifest",
+      "status": "pass"
+    },
+    {
+      "detail": "Fixture schema and hash inventory.",
+      "evidence": "demo/golden_fixtures.json",
+      "name": "golden_fixtures",
+      "status": "ready"
+    },
+    {
+      "detail": "Offline wheel build should be run when build tooling is available.",
+      "evidence": "python -m build --wheel or build_backend.build_wheel",
+      "name": "wheel_build",
+      "status": "manual"
+    }
+  ],
+  "manual_gate_count": 2,
+  "release_checks": [
+    "PYTHONPATH=src python -m pytest",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root ."
+  ],
+  "status": "ready",
+  "title": "Regression Summary",
+  "version": "1.0.0"
+}

@@ -1,30 +1,60 @@
 {
-  "artifact_count": 5,
+  "artifact_count": 11,
   "artifacts": [
     {
-      "bytes": 4439,
+      "bytes": 5938,
       "path": "demo/adoption_notes.json",
-      "sha256": "8267d27474229c54a1d9804ddbee4183c113feac13bd57fbe590195a03d46434"
+      "sha256": "67a2f9c23b0a880eb3ac29f33f599ee05de87dcba15f2123f9f61c06a1c83366"
     },
     {
-      "bytes": 12945,
+      "bytes": 3043,
+      "path": "demo/benchmark_suite.json",
+      "sha256": "3f8b9be2e11158d924bcc416a0cab2ff5b35756f78bb59a91bf463e6cb61c414"
+    },
+    {
+      "bytes": 15540,
       "path": "demo/command_matrix.json",
-      "sha256": "9cd774a589d103c952269569167e7adfbeb610fd274152e223d0af5a23266f47"
+      "sha256": "5467cce33f686c5a0b7a9e7b6412c33da81f5a60f9bcac7c0b7f153699bd41a4"
     },
     {
-      "bytes": 1522,
+      "bytes": 1688,
+      "path": "demo/compatibility_report.json",
+      "sha256": "737f1a2d1377e5e4a3b2b0fcab0debb6ef24519e86e1ede9f6bd43385723e7c3"
+    },
+    {
+      "bytes": 4685,
+      "path": "demo/golden_fixtures.json",
+      "sha256": "43567374f2468e4acb87953a4606eb4d4c70bf7afcbc2faa12bfa5fc91278bf8"
+    },
+    {
+      "bytes": 3546,
+      "path": "demo/integration_cookbook.json",
+      "sha256": "4412ef0248807d31777ca823e46d34efdf1586230f2a4fdf06bc943f580961f0"
+    },
+    {
+      "bytes": 2216,
+      "path": "demo/maintainer_guide.json",
+      "sha256": "66aeb9ddf7d2399879b761676b7e0fc71315b1897556ee9e696c168081175227"
+    },
+    {
+      "bytes": 1732,
       "path": "demo/public_readiness.json",
-      "sha256": "9dccc86d5ebed1d58d99e689ceac6cc60b27dd021b365fd89fc794568d918798"
+      "sha256": "4dd6c11f67f4d2c1c1f518c7db9d3842770a1c3ffbc5b196e19abf69580559ef"
     },
     {
-      "bytes": 10720,
+      "bytes": 1984,
+      "path": "demo/regression_summary.json",
+      "sha256": "d76fb5661bd590f4dd36d956c70fd2c31a220c4871b1c2e864e2a029971fb478"
+    },
+    {
+      "bytes": 12659,
       "path": "demo/release_manifest.json",
-      "sha256": "4b602d8cc944613e9840df4612228b7935f524cf1dffa6e3ef1bb8875f4bdcd0"
+      "sha256": "8ff93441a6d2c1a4af3b53f3f6f407d7da4038f7b982a72884e531c1125eccd5"
     },
     {
-      "bytes": 4416,
+      "bytes": 5738,
       "path": "demo/reviewer_scorecard.json",
-      "sha256": "863d7aaaaebe6d34269122b1d80da726b430839a54e0eb27acbed53a696bd2c6"
+      "sha256": "188e8c32928cf4b8b93b0f1242304e943c30823753b905d90fe15c162c90dcfd"
     }
   ],
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
@@ -32,8 +62,8 @@
   "slides": [
     {
       "points": [
-        "Version 0.7.0",
-        "31 zero-dependency CLI commands documented",
+        "Version 1.0.0",
+        "37 zero-dependency CLI commands documented",
         "Static Markdown, JSON, HTML, and SVG artifacts only"
       ],
       "slide": 1,
@@ -41,8 +71,9 @@
     },
     {
       "points": [
-        "64 release manifest artifacts tracked",
+        "76 release manifest artifacts tracked",
         "Artifact hashes are recorded in release, evidence, visual receipt, and bundle manifests",
+        "Golden fixtures record static fixture hashes, schemas, and expected output keys",
         "diff-check verifies saved hashes against current local files"
       ],
       "slide": 2,
@@ -51,8 +82,9 @@
     {
       "points": [
         "Scorecard status: ready",
-        "Score: 5 / 5",
-        "Maturity mapping covers static inputs, review controls, package evidence, verification, and readiness"
+        "Score: 6 / 6",
+        "Maturity mapping covers static inputs, review controls, package evidence, verification, and readiness",
+        "Public hardening covers benchmark, integration, compatibility, maintainer, fixture, and regression surfaces"
       ],
       "slide": 3,
       "title": "Reviewer Rubric"
@@ -79,5 +111,5 @@
     }
   ],
   "title": "Release Owner Promotion Deck",
-  "version": "0.7.0"
+  "version": "1.0.0"
 }

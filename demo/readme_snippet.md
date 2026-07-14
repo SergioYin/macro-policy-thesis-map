@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 0.7.0
+Version: 1.0.0
 
 ```bash
 PYTHONPATH=src python -m macro_policy_thesis_map.cli fixture-doctor --root .
@@ -11,6 +11,12 @@ PYTHONPATH=src python -m macro_policy_thesis_map.cli review-ledger --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli scenario-library --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli assumption-registry --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli data-dictionary-diff --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli benchmark-suite --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli integration-cookbook --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli compatibility-report --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli maintainer-guide --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli golden-fixtures --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli regression-summary --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .
 PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .
 ```
@@ -24,4 +30,10 @@ PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .
 | demo/scenario_library.md |
 | demo/assumption_registry.md |
 | demo/data_dictionary_diff.md |
+| demo/benchmark_suite.md |
+| demo/integration_cookbook.md |
+| demo/compatibility_report.md |
+| demo/maintainer_guide.md |
+| demo/golden_fixtures.md |
+| demo/regression_summary.md |
 | demo/troubleshoot.md |

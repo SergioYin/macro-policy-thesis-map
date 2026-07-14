@@ -78,5 +78,5 @@
     "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
     "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root ."
   ],
-  "version": "0.7.0"
+  "version": "1.0.0"
 }

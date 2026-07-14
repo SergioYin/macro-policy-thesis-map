@@ -18,7 +18,8 @@ Use this skill when an agent needs to turn static macro policy notes into a neut
 12. Run `macro-policy-thesis-map quickstart-check --root .` and `macro-policy-thesis-map command-matrix --root .` to publish first-evaluator command evidence.
 13. Run `macro-policy-thesis-map adoption-notes --root .`, `macro-policy-thesis-map reviewer-scorecard --root .`, `macro-policy-thesis-map release-deck --root .`, and `macro-policy-thesis-map bundle-export --root .` to build the release-owner public promotion pack.
 14. Run `macro-policy-thesis-map evidence-bundle --root .`, `macro-policy-thesis-map cold-start-walkthrough --root .`, and `macro-policy-thesis-map public-readiness --root .` for release-readiness review.
-15. Run `macro-policy-thesis-map public-scan --root .` and `macro-policy-thesis-map diff-check --root .` before sharing generated files outside the working environment.
+15. Run `macro-policy-thesis-map benchmark-suite --root .`, `macro-policy-thesis-map integration-cookbook --root .`, `macro-policy-thesis-map compatibility-report --root .`, `macro-policy-thesis-map maintainer-guide --root .`, `macro-policy-thesis-map golden-fixtures --root .`, and `macro-policy-thesis-map regression-summary --root .` for the v1.0.0 public evaluator hardening pack.
+16. Run `macro-policy-thesis-map public-scan --root .` and `macro-policy-thesis-map diff-check --root .` before sharing generated files outside the working environment.
 
 ## Boundaries
 

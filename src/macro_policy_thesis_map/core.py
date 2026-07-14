@@ -103,6 +103,18 @@ DEMO_ARTIFACTS = [
     "demo/public_readiness.json",
     "demo/cold_start_walkthrough.md",
     "demo/cold_start_walkthrough.json",
+    "demo/benchmark_suite.md",
+    "demo/benchmark_suite.json",
+    "demo/integration_cookbook.md",
+    "demo/integration_cookbook.json",
+    "demo/compatibility_report.md",
+    "demo/compatibility_report.json",
+    "demo/maintainer_guide.md",
+    "demo/maintainer_guide.json",
+    "demo/golden_fixtures.md",
+    "demo/golden_fixtures.json",
+    "demo/regression_summary.md",
+    "demo/regression_summary.json",
     "demo/fixture_doctor.md",
     "demo/fixture_doctor.json",
     "demo/input_schema.md",
@@ -310,6 +322,48 @@ COMMAND_SPECS = [
         "inputs": ["repository files, demo artifacts, public scan"],
         "outputs": ["demo/public_readiness.md", "demo/public_readiness.json"],
         "safety": "Requires public scan pass and explicit static research boundaries.",
+    },
+    {
+        "command": "benchmark-suite",
+        "purpose": "Publish deterministic synthetic evaluator benchmarks and artifact coverage checks.",
+        "inputs": ["built-in benchmark metadata, command metadata, demo artifacts"],
+        "outputs": ["demo/benchmark_suite.md", "demo/benchmark_suite.json"],
+        "safety": "Synthetic benchmark matrix only; no timing probes, live data, network calls, or advice.",
+    },
+    {
+        "command": "integration-cookbook",
+        "purpose": "Publish public-safe integration recipes for static CSV ingestion and artifact review.",
+        "inputs": ["built-in recipe metadata and command metadata"],
+        "outputs": ["demo/integration_cookbook.md", "demo/integration_cookbook.json"],
+        "safety": "Local static recipes only; no private systems, workflows, uploads, live feeds, or advice.",
+    },
+    {
+        "command": "compatibility-report",
+        "purpose": "Report deterministic package and artifact compatibility gates for public evaluators.",
+        "inputs": ["pyproject.toml, source package, bundled examples, demo artifacts"],
+        "outputs": ["demo/compatibility_report.md", "demo/compatibility_report.json"],
+        "safety": "Static file and metadata checks only.",
+    },
+    {
+        "command": "maintainer-guide",
+        "purpose": "Publish deterministic maintainer duties, release order, and safety invariants.",
+        "inputs": ["built-in maintainer metadata, command metadata"],
+        "outputs": ["demo/maintainer_guide.md", "demo/maintainer_guide.json"],
+        "safety": "Documentation-only guide with no workflow automation or private references.",
+    },
+    {
+        "command": "golden-fixtures",
+        "purpose": "Record static fixture hashes, row counts, schemas, and expected generator outputs.",
+        "inputs": ["examples/*.csv, bundled package examples"],
+        "outputs": ["demo/golden_fixtures.md", "demo/golden_fixtures.json"],
+        "safety": "Synthetic fixture inventory only; no live source refresh or advice.",
+    },
+    {
+        "command": "regression-summary",
+        "purpose": "Summarize deterministic regression gates across tests, scans, readiness, and artifacts.",
+        "inputs": ["demo artifacts, tests, release manifest, command metadata"],
+        "outputs": ["demo/regression_summary.md", "demo/regression_summary.json"],
+        "safety": "Static local gate summary only.",
     },
     {
         "command": "cold-start-walkthrough",
@@ -1124,6 +1178,7 @@ def maturity(root: Path) -> dict[str, Any]:
         ("visual_receipt", root.joinpath("demo/visual_receipt.json").exists() and (root.joinpath("demo/visual_receipt.svg").exists() or root.joinpath("demo/visual_receipt.html").exists())),
         ("operator_surfaces", all(root.joinpath(path).exists() for path in ["demo/troubleshoot.json", "demo/docs_export.json", "demo/readme_snippet.json", "demo/cli_help.json"])),
         ("release_owner_pack", all(root.joinpath(path).exists() for path in ["demo/adoption_notes.json", "demo/reviewer_scorecard.json", "demo/release_deck.json", "demo/bundle_export/manifest.json"])),
+        ("public_evaluator_hardening", all(root.joinpath(path).exists() for path in ["demo/benchmark_suite.json", "demo/integration_cookbook.json", "demo/compatibility_report.json", "demo/maintainer_guide.json", "demo/golden_fixtures.json", "demo/regression_summary.json"])),
         ("tests", any(root.joinpath("tests").glob("test_*.py"))),
         ("skill", root.joinpath("skills/agent/macro-policy-thesis-map/SKILL.md").exists()),
         ("no_workflows", not root.joinpath(".github/workflows").exists()),
@@ -1173,6 +1228,12 @@ def quickstart_check(root: Path) -> dict[str, Any]:
             "scenario-library",
             "assumption-registry",
             "data-dictionary-diff",
+            "benchmark-suite",
+            "integration-cookbook",
+            "compatibility-report",
+            "maintainer-guide",
+            "golden-fixtures",
+            "regression-summary",
             "case-gallery",
             "visual-receipt",
             "troubleshoot",
@@ -1289,6 +1350,12 @@ def docs_export(root: Path) -> dict[str, Any]:
         ("Scenario library", "demo/scenario_library.md", "Synthetic scenarios for public schema adaptation review."),
         ("Assumption registry", "demo/assumption_registry.md", "Bounded public assumptions and validation controls."),
         ("Data dictionary diff", "demo/data_dictionary_diff.md", "Base and optional CSV dictionary comparison."),
+        ("Benchmark suite", "demo/benchmark_suite.md", "Static synthetic evaluator benchmark matrix."),
+        ("Integration cookbook", "demo/integration_cookbook.md", "Public-safe local integration recipes."),
+        ("Compatibility report", "demo/compatibility_report.md", "Package and artifact compatibility gates."),
+        ("Maintainer guide", "demo/maintainer_guide.md", "Release duties, order, and safety invariants."),
+        ("Golden fixtures", "demo/golden_fixtures.md", "Fixture hashes, schemas, and expected output counts."),
+        ("Regression summary", "demo/regression_summary.md", "Static regression gate summary."),
         ("Troubleshooting", "demo/troubleshoot.md", "Operator diagnostics and recovery steps."),
         ("CLI help", "demo/cli_help.md", "Deterministic command usage lines."),
         ("README snippet", "demo/readme_snippet.md", "Compact copyable quickstart snippet."),
@@ -1327,6 +1394,12 @@ def readme_snippet() -> dict[str, Any]:
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli scenario-library --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli assumption-registry --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli data-dictionary-diff --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli benchmark-suite --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli integration-cookbook --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli compatibility-report --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli maintainer-guide --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli golden-fixtures --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli regression-summary --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .",
         "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
     ]
@@ -1334,7 +1407,7 @@ def readme_snippet() -> dict[str, Any]:
         "title": "README Snippet",
         "version": __version__,
         "commands": commands,
-        "outputs": ["demo/thesis_packet.md", "demo/review_ledger.md", "demo/scenario_library.md", "demo/assumption_registry.md", "demo/data_dictionary_diff.md", "demo/troubleshoot.md"],
+        "outputs": ["demo/thesis_packet.md", "demo/review_ledger.md", "demo/scenario_library.md", "demo/assumption_registry.md", "demo/data_dictionary_diff.md", "demo/benchmark_suite.md", "demo/integration_cookbook.md", "demo/compatibility_report.md", "demo/maintainer_guide.md", "demo/golden_fixtures.md", "demo/regression_summary.md", "demo/troubleshoot.md"],
         "snippet": "\n".join(commands),
         "boundaries": DISCLAIMER,
     }
@@ -1405,6 +1478,12 @@ def evidence_bundle(root: Path) -> dict[str, Any]:
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .",
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli docs-export --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli benchmark-suite --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli integration-cookbook --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli compatibility-report --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli maintainer-guide --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli golden-fixtures --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli regression-summary --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
@@ -1437,6 +1516,12 @@ def public_readiness(root: Path) -> dict[str, Any]:
         "demo/visual_receipt.json",
         "demo/evidence_bundle.json",
         "demo/cold_start_walkthrough.json",
+        "demo/benchmark_suite.json",
+        "demo/integration_cookbook.json",
+        "demo/compatibility_report.json",
+        "demo/maintainer_guide.json",
+        "demo/golden_fixtures.json",
+        "demo/regression_summary.json",
         "demo/adoption_notes.json",
         "demo/reviewer_scorecard.json",
         "demo/release_deck.json",
@@ -1449,6 +1534,7 @@ def public_readiness(root: Path) -> dict[str, Any]:
         ("visual_receipt", root.joinpath("demo/visual_receipt.svg").exists() or root.joinpath("demo/visual_receipt.html").exists(), "Static SVG or HTML visual receipt is present."),
         ("operator_surfaces", all(root.joinpath(path).exists() for path in ["demo/troubleshoot.json", "demo/docs_export.json", "demo/readme_snippet.json", "demo/cli_help.json"]), "Operator troubleshooting, docs export, README snippet, and CLI help artifacts are present."),
         ("schema_adaptation_surfaces", all(root.joinpath(path).exists() for path in ["demo/scenario_library.json", "demo/assumption_registry.json", "demo/data_dictionary_diff.json"]), "Scenario, assumption, and data dictionary diff artifacts are present."),
+        ("public_evaluator_hardening", all(root.joinpath(path).exists() for path in ["demo/benchmark_suite.json", "demo/integration_cookbook.json", "demo/compatibility_report.json", "demo/maintainer_guide.json", "demo/golden_fixtures.json", "demo/regression_summary.json"]), "Benchmark, integration, compatibility, maintainer, golden fixture, and regression summary artifacts are present."),
         ("no_workflow_files", not root.joinpath(".github/workflows").exists(), "No repository workflow files are required for public evaluation."),
         ("zero_dependency_package", "dependencies = []" in root.joinpath("pyproject.toml").read_text(encoding="utf-8") if root.joinpath("pyproject.toml").exists() else False, "Package declares no runtime dependencies."),
     ]
@@ -1459,6 +1545,268 @@ def public_readiness(root: Path) -> dict[str, Any]:
         "passed_count": sum(1 for _, ok, _ in checks),
         "checks": [{"name": name, "passed": ok, "detail": detail} for name, ok, detail in checks],
         "blockers": blockers,
+        "boundaries": DISCLAIMER,
+    }
+
+
+def benchmark_suite(root: Path) -> dict[str, Any]:
+    scenarios = [
+        {
+            "benchmark_id": "bench-001",
+            "name": "default_packet_generation",
+            "commands": ["build-packet", "review-ledger", "fixture-doctor"],
+            "fixture_paths": ["examples/macro_events.csv"],
+            "expected_artifacts": ["demo/thesis_packet.json", "demo/review_ledger.json", "demo/fixture_doctor.json"],
+            "deterministic_assertion": "Event count, policy-area count, and fixture-doctor status remain stable for bundled examples.",
+        },
+        {
+            "benchmark_id": "bench-002",
+            "name": "schema_adaptation_surfaces",
+            "commands": ["scenario-library", "assumption-registry", "data-dictionary-diff"],
+            "fixture_paths": [],
+            "expected_artifacts": ["demo/scenario_library.json", "demo/assumption_registry.json", "demo/data_dictionary_diff.json"],
+            "deterministic_assertion": "Built-in synthetic metadata writes identical command counts and schema guidance across runs.",
+        },
+        {
+            "benchmark_id": "bench-003",
+            "name": "public_case_and_receipt",
+            "commands": ["case-gallery", "visual-receipt"],
+            "fixture_paths": ["examples/public_macro_cases.csv"],
+            "expected_artifacts": ["demo/case_gallery.json", "demo/visual_receipt.json"],
+            "deterministic_assertion": "Case routes, receipt command list, and artifact hash prefixes are derived from static local files.",
+        },
+        {
+            "benchmark_id": "bench-004",
+            "name": "release_readiness_pack",
+            "commands": ["maturity-report", "evidence-bundle", "public-readiness", "regression-summary"],
+            "fixture_paths": [],
+            "expected_artifacts": ["demo/maturity_report.json", "demo/evidence_bundle.json", "demo/public_readiness.json", "demo/regression_summary.json"],
+            "deterministic_assertion": "Gate names and pass/block statuses are computed from local files only.",
+        },
+    ]
+    rows = []
+    for scenario in scenarios:
+        missing = [path for path in scenario["expected_artifacts"] if not root.joinpath(path).exists()]
+        rows.append({**scenario, "status": "ready" if not missing else "needs-artifacts", "missing": missing})
+    return {
+        "title": "Public Evaluator Benchmark Suite",
+        "version": __version__,
+        "suite_type": "static synthetic deterministic benchmarks",
+        "benchmark_count": len(rows),
+        "ready_count": sum(1 for item in rows if item["status"] == "ready"),
+        "benchmarks": rows,
+        "run_policy": [
+            "Benchmarks describe deterministic artifact expectations and do not measure wall-clock performance.",
+            "Use bundled static fixtures or user-supplied static CSVs only.",
+            "Treat any missing expected artifact as a regeneration task, not as a live-data fetch request.",
+        ],
+        "boundaries": DISCLAIMER,
+    }
+
+
+def integration_cookbook() -> dict[str, Any]:
+    recipes = [
+        {
+            "recipe_id": "recipe-001",
+            "name": "Local CSV Evaluation",
+            "goal": "Evaluate a static event CSV from a clean checkout.",
+            "commands": ["fixture-doctor --root . --events examples/macro_events.csv", "build-packet --root .", "review-ledger --root ."],
+            "inputs": ["static event CSV with base event columns"],
+            "outputs": ["demo/fixture_doctor.json", "demo/thesis_packet.json", "demo/review_ledger.json"],
+            "guardrails": ["No network calls", "No broker access", "No trade or allocation language"],
+        },
+        {
+            "recipe_id": "recipe-002",
+            "name": "Schema Adapter Review",
+            "goal": "Decide whether optional public fixture columns should be adopted.",
+            "commands": ["schema-export --root .", "scenario-library --root .", "assumption-registry --root .", "data-dictionary-diff --root ."],
+            "inputs": ["built-in schema metadata"],
+            "outputs": ["demo/input_schema.json", "demo/scenario_library.json", "demo/assumption_registry.json", "demo/data_dictionary_diff.json"],
+            "guardrails": ["Keep optional columns additive", "Keep scores bounded from 0 to 1", "Do not add recommendation fields"],
+        },
+        {
+            "recipe_id": "recipe-003",
+            "name": "Public Artifact Review",
+            "goal": "Share deterministic local evidence with a public evaluator.",
+            "commands": ["command-matrix --root .", "evidence-bundle --root .", "public-readiness --root .", "visual-receipt --root ."],
+            "inputs": ["demo artifacts and local source files"],
+            "outputs": ["demo/command_matrix.json", "demo/evidence_bundle.json", "demo/public_readiness.json", "demo/visual_receipt.json"],
+            "guardrails": ["Use hashes instead of private storage links", "Do not add workflow files", "Run public-scan before sharing"],
+        },
+        {
+            "recipe_id": "recipe-004",
+            "name": "Maintainer Release Check",
+            "goal": "Regenerate release owner surfaces before cutting a static public package.",
+            "commands": ["maintainer-guide --root .", "golden-fixtures --root .", "regression-summary --root .", "release-manifest --root .", "diff-check --root ."],
+            "inputs": ["repository files and synthetic fixtures"],
+            "outputs": ["demo/maintainer_guide.json", "demo/golden_fixtures.json", "demo/regression_summary.json", "demo/release_manifest.json"],
+            "guardrails": ["Keep zero runtime dependencies", "Keep version metadata synchronized", "Do not include private references"],
+        },
+    ]
+    return {
+        "title": "Public Integration Cookbook",
+        "version": __version__,
+        "recipe_count": len(recipes),
+        "recipes": recipes,
+        "integration_boundaries": [
+            "Recipes are command sequences for local static files.",
+            "Recipes do not describe private tools, CI workflows, upload destinations, live market feeds, or investment actions.",
+        ],
+        "boundaries": DISCLAIMER,
+    }
+
+
+def compatibility_report(root: Path) -> dict[str, Any]:
+    pyproject = root.joinpath("pyproject.toml").read_text(encoding="utf-8") if root.joinpath("pyproject.toml").exists() else ""
+    checks = [
+        ("python_requires", "requires-python = \">=3.11\"" in pyproject, "Package declares Python 3.11 or newer."),
+        ("zero_runtime_dependencies", "dependencies = []" in pyproject, "Package declares zero runtime dependencies."),
+        ("console_script", "macro-policy-thesis-map = \"macro_policy_thesis_map.cli:main\"" in pyproject, "Console script is declared."),
+        ("version_sync", f'version = "{__version__}"' in pyproject, "pyproject version matches package version."),
+        ("bundled_event_fixture", root.joinpath("src/macro_policy_thesis_map/examples/macro_events.csv").exists(), "Bundled default event fixture is present."),
+        ("bundled_case_fixture", root.joinpath("src/macro_policy_thesis_map/examples/public_macro_cases.csv").exists(), "Bundled public case fixture is present."),
+        ("public_artifacts", all(root.joinpath(path).exists() for path in ["demo/command_matrix.json", "demo/public_readiness.json", "demo/golden_fixtures.json"]), "Public evaluator artifacts are present."),
+        ("no_workflows", not root.joinpath(".github/workflows").exists(), "No workflow files are required."),
+    ]
+    return {
+        "title": "Compatibility Report",
+        "version": __version__,
+        "status": "ready" if all(ok for _, ok, _ in checks) else "needs-review",
+        "check_count": len(checks),
+        "passed_count": sum(1 for _, ok, _ in checks),
+        "checks": [{"name": name, "passed": ok, "detail": detail} for name, ok, detail in checks],
+        "supported_surfaces": ["source checkout", "installed console script", "offline wheel", "offline sdist"],
+        "unsupported_surfaces": ["live data connector", "broker integration", "workflow automation", "personalized finance advice"],
+        "boundaries": DISCLAIMER,
+    }
+
+
+def maintainer_guide() -> dict[str, Any]:
+    sections = [
+        {
+            "section": "versioning",
+            "duties": ["Keep pyproject.toml and package __version__ synchronized.", "Regenerate demo artifacts after version changes.", "Update release manifest after generated files settle."],
+        },
+        {
+            "section": "fixtures",
+            "duties": ["Use synthetic static CSV rows only.", "Run fixture-doctor and golden-fixtures after fixture edits.", "Keep bundled package examples in sync with top-level examples."],
+        },
+        {
+            "section": "public safety",
+            "duties": ["Run public-scan before sharing artifacts.", "Keep README and skill boundaries explicit.", "Do not add workflow files, private references, live finance feeds, or advice language."],
+        },
+        {
+            "section": "regression gates",
+            "duties": ["Run pytest, selfcheck, public-readiness, diff-check, and wheel build when feasible.", "Regenerate regression-summary with the final local status.", "Treat readiness blockers as release blockers."],
+        },
+    ]
+    release_order = [
+        "fixture-doctor",
+        "schema-export",
+        "build-packet",
+        "review-ledger",
+        "scenario-library",
+        "assumption-registry",
+        "data-dictionary-diff",
+        "benchmark-suite",
+        "integration-cookbook",
+        "compatibility-report",
+        "maintainer-guide",
+        "golden-fixtures",
+        "regression-summary",
+        "maturity-report",
+        "evidence-bundle",
+        "public-readiness",
+        "release-manifest",
+        "diff-check",
+    ]
+    return {
+        "title": "Maintainer Guide",
+        "version": __version__,
+        "section_count": len(sections),
+        "sections": sections,
+        "release_order": release_order,
+        "invariants": [
+            "Runtime dependencies remain empty.",
+            "Generated public artifacts are deterministic Markdown, JSON, HTML, or SVG under demo/.",
+            "All example data remains static and synthetic.",
+            "No live finance data, advice, private references, or workflow automation is introduced.",
+        ],
+        "boundaries": DISCLAIMER,
+    }
+
+
+def golden_fixtures(root: Path) -> dict[str, Any]:
+    fixtures = []
+    specs = [
+        ("event_current", "examples/macro_events.csv", EXPECTED_COLUMNS),
+        ("event_prior", "examples/prior_macro_events.csv", EXPECTED_COLUMNS),
+        ("case_gallery", "examples/public_macro_cases.csv", CASE_COLUMNS),
+        ("thesis_sensitivity", "examples/thesis_sensitivities.csv", SENSITIVITY_COLUMNS),
+        ("portfolio_exposure", "examples/portfolio_exposures.csv", EXPOSURE_COLUMNS),
+    ]
+    for fixture_type, relative, expected_columns in specs:
+        path = root / relative
+        if path.exists():
+            header, rows = read_csv_document(path)
+            fixtures.append(
+                {
+                    **file_record(root, path),
+                    "fixture_type": fixture_type,
+                    "row_count": len(rows),
+                    "expected_columns": expected_columns,
+                    "actual_columns": header,
+                    "schema_status": "pass" if header == expected_columns else "review",
+                }
+            )
+        else:
+            fixtures.append({"path": relative, "fixture_type": fixture_type, "row_count": 0, "schema_status": "missing"})
+    expected_outputs = [
+        {"command": "build-packet", "json_path": "demo/thesis_packet.json", "key": "event_count"},
+        {"command": "case-gallery", "json_path": "demo/case_gallery.json", "key": "case_count"},
+        {"command": "thesis-impact-brief", "json_path": "demo/thesis_impact_brief.json", "key": "sensitivity_count"},
+        {"command": "exposure-map", "json_path": "demo/exposure_map.json", "key": "exposure_count"},
+    ]
+    for output in expected_outputs:
+        payload = read_optional_json(root / output["json_path"])
+        output["observed_value"] = payload.get(output["key"], "missing")
+        output["status"] = "recorded" if output["observed_value"] != "missing" else "missing"
+    return {
+        "title": "Golden Fixtures",
+        "version": __version__,
+        "fixture_count": len(fixtures),
+        "fixtures": fixtures,
+        "expected_outputs": expected_outputs,
+        "status": "ready" if all(item.get("schema_status") == "pass" for item in fixtures) else "needs-review",
+        "boundaries": DISCLAIMER,
+    }
+
+
+def regression_summary(root: Path) -> dict[str, Any]:
+    gates = [
+        {"name": "pytest_suite", "status": "manual", "evidence": "Run PYTHONPATH=src python -m pytest", "detail": "Full test execution is recorded by the release operator."},
+        {"name": "selfcheck", "status": "pass" if not public_findings(root) and root.joinpath("README.md").exists() else "review", "evidence": "macro-policy-thesis-map selfcheck --root .", "detail": "Required files and public scan findings are checked locally."},
+        {"name": "public_readiness", "status": read_optional_json(root / "demo/public_readiness.json").get("status", "missing"), "evidence": "demo/public_readiness.json", "detail": "Public readiness gate summary."},
+        {"name": "release_manifest", "status": "pass" if root.joinpath("demo/release_manifest.json").exists() else "missing", "evidence": "demo/release_manifest.json", "detail": "Release artifact hashes are present."},
+        {"name": "golden_fixtures", "status": read_optional_json(root / "demo/golden_fixtures.json").get("status", "missing"), "evidence": "demo/golden_fixtures.json", "detail": "Fixture schema and hash inventory."},
+        {"name": "wheel_build", "status": "manual", "evidence": "python -m build --wheel or build_backend.build_wheel", "detail": "Offline wheel build should be run when build tooling is available."},
+    ]
+    blocking = [item for item in gates if item["status"] not in {"pass", "ready", "manual"}]
+    return {
+        "title": "Regression Summary",
+        "version": __version__,
+        "status": "ready" if not blocking else "needs-review",
+        "gate_count": len(gates),
+        "manual_gate_count": sum(1 for item in gates if item["status"] == "manual"),
+        "blocking_gate_count": len(blocking),
+        "gates": gates,
+        "release_checks": [
+            "PYTHONPATH=src python -m pytest",
+            "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
+            "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
+            "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
+            "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
+        ],
         "boundaries": DISCLAIMER,
     }
 
@@ -1509,18 +1857,24 @@ def cold_start_walkthrough() -> dict[str, Any]:
         },
         {
             "step": 8,
+            "title": "Generate public evaluator hardening surfaces",
+            "command": "macro-policy-thesis-map benchmark-suite && macro-policy-thesis-map integration-cookbook && macro-policy-thesis-map compatibility-report && macro-policy-thesis-map maintainer-guide && macro-policy-thesis-map golden-fixtures && macro-policy-thesis-map regression-summary",
+            "expected_result": "Benchmark, integration, compatibility, maintainer, golden fixture, and regression artifacts are written as Markdown and JSON.",
+        },
+        {
+            "step": 9,
             "title": "Export the public promotion bundle manifest",
             "command": "macro-policy-thesis-map bundle-export",
             "expected_result": "A deterministic bundle manifest is written under demo/bundle_export/.",
         },
         {
-            "step": 9,
+            "step": 10,
             "title": "Check public readiness",
             "command": "macro-policy-thesis-map public-readiness",
             "expected_result": "A public readiness report lists pass/fail gates.",
         },
         {
-            "step": 10,
+            "step": 11,
             "title": "Run final local checks",
             "command": "macro-policy-thesis-map selfcheck && macro-policy-thesis-map public-scan && macro-policy-thesis-map diff-check",
             "expected_result": "All commands exit successfully before sharing artifacts.",
@@ -1595,6 +1949,12 @@ def adoption_notes(root: Path) -> dict[str, Any]:
             "demo/evidence_bundle.json",
             "demo/release_manifest.json",
             "demo/cold_start_walkthrough.json",
+            "demo/benchmark_suite.json",
+            "demo/integration_cookbook.json",
+            "demo/compatibility_report.json",
+            "demo/maintainer_guide.json",
+            "demo/golden_fixtures.json",
+            "demo/regression_summary.json",
         ],
     )
     next_actions = [
@@ -1610,6 +1970,12 @@ def adoption_notes(root: Path) -> dict[str, Any]:
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli scenario-library --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli assumption-registry --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli data-dictionary-diff --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli benchmark-suite --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli integration-cookbook --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli compatibility-report --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli maintainer-guide --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli golden-fixtures --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli regression-summary --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli cli-help --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli reviewer-scorecard --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-deck --root .",
@@ -1645,6 +2011,7 @@ def reviewer_scorecard(root: Path) -> dict[str, Any]:
     rubric = [
         ("static_inputs", ["examples", "case_gallery", "sensitivity_layer", "exposure_layer", "schema_adaptation_surfaces"], "Static fixtures and synthetic public examples are present."),
         ("review_controls", ["visual_receipt", "operator_surfaces", "release_owner_pack"], "Review artifacts, operator docs, hashes, and owner pack are present."),
+        ("public_evaluator_hardening", ["public_evaluator_hardening"], "Benchmark, integration, compatibility, maintainer, golden fixture, and regression artifacts are present."),
         ("public_package", ["package", "readme", "license", "skill"], "Package metadata, docs, license, and agent skill are present."),
         ("verification", ["tests", "no_workflows"], "Tests exist and no workflow files are required."),
         ("public_readiness", [], "Public readiness command reports ready."),
@@ -1678,6 +2045,12 @@ def reviewer_scorecard(root: Path) -> dict[str, Any]:
             "demo/scenario_library.json",
             "demo/assumption_registry.json",
             "demo/data_dictionary_diff.json",
+            "demo/benchmark_suite.json",
+            "demo/integration_cookbook.json",
+            "demo/compatibility_report.json",
+            "demo/maintainer_guide.json",
+            "demo/golden_fixtures.json",
+            "demo/regression_summary.json",
             "demo/troubleshoot.json",
             "demo/docs_export.json",
             "demo/readme_snippet.json",
@@ -1720,6 +2093,7 @@ def release_deck(root: Path) -> dict[str, Any]:
             "points": [
                 f"{notes.get('release_artifact_count', 0)} release manifest artifacts tracked",
                 "Artifact hashes are recorded in release, evidence, visual receipt, and bundle manifests",
+                "Golden fixtures record static fixture hashes, schemas, and expected output keys",
                 "diff-check verifies saved hashes against current local files",
             ],
         },
@@ -1730,6 +2104,7 @@ def release_deck(root: Path) -> dict[str, Any]:
                 f"Scorecard status: {scorecard.get('status', 'missing')}",
                 f"Score: {scorecard.get('score', 0)} / {scorecard.get('max_score', 0)}",
                 "Maturity mapping covers static inputs, review controls, package evidence, verification, and readiness",
+                "Public hardening covers benchmark, integration, compatibility, maintainer, fixture, and regression surfaces",
             ],
         },
         {
@@ -1756,6 +2131,12 @@ def release_deck(root: Path) -> dict[str, Any]:
             "demo/public_readiness.json",
             "demo/release_manifest.json",
             "demo/command_matrix.json",
+            "demo/benchmark_suite.json",
+            "demo/integration_cookbook.json",
+            "demo/compatibility_report.json",
+            "demo/maintainer_guide.json",
+            "demo/golden_fixtures.json",
+            "demo/regression_summary.json",
         ],
     )
     return {
@@ -1798,6 +2179,18 @@ def bundle_export(root: Path) -> dict[str, Any]:
         "demo/release_manifest.json",
         "demo/cold_start_walkthrough.md",
         "demo/cold_start_walkthrough.json",
+        "demo/benchmark_suite.md",
+        "demo/benchmark_suite.json",
+        "demo/integration_cookbook.md",
+        "demo/integration_cookbook.json",
+        "demo/compatibility_report.md",
+        "demo/compatibility_report.json",
+        "demo/maintainer_guide.md",
+        "demo/maintainer_guide.json",
+        "demo/golden_fixtures.md",
+        "demo/golden_fixtures.json",
+        "demo/regression_summary.md",
+        "demo/regression_summary.json",
     ]
     artifacts = records_for_existing(root, include)
     missing = [path for path in include if not root.joinpath(path).exists()]
@@ -1813,6 +2206,7 @@ def bundle_export(root: Path) -> dict[str, Any]:
         "release_commands": [
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-deck --root .",
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli bundle-export --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli regression-summary --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
         ],

@@ -1,6 +1,6 @@
 {
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
-  "command_count": 31,
+  "command_count": 37,
   "commands": [
     {
       "command": "build-packet",
@@ -272,6 +272,66 @@
       "usage": "macro-policy-thesis-map public-readiness --root ."
     },
     {
+      "command": "benchmark-suite",
+      "outputs": [
+        "demo/benchmark_suite.md",
+        "demo/benchmark_suite.json"
+      ],
+      "purpose": "Publish deterministic synthetic evaluator benchmarks and artifact coverage checks.",
+      "safety": "Synthetic benchmark matrix only; no timing probes, live data, network calls, or advice.",
+      "usage": "macro-policy-thesis-map benchmark-suite --root ."
+    },
+    {
+      "command": "integration-cookbook",
+      "outputs": [
+        "demo/integration_cookbook.md",
+        "demo/integration_cookbook.json"
+      ],
+      "purpose": "Publish public-safe integration recipes for static CSV ingestion and artifact review.",
+      "safety": "Local static recipes only; no private systems, workflows, uploads, live feeds, or advice.",
+      "usage": "macro-policy-thesis-map integration-cookbook --root ."
+    },
+    {
+      "command": "compatibility-report",
+      "outputs": [
+        "demo/compatibility_report.md",
+        "demo/compatibility_report.json"
+      ],
+      "purpose": "Report deterministic package and artifact compatibility gates for public evaluators.",
+      "safety": "Static file and metadata checks only.",
+      "usage": "macro-policy-thesis-map compatibility-report --root ."
+    },
+    {
+      "command": "maintainer-guide",
+      "outputs": [
+        "demo/maintainer_guide.md",
+        "demo/maintainer_guide.json"
+      ],
+      "purpose": "Publish deterministic maintainer duties, release order, and safety invariants.",
+      "safety": "Documentation-only guide with no workflow automation or private references.",
+      "usage": "macro-policy-thesis-map maintainer-guide --root ."
+    },
+    {
+      "command": "golden-fixtures",
+      "outputs": [
+        "demo/golden_fixtures.md",
+        "demo/golden_fixtures.json"
+      ],
+      "purpose": "Record static fixture hashes, row counts, schemas, and expected generator outputs.",
+      "safety": "Synthetic fixture inventory only; no live source refresh or advice.",
+      "usage": "macro-policy-thesis-map golden-fixtures --root ."
+    },
+    {
+      "command": "regression-summary",
+      "outputs": [
+        "demo/regression_summary.md",
+        "demo/regression_summary.json"
+      ],
+      "purpose": "Summarize deterministic regression gates across tests, scans, readiness, and artifacts.",
+      "safety": "Static local gate summary only.",
+      "usage": "macro-policy-thesis-map regression-summary --root ."
+    },
+    {
       "command": "cold-start-walkthrough",
       "outputs": [
         "demo/cold_start_walkthrough.md",
@@ -310,5 +370,5 @@
     }
   ],
   "title": "CLI Help Export",
-  "version": "0.7.0"
+  "version": "1.0.0"
 }

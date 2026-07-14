@@ -49,6 +49,12 @@ def test_dashboard_manifest_maturity_and_selfcheck(tmp_path):
     assert main(["docs-export", "--root", str(ROOT)]) == 0
     assert main(["readme-snippet", "--root", str(ROOT)]) == 0
     assert main(["cli-help", "--root", str(ROOT)]) == 0
+    assert main(["benchmark-suite", "--root", str(ROOT)]) == 0
+    assert main(["integration-cookbook", "--root", str(ROOT)]) == 0
+    assert main(["compatibility-report", "--root", str(ROOT)]) == 0
+    assert main(["maintainer-guide", "--root", str(ROOT)]) == 0
+    assert main(["golden-fixtures", "--root", str(ROOT)]) == 0
+    assert main(["regression-summary", "--root", str(ROOT)]) == 0
     assert main(["release-manifest", "--root", str(ROOT), "--out-json", str(manifest_json), "--out-md", str(manifest_md)]) == 0
     assert main(["maturity-report", "--root", str(ROOT), "--out-json", str(maturity_json), "--out-md", str(maturity_md)]) == 0
     assert main(["adoption-notes", "--root", str(ROOT)]) == 0
@@ -91,7 +97,7 @@ def test_fixture_doctor_and_schema_export(tmp_path):
     assert '"status": "pass"' in doctor_json.read_text(encoding="utf-8")
     assert "Fixture Doctor" in doctor_md.read_text(encoding="utf-8")
     schema_text = schema_json.read_text(encoding="utf-8")
-    assert '"schema_version": "0.7.0"' in schema_text
+    assert '"schema_version": "1.0.0"' in schema_text
     assert "confidence" in schema_text
     assert "Data Dictionary" in schema_md.read_text(encoding="utf-8")
 
@@ -262,11 +268,46 @@ def test_release_owner_promotion_pack_commands(tmp_path):
     assert main(["release-deck", "--root", str(ROOT), "--out-json", str(deck_json), "--out-md", str(deck_md)]) == 0
     assert main(["bundle-export", "--root", str(ROOT), "--out-json", str(export_json), "--out-md", str(export_md)]) == 0
 
-    assert '"version": "0.7.0"' in adoption_json.read_text(encoding="utf-8")
+    assert '"version": "1.0.0"' in adoption_json.read_text(encoding="utf-8")
     assert "cold_user_next_actions" in adoption_json.read_text(encoding="utf-8")
     assert "maturity_mapping" in scorecard_json.read_text(encoding="utf-8")
     assert "Release Owner Promotion Deck" in deck_md.read_text(encoding="utf-8")
     assert '"export_root": "demo/bundle_export"' in export_json.read_text(encoding="utf-8")
+
+
+def test_public_evaluator_hardening_commands(tmp_path):
+    bench_json = tmp_path / "bench.json"
+    bench_md = tmp_path / "bench.md"
+    cookbook_json = tmp_path / "cookbook.json"
+    cookbook_md = tmp_path / "cookbook.md"
+    compat_json = tmp_path / "compat.json"
+    compat_md = tmp_path / "compat.md"
+    maint_json = tmp_path / "maintainer.json"
+    maint_md = tmp_path / "maintainer.md"
+    golden_json = tmp_path / "golden.json"
+    golden_md = tmp_path / "golden.md"
+    regression_json = tmp_path / "regression.json"
+    regression_md = tmp_path / "regression.md"
+
+    assert main(["benchmark-suite", "--root", str(ROOT), "--out-json", str(bench_json), "--out-md", str(bench_md)]) == 0
+    assert main(["integration-cookbook", "--root", str(ROOT), "--out-json", str(cookbook_json), "--out-md", str(cookbook_md)]) == 0
+    assert main(["compatibility-report", "--root", str(ROOT), "--out-json", str(compat_json), "--out-md", str(compat_md)]) == 0
+    assert main(["maintainer-guide", "--root", str(ROOT), "--out-json", str(maint_json), "--out-md", str(maint_md)]) == 0
+    assert main(["golden-fixtures", "--root", str(ROOT), "--out-json", str(golden_json), "--out-md", str(golden_md)]) == 0
+    assert main(["regression-summary", "--root", str(ROOT), "--out-json", str(regression_json), "--out-md", str(regression_md)]) == 0
+
+    assert '"benchmark_count": 4' in bench_json.read_text(encoding="utf-8")
+    assert "Public Evaluator Benchmark Suite" in bench_md.read_text(encoding="utf-8")
+    assert '"recipe_count": 4' in cookbook_json.read_text(encoding="utf-8")
+    assert "Public Integration Cookbook" in cookbook_md.read_text(encoding="utf-8")
+    assert '"zero_runtime_dependencies"' in compat_json.read_text(encoding="utf-8")
+    assert "Compatibility Report" in compat_md.read_text(encoding="utf-8")
+    assert "release_order" in maint_json.read_text(encoding="utf-8")
+    assert "Maintainer Guide" in maint_md.read_text(encoding="utf-8")
+    assert '"fixture_count": 5' in golden_json.read_text(encoding="utf-8")
+    assert "Golden Fixtures" in golden_md.read_text(encoding="utf-8")
+    assert "release_checks" in regression_json.read_text(encoding="utf-8")
+    assert "Regression Summary" in regression_md.read_text(encoding="utf-8")
 
 
 def test_diff_check_detects_manifest_drift(tmp_path):
@@ -329,6 +370,12 @@ def test_public_readiness_blocks_incomplete_tree(tmp_path):
         (["release-deck"], "demo/release_deck.json"),
         (["bundle-export"], "demo/bundle_export/manifest.json"),
         (["cold-start-walkthrough"], "demo/cold_start_walkthrough.json"),
+        (["benchmark-suite"], "demo/benchmark_suite.json"),
+        (["integration-cookbook"], "demo/integration_cookbook.json"),
+        (["compatibility-report"], "demo/compatibility_report.json"),
+        (["maintainer-guide"], "demo/maintainer_guide.json"),
+        (["golden-fixtures"], "demo/golden_fixtures.json"),
+        (["regression-summary"], "demo/regression_summary.json"),
     ],
 )
 def test_default_example_commands_work_from_empty_cwd(tmp_path, monkeypatch, argv, output):

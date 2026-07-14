@@ -761,6 +761,185 @@ Passed: {payload['passed_count']} / {payload['check_count']}
 """
 
 
+def benchmark_suite_md(payload: dict[str, Any]) -> str:
+    rows = [
+        [
+            item["benchmark_id"],
+            item["name"],
+            item["status"],
+            ", ".join(item["commands"]),
+            ", ".join(item["expected_artifacts"]),
+            item["deterministic_assertion"],
+        ]
+        for item in payload["benchmarks"]
+    ]
+    policies = [[item] for item in payload["run_policy"]]
+    return f"""# Public Evaluator Benchmark Suite
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Suite type: {payload['suite_type']}
+
+Ready: {payload['ready_count']} / {payload['benchmark_count']}
+
+## Benchmarks
+
+{table(["Benchmark", "Name", "Status", "Commands", "Expected artifacts", "Deterministic assertion"], rows)}
+
+## Run Policy
+
+{table(["Policy"], policies)}
+"""
+
+
+def integration_cookbook_md(payload: dict[str, Any]) -> str:
+    rows = [
+        [
+            item["recipe_id"],
+            item["name"],
+            item["goal"],
+            ", ".join(item["commands"]),
+            ", ".join(item["inputs"]),
+            ", ".join(item["outputs"]),
+            ", ".join(item["guardrails"]),
+        ]
+        for item in payload["recipes"]
+    ]
+    boundaries = [[item] for item in payload["integration_boundaries"]]
+    return f"""# Public Integration Cookbook
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Recipe count: {payload['recipe_count']}
+
+## Recipes
+
+{table(["Recipe", "Name", "Goal", "Commands", "Inputs", "Outputs", "Guardrails"], rows)}
+
+## Integration Boundaries
+
+{table(["Boundary"], boundaries)}
+"""
+
+
+def compatibility_report_md(payload: dict[str, Any]) -> str:
+    rows = [[item["name"], "pass" if item["passed"] else "review", item["detail"]] for item in payload["checks"]]
+    supported = [[item] for item in payload["supported_surfaces"]]
+    unsupported = [[item] for item in payload["unsupported_surfaces"]]
+    return f"""# Compatibility Report
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Status: {payload['status']}
+
+Passed: {payload['passed_count']} / {payload['check_count']}
+
+## Checks
+
+{table(["Check", "Result", "Detail"], rows)}
+
+## Supported Surfaces
+
+{table(["Surface"], supported)}
+
+## Unsupported Surfaces
+
+{table(["Surface"], unsupported)}
+"""
+
+
+def maintainer_guide_md(payload: dict[str, Any]) -> str:
+    rows = [[item["section"], "; ".join(item["duties"])] for item in payload["sections"]]
+    order = [[index, command] for index, command in enumerate(payload["release_order"], start=1)]
+    invariants = [[item] for item in payload["invariants"]]
+    return f"""# Maintainer Guide
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Section count: {payload['section_count']}
+
+## Duties
+
+{table(["Section", "Duties"], rows)}
+
+## Release Order
+
+{table(["Step", "Command"], order)}
+
+## Invariants
+
+{table(["Invariant"], invariants)}
+"""
+
+
+def golden_fixtures_md(payload: dict[str, Any]) -> str:
+    fixtures = [
+        [
+            item["fixture_type"],
+            item["path"],
+            item.get("row_count", 0),
+            item.get("schema_status", "missing"),
+            item.get("bytes", ""),
+            item.get("sha256", "")[:16],
+        ]
+        for item in payload["fixtures"]
+    ]
+    outputs = [[item["command"], item["json_path"], item["key"], item["observed_value"], item["status"]] for item in payload["expected_outputs"]]
+    return f"""# Golden Fixtures
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Status: {payload['status']}
+
+Fixture count: {payload['fixture_count']}
+
+## Fixtures
+
+{table(["Fixture", "Path", "Rows", "Schema", "Bytes", "SHA-256 prefix"], fixtures)}
+
+## Expected Outputs
+
+{table(["Command", "JSON path", "Key", "Observed value", "Status"], outputs)}
+"""
+
+
+def regression_summary_md(payload: dict[str, Any]) -> str:
+    gates = [[item["name"], item["status"], item["evidence"], item["detail"]] for item in payload["gates"]]
+    checks = [[item] for item in payload["release_checks"]]
+    return f"""# Regression Summary
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Status: {payload['status']}
+
+Gates: {payload['gate_count']}
+
+Manual gates: {payload['manual_gate_count']}
+
+Blocking gates: {payload['blocking_gate_count']}
+
+## Gates
+
+{table(["Gate", "Status", "Evidence", "Detail"], gates)}
+
+## Release Checks
+
+{table(["Command"], checks)}
+"""
+
+
 def cold_start_md(payload: dict[str, Any]) -> str:
     steps = [[item["step"], item["title"], item["command"], item["expected_result"]] for item in payload["steps"]]
     notes = [[item] for item in payload["safety_notes"]]

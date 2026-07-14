@@ -1,5 +1,5 @@
 {
-  "artifact_count": 56,
+  "artifact_count": 68,
   "artifacts": [
     {
       "bytes": 1066,
@@ -7,19 +7,29 @@
       "sha256": "b13dc350cd48500c97d419a02e3bf37135989e60b46e1d99231103e0b04e780a"
     },
     {
-      "bytes": 11457,
+      "bytes": 13515,
       "path": "README.md",
-      "sha256": "c3f6dcc9a6f908cea1b097ac0f116e65ad22a30350647e4865f97e1432f10733"
+      "sha256": "4366c0540cdd883ccc0ddb48936219a5a232e640af164180ef4be563b32af278"
     },
     {
       "bytes": 2500,
       "path": "demo/assumption_registry.json",
-      "sha256": "eaef6265dd5bc3881e5be0c9206e4365a72976cf4091887fce0396339b2c8dba"
+      "sha256": "70aecc7f328a84302c7d082cccbc7a6954ec82775be27c9297e38068d271ba90"
     },
     {
       "bytes": 1980,
       "path": "demo/assumption_registry.md",
-      "sha256": "04fe2e3e4e6d56c7f1d2d053399c0da14897b3131a2deb775d7e94b4bd0939ba"
+      "sha256": "2b961c66ef2d33ccb2b41c5d18c6e9ce4e1107b978e1af53cf3f72f3fca6790c"
+    },
+    {
+      "bytes": 3043,
+      "path": "demo/benchmark_suite.json",
+      "sha256": "3f8b9be2e11158d924bcc416a0cab2ff5b35756f78bb59a91bf463e6cb61c414"
+    },
+    {
+      "bytes": 1916,
+      "path": "demo/benchmark_suite.md",
+      "sha256": "18115fdb4f1ca70f1c5c0c75651ca020bedfce46b7fcdafe12f7d72987dde8d7"
     },
     {
       "bytes": 4180,
@@ -32,54 +42,64 @@
       "sha256": "22a9ea47c93c5df5ad74d92748adb0d0621c3d7747015b82be9ba4221e10ca6e"
     },
     {
-      "bytes": 12469,
+      "bytes": 14939,
       "path": "demo/cli_help.json",
-      "sha256": "194440fbdd3c019318f8519fcab441c56f08f84385db20a45123a94e64cedf29"
+      "sha256": "2e0d1c169d268305dfbe17d280b7529ebfccfff269f8a36cd1efc4e4af931cb5"
     },
     {
-      "bytes": 8653,
+      "bytes": 10373,
       "path": "demo/cli_help.md",
-      "sha256": "ee93ddaf0b9436ec8852b9f0a4a41565105a897f684f3cbb7d0a989d7a15acf0"
+      "sha256": "6d51f91a2bb2b6e9c8af8e6e2e86d9a3f4c70dec69ec7f53ce7224fde847e82c"
     },
     {
-      "bytes": 3025,
+      "bytes": 3924,
       "path": "demo/cold_start_walkthrough.json",
-      "sha256": "f4ad9938520ac395c0ee5f13ebc64fef82b34254b4463c2c392a760dbdbac6d9"
+      "sha256": "08c65a8acc7216b8cec8b067477f6a212e89b11eadb7a958f54e43456ac8af64"
     },
     {
-      "bytes": 2342,
+      "bytes": 3075,
       "path": "demo/cold_start_walkthrough.md",
-      "sha256": "af4c5c761e9da9beee27d9216ca51237e85c4cbca4c6ef0f260cc8c059e97b2c"
+      "sha256": "c181fff48c192faf5adb33255ffabe27d921fe9c99ca7a854b264ae5f8bb6869"
     },
     {
-      "bytes": 12945,
+      "bytes": 15540,
       "path": "demo/command_matrix.json",
-      "sha256": "9cd774a589d103c952269569167e7adfbeb610fd274152e223d0af5a23266f47"
+      "sha256": "5467cce33f686c5a0b7a9e7b6412c33da81f5a60f9bcac7c0b7f153699bd41a4"
     },
     {
-      "bytes": 8556,
+      "bytes": 10287,
       "path": "demo/command_matrix.md",
-      "sha256": "c85741c8d658518fe217c88f213b7ced6f11ea4f965f304bd33e99911b285ade"
+      "sha256": "94c79f2821d3b898ba38f8d8a43f84fc8de315a176398281d0d11bc370a8da53"
+    },
+    {
+      "bytes": 1688,
+      "path": "demo/compatibility_report.json",
+      "sha256": "737f1a2d1377e5e4a3b2b0fcab0debb6ef24519e86e1ede9f6bd43385723e7c3"
+    },
+    {
+      "bytes": 1207,
+      "path": "demo/compatibility_report.md",
+      "sha256": "e140522e762b8cfcaeedb7b61d94e56f0de13ace0cdca2cd27b7dde0de6aa43c"
     },
     {
       "bytes": 3472,
       "path": "demo/data_dictionary_diff.json",
-      "sha256": "dfa75a46af746035bb5bf3c22788800ab65e6686977ed0977651634ef0d95f7a"
+      "sha256": "894c3a7c3f46c6350c6cf68c682842aee24cb28025835cf377981ca208ea2dcb"
     },
     {
       "bytes": 2177,
       "path": "demo/data_dictionary_diff.md",
-      "sha256": "86f1198eb0785c72d89faad3ffc7301d5e39d8c79da7e3c5dae4efc9161d0c47"
+      "sha256": "6af63ab579f72a45573bb4b77ac8193f61811f41ddc9af1703f8627585e4b54f"
     },
     {
-      "bytes": 3332,
+      "bytes": 4892,
       "path": "demo/docs_export.json",
-      "sha256": "038ed466803af18fb10084f80c82cff8588d996577e90cc9d1c510f930676628"
+      "sha256": "07f7d1874faaec4c790c3a5e1a816af4ed1543ecf579ba6cf6f3e863c3b252f6"
     },
     {
-      "bytes": 2039,
+      "bytes": 2771,
       "path": "demo/docs_export.md",
-      "sha256": "75afcf8677488e06fa21e20356bd218123ca14c7e55d48394735cc4e3dfff4f0"
+      "sha256": "e3beea885245dab7938be4d4f03ea53991ed6b8e27aa47011e220f1c0ad0866d"
     },
     {
       "bytes": 3334,
@@ -102,6 +122,16 @@
       "sha256": "6c06972b77c0882aa39ee96843a398c1c8a0d5d1b2ed645d634cbbdf77314314"
     },
     {
+      "bytes": 4685,
+      "path": "demo/golden_fixtures.json",
+      "sha256": "43567374f2468e4acb87953a4606eb4d4c70bf7afcbc2faa12bfa5fc91278bf8"
+    },
+    {
+      "bytes": 1287,
+      "path": "demo/golden_fixtures.md",
+      "sha256": "0787d7af95d65426f7108920ce617657d37f45fdccd53a7594997f8f65e5e7bc"
+    },
+    {
       "bytes": 1197,
       "path": "demo/history_comparison.json",
       "sha256": "999b0f50d04e7fa9d8c8e8ace0e996ea5ecac115b8901bc9f29e221af03dfa05"
@@ -114,52 +144,82 @@
     {
       "bytes": 2845,
       "path": "demo/input_schema.json",
-      "sha256": "2bfee681498b0812fa04795c2714c2f8e76a1aabeb4f5a27a89800b5c4c97fa8"
+      "sha256": "e3fcb549370dd31e20e75f107d3ec8c319eb6b61ecb72f163faf9b3a97418ae8"
     },
     {
       "bytes": 1997,
       "path": "demo/input_schema.md",
-      "sha256": "3a6c9b953a7de268826cac1587e4cb56c9f1fff61a7546915c55a89f95db8130"
+      "sha256": "754ab856318b51546e323de5759d333557428866131de172a17ed2c02320d0ef"
     },
     {
-      "bytes": 1235,
+      "bytes": 3546,
+      "path": "demo/integration_cookbook.json",
+      "sha256": "4412ef0248807d31777ca823e46d34efdf1586230f2a4fdf06bc943f580961f0"
+    },
+    {
+      "bytes": 2480,
+      "path": "demo/integration_cookbook.md",
+      "sha256": "bb099ed382e4560856f4c16e447d6c925b67fc497960513b352e332fefc85cd3"
+    },
+    {
+      "bytes": 2216,
+      "path": "demo/maintainer_guide.json",
+      "sha256": "66aeb9ddf7d2399879b761676b7e0fc71315b1897556ee9e696c168081175227"
+    },
+    {
+      "bytes": 1926,
+      "path": "demo/maintainer_guide.md",
+      "sha256": "a5c3b705b6a3865ccebc28b2c6063cef1e212096954ae42b7d0ee5b949ce5aec"
+    },
+    {
+      "bytes": 1313,
       "path": "demo/maturity_report.json",
-      "sha256": "c07499edebed7b3e058e4f803d4687d8c8207a5d62b6ba48694167cfc8ee0a1b"
+      "sha256": "4b0c137ae12f6b3a7ce1c8bbf444df0effd132d50d4535cd2fcbdc86fc18e637"
     },
     {
-      "bytes": 664,
+      "bytes": 702,
       "path": "demo/maturity_report.md",
-      "sha256": "015cdcf15b0dfb20428d8d855c68a9684d6a15d310af60a991dcdf7da51bd0f0"
+      "sha256": "e25f6b612827b7b5e2d9a7cffdfa1df523e2072c4d3c648e8d4a7e2b906c5f96"
     },
     {
-      "bytes": 1522,
+      "bytes": 1732,
       "path": "demo/public_readiness.json",
-      "sha256": "9dccc86d5ebed1d58d99e689ceac6cc60b27dd021b365fd89fc794568d918798"
+      "sha256": "4dd6c11f67f4d2c1c1f518c7db9d3842770a1c3ffbc5b196e19abf69580559ef"
     },
     {
-      "bytes": 1119,
+      "bytes": 1272,
       "path": "demo/public_readiness.md",
-      "sha256": "a6af529cae3491c551cba630daedab7c6f098576f8abd868ff2d9aea0a57a541"
+      "sha256": "bc2c339a94e5519a38417bed91581f26068e73763688eac29feb14ab8dfa6d2c"
     },
     {
-      "bytes": 6315,
+      "bytes": 7665,
       "path": "demo/quickstart_check.json",
-      "sha256": "5e37fd03c619d31643952808ce0d4c9a2f76bc0c11b24414426431121a2045ad"
+      "sha256": "3505abdb1875999a3ba1adaf78c322000bb2a9856d6d614434724159df727adb"
     },
     {
-      "bytes": 4021,
+      "bytes": 4873,
       "path": "demo/quickstart_check.md",
-      "sha256": "b85d52086e60e5a405bcd0f00abbcd69155f9c3e700560f9d5f5c4b993a9d841"
+      "sha256": "f7264bf8fa7386c6407d29ca54e8ea40b01410aed5e334afd519b4c7c9a6e5d0"
     },
     {
-      "bytes": 1868,
+      "bytes": 3080,
       "path": "demo/readme_snippet.json",
-      "sha256": "a47fbc7eee8ad796082ff63d2cf0d9b7b47371dbd36d29185cd2b0adda79479f"
+      "sha256": "94d243c825b24666925cd6151bc304b774a32ee06781a630132e0c17cfd53309"
     },
     {
-      "bytes": 1123,
+      "bytes": 1787,
       "path": "demo/readme_snippet.md",
-      "sha256": "7e2cd08dda5284ff2eff896fdf44507b7856c93b5bffa0e00f32bf2a5dc1eb43"
+      "sha256": "46296fe71995bdb3dbc026718a1fcdf70f0d3b57321c07d04b6e6031e4724c3a"
+    },
+    {
+      "bytes": 1984,
+      "path": "demo/regression_summary.json",
+      "sha256": "d76fb5661bd590f4dd36d956c70fd2c31a220c4871b1c2e864e2a029971fb478"
+    },
+    {
+      "bytes": 1501,
+      "path": "demo/regression_summary.md",
+      "sha256": "d049beb5ad27eab2cbf47d87c61704bc31f22caf6cb711c6f7dafed7f2c3b659"
     },
     {
       "bytes": 432,
@@ -174,12 +234,12 @@
     {
       "bytes": 2903,
       "path": "demo/scenario_library.json",
-      "sha256": "44d3f23eafdadeb307a9bb29b5663fa3494b81b4f34e10494da38ac30b833ed6"
+      "sha256": "6a6dfba6bf9c54a417753cb33fe124858fb37e2119a9b7ab1d0272d85a6ead86"
     },
     {
       "bytes": 1936,
       "path": "demo/scenario_library.md",
-      "sha256": "02371cfe666cccda6b030621c4fd3df8bcf84ca9a5fb17f22f5a2920a4b7a31f"
+      "sha256": "422c35b095ebd318f5a0f183ce1ff49793d80df0a3d37a51c77a146f390b1d55"
     },
     {
       "bytes": 2398,
@@ -209,27 +269,27 @@
     {
       "bytes": 3174,
       "path": "demo/troubleshoot.json",
-      "sha256": "fbd09082b63e674afbb7dc4636f48cefac084a3f53ce32ca36ba5ac613b124de"
+      "sha256": "623fae46fea5fc9ebdb431c4fb8519b7fafd2ce592df9e2fe57a9c6c842eb8d2"
     },
     {
       "bytes": 2357,
       "path": "demo/troubleshoot.md",
-      "sha256": "1de5bb412b1b2059ab976c672ba479ac2fb65105d531682d4a601a574573640b"
+      "sha256": "46dc6e206ba46b5bb84705f183a8e7a4c6028b1537ce67f58c37cdd0386d8ede"
     },
     {
       "bytes": 3104,
       "path": "demo/visual_receipt.html",
-      "sha256": "88f5c30a46eb8f63d88c94c78d9f7713edafe3a7f6beb42a22b519d10b5644c0"
+      "sha256": "fcc332f19244de6cd0f47554cb7d60487b3c3cd2e3f8b16d867d8304faa6a42d"
     },
     {
       "bytes": 3352,
       "path": "demo/visual_receipt.json",
-      "sha256": "a4ee83d628c6b1d3d096cc68d95a6271c54f5fc26835838e7b31018e7730af75"
+      "sha256": "c404724fce22219dc877ac1c4a8d92eb0a3ea687cf88a19e17a86f5acdf21e0e"
     },
     {
       "bytes": 2519,
       "path": "demo/visual_receipt.svg",
-      "sha256": "48993870c4cc3b0f8df3e57d02a381894f755805a4efc283d1d87cf122544ec8"
+      "sha256": "3f7700e482b573d67d90b2edd2f25c9c8e22f96acba142076522c21f92fc8a16"
     },
     {
       "bytes": 906,
@@ -257,14 +317,14 @@
       "sha256": "ab0a6a3d0a7f0bc9c9044b924a0d0eab5a9bbb34fb7de8fd9ceb92cae3a0b59d"
     },
     {
-      "bytes": 819,
+      "bytes": 832,
       "path": "pyproject.toml",
-      "sha256": "db9d1c7b0d96e6bf90d616c7cc129683dfa2676006966deaa5d1b77a79637b7d"
+      "sha256": "6b41fc65064e38fd59bb13ed1edf41da06955f5186327388fb10bef85e645840"
     },
     {
-      "bytes": 3062,
+      "bytes": 3447,
       "path": "skills/agent/macro-policy-thesis-map/SKILL.md",
-      "sha256": "3e2ac9bf3e85192a9318b7b3132d99795f7124477666d6a588c01b0e1aa4108a"
+      "sha256": "ad2a3aa4466577664baf452b50f304ae4465a6b3272150d3a339891fc56c6594"
     },
     {
       "bytes": 1615,
@@ -272,9 +332,9 @@
       "sha256": "eb712723fe64465de017daf472948e08e9a738d10003977347acff3bf719171a"
     },
     {
-      "bytes": 15692,
+      "bytes": 18727,
       "path": "tests/test_cli.py",
-      "sha256": "dabaea10614c2404076cd73b4fee8006f6c909e05738dcc2858e40bc44a14119"
+      "sha256": "803740be53d67ae8590939db87c3441f5eca003650fcd5d2634f5375bdcf6358"
     },
     {
       "bytes": 1388,
@@ -288,6 +348,12 @@
     "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .",
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli docs-export --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli benchmark-suite --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli integration-cookbook --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli compatibility-report --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli maintainer-guide --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli golden-fixtures --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli regression-summary --root .",
     "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
     "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
     "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root ."

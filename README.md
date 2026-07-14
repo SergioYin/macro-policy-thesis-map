@@ -35,6 +35,12 @@ PYTHONPATH=src python -m macro_policy_thesis_map.cli bundle-export --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli cold-start-walkthrough --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli evidence-bundle --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli public-readiness --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli benchmark-suite --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli integration-cookbook --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli compatibility-report --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli maintainer-guide --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli golden-fixtures --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli regression-summary --root .
 PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .
 PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .
 PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .
@@ -68,6 +74,12 @@ macro-policy-thesis-map adoption-notes
 macro-policy-thesis-map reviewer-scorecard
 macro-policy-thesis-map release-deck
 macro-policy-thesis-map bundle-export
+macro-policy-thesis-map benchmark-suite
+macro-policy-thesis-map integration-cookbook
+macro-policy-thesis-map compatibility-report
+macro-policy-thesis-map maintainer-guide
+macro-policy-thesis-map golden-fixtures
+macro-policy-thesis-map regression-summary
 ```
 
 The installed CLI uses bundled example CSVs for default event, case, sensitivity, and exposure inputs when `examples/macro_events.csv`, `examples/prior_macro_events.csv`, `examples/public_macro_cases.csv`, `examples/thesis_sensitivities.csv`, and `examples/portfolio_exposures.csv` are not present in the current `--root`. Pass `--events`, `--current`, `--prior`, `--cases`, `--sensitivities`, or `--exposures` to use your own static CSVs. `selfcheck` and `diff-check` validate the source tree and should be run from a project checkout.
@@ -106,6 +118,12 @@ This project is research tooling only. It does not fetch live data, connect to b
 - `demo/evidence_bundle.md` and `demo/evidence_bundle.json`
 - `demo/public_readiness.md` and `demo/public_readiness.json`
 - `demo/cold_start_walkthrough.md` and `demo/cold_start_walkthrough.json`
+- `demo/benchmark_suite.md` and `demo/benchmark_suite.json`
+- `demo/integration_cookbook.md` and `demo/integration_cookbook.json`
+- `demo/compatibility_report.md` and `demo/compatibility_report.json`
+- `demo/maintainer_guide.md` and `demo/maintainer_guide.json`
+- `demo/golden_fixtures.md` and `demo/golden_fixtures.json`
+- `demo/regression_summary.md` and `demo/regression_summary.json`
 
 ## Input Format
 
@@ -145,6 +163,8 @@ The bundled sensitivity and exposure rows are synthetic. `impact_score` and `exp
 
 Run `scenario-library`, `assumption-registry`, and `data-dictionary-diff` when a public evaluator needs to decide how to adapt the CSV schema. These commands use built-in static metadata, write deterministic Markdown and JSON under `demo/`, and keep scenario, assumption, and dictionary guidance synthetic and finance-safety bounded.
 
+Run `benchmark-suite`, `integration-cookbook`, `compatibility-report`, `maintainer-guide`, `golden-fixtures`, and `regression-summary` for the v1.0.0 public evaluator hardening pack. These commands write deterministic Markdown and JSON under `demo/`, use only synthetic static data or local file metadata, and avoid workflow automation, private references, live data, timing probes, and advice.
+
 ## Commands
 
 - `build-packet`: creates the primary JSON and Markdown thesis map.
@@ -178,3 +198,9 @@ Run `scenario-library`, `assumption-registry`, and `data-dictionary-diff` when a
 - `evidence-bundle`: collects public evaluation artifact hashes and focused check commands.
 - `public-readiness`: summarizes release-readiness gates and blockers.
 - `cold-start-walkthrough`: writes a deterministic first-run walkthrough for public evaluators.
+- `benchmark-suite`: writes static synthetic public evaluator benchmarks and expected artifact coverage.
+- `integration-cookbook`: writes public-safe local integration recipes.
+- `compatibility-report`: writes deterministic package and artifact compatibility gates.
+- `maintainer-guide`: writes maintainer duties, release order, and safety invariants.
+- `golden-fixtures`: records fixture hashes, row counts, schemas, and expected output keys.
+- `regression-summary`: summarizes deterministic regression gates and release check commands.
