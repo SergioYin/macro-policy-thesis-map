@@ -29,6 +29,9 @@ Passed: 8 / 8
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli static-dashboard --root . | demo/static_dashboard.html |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli thesis-impact-brief --root . | demo/thesis_impact_brief.md, demo/thesis_impact_brief.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli exposure-map --root . | demo/exposure_map.md, demo/exposure_map.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli scenario-library --root . | demo/scenario_library.md, demo/scenario_library.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli assumption-registry --root . | demo/assumption_registry.md, demo/assumption_registry.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli data-dictionary-diff --root . | demo/data_dictionary_diff.md, demo/data_dictionary_diff.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli case-gallery --root . | demo/case_gallery.md, demo/case_gallery.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli visual-receipt --root . | demo/visual_receipt.svg or demo/visual_receipt.html, demo/visual_receipt.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli fixture-doctor --root . | demo/fixture_doctor.md, demo/fixture_doctor.json |

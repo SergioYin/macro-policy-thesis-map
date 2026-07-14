@@ -4,15 +4,21 @@
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli fixture-doctor --root .",
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli build-packet --root .",
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli review-ledger --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli scenario-library --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli assumption-registry --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli data-dictionary-diff --root .",
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .",
     "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root ."
   ],
   "outputs": [
     "demo/thesis_packet.md",
     "demo/review_ledger.md",
+    "demo/scenario_library.md",
+    "demo/assumption_registry.md",
+    "demo/data_dictionary_diff.md",
     "demo/troubleshoot.md"
   ],
-  "snippet": "PYTHONPATH=src python -m macro_policy_thesis_map.cli fixture-doctor --root .\nPYTHONPATH=src python -m macro_policy_thesis_map.cli build-packet --root .\nPYTHONPATH=src python -m macro_policy_thesis_map.cli review-ledger --root .\nPYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .\nPYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
+  "snippet": "PYTHONPATH=src python -m macro_policy_thesis_map.cli fixture-doctor --root .\nPYTHONPATH=src python -m macro_policy_thesis_map.cli build-packet --root .\nPYTHONPATH=src python -m macro_policy_thesis_map.cli review-ledger --root .\nPYTHONPATH=src python -m macro_policy_thesis_map.cli scenario-library --root .\nPYTHONPATH=src python -m macro_policy_thesis_map.cli assumption-registry --root .\nPYTHONPATH=src python -m macro_policy_thesis_map.cli data-dictionary-diff --root .\nPYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .\nPYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
   "title": "README Snippet",
-  "version": "0.6.0"
+  "version": "0.7.0"
 }

@@ -19,6 +19,9 @@ PYTHONPATH=src python -m macro_policy_thesis_map.cli cli-help --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli static-dashboard --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli thesis-impact-brief --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli exposure-map --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli scenario-library --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli assumption-registry --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli data-dictionary-diff --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli case-gallery --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli visual-receipt --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli release-manifest --root .
@@ -54,6 +57,9 @@ macro-policy-thesis-map cli-help
 macro-policy-thesis-map static-dashboard
 macro-policy-thesis-map thesis-impact-brief
 macro-policy-thesis-map exposure-map
+macro-policy-thesis-map scenario-library
+macro-policy-thesis-map assumption-registry
+macro-policy-thesis-map data-dictionary-diff
 macro-policy-thesis-map case-gallery
 macro-policy-thesis-map visual-receipt
 macro-policy-thesis-map quickstart-check
@@ -84,6 +90,9 @@ This project is research tooling only. It does not fetch live data, connect to b
 - `demo/static_dashboard.html`
 - `demo/thesis_impact_brief.md` and `demo/thesis_impact_brief.json`
 - `demo/exposure_map.md` and `demo/exposure_map.json`
+- `demo/scenario_library.md` and `demo/scenario_library.json`
+- `demo/assumption_registry.md` and `demo/assumption_registry.json`
+- `demo/data_dictionary_diff.md` and `demo/data_dictionary_diff.json`
 - `demo/case_gallery.md` and `demo/case_gallery.json`
 - `demo/visual_receipt.md`, `demo/visual_receipt.json`, `demo/visual_receipt.svg`, and `demo/visual_receipt.html`
 - `demo/release_manifest.md` and `demo/release_manifest.json`
@@ -134,6 +143,8 @@ portfolio_id,sleeve,exposure_id,policy_area,thesis_id,exposure_direction,exposur
 
 The bundled sensitivity and exposure rows are synthetic. `impact_score` and `exposure_score` are descriptive static scores from `0` to `1`; they are not live risk measures, allocation targets, trade instructions, or recommendations.
 
+Run `scenario-library`, `assumption-registry`, and `data-dictionary-diff` when a public evaluator needs to decide how to adapt the CSV schema. These commands use built-in static metadata, write deterministic Markdown and JSON under `demo/`, and keep scenario, assumption, and dictionary guidance synthetic and finance-safety bounded.
+
 ## Commands
 
 - `build-packet`: creates the primary JSON and Markdown thesis map.
@@ -148,6 +159,9 @@ The bundled sensitivity and exposure rows are synthetic. `impact_score` and `exp
 - `static-dashboard`: writes a no-JavaScript HTML dashboard.
 - `thesis-impact-brief`: writes a deterministic Markdown/JSON brief for synthetic thesis sensitivities.
 - `exposure-map`: writes a deterministic Markdown/JSON map from synthetic exposure rows to thesis sensitivity coverage.
+- `scenario-library`: writes synthetic static macro policy scenarios for schema adaptation review.
+- `assumption-registry`: writes bounded public assumptions, owners, validation controls, and schema impact notes.
+- `data-dictionary-diff`: compares base event CSV fields with optional fixture dictionaries for schema adaptation.
 - `case-gallery`: writes a public-safe multi-region case gallery as Markdown and JSON.
 - `visual-receipt`: writes a static SVG or HTML receipt plus JSON/Markdown receipt metadata.
 - `release-manifest`: records artifact paths, sizes, and hashes.

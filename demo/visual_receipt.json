@@ -1,10 +1,10 @@
 {
-  "artifact_count": 11,
+  "artifact_count": 14,
   "artifacts": [
     {
-      "bytes": 10220,
+      "bytes": 11457,
       "path": "README.md",
-      "sha256": "eaa234fbd5b55e4bd69f5f1cfeca03701b628d15a99d957528616ec5627dac1e"
+      "sha256": "c3f6dcc9a6f908cea1b097ac0f116e65ad22a30350647e4865f97e1432f10733"
     },
     {
       "bytes": 906,
@@ -47,22 +47,40 @@
       "sha256": "e99f1a3387a9baa54344f2599d7be678cc650dade2abf09bfe2f7dc07c5d10f1"
     },
     {
+      "bytes": 2903,
+      "path": "demo/scenario_library.json",
+      "sha256": "44d3f23eafdadeb307a9bb29b5663fa3494b81b4f34e10494da38ac30b833ed6"
+    },
+    {
+      "bytes": 2500,
+      "path": "demo/assumption_registry.json",
+      "sha256": "eaef6265dd5bc3881e5be0c9206e4365a72976cf4091887fce0396339b2c8dba"
+    },
+    {
+      "bytes": 3472,
+      "path": "demo/data_dictionary_diff.json",
+      "sha256": "dfa75a46af746035bb5bf3c22788800ab65e6686977ed0977651634ef0d95f7a"
+    },
+    {
       "bytes": 432,
       "path": "demo/review_ledger.json",
       "sha256": "d4f558b50d9e8366a7643dbbdd90e60af0132fcea8bafb978819d6322a40be1a"
     },
     {
-      "bytes": 1355,
+      "bytes": 1522,
       "path": "demo/public_readiness.json",
-      "sha256": "26e502baf3e00996e08bb9c31f2c5e939737f9da5d5cde170dc347f9a6363c56"
+      "sha256": "9dccc86d5ebed1d58d99e689ceac6cc60b27dd021b365fd89fc794568d918798"
     }
   ],
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
-  "command_count": 6,
+  "command_count": 9,
   "commands": [
     "macro-policy-thesis-map case-gallery --root .",
     "macro-policy-thesis-map thesis-impact-brief --root .",
     "macro-policy-thesis-map exposure-map --root .",
+    "macro-policy-thesis-map scenario-library --root .",
+    "macro-policy-thesis-map assumption-registry --root .",
+    "macro-policy-thesis-map data-dictionary-diff --root .",
     "macro-policy-thesis-map visual-receipt --root . --format svg",
     "macro-policy-thesis-map public-readiness --root .",
     "macro-policy-thesis-map diff-check --root ."

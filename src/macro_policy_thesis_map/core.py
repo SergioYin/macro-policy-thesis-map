@@ -75,6 +75,12 @@ DEMO_ARTIFACTS = [
     "demo/thesis_impact_brief.json",
     "demo/exposure_map.md",
     "demo/exposure_map.json",
+    "demo/scenario_library.md",
+    "demo/scenario_library.json",
+    "demo/assumption_registry.md",
+    "demo/assumption_registry.json",
+    "demo/data_dictionary_diff.md",
+    "demo/data_dictionary_diff.json",
     "demo/release_manifest.md",
     "demo/release_manifest.json",
     "demo/maturity_report.md",
@@ -157,6 +163,27 @@ COMMAND_SPECS = [
         "inputs": ["examples/portfolio_exposures.csv and examples/thesis_sensitivities.csv or bundled fixtures"],
         "outputs": ["demo/exposure_map.md", "demo/exposure_map.json"],
         "safety": "Reports exposure coverage and static scores only; no allocation target or recommendation.",
+    },
+    {
+        "command": "scenario-library",
+        "purpose": "Publish synthetic macro policy scenarios for schema adaptation review.",
+        "inputs": ["built-in static scenario metadata"],
+        "outputs": ["demo/scenario_library.md", "demo/scenario_library.json"],
+        "safety": "Synthetic scenario labels only; no forecasts, probabilities, trades, or recommendations.",
+    },
+    {
+        "command": "assumption-registry",
+        "purpose": "Publish bounded assumptions, owners, and validation controls for public evaluators.",
+        "inputs": ["built-in static assumption metadata"],
+        "outputs": ["demo/assumption_registry.md", "demo/assumption_registry.json"],
+        "safety": "Documents review assumptions without live data, private workflows, or investment advice.",
+    },
+    {
+        "command": "data-dictionary-diff",
+        "purpose": "Compare base event CSV fields with optional public fixtures to guide schema adaptation.",
+        "inputs": ["built-in schema metadata"],
+        "outputs": ["demo/data_dictionary_diff.md", "demo/data_dictionary_diff.json"],
+        "safety": "Schema documentation only; no external data access or financial recommendation.",
     },
     {
         "command": "case-gallery",
@@ -642,6 +669,173 @@ def input_schema() -> dict[str, Any]:
     }
 
 
+def scenario_library() -> dict[str, Any]:
+    scenarios = [
+        {
+            "scenario_id": "scenario-001",
+            "name": "Policy Path Repricing",
+            "region": "US",
+            "policy_area": "monetary-policy",
+            "time_horizon": "near-term",
+            "shock_axis": "rate-path",
+            "direction_label": "more-restrictive",
+            "schema_fields": ["date", "policy_area", "channel", "direction", "confidence", "thesis_link"],
+            "adaptation_note": "Use direction and confidence to describe a static policy-path interpretation without adding forecast probabilities.",
+        },
+        {
+            "scenario_id": "scenario-002",
+            "name": "Fiscal Implementation Lag",
+            "region": "EU",
+            "policy_area": "fiscal-policy",
+            "time_horizon": "medium-term",
+            "shock_axis": "implementation-timing",
+            "direction_label": "delayed-transmission",
+            "schema_fields": ["date", "source", "policy_area", "channel", "evidence"],
+            "adaptation_note": "Keep source labels and evidence summaries separate so public reviewers can trace static assumptions.",
+        },
+        {
+            "scenario_id": "scenario-003",
+            "name": "Labor Supply Normalization",
+            "region": "US",
+            "policy_area": "labor-market",
+            "time_horizon": "medium-term",
+            "shock_axis": "participation",
+            "direction_label": "normalizing",
+            "schema_fields": ["event_type", "policy_area", "channel", "direction", "confidence"],
+            "adaptation_note": "Represent labor channels as descriptive categories, not market return forecasts.",
+        },
+        {
+            "scenario_id": "scenario-004",
+            "name": "External Demand Rotation",
+            "region": "Asia",
+            "policy_area": "trade-policy",
+            "time_horizon": "cross-cycle",
+            "shock_axis": "demand-mix",
+            "direction_label": "rotating",
+            "schema_fields": ["region", "policy_area", "channel", "route", "command"],
+            "adaptation_note": "Optional region and route fields can support public galleries while preserving base event compatibility.",
+        },
+    ]
+    return {
+        "title": "Static Scenario Library",
+        "version": __version__,
+        "fixture_type": "synthetic public evaluator scenarios",
+        "scenario_count": len(scenarios),
+        "scenarios": scenarios,
+        "schema_adaptation_rules": [
+            "Treat every scenario as a deterministic example, not a forecast.",
+            "Keep optional fields additive so the base event CSV remains valid.",
+            "Use confidence as a bounded evidence-mapping score from 0 to 1.",
+            "Do not add allocation, trade, price-target, or return-prediction columns.",
+        ],
+        "boundaries": DISCLAIMER,
+    }
+
+
+def assumption_registry() -> dict[str, Any]:
+    assumptions = [
+        {
+            "assumption_id": "assumption-001",
+            "category": "data",
+            "statement": "Input rows are static CSV records supplied by the evaluator.",
+            "owner": "public evaluator",
+            "validation": "fixture-doctor checks required columns, confidence bounds, dates, and advice-like terms.",
+            "schema_impact": "Base event columns remain required for build-packet.",
+            "status": "active",
+        },
+        {
+            "assumption_id": "assumption-002",
+            "category": "safety",
+            "statement": "Outputs must stay descriptive and research-only.",
+            "owner": "release owner",
+            "validation": "public-scan, review-ledger, public-readiness, and selfcheck fail closed on unsafe text or missing boundaries.",
+            "schema_impact": "Do not add recommendation, allocation, target, order, or prediction fields.",
+            "status": "active",
+        },
+        {
+            "assumption_id": "assumption-003",
+            "category": "packaging",
+            "statement": "The package has zero runtime dependencies and bundled example CSVs for installed default commands.",
+            "owner": "maintainer",
+            "validation": "pytest and build backend tests verify version, wheel package data, and reproducible archives.",
+            "schema_impact": "New default commands should use built-in metadata or bundled fixtures.",
+            "status": "active",
+        },
+        {
+            "assumption_id": "assumption-004",
+            "category": "adaptation",
+            "statement": "Schema extensions are optional public-evaluator layers rather than replacements for the base event schema.",
+            "owner": "public evaluator",
+            "validation": "data-dictionary-diff lists additive, shared, and omitted fields deterministically.",
+            "schema_impact": "Adapters should preserve date, event_type, policy_area, confidence, evidence, and thesis_link where possible.",
+            "status": "active",
+        },
+    ]
+    return {
+        "title": "Assumption Registry",
+        "version": __version__,
+        "assumption_count": len(assumptions),
+        "assumptions": assumptions,
+        "review_controls": [
+            "Regenerate assumption-registry after changing schema or release boundaries.",
+            "Treat assumptions marked active as evaluator-facing constraints.",
+            "Escalate any need for live data, broker access, or investment advice outside this package.",
+        ],
+        "boundaries": DISCLAIMER,
+    }
+
+
+def data_dictionary_diff() -> dict[str, Any]:
+    dictionaries = [
+        ("base_event", EXPECTED_COLUMNS),
+        ("case_gallery", CASE_COLUMNS),
+        ("thesis_sensitivity", SENSITIVITY_COLUMNS),
+        ("portfolio_exposure", EXPOSURE_COLUMNS),
+    ]
+    base = set(EXPECTED_COLUMNS)
+    rows = []
+    for name, columns in dictionaries:
+        column_set = set(columns)
+        rows.append(
+            {
+                "dictionary": name,
+                "column_count": len(columns),
+                "shared_with_base": [column for column in EXPECTED_COLUMNS if column in column_set],
+                "additive_columns": [column for column in columns if column not in base],
+                "base_columns_not_present": [column for column in EXPECTED_COLUMNS if column not in column_set],
+                "adaptation_posture": "base" if name == "base_event" else "optional additive layer",
+            }
+        )
+    recommendations = [
+        {
+            "decision": "Keep base event columns for packet generation.",
+            "rationale": "build-packet, compare-history, review-ledger, fixture-doctor, and static-dashboard rely on the base event schema.",
+        },
+        {
+            "decision": "Add region, route, and command only for public case gallery workflows.",
+            "rationale": "Those fields support deterministic public routes and receipts but are not needed for core event evidence.",
+        },
+        {
+            "decision": "Use sensitivity and exposure fields as separate optional tables.",
+            "rationale": "Separate CSVs keep scenario scores synthetic and avoid mixing descriptive mappings with event evidence.",
+        },
+    ]
+    return {
+        "title": "Data Dictionary Diff",
+        "version": __version__,
+        "base_dictionary": "base_event",
+        "dictionary_count": len(dictionaries),
+        "dictionaries": rows,
+        "recommendations": recommendations,
+        "finance_safety_constraints": [
+            "No allocation target, order, recommendation, price target, or return prediction fields.",
+            "Scores must remain bounded descriptive values from 0 to 1.",
+            "Scenario and assumption fields must remain synthetic and static.",
+        ],
+        "boundaries": DISCLAIMER,
+    }
+
+
 def required(row: dict[str, str], field: str, path: Path, index: int) -> str:
     value = (row.get(field) or "").strip()
     if not value:
@@ -834,6 +1028,9 @@ def visual_receipt(root: Path, *, visual_format: str) -> dict[str, Any]:
         "demo/case_gallery.json",
         "demo/thesis_impact_brief.json",
         "demo/exposure_map.json",
+        "demo/scenario_library.json",
+        "demo/assumption_registry.json",
+        "demo/data_dictionary_diff.json",
         "demo/review_ledger.json",
         "demo/public_readiness.json",
     ]
@@ -847,6 +1044,9 @@ def visual_receipt(root: Path, *, visual_format: str) -> dict[str, Any]:
         "macro-policy-thesis-map case-gallery --root .",
         "macro-policy-thesis-map thesis-impact-brief --root .",
         "macro-policy-thesis-map exposure-map --root .",
+        "macro-policy-thesis-map scenario-library --root .",
+        "macro-policy-thesis-map assumption-registry --root .",
+        "macro-policy-thesis-map data-dictionary-diff --root .",
         f"macro-policy-thesis-map visual-receipt --root . --format {visual_format}",
         "macro-policy-thesis-map public-readiness --root .",
         "macro-policy-thesis-map diff-check --root .",
@@ -920,6 +1120,7 @@ def maturity(root: Path) -> dict[str, Any]:
         ("case_gallery", root.joinpath("examples/public_macro_cases.csv").exists() and root.joinpath("demo/case_gallery.json").exists()),
         ("sensitivity_layer", root.joinpath("examples/thesis_sensitivities.csv").exists() and root.joinpath("demo/thesis_impact_brief.json").exists()),
         ("exposure_layer", root.joinpath("examples/portfolio_exposures.csv").exists() and root.joinpath("demo/exposure_map.json").exists()),
+        ("schema_adaptation_surfaces", all(root.joinpath(path).exists() for path in ["demo/scenario_library.json", "demo/assumption_registry.json", "demo/data_dictionary_diff.json"])),
         ("visual_receipt", root.joinpath("demo/visual_receipt.json").exists() and (root.joinpath("demo/visual_receipt.svg").exists() or root.joinpath("demo/visual_receipt.html").exists())),
         ("operator_surfaces", all(root.joinpath(path).exists() for path in ["demo/troubleshoot.json", "demo/docs_export.json", "demo/readme_snippet.json", "demo/cli_help.json"])),
         ("release_owner_pack", all(root.joinpath(path).exists() for path in ["demo/adoption_notes.json", "demo/reviewer_scorecard.json", "demo/release_deck.json", "demo/bundle_export/manifest.json"])),
@@ -969,6 +1170,9 @@ def quickstart_check(root: Path) -> dict[str, Any]:
             "static-dashboard",
             "thesis-impact-brief",
             "exposure-map",
+            "scenario-library",
+            "assumption-registry",
+            "data-dictionary-diff",
             "case-gallery",
             "visual-receipt",
             "troubleshoot",
@@ -1048,6 +1252,15 @@ def troubleshoot(root: Path) -> dict[str, Any]:
             else "review",
             "resolution": "Run docs-export, readme-snippet, cli-help, and command-matrix from the repository root.",
         },
+        {
+            "name": "schema_adaptation_artifacts_missing",
+            "symptom": "A public evaluator cannot decide which CSV columns to keep or add.",
+            "evidence": ["demo/scenario_library.json", "demo/assumption_registry.json", "demo/data_dictionary_diff.json"],
+            "status": "pass"
+            if all(root.joinpath(path).exists() for path in ["demo/scenario_library.json", "demo/assumption_registry.json", "demo/data_dictionary_diff.json"])
+            else "review",
+            "resolution": "Run scenario-library, assumption-registry, and data-dictionary-diff from the repository root.",
+        },
     ]
     review_count = sum(1 for item in checks if item["status"] not in {"pass", "ready"})
     return {
@@ -1073,6 +1286,9 @@ def docs_export(root: Path) -> dict[str, Any]:
         ("Agent skill", "skills/agent/macro-policy-thesis-map/SKILL.md", "Agent protocol and finance boundaries."),
         ("Command matrix", "demo/command_matrix.md", "Command inputs, outputs, and safety posture."),
         ("Input schema", "demo/input_schema.md", "Static CSV schema and data dictionary."),
+        ("Scenario library", "demo/scenario_library.md", "Synthetic scenarios for public schema adaptation review."),
+        ("Assumption registry", "demo/assumption_registry.md", "Bounded public assumptions and validation controls."),
+        ("Data dictionary diff", "demo/data_dictionary_diff.md", "Base and optional CSV dictionary comparison."),
         ("Troubleshooting", "demo/troubleshoot.md", "Operator diagnostics and recovery steps."),
         ("CLI help", "demo/cli_help.md", "Deterministic command usage lines."),
         ("README snippet", "demo/readme_snippet.md", "Compact copyable quickstart snippet."),
@@ -1108,6 +1324,9 @@ def readme_snippet() -> dict[str, Any]:
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli fixture-doctor --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli build-packet --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli review-ledger --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli scenario-library --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli assumption-registry --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli data-dictionary-diff --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .",
         "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
     ]
@@ -1115,7 +1334,7 @@ def readme_snippet() -> dict[str, Any]:
         "title": "README Snippet",
         "version": __version__,
         "commands": commands,
-        "outputs": ["demo/thesis_packet.md", "demo/review_ledger.md", "demo/troubleshoot.md"],
+        "outputs": ["demo/thesis_packet.md", "demo/review_ledger.md", "demo/scenario_library.md", "demo/assumption_registry.md", "demo/data_dictionary_diff.md", "demo/troubleshoot.md"],
         "snippet": "\n".join(commands),
         "boundaries": DISCLAIMER,
     }
@@ -1212,6 +1431,9 @@ def public_readiness(root: Path) -> dict[str, Any]:
         "demo/case_gallery.json",
         "demo/thesis_impact_brief.json",
         "demo/exposure_map.json",
+        "demo/scenario_library.json",
+        "demo/assumption_registry.json",
+        "demo/data_dictionary_diff.json",
         "demo/visual_receipt.json",
         "demo/evidence_bundle.json",
         "demo/cold_start_walkthrough.json",
@@ -1226,6 +1448,7 @@ def public_readiness(root: Path) -> dict[str, Any]:
         ("demo_artifacts", all(root.joinpath(path).exists() for path in required_artifacts), "Core demo artifacts are present."),
         ("visual_receipt", root.joinpath("demo/visual_receipt.svg").exists() or root.joinpath("demo/visual_receipt.html").exists(), "Static SVG or HTML visual receipt is present."),
         ("operator_surfaces", all(root.joinpath(path).exists() for path in ["demo/troubleshoot.json", "demo/docs_export.json", "demo/readme_snippet.json", "demo/cli_help.json"]), "Operator troubleshooting, docs export, README snippet, and CLI help artifacts are present."),
+        ("schema_adaptation_surfaces", all(root.joinpath(path).exists() for path in ["demo/scenario_library.json", "demo/assumption_registry.json", "demo/data_dictionary_diff.json"]), "Scenario, assumption, and data dictionary diff artifacts are present."),
         ("no_workflow_files", not root.joinpath(".github/workflows").exists(), "No repository workflow files are required for public evaluation."),
         ("zero_dependency_package", "dependencies = []" in root.joinpath("pyproject.toml").read_text(encoding="utf-8") if root.joinpath("pyproject.toml").exists() else False, "Package declares no runtime dependencies."),
     ]
@@ -1263,35 +1486,41 @@ def cold_start_walkthrough() -> dict[str, Any]:
         {
             "step": 4,
             "title": "Render static sensitivity and exposure layers",
-            "command": "macro-policy-thesis-map thesis-impact-brief && macro-policy-thesis-map exposure-map",
-            "expected_result": "Synthetic sensitivity and exposure maps are written as Markdown and JSON.",
+            "command": "macro-policy-thesis-map thesis-impact-brief && macro-policy-thesis-map exposure-map && macro-policy-thesis-map scenario-library",
+            "expected_result": "Synthetic sensitivity, exposure, and scenario maps are written as Markdown and JSON.",
         },
         {
             "step": 5,
+            "title": "Review schema adaptation surfaces",
+            "command": "macro-policy-thesis-map assumption-registry && macro-policy-thesis-map data-dictionary-diff",
+            "expected_result": "Bounded assumptions and CSV dictionary differences are written as Markdown and JSON.",
+        },
+        {
+            "step": 6,
             "title": "Read operator support surfaces",
             "command": "macro-policy-thesis-map troubleshoot && macro-policy-thesis-map docs-export && macro-policy-thesis-map cli-help",
             "expected_result": "Operator troubleshooting, docs export, and CLI help surfaces are written as Markdown and JSON.",
         },
         {
-            "step": 6,
+            "step": 7,
             "title": "Read release-owner promotion notes",
             "command": "macro-policy-thesis-map adoption-notes && macro-policy-thesis-map reviewer-scorecard && macro-policy-thesis-map release-deck",
             "expected_result": "Release-owner notes, scorecard, and deck are written as Markdown and JSON.",
         },
         {
-            "step": 7,
+            "step": 8,
             "title": "Export the public promotion bundle manifest",
             "command": "macro-policy-thesis-map bundle-export",
             "expected_result": "A deterministic bundle manifest is written under demo/bundle_export/.",
         },
         {
-            "step": 8,
+            "step": 9,
             "title": "Check public readiness",
             "command": "macro-policy-thesis-map public-readiness",
             "expected_result": "A public readiness report lists pass/fail gates.",
         },
         {
-            "step": 9,
+            "step": 10,
             "title": "Run final local checks",
             "command": "macro-policy-thesis-map selfcheck && macro-policy-thesis-map public-scan && macro-policy-thesis-map diff-check",
             "expected_result": "All commands exit successfully before sharing artifacts.",
@@ -1354,6 +1583,9 @@ def adoption_notes(root: Path) -> dict[str, Any]:
         [
             "README.md",
             "demo/command_matrix.json",
+            "demo/scenario_library.json",
+            "demo/assumption_registry.json",
+            "demo/data_dictionary_diff.json",
             "demo/troubleshoot.json",
             "demo/docs_export.json",
             "demo/readme_snippet.json",
@@ -1375,6 +1607,9 @@ def adoption_notes(root: Path) -> dict[str, Any]:
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli adoption-notes --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli docs-export --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli scenario-library --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli assumption-registry --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli data-dictionary-diff --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli cli-help --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli reviewer-scorecard --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-deck --root .",
@@ -1408,7 +1643,7 @@ def reviewer_scorecard(root: Path) -> dict[str, Any]:
     maturity_payload = read_optional_json(root / "demo/maturity_report.json") or maturity(root)
     readiness_payload = read_optional_json(root / "demo/public_readiness.json")
     rubric = [
-        ("static_inputs", ["examples", "case_gallery", "sensitivity_layer", "exposure_layer"], "Static fixtures and synthetic public examples are present."),
+        ("static_inputs", ["examples", "case_gallery", "sensitivity_layer", "exposure_layer", "schema_adaptation_surfaces"], "Static fixtures and synthetic public examples are present."),
         ("review_controls", ["visual_receipt", "operator_surfaces", "release_owner_pack"], "Review artifacts, operator docs, hashes, and owner pack are present."),
         ("public_package", ["package", "readme", "license", "skill"], "Package metadata, docs, license, and agent skill are present."),
         ("verification", ["tests", "no_workflows"], "Tests exist and no workflow files are required."),
@@ -1440,6 +1675,9 @@ def reviewer_scorecard(root: Path) -> dict[str, Any]:
             "demo/evidence_bundle.json",
             "demo/release_manifest.json",
             "demo/command_matrix.json",
+            "demo/scenario_library.json",
+            "demo/assumption_registry.json",
+            "demo/data_dictionary_diff.json",
             "demo/troubleshoot.json",
             "demo/docs_export.json",
             "demo/readme_snippet.json",
@@ -1544,6 +1782,12 @@ def bundle_export(root: Path) -> dict[str, Any]:
         "demo/release_deck.json",
         "demo/command_matrix.md",
         "demo/command_matrix.json",
+        "demo/scenario_library.md",
+        "demo/scenario_library.json",
+        "demo/assumption_registry.md",
+        "demo/assumption_registry.json",
+        "demo/data_dictionary_diff.md",
+        "demo/data_dictionary_diff.json",
         "demo/maturity_report.md",
         "demo/maturity_report.json",
         "demo/public_readiness.md",

@@ -13,11 +13,13 @@ from .core import (
     DISCLAIMER,
     build_packet,
     adoption_notes,
+    assumption_registry,
     bundle_export,
     case_gallery,
     cold_start_walkthrough,
     command_matrix,
     compare_packets,
+    data_dictionary_diff,
     diff_check,
     docs_export,
     evidence_bundle,
@@ -38,6 +40,7 @@ from .core import (
     release_deck,
     reviewer_scorecard,
     review_ledger,
+    scenario_library,
     thesis_impact_brief,
     troubleshoot,
 )
@@ -67,9 +70,12 @@ from .render import (
     visual_receipt_md,
     visual_receipt_svg,
     adoption_notes_md,
+    assumption_registry_md,
     bundle_export_md,
+    data_dictionary_diff_md,
     release_deck_md,
     reviewer_scorecard_md,
+    scenario_library_md,
 )
 
 
@@ -136,6 +142,24 @@ def build_parser() -> argparse.ArgumentParser:
     exposures.add_argument("--out-md", default="demo/exposure_map.md")
     exposures.add_argument("--out-json", default="demo/exposure_map.json")
     exposures.set_defaults(func=cmd_exposure_map)
+
+    scenarios = sub.add_parser("scenario-library", help="Write synthetic public evaluator scenarios for CSV schema adaptation.")
+    scenarios.add_argument("--root", default=".")
+    scenarios.add_argument("--out-md", default="demo/scenario_library.md")
+    scenarios.add_argument("--out-json", default="demo/scenario_library.json")
+    scenarios.set_defaults(func=cmd_scenario_library)
+
+    assumptions = sub.add_parser("assumption-registry", help="Write bounded public assumptions and validation controls.")
+    assumptions.add_argument("--root", default=".")
+    assumptions.add_argument("--out-md", default="demo/assumption_registry.md")
+    assumptions.add_argument("--out-json", default="demo/assumption_registry.json")
+    assumptions.set_defaults(func=cmd_assumption_registry)
+
+    dictionary = sub.add_parser("data-dictionary-diff", help="Compare base and optional CSV dictionaries for schema adaptation.")
+    dictionary.add_argument("--root", default=".")
+    dictionary.add_argument("--out-md", default="demo/data_dictionary_diff.md")
+    dictionary.add_argument("--out-json", default="demo/data_dictionary_diff.json")
+    dictionary.set_defaults(func=cmd_data_dictionary_diff)
 
     gallery = sub.add_parser("case-gallery", help="Build a public-safe multi-region macro policy case gallery.")
     gallery.add_argument("--root", default=".")
@@ -340,6 +364,30 @@ def cmd_exposure_map(args: argparse.Namespace) -> int:
     payload = exposure_map(exposures, sensitivities, exposure_path, sensitivity_path)
     write_json(resolve(root, args.out_json), payload)
     write_text(resolve(root, args.out_md), exposure_map_md(payload))
+    return 0
+
+
+def cmd_scenario_library(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = scenario_library()
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), scenario_library_md(payload))
+    return 0
+
+
+def cmd_assumption_registry(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = assumption_registry()
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), assumption_registry_md(payload))
+    return 0
+
+
+def cmd_data_dictionary_diff(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = data_dictionary_diff()
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), data_dictionary_diff_md(payload))
     return 0
 
 
@@ -564,6 +612,9 @@ def cmd_selfcheck(args: argparse.Namespace) -> int:
         root / "demo" / "visual_receipt.json",
         root / "demo" / "thesis_impact_brief.json",
         root / "demo" / "exposure_map.json",
+        root / "demo" / "scenario_library.json",
+        root / "demo" / "assumption_registry.json",
+        root / "demo" / "data_dictionary_diff.json",
     ]
     missing = [str(path.relative_to(root)) for path in required if not path.exists()]
     readme = (root / "README.md").read_text(encoding="utf-8").lower() if (root / "README.md").exists() else ""

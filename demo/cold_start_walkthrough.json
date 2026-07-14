@@ -6,7 +6,7 @@
     "Do not add live market data, broker actions, trading recommendations, or personalized advice.",
     "Treat review-ledger blockers as release blockers until the input text is revised."
   ],
-  "step_count": 9,
+  "step_count": 10,
   "steps": [
     {
       "command": "macro-policy-thesis-map command-matrix",
@@ -27,39 +27,45 @@
       "title": "Review evidence safety"
     },
     {
-      "command": "macro-policy-thesis-map thesis-impact-brief && macro-policy-thesis-map exposure-map",
-      "expected_result": "Synthetic sensitivity and exposure maps are written as Markdown and JSON.",
+      "command": "macro-policy-thesis-map thesis-impact-brief && macro-policy-thesis-map exposure-map && macro-policy-thesis-map scenario-library",
+      "expected_result": "Synthetic sensitivity, exposure, and scenario maps are written as Markdown and JSON.",
       "step": 4,
       "title": "Render static sensitivity and exposure layers"
     },
     {
+      "command": "macro-policy-thesis-map assumption-registry && macro-policy-thesis-map data-dictionary-diff",
+      "expected_result": "Bounded assumptions and CSV dictionary differences are written as Markdown and JSON.",
+      "step": 5,
+      "title": "Review schema adaptation surfaces"
+    },
+    {
       "command": "macro-policy-thesis-map troubleshoot && macro-policy-thesis-map docs-export && macro-policy-thesis-map cli-help",
       "expected_result": "Operator troubleshooting, docs export, and CLI help surfaces are written as Markdown and JSON.",
-      "step": 5,
+      "step": 6,
       "title": "Read operator support surfaces"
     },
     {
       "command": "macro-policy-thesis-map adoption-notes && macro-policy-thesis-map reviewer-scorecard && macro-policy-thesis-map release-deck",
       "expected_result": "Release-owner notes, scorecard, and deck are written as Markdown and JSON.",
-      "step": 6,
+      "step": 7,
       "title": "Read release-owner promotion notes"
     },
     {
       "command": "macro-policy-thesis-map bundle-export",
       "expected_result": "A deterministic bundle manifest is written under demo/bundle_export/.",
-      "step": 7,
+      "step": 8,
       "title": "Export the public promotion bundle manifest"
     },
     {
       "command": "macro-policy-thesis-map public-readiness",
       "expected_result": "A public readiness report lists pass/fail gates.",
-      "step": 8,
+      "step": 9,
       "title": "Check public readiness"
     },
     {
       "command": "macro-policy-thesis-map selfcheck && macro-policy-thesis-map public-scan && macro-policy-thesis-map diff-check",
       "expected_result": "All commands exit successfully before sharing artifacts.",
-      "step": 9,
+      "step": 10,
       "title": "Run final local checks"
     }
   ]

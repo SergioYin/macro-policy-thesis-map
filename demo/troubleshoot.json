@@ -1,6 +1,6 @@
 {
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
-  "check_count": 5,
+  "check_count": 6,
   "checks": [
     {
       "evidence": [
@@ -56,6 +56,17 @@
       "resolution": "Run docs-export, readme-snippet, cli-help, and command-matrix from the repository root.",
       "status": "pass",
       "symptom": "An evaluator cannot find command usage or docs surfaces."
+    },
+    {
+      "evidence": [
+        "demo/scenario_library.json",
+        "demo/assumption_registry.json",
+        "demo/data_dictionary_diff.json"
+      ],
+      "name": "schema_adaptation_artifacts_missing",
+      "resolution": "Run scenario-library, assumption-registry, and data-dictionary-diff from the repository root.",
+      "status": "pass",
+      "symptom": "A public evaluator cannot decide which CSV columns to keep or add."
     }
   ],
   "review_count": 0,
@@ -67,5 +78,5 @@
     "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
     "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root ."
   ],
-  "version": "0.6.0"
+  "version": "0.7.0"
 }

@@ -113,6 +113,112 @@ Required columns: {", ".join(payload['required_columns'])}
 """
 
 
+def scenario_library_md(payload: dict[str, Any]) -> str:
+    rows = [
+        [
+            item["scenario_id"],
+            item["name"],
+            item["region"],
+            item["policy_area"],
+            item["time_horizon"],
+            item["shock_axis"],
+            item["direction_label"],
+            ", ".join(item["schema_fields"]),
+            item["adaptation_note"],
+        ]
+        for item in payload["scenarios"]
+    ]
+    rules = [[item] for item in payload["schema_adaptation_rules"]]
+    return f"""# Static Scenario Library
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Fixture type: {payload['fixture_type']}
+
+Scenario count: {payload['scenario_count']}
+
+## Scenarios
+
+{table(["Scenario", "Name", "Region", "Area", "Horizon", "Axis", "Direction", "Schema fields", "Adaptation note"], rows)}
+
+## Schema Adaptation Rules
+
+{table(["Rule"], rules)}
+"""
+
+
+def assumption_registry_md(payload: dict[str, Any]) -> str:
+    rows = [
+        [
+            item["assumption_id"],
+            item["category"],
+            item["statement"],
+            item["owner"],
+            item["validation"],
+            item["schema_impact"],
+            item["status"],
+        ]
+        for item in payload["assumptions"]
+    ]
+    controls = [[item] for item in payload["review_controls"]]
+    return f"""# Assumption Registry
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Assumption count: {payload['assumption_count']}
+
+## Assumptions
+
+{table(["Assumption", "Category", "Statement", "Owner", "Validation", "Schema impact", "Status"], rows)}
+
+## Review Controls
+
+{table(["Control"], controls)}
+"""
+
+
+def data_dictionary_diff_md(payload: dict[str, Any]) -> str:
+    rows = [
+        [
+            item["dictionary"],
+            item["column_count"],
+            ", ".join(item["shared_with_base"]),
+            ", ".join(item["additive_columns"]) or "none",
+            ", ".join(item["base_columns_not_present"]) or "none",
+            item["adaptation_posture"],
+        ]
+        for item in payload["dictionaries"]
+    ]
+    recommendations = [[item["decision"], item["rationale"]] for item in payload["recommendations"]]
+    constraints = [[item] for item in payload["finance_safety_constraints"]]
+    return f"""# Data Dictionary Diff
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Base dictionary: {payload['base_dictionary']}
+
+Dictionary count: {payload['dictionary_count']}
+
+## Dictionary Comparison
+
+{table(["Dictionary", "Columns", "Shared with base", "Additive columns", "Base columns not present", "Adaptation posture"], rows)}
+
+## Recommendations
+
+{table(["Decision", "Rationale"], recommendations)}
+
+## Finance Safety Constraints
+
+{table(["Constraint"], constraints)}
+"""
+
+
 def troubleshoot_md(payload: dict[str, Any]) -> str:
     checks = [
         [item["name"], item["status"], item["symptom"], ", ".join(item["evidence"]), item["resolution"]]

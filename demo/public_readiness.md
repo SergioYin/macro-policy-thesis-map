@@ -4,7 +4,7 @@ Research-only static analysis. Not investment advice. This tool does not fetch l
 
 Status: ready
 
-Passed: 7 / 7
+Passed: 8 / 8
 
 ## Checks
 
@@ -15,6 +15,7 @@ Passed: 7 / 7
 | demo_artifacts | pass | Core demo artifacts are present. |
 | visual_receipt | pass | Static SVG or HTML visual receipt is present. |
 | operator_surfaces | pass | Operator troubleshooting, docs export, README snippet, and CLI help artifacts are present. |
+| schema_adaptation_surfaces | pass | Scenario, assumption, and data dictionary diff artifacts are present. |
 | no_workflow_files | pass | No repository workflow files are required for public evaluation. |
 | zero_dependency_package | pass | Package declares no runtime dependencies. |
 

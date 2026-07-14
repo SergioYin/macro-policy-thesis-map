@@ -1,0 +1,84 @@
+{
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "fixture_type": "synthetic public evaluator scenarios",
+  "scenario_count": 4,
+  "scenarios": [
+    {
+      "adaptation_note": "Use direction and confidence to describe a static policy-path interpretation without adding forecast probabilities.",
+      "direction_label": "more-restrictive",
+      "name": "Policy Path Repricing",
+      "policy_area": "monetary-policy",
+      "region": "US",
+      "scenario_id": "scenario-001",
+      "schema_fields": [
+        "date",
+        "policy_area",
+        "channel",
+        "direction",
+        "confidence",
+        "thesis_link"
+      ],
+      "shock_axis": "rate-path",
+      "time_horizon": "near-term"
+    },
+    {
+      "adaptation_note": "Keep source labels and evidence summaries separate so public reviewers can trace static assumptions.",
+      "direction_label": "delayed-transmission",
+      "name": "Fiscal Implementation Lag",
+      "policy_area": "fiscal-policy",
+      "region": "EU",
+      "scenario_id": "scenario-002",
+      "schema_fields": [
+        "date",
+        "source",
+        "policy_area",
+        "channel",
+        "evidence"
+      ],
+      "shock_axis": "implementation-timing",
+      "time_horizon": "medium-term"
+    },
+    {
+      "adaptation_note": "Represent labor channels as descriptive categories, not market return forecasts.",
+      "direction_label": "normalizing",
+      "name": "Labor Supply Normalization",
+      "policy_area": "labor-market",
+      "region": "US",
+      "scenario_id": "scenario-003",
+      "schema_fields": [
+        "event_type",
+        "policy_area",
+        "channel",
+        "direction",
+        "confidence"
+      ],
+      "shock_axis": "participation",
+      "time_horizon": "medium-term"
+    },
+    {
+      "adaptation_note": "Optional region and route fields can support public galleries while preserving base event compatibility.",
+      "direction_label": "rotating",
+      "name": "External Demand Rotation",
+      "policy_area": "trade-policy",
+      "region": "Asia",
+      "scenario_id": "scenario-004",
+      "schema_fields": [
+        "region",
+        "policy_area",
+        "channel",
+        "route",
+        "command"
+      ],
+      "shock_axis": "demand-mix",
+      "time_horizon": "cross-cycle"
+    }
+  ],
+  "schema_adaptation_rules": [
+    "Treat every scenario as a deterministic example, not a forecast.",
+    "Keep optional fields additive so the base event CSV remains valid.",
+    "Use confidence as a bounded evidence-mapping score from 0 to 1.",
+    "Do not add allocation, trade, price-target, or return-prediction columns."
+  ],
+  "title": "Static Scenario Library",
+  "version": "0.7.0"
+}

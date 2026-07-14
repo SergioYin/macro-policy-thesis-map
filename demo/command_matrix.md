@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Command count: 28
+Command count: 31
 
 | Command | Purpose | Inputs | Outputs | Safety |
 | --- | --- | --- | --- | --- |
@@ -12,6 +12,9 @@ Command count: 28
 | static-dashboard | Render a no-JavaScript HTML view of the packet, review ledger, and static sensitivity summaries. | examples/macro_events.csv plus optional bundled sensitivity and exposure fixtures | demo/static_dashboard.html | Static local rendering only. |
 | thesis-impact-brief | Summarize synthetic thesis sensitivity rows by thesis, policy area, and scenario axis. | examples/thesis_sensitivities.csv or bundled thesis_sensitivities.csv | demo/thesis_impact_brief.md, demo/thesis_impact_brief.json | Descriptive static sensitivity mapping only; no forecast, advice, or trade instruction. |
 | exposure-map | Map synthetic portfolio exposure rows to static thesis sensitivity axes. | examples/portfolio_exposures.csv and examples/thesis_sensitivities.csv or bundled fixtures | demo/exposure_map.md, demo/exposure_map.json | Reports exposure coverage and static scores only; no allocation target or recommendation. |
+| scenario-library | Publish synthetic macro policy scenarios for schema adaptation review. | built-in static scenario metadata | demo/scenario_library.md, demo/scenario_library.json | Synthetic scenario labels only; no forecasts, probabilities, trades, or recommendations. |
+| assumption-registry | Publish bounded assumptions, owners, and validation controls for public evaluators. | built-in static assumption metadata | demo/assumption_registry.md, demo/assumption_registry.json | Documents review assumptions without live data, private workflows, or investment advice. |
+| data-dictionary-diff | Compare base event CSV fields with optional public fixtures to guide schema adaptation. | built-in schema metadata | demo/data_dictionary_diff.md, demo/data_dictionary_diff.json | Schema documentation only; no external data access or financial recommendation. |
 | case-gallery | Build a public-safe multi-region case gallery from static synthetic fixtures. | examples/public_macro_cases.csv or bundled public_macro_cases.csv | demo/case_gallery.md, demo/case_gallery.json | Uses synthetic US, EU, and Asia examples; no live data or recommendations. |
 | visual-receipt | Render a static SVG or HTML receipt with artifact hashes, routes, and commands. | repository files, demo artifacts, case gallery | demo/visual_receipt.svg or demo/visual_receipt.html, demo/visual_receipt.json | Static receipt only; records provenance without private routes or operational workflows. |
 | fixture-doctor | Validate static CSV fixtures for columns, event types, confidence bounds, stale dates, and advice-like terms. | examples/macro_events.csv or bundled macro_events.csv | demo/fixture_doctor.md, demo/fixture_doctor.json | Reports data-quality blockers before evidence is rendered. |

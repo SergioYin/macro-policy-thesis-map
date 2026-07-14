@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Step count: 9
+Step count: 10
 
 ## Steps
 
@@ -11,12 +11,13 @@ Step count: 9
 | 1 | Inspect available commands | macro-policy-thesis-map command-matrix | Markdown and JSON command matrix are written under demo/. |
 | 2 | Build the packet from static examples | macro-policy-thesis-map build-packet | A neutral thesis packet is written as Markdown and JSON. |
 | 3 | Review evidence safety | macro-policy-thesis-map review-ledger | A review ledger flags low-confidence or advice-like input text. |
-| 4 | Render static sensitivity and exposure layers | macro-policy-thesis-map thesis-impact-brief && macro-policy-thesis-map exposure-map | Synthetic sensitivity and exposure maps are written as Markdown and JSON. |
-| 5 | Read operator support surfaces | macro-policy-thesis-map troubleshoot && macro-policy-thesis-map docs-export && macro-policy-thesis-map cli-help | Operator troubleshooting, docs export, and CLI help surfaces are written as Markdown and JSON. |
-| 6 | Read release-owner promotion notes | macro-policy-thesis-map adoption-notes && macro-policy-thesis-map reviewer-scorecard && macro-policy-thesis-map release-deck | Release-owner notes, scorecard, and deck are written as Markdown and JSON. |
-| 7 | Export the public promotion bundle manifest | macro-policy-thesis-map bundle-export | A deterministic bundle manifest is written under demo/bundle_export/. |
-| 8 | Check public readiness | macro-policy-thesis-map public-readiness | A public readiness report lists pass/fail gates. |
-| 9 | Run final local checks | macro-policy-thesis-map selfcheck && macro-policy-thesis-map public-scan && macro-policy-thesis-map diff-check | All commands exit successfully before sharing artifacts. |
+| 4 | Render static sensitivity and exposure layers | macro-policy-thesis-map thesis-impact-brief && macro-policy-thesis-map exposure-map && macro-policy-thesis-map scenario-library | Synthetic sensitivity, exposure, and scenario maps are written as Markdown and JSON. |
+| 5 | Review schema adaptation surfaces | macro-policy-thesis-map assumption-registry && macro-policy-thesis-map data-dictionary-diff | Bounded assumptions and CSV dictionary differences are written as Markdown and JSON. |
+| 6 | Read operator support surfaces | macro-policy-thesis-map troubleshoot && macro-policy-thesis-map docs-export && macro-policy-thesis-map cli-help | Operator troubleshooting, docs export, and CLI help surfaces are written as Markdown and JSON. |
+| 7 | Read release-owner promotion notes | macro-policy-thesis-map adoption-notes && macro-policy-thesis-map reviewer-scorecard && macro-policy-thesis-map release-deck | Release-owner notes, scorecard, and deck are written as Markdown and JSON. |
+| 8 | Export the public promotion bundle manifest | macro-policy-thesis-map bundle-export | A deterministic bundle manifest is written under demo/bundle_export/. |
+| 9 | Check public readiness | macro-policy-thesis-map public-readiness | A public readiness report lists pass/fail gates. |
+| 10 | Run final local checks | macro-policy-thesis-map selfcheck && macro-policy-thesis-map public-scan && macro-policy-thesis-map diff-check | All commands exit successfully before sharing artifacts. |
 
 ## Safety Notes
 

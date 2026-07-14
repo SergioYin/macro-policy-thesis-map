@@ -1,0 +1,124 @@
+{
+  "base_dictionary": "base_event",
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "dictionaries": [
+    {
+      "adaptation_posture": "base",
+      "additive_columns": [],
+      "base_columns_not_present": [],
+      "column_count": 9,
+      "dictionary": "base_event",
+      "shared_with_base": [
+        "date",
+        "event_type",
+        "source",
+        "policy_area",
+        "channel",
+        "direction",
+        "confidence",
+        "evidence",
+        "thesis_link"
+      ]
+    },
+    {
+      "adaptation_posture": "optional additive layer",
+      "additive_columns": [
+        "case_id",
+        "region",
+        "case_title",
+        "route",
+        "command"
+      ],
+      "base_columns_not_present": [
+        "event_type",
+        "source",
+        "thesis_link"
+      ],
+      "column_count": 11,
+      "dictionary": "case_gallery",
+      "shared_with_base": [
+        "date",
+        "policy_area",
+        "channel",
+        "direction",
+        "confidence",
+        "evidence"
+      ]
+    },
+    {
+      "adaptation_posture": "optional additive layer",
+      "additive_columns": [
+        "thesis_id",
+        "sensitivity_axis",
+        "shock_label",
+        "impact_direction",
+        "impact_score",
+        "rationale"
+      ],
+      "base_columns_not_present": [
+        "date",
+        "event_type",
+        "source",
+        "channel",
+        "direction",
+        "evidence",
+        "thesis_link"
+      ],
+      "column_count": 8,
+      "dictionary": "thesis_sensitivity",
+      "shared_with_base": [
+        "policy_area",
+        "confidence"
+      ]
+    },
+    {
+      "adaptation_posture": "optional additive layer",
+      "additive_columns": [
+        "portfolio_id",
+        "sleeve",
+        "exposure_id",
+        "thesis_id",
+        "exposure_direction",
+        "exposure_score",
+        "rationale"
+      ],
+      "base_columns_not_present": [
+        "date",
+        "event_type",
+        "source",
+        "channel",
+        "direction",
+        "confidence",
+        "evidence",
+        "thesis_link"
+      ],
+      "column_count": 8,
+      "dictionary": "portfolio_exposure",
+      "shared_with_base": [
+        "policy_area"
+      ]
+    }
+  ],
+  "dictionary_count": 4,
+  "finance_safety_constraints": [
+    "No allocation target, order, recommendation, price target, or return prediction fields.",
+    "Scores must remain bounded descriptive values from 0 to 1.",
+    "Scenario and assumption fields must remain synthetic and static."
+  ],
+  "recommendations": [
+    {
+      "decision": "Keep base event columns for packet generation.",
+      "rationale": "build-packet, compare-history, review-ledger, fixture-doctor, and static-dashboard rely on the base event schema."
+    },
+    {
+      "decision": "Add region, route, and command only for public case gallery workflows.",
+      "rationale": "Those fields support deterministic public routes and receipts but are not needed for core event evidence."
+    },
+    {
+      "decision": "Use sensitivity and exposure fields as separate optional tables.",
+      "rationale": "Separate CSVs keep scenario scores synthetic and avoid mixing descriptive mappings with event evidence."
+    }
+  ],
+  "title": "Data Dictionary Diff",
+  "version": "0.7.0"
+}

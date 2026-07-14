@@ -2,9 +2,9 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 0.6.0
+Version: 0.7.0
 
-Command count: 28
+Command count: 31
 
 | Command | Usage | Purpose | Outputs | Safety |
 | --- | --- | --- | --- | --- |
@@ -14,6 +14,9 @@ Command count: 28
 | static-dashboard | macro-policy-thesis-map static-dashboard --root . | Render a no-JavaScript HTML view of the packet, review ledger, and static sensitivity summaries. | demo/static_dashboard.html | Static local rendering only. |
 | thesis-impact-brief | macro-policy-thesis-map thesis-impact-brief --root . | Summarize synthetic thesis sensitivity rows by thesis, policy area, and scenario axis. | demo/thesis_impact_brief.md, demo/thesis_impact_brief.json | Descriptive static sensitivity mapping only; no forecast, advice, or trade instruction. |
 | exposure-map | macro-policy-thesis-map exposure-map --root . | Map synthetic portfolio exposure rows to static thesis sensitivity axes. | demo/exposure_map.md, demo/exposure_map.json | Reports exposure coverage and static scores only; no allocation target or recommendation. |
+| scenario-library | macro-policy-thesis-map scenario-library --root . | Publish synthetic macro policy scenarios for schema adaptation review. | demo/scenario_library.md, demo/scenario_library.json | Synthetic scenario labels only; no forecasts, probabilities, trades, or recommendations. |
+| assumption-registry | macro-policy-thesis-map assumption-registry --root . | Publish bounded assumptions, owners, and validation controls for public evaluators. | demo/assumption_registry.md, demo/assumption_registry.json | Documents review assumptions without live data, private workflows, or investment advice. |
+| data-dictionary-diff | macro-policy-thesis-map data-dictionary-diff --root . | Compare base event CSV fields with optional public fixtures to guide schema adaptation. | demo/data_dictionary_diff.md, demo/data_dictionary_diff.json | Schema documentation only; no external data access or financial recommendation. |
 | case-gallery | macro-policy-thesis-map case-gallery --root . | Build a public-safe multi-region case gallery from static synthetic fixtures. | demo/case_gallery.md, demo/case_gallery.json | Uses synthetic US, EU, and Asia examples; no live data or recommendations. |
 | visual-receipt | macro-policy-thesis-map visual-receipt --root . | Render a static SVG or HTML receipt with artifact hashes, routes, and commands. | demo/visual_receipt.svg or demo/visual_receipt.html, demo/visual_receipt.json | Static receipt only; records provenance without private routes or operational workflows. |
 | fixture-doctor | macro-policy-thesis-map fixture-doctor --root . | Validate static CSV fixtures for columns, event types, confidence bounds, stale dates, and advice-like terms. | demo/fixture_doctor.md, demo/fixture_doctor.json | Reports data-quality blockers before evidence is rendered. |

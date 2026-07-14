@@ -1,60 +1,75 @@
 {
-  "artifact_count": 11,
+  "artifact_count": 14,
   "artifacts": [
     {
-      "bytes": 10220,
+      "bytes": 11457,
       "path": "README.md",
-      "sha256": "eaa234fbd5b55e4bd69f5f1cfeca03701b628d15a99d957528616ec5627dac1e"
+      "sha256": "c3f6dcc9a6f908cea1b097ac0f116e65ad22a30350647e4865f97e1432f10733"
     },
     {
-      "bytes": 11169,
+      "bytes": 2500,
+      "path": "demo/assumption_registry.json",
+      "sha256": "eaef6265dd5bc3881e5be0c9206e4365a72976cf4091887fce0396339b2c8dba"
+    },
+    {
+      "bytes": 12469,
       "path": "demo/cli_help.json",
-      "sha256": "fe922417f2a1ede90a8eca76ebce1f1f04e13d84bb6ccb41debe46faf38c1668"
+      "sha256": "194440fbdd3c019318f8519fcab441c56f08f84385db20a45123a94e64cedf29"
     },
     {
-      "bytes": 3025,
+      "bytes": 3388,
       "path": "demo/cold_start_walkthrough.json",
-      "sha256": "f4ad9938520ac395c0ee5f13ebc64fef82b34254b4463c2c392a760dbdbac6d9"
+      "sha256": "45482ee14454e8214598520659712583e7dbfb86ba1e20b13ebd95b926de2bd2"
     },
     {
-      "bytes": 11650,
+      "bytes": 12945,
       "path": "demo/command_matrix.json",
-      "sha256": "1eb66dbe9204a2faacbc28fa4c6bf5c0853f42b4e0cd20e990da706763ababf5"
+      "sha256": "9cd774a589d103c952269569167e7adfbeb610fd274152e223d0af5a23266f47"
     },
     {
-      "bytes": 2521,
+      "bytes": 3472,
+      "path": "demo/data_dictionary_diff.json",
+      "sha256": "dfa75a46af746035bb5bf3c22788800ab65e6686977ed0977651634ef0d95f7a"
+    },
+    {
+      "bytes": 3333,
       "path": "demo/docs_export.json",
-      "sha256": "27404a3954d073b7bf6af84aebd0700922f2fcb2abfdd2265406d97c9374928a"
+      "sha256": "e58db956e3fbd5d803533aa74d41e4134d77fa62443815025d590a9b83e307f7"
     },
     {
-      "bytes": 8900,
+      "bytes": 9875,
       "path": "demo/evidence_bundle.json",
-      "sha256": "8a4daf5c8c2f5c000e0c5b9c75702be6a682035a5398af888f427feb5b35f81e"
+      "sha256": "fa03db93b320d05b9e4fe586bc0cb4c2400310338d1a75d91fff9a9b235be61e"
     },
     {
-      "bytes": 1157,
+      "bytes": 1235,
       "path": "demo/maturity_report.json",
-      "sha256": "96cf4d616ecea361cc786ceebcb8450a9a88a7fddf3db07d33acced63a05efc4"
+      "sha256": "c07499edebed7b3e058e4f803d4687d8c8207a5d62b6ba48694167cfc8ee0a1b"
     },
     {
-      "bytes": 1355,
+      "bytes": 1522,
       "path": "demo/public_readiness.json",
-      "sha256": "26e502baf3e00996e08bb9c31f2c5e939737f9da5d5cde170dc347f9a6363c56"
+      "sha256": "9dccc86d5ebed1d58d99e689ceac6cc60b27dd021b365fd89fc794568d918798"
     },
     {
-      "bytes": 1253,
+      "bytes": 1868,
       "path": "demo/readme_snippet.json",
-      "sha256": "ecb716a85d3e4108d713499fd893d3657d873d4ef62bae7fdc439ca3cc47de72"
+      "sha256": "a47fbc7eee8ad796082ff63d2cf0d9b7b47371dbd36d29185cd2b0adda79479f"
     },
     {
-      "bytes": 9745,
+      "bytes": 10720,
       "path": "demo/release_manifest.json",
-      "sha256": "5e498ecb61fc230f5df8b8c259a50755f1a870adbaa8899abed8cb35c3201a78"
+      "sha256": "4b602d8cc944613e9840df4612228b7935f524cf1dffa6e3ef1bb8875f4bdcd0"
     },
     {
-      "bytes": 2732,
+      "bytes": 2903,
+      "path": "demo/scenario_library.json",
+      "sha256": "44d3f23eafdadeb307a9bb29b5663fa3494b81b4f34e10494da38ac30b833ed6"
+    },
+    {
+      "bytes": 3174,
       "path": "demo/troubleshoot.json",
-      "sha256": "7cf26ad10b2879054bf2206dce4a9cfc6d3803932d1ffb873bc4dff34fc27536"
+      "sha256": "fbd09082b63e674afbb7dc4636f48cefac084a3f53ce32ca36ba5ac613b124de"
     }
   ],
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
@@ -64,15 +79,18 @@
     "Confirm demo/public_readiness.json remains ready after local edits.",
     "Run public-scan and diff-check before sharing the bundle."
   ],
-  "maturity_max_score": 13,
-  "maturity_score": 13,
+  "maturity_max_score": 14,
+  "maturity_score": 14,
   "maturity_status": "ready",
   "public_readiness_status": "ready",
-  "release_artifact_count": 58,
+  "release_artifact_count": 64,
   "release_commands": [
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli adoption-notes --root .",
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .",
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli docs-export --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli scenario-library --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli assumption-registry --root .",
+    "PYTHONPATH=src python -m macro_policy_thesis_map.cli data-dictionary-diff --root .",
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli cli-help --root .",
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli reviewer-scorecard --root .",
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-deck --root .",
@@ -87,5 +105,5 @@
     "Treat public-readiness blockers and reviewer-scorecard review items as release-owner follow-up."
   ],
   "title": "Release Owner Adoption Notes",
-  "version": "0.6.0"
+  "version": "0.7.0"
 }

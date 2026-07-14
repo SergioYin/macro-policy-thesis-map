@@ -2,11 +2,11 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 0.6.0
+Version: 0.7.0
 
 Status: ready
 
-Reviews: 0 / 5
+Reviews: 0 / 6
 
 ## Checks
 
@@ -17,6 +17,7 @@ Reviews: 0 / 5
 | public_readiness_blocker | ready | public-readiness returns blocked. | demo/public_readiness.json | Review the blockers list, regenerate missing demo artifacts, and keep README finance boundaries explicit. |
 | manifest_drift | pass | diff-check reports hash drift. | demo/release_manifest.json | Regenerate changed demo artifacts, then run release-manifest followed by diff-check. |
 | operator_docs_missing | pass | An evaluator cannot find command usage or docs surfaces. | demo/docs_export.json, demo/readme_snippet.json, demo/cli_help.json, demo/command_matrix.json | Run docs-export, readme-snippet, cli-help, and command-matrix from the repository root. |
+| schema_adaptation_artifacts_missing | pass | A public evaluator cannot decide which CSV columns to keep or add. | demo/scenario_library.json, demo/assumption_registry.json, demo/data_dictionary_diff.json | Run scenario-library, assumption-registry, and data-dictionary-diff from the repository root. |
 
 ## Validation Commands
 

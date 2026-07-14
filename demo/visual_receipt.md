@@ -4,17 +4,17 @@ Research-only static analysis. Not investment advice. This tool does not fetch l
 
 Format: svg
 
-Artifacts: 11
+Artifacts: 14
 
 Routes: 6
 
-Commands: 6
+Commands: 9
 
 ## Artifact Hashes
 
 | Path | Bytes | SHA-256 prefix |
 | --- | --- | --- |
-| README.md | 10220 | eaa234fbd5b55e4b |
+| README.md | 11457 | c3f6dcc9a6f908ce |
 | examples/macro_events.csv | 906 | b7410919d62dd4e3 |
 | examples/public_macro_cases.csv | 1471 | ee511dd457dd7aab |
 | examples/thesis_sensitivities.csv | 1016 | ab0a6a3d0a7f0bc9 |
@@ -23,8 +23,11 @@ Commands: 6
 | demo/case_gallery.json | 4180 | 526e837ce331afd0 |
 | demo/thesis_impact_brief.json | 4389 | 941fcf40523e63ae |
 | demo/exposure_map.json | 3334 | e99f1a3387a9baa5 |
+| demo/scenario_library.json | 2903 | 44d3f23eafdadeb3 |
+| demo/assumption_registry.json | 2500 | eaef6265dd5bc388 |
+| demo/data_dictionary_diff.json | 3472 | dfa75a46af746035 |
 | demo/review_ledger.json | 432 | d4f558b50d9e8366 |
-| demo/public_readiness.json | 1355 | 26e502baf3e00996 |
+| demo/public_readiness.json | 1522 | 9dccc86d5ebed1d5 |
 
 ## Routes
 
@@ -44,6 +47,9 @@ Commands: 6
 | macro-policy-thesis-map case-gallery --root . |
 | macro-policy-thesis-map thesis-impact-brief --root . |
 | macro-policy-thesis-map exposure-map --root . |
+| macro-policy-thesis-map scenario-library --root . |
+| macro-policy-thesis-map assumption-registry --root . |
+| macro-policy-thesis-map data-dictionary-diff --root . |
 | macro-policy-thesis-map visual-receipt --root . --format svg |
 | macro-policy-thesis-map public-readiness --root . |
 | macro-policy-thesis-map diff-check --root . |

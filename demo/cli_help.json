@@ -1,6 +1,6 @@
 {
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
-  "command_count": 28,
+  "command_count": 31,
   "commands": [
     {
       "command": "build-packet",
@@ -60,6 +60,36 @@
       "purpose": "Map synthetic portfolio exposure rows to static thesis sensitivity axes.",
       "safety": "Reports exposure coverage and static scores only; no allocation target or recommendation.",
       "usage": "macro-policy-thesis-map exposure-map --root ."
+    },
+    {
+      "command": "scenario-library",
+      "outputs": [
+        "demo/scenario_library.md",
+        "demo/scenario_library.json"
+      ],
+      "purpose": "Publish synthetic macro policy scenarios for schema adaptation review.",
+      "safety": "Synthetic scenario labels only; no forecasts, probabilities, trades, or recommendations.",
+      "usage": "macro-policy-thesis-map scenario-library --root ."
+    },
+    {
+      "command": "assumption-registry",
+      "outputs": [
+        "demo/assumption_registry.md",
+        "demo/assumption_registry.json"
+      ],
+      "purpose": "Publish bounded assumptions, owners, and validation controls for public evaluators.",
+      "safety": "Documents review assumptions without live data, private workflows, or investment advice.",
+      "usage": "macro-policy-thesis-map assumption-registry --root ."
+    },
+    {
+      "command": "data-dictionary-diff",
+      "outputs": [
+        "demo/data_dictionary_diff.md",
+        "demo/data_dictionary_diff.json"
+      ],
+      "purpose": "Compare base event CSV fields with optional public fixtures to guide schema adaptation.",
+      "safety": "Schema documentation only; no external data access or financial recommendation.",
+      "usage": "macro-policy-thesis-map data-dictionary-diff --root ."
     },
     {
       "command": "case-gallery",
@@ -280,5 +310,5 @@
     }
   ],
   "title": "CLI Help Export",
-  "version": "0.6.0"
+  "version": "0.7.0"
 }

@@ -91,7 +91,7 @@ def test_fixture_doctor_and_schema_export(tmp_path):
     assert '"status": "pass"' in doctor_json.read_text(encoding="utf-8")
     assert "Fixture Doctor" in doctor_md.read_text(encoding="utf-8")
     schema_text = schema_json.read_text(encoding="utf-8")
-    assert '"schema_version": "0.6.0"' in schema_text
+    assert '"schema_version": "0.7.0"' in schema_text
     assert "confidence" in schema_text
     assert "Data Dictionary" in schema_md.read_text(encoding="utf-8")
 
@@ -133,6 +133,26 @@ def test_thesis_impact_brief_and_exposure_map(tmp_path):
     assert "Static Thesis Impact Brief" in impact_md.read_text(encoding="utf-8")
     assert '"matched_exposure_count": 5' in exposure_json.read_text(encoding="utf-8")
     assert "Static Portfolio Exposure Map" in exposure_md.read_text(encoding="utf-8")
+
+
+def test_schema_adaptation_commands(tmp_path):
+    scenario_json = tmp_path / "scenario.json"
+    scenario_md = tmp_path / "scenario.md"
+    assumption_json = tmp_path / "assumption.json"
+    assumption_md = tmp_path / "assumption.md"
+    diff_json = tmp_path / "diff.json"
+    diff_md = tmp_path / "diff.md"
+
+    assert main(["scenario-library", "--root", str(ROOT), "--out-json", str(scenario_json), "--out-md", str(scenario_md)]) == 0
+    assert main(["assumption-registry", "--root", str(ROOT), "--out-json", str(assumption_json), "--out-md", str(assumption_md)]) == 0
+    assert main(["data-dictionary-diff", "--root", str(ROOT), "--out-json", str(diff_json), "--out-md", str(diff_md)]) == 0
+
+    assert '"scenario_count": 4' in scenario_json.read_text(encoding="utf-8")
+    assert "Static Scenario Library" in scenario_md.read_text(encoding="utf-8")
+    assert '"assumption_count": 4' in assumption_json.read_text(encoding="utf-8")
+    assert "Assumption Registry" in assumption_md.read_text(encoding="utf-8")
+    assert '"base_dictionary": "base_event"' in diff_json.read_text(encoding="utf-8")
+    assert "Data Dictionary Diff" in diff_md.read_text(encoding="utf-8")
 
 
 def test_case_gallery_and_visual_receipt(tmp_path):
@@ -242,7 +262,7 @@ def test_release_owner_promotion_pack_commands(tmp_path):
     assert main(["release-deck", "--root", str(ROOT), "--out-json", str(deck_json), "--out-md", str(deck_md)]) == 0
     assert main(["bundle-export", "--root", str(ROOT), "--out-json", str(export_json), "--out-md", str(export_md)]) == 0
 
-    assert '"version": "0.6.0"' in adoption_json.read_text(encoding="utf-8")
+    assert '"version": "0.7.0"' in adoption_json.read_text(encoding="utf-8")
     assert "cold_user_next_actions" in adoption_json.read_text(encoding="utf-8")
     assert "maturity_mapping" in scorecard_json.read_text(encoding="utf-8")
     assert "Release Owner Promotion Deck" in deck_md.read_text(encoding="utf-8")
@@ -291,6 +311,9 @@ def test_public_readiness_blocks_incomplete_tree(tmp_path):
         (["static-dashboard"], "demo/static_dashboard.html"),
         (["thesis-impact-brief"], "demo/thesis_impact_brief.json"),
         (["exposure-map"], "demo/exposure_map.json"),
+        (["scenario-library"], "demo/scenario_library.json"),
+        (["assumption-registry"], "demo/assumption_registry.json"),
+        (["data-dictionary-diff"], "demo/data_dictionary_diff.json"),
         (["fixture-doctor"], "demo/fixture_doctor.json"),
         (["schema-export"], "demo/input_schema.json"),
         (["troubleshoot"], "demo/troubleshoot.json"),

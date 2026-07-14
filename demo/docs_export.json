@@ -1,54 +1,75 @@
 {
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
-  "doc_count": 7,
+  "doc_count": 10,
   "documents": [
     {
-      "bytes": 10220,
+      "bytes": 11457,
       "path": "README.md",
       "purpose": "Primary operator and evaluator documentation.",
-      "sha256": "eaa234fbd5b55e4bd69f5f1cfeca03701b628d15a99d957528616ec5627dac1e",
+      "sha256": "c3f6dcc9a6f908cea1b097ac0f116e65ad22a30350647e4865f97e1432f10733",
       "title": "README"
     },
     {
-      "bytes": 7728,
+      "bytes": 1980,
+      "path": "demo/assumption_registry.md",
+      "purpose": "Bounded public assumptions and validation controls.",
+      "sha256": "04fe2e3e4e6d56c7f1d2d053399c0da14897b3131a2deb775d7e94b4bd0939ba",
+      "title": "Assumption registry"
+    },
+    {
+      "bytes": 8653,
       "path": "demo/cli_help.md",
       "purpose": "Deterministic command usage lines.",
-      "sha256": "8a67e4481f61330109ad3b1081057f806725f6ea3986cb559404629c02396d2b",
+      "sha256": "ee93ddaf0b9436ec8852b9f0a4a41565105a897f684f3cbb7d0a989d7a15acf0",
       "title": "CLI help"
     },
     {
-      "bytes": 7693,
+      "bytes": 8556,
       "path": "demo/command_matrix.md",
       "purpose": "Command inputs, outputs, and safety posture.",
-      "sha256": "3a370f34dc533f51d4b37e37bbc0d202462154ca3f3fb55821c55c2c564db686",
+      "sha256": "c85741c8d658518fe217c88f213b7ced6f11ea4f965f304bd33e99911b285ade",
       "title": "Command matrix"
+    },
+    {
+      "bytes": 2177,
+      "path": "demo/data_dictionary_diff.md",
+      "purpose": "Base and optional CSV dictionary comparison.",
+      "sha256": "86f1198eb0785c72d89faad3ffc7301d5e39d8c79da7e3c5dae4efc9161d0c47",
+      "title": "Data dictionary diff"
     },
     {
       "bytes": 1997,
       "path": "demo/input_schema.md",
       "purpose": "Static CSV schema and data dictionary.",
-      "sha256": "3cf4632070a11834f9e01f41a16d2380a346c968029e02e40002930472c97834",
+      "sha256": "3a6c9b953a7de268826cac1587e4cb56c9f1fff61a7546915c55a89f95db8130",
       "title": "Input schema"
     },
     {
-      "bytes": 785,
+      "bytes": 1123,
       "path": "demo/readme_snippet.md",
       "purpose": "Compact copyable quickstart snippet.",
-      "sha256": "d47dd5186caf62b6e7e49b49fa37a9eeaf29afcc6f6b60d264f90146564ddd56",
+      "sha256": "7e2cd08dda5284ff2eff896fdf44507b7856c93b5bffa0e00f32bf2a5dc1eb43",
       "title": "README snippet"
     },
     {
-      "bytes": 2053,
+      "bytes": 1936,
+      "path": "demo/scenario_library.md",
+      "purpose": "Synthetic scenarios for public schema adaptation review.",
+      "sha256": "02371cfe666cccda6b030621c4fd3df8bcf84ca9a5fb17f22f5a2920a4b7a31f",
+      "title": "Scenario library"
+    },
+    {
+      "bytes": 2357,
       "path": "demo/troubleshoot.md",
       "purpose": "Operator diagnostics and recovery steps.",
-      "sha256": "ab8727285b47c4ac4920030447288a0ac97fe3512995b0e454a711f683c735e8",
+      "sha256": "1de5bb412b1b2059ab976c672ba479ac2fb65105d531682d4a601a574573640b",
       "title": "Troubleshooting"
     },
     {
-      "bytes": 2782,
+      "bytes": 3062,
       "path": "skills/agent/macro-policy-thesis-map/SKILL.md",
       "purpose": "Agent protocol and finance boundaries.",
-      "sha256": "b60e5d1ad66a76390ba8ac8772aaaf4acb2b362e32a83cd6af795b4c35c50a57",
+      "sha256": "3e2ac9bf3e85192a9318b7b3132d99795f7124477666d6a588c01b0e1aa4108a",
       "title": "Agent skill"
     }
   ],
@@ -62,5 +83,5 @@
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli cli-help --root .",
     "PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root ."
   ],
-  "version": "0.6.0"
+  "version": "0.7.0"
 }

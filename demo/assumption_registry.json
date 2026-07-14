@@ -1,0 +1,49 @@
+{
+  "assumption_count": 4,
+  "assumptions": [
+    {
+      "assumption_id": "assumption-001",
+      "category": "data",
+      "owner": "public evaluator",
+      "schema_impact": "Base event columns remain required for build-packet.",
+      "statement": "Input rows are static CSV records supplied by the evaluator.",
+      "status": "active",
+      "validation": "fixture-doctor checks required columns, confidence bounds, dates, and advice-like terms."
+    },
+    {
+      "assumption_id": "assumption-002",
+      "category": "safety",
+      "owner": "release owner",
+      "schema_impact": "Do not add recommendation, allocation, target, order, or prediction fields.",
+      "statement": "Outputs must stay descriptive and research-only.",
+      "status": "active",
+      "validation": "public-scan, review-ledger, public-readiness, and selfcheck fail closed on unsafe text or missing boundaries."
+    },
+    {
+      "assumption_id": "assumption-003",
+      "category": "packaging",
+      "owner": "maintainer",
+      "schema_impact": "New default commands should use built-in metadata or bundled fixtures.",
+      "statement": "The package has zero runtime dependencies and bundled example CSVs for installed default commands.",
+      "status": "active",
+      "validation": "pytest and build backend tests verify version, wheel package data, and reproducible archives."
+    },
+    {
+      "assumption_id": "assumption-004",
+      "category": "adaptation",
+      "owner": "public evaluator",
+      "schema_impact": "Adapters should preserve date, event_type, policy_area, confidence, evidence, and thesis_link where possible.",
+      "statement": "Schema extensions are optional public-evaluator layers rather than replacements for the base event schema.",
+      "status": "active",
+      "validation": "data-dictionary-diff lists additive, shared, and omitted fields deterministically."
+    }
+  ],
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "review_controls": [
+    "Regenerate assumption-registry after changing schema or release boundaries.",
+    "Treat assumptions marked active as evaluator-facing constraints.",
+    "Escalate any need for live data, broker access, or investment advice outside this package."
+  ],
+  "title": "Assumption Registry",
+  "version": "0.7.0"
+}
