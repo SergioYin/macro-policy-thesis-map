@@ -9,13 +9,13 @@
 <text id="receipt-title" x="42" y="70" class="title">Macro Policy Visual Receipt</text>
 <text x="42" y="102" class="body">Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.</text>
 <text x="42" y="138" class="label">Hashes, Routes, Commands</text>
-<text x="42" y="180" class="mono">README.md  a2b7c4b9bdbc</text>
+<text x="42" y="180" class="mono">README.md  d1494a28d5d6</text>
 <text x="42" y="202" class="mono">examples/macro_events.csv  b7410919d62d</text>
 <text x="42" y="224" class="mono">examples/public_macro_cases.csv  ee511dd457dd</text>
-<text x="42" y="246" class="mono">demo/thesis_packet.json  21afd1a6478c</text>
-<text x="42" y="268" class="mono">demo/case_gallery.json  526e837ce331</text>
-<text x="42" y="290" class="mono">demo/review_ledger.json  d4f558b50d9e</text>
-<text x="42" y="312" class="mono">demo/public_readiness.json  6c77e1bbdc99</text>
+<text x="42" y="246" class="mono">examples/thesis_sensitivities.csv  ab0a6a3d0a7f</text>
+<text x="42" y="268" class="mono">examples/portfolio_exposures.csv  f9ea6de8ccd8</text>
+<text x="42" y="290" class="mono">demo/thesis_packet.json  21afd1a6478c</text>
+<text x="42" y="312" class="mono">demo/case_gallery.json  526e837ce331</text>
 <text x="42" y="334" class="mono"></text>
 <text x="42" y="356" class="mono">/cases/asia-001</text>
 <text x="42" y="378" class="mono">/cases/asia-002</text>
@@ -25,7 +25,7 @@
 <text x="42" y="466" class="mono">/cases/us-002</text>
 <text x="42" y="488" class="mono"></text>
 <text x="42" y="510" class="mono">macro-policy-thesis-map case-gallery --root .</text>
-<text x="42" y="532" class="mono">macro-policy-thesis-map visual-receipt --root . --format svg</text>
-<text x="42" y="554" class="mono">macro-policy-thesis-map public-readiness --root .</text>
-<text x="42" y="576" class="mono">macro-policy-thesis-map diff-check --root .</text>
+<text x="42" y="532" class="mono">macro-policy-thesis-map thesis-impact-brief --root .</text>
+<text x="42" y="554" class="mono">macro-policy-thesis-map exposure-map --root .</text>
+<text x="42" y="576" class="mono">macro-policy-thesis-map visual-receipt --root . --format svg</text>
 </svg>

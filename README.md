@@ -13,6 +13,8 @@ PYTHONPATH=src python -m macro_policy_thesis_map.cli review-ledger --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli fixture-doctor --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli schema-export --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli static-dashboard --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli thesis-impact-brief --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli exposure-map --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli case-gallery --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli visual-receipt --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli release-manifest --root .
@@ -38,13 +40,15 @@ macro-policy-thesis-map review-ledger
 macro-policy-thesis-map fixture-doctor
 macro-policy-thesis-map schema-export
 macro-policy-thesis-map static-dashboard
+macro-policy-thesis-map thesis-impact-brief
+macro-policy-thesis-map exposure-map
 macro-policy-thesis-map case-gallery
 macro-policy-thesis-map visual-receipt
 macro-policy-thesis-map quickstart-check
 macro-policy-thesis-map command-matrix
 ```
 
-The installed CLI uses bundled example CSVs for default event and case inputs when `examples/macro_events.csv`, `examples/prior_macro_events.csv`, and `examples/public_macro_cases.csv` are not present in the current `--root`. Pass `--events`, `--current`, `--prior`, or `--cases` to use your own static CSVs. `selfcheck` and `diff-check` validate the source tree and should be run from a project checkout.
+The installed CLI uses bundled example CSVs for default event, case, sensitivity, and exposure inputs when `examples/macro_events.csv`, `examples/prior_macro_events.csv`, `examples/public_macro_cases.csv`, `examples/thesis_sensitivities.csv`, and `examples/portfolio_exposures.csv` are not present in the current `--root`. Pass `--events`, `--current`, `--prior`, `--cases`, `--sensitivities`, or `--exposures` to use your own static CSVs. `selfcheck` and `diff-check` validate the source tree and should be run from a project checkout.
 
 ## Boundaries
 
@@ -58,6 +62,8 @@ This project is research tooling only. It does not fetch live data, connect to b
 - `demo/fixture_doctor.md` and `demo/fixture_doctor.json`
 - `demo/input_schema.md` and `demo/input_schema.json`
 - `demo/static_dashboard.html`
+- `demo/thesis_impact_brief.md` and `demo/thesis_impact_brief.json`
+- `demo/exposure_map.md` and `demo/exposure_map.json`
 - `demo/case_gallery.md` and `demo/case_gallery.json`
 - `demo/visual_receipt.md`, `demo/visual_receipt.json`, `demo/visual_receipt.svg`, and `demo/visual_receipt.html`
 - `demo/release_manifest.md` and `demo/release_manifest.json`
@@ -88,6 +94,20 @@ case_id,region,case_title,date,policy_area,channel,direction,confidence,evidence
 
 The bundled gallery fixture includes US, EU, and Asia examples. These rows are public-safe examples for exercising routes, commands, and visual receipt hashes; they are not live macro data and are not financial recommendations.
 
+The static thesis sensitivity fixture uses:
+
+```text
+thesis_id,policy_area,sensitivity_axis,shock_label,impact_direction,impact_score,confidence,rationale
+```
+
+The static portfolio exposure fixture uses:
+
+```text
+portfolio_id,sleeve,exposure_id,policy_area,thesis_id,exposure_direction,exposure_score,rationale
+```
+
+The bundled sensitivity and exposure rows are synthetic. `impact_score` and `exposure_score` are descriptive static scores from `0` to `1`; they are not live risk measures, allocation targets, trade instructions, or recommendations.
+
 ## Commands
 
 - `build-packet`: creates the primary JSON and Markdown thesis map.
@@ -96,6 +116,8 @@ The bundled gallery fixture includes US, EU, and Asia examples. These rows are p
 - `fixture-doctor`: validates static CSV fixtures for columns, event types, confidence bounds, stale dates, and advice-like terms.
 - `schema-export`: writes the machine-readable input schema and data dictionary.
 - `static-dashboard`: writes a no-JavaScript HTML dashboard.
+- `thesis-impact-brief`: writes a deterministic Markdown/JSON brief for synthetic thesis sensitivities.
+- `exposure-map`: writes a deterministic Markdown/JSON map from synthetic exposure rows to thesis sensitivity coverage.
 - `case-gallery`: writes a public-safe multi-region case gallery as Markdown and JSON.
 - `visual-receipt`: writes a static SVG or HTML receipt plus JSON/Markdown receipt metadata.
 - `release-manifest`: records artifact paths, sizes, and hashes.

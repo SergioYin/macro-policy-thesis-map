@@ -1,0 +1,102 @@
+{
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "exposure_count": 5,
+  "exposures": [
+    {
+      "exposure_direction": "term-premium-linked",
+      "exposure_id": "exp-003",
+      "exposure_score": 0.49,
+      "policy_area": "fiscal-policy",
+      "portfolio_id": "synthetic-core",
+      "rationale": "Synthetic exposure score for duration supply context",
+      "sensitivity_match": true,
+      "sleeve": "duration-context",
+      "thesis_id": "thesis-gamma"
+    },
+    {
+      "exposure_direction": "demand-linked",
+      "exposure_id": "exp-002",
+      "exposure_score": 0.52,
+      "policy_area": "labor-market",
+      "portfolio_id": "synthetic-core",
+      "rationale": "Synthetic exposure score for cyclical demand-channel monitoring",
+      "sensitivity_match": true,
+      "sleeve": "macro-cycle",
+      "thesis_id": "thesis-beta"
+    },
+    {
+      "exposure_direction": "rate-sensitive",
+      "exposure_id": "exp-001",
+      "exposure_score": 0.67,
+      "policy_area": "monetary-policy",
+      "portfolio_id": "synthetic-core",
+      "rationale": "Synthetic exposure score for instruments described as rate-path sensitive",
+      "sensitivity_match": true,
+      "sleeve": "rates-context",
+      "thesis_id": "thesis-alpha"
+    },
+    {
+      "exposure_direction": "price-level-linked",
+      "exposure_id": "exp-004",
+      "exposure_score": 0.57,
+      "policy_area": "inflation",
+      "portfolio_id": "synthetic-income",
+      "rationale": "Synthetic exposure score for inflation breadth context",
+      "sensitivity_match": true,
+      "sleeve": "inflation-context",
+      "thesis_id": "thesis-delta"
+    },
+    {
+      "exposure_direction": "wage-cost-linked",
+      "exposure_id": "exp-005",
+      "exposure_score": 0.44,
+      "policy_area": "labor-market",
+      "portfolio_id": "synthetic-income",
+      "rationale": "Synthetic exposure score for labor cost sensitivity context",
+      "sensitivity_match": true,
+      "sleeve": "macro-cycle",
+      "thesis_id": "thesis-beta"
+    }
+  ],
+  "fixture_type": "synthetic static exposure examples",
+  "matched_exposure_count": 5,
+  "portfolio_count": 2,
+  "portfolios": [
+    {
+      "average_exposure_score": 0.56,
+      "exposure_count": 3,
+      "matched_exposure_count": 3,
+      "policy_areas": [
+        "fiscal-policy",
+        "labor-market",
+        "monetary-policy"
+      ],
+      "portfolio_id": "synthetic-core",
+      "sleeve_count": 3
+    },
+    {
+      "average_exposure_score": 0.505,
+      "exposure_count": 2,
+      "matched_exposure_count": 2,
+      "policy_areas": [
+        "inflation",
+        "labor-market"
+      ],
+      "portfolio_id": "synthetic-income",
+      "sleeve_count": 2
+    }
+  ],
+  "sources": {
+    "exposures": {
+      "bytes": 835,
+      "path": "examples/portfolio_exposures.csv",
+      "sha256": "f9ea6de8ccd82b4dc49a189d61f7512e6ccc8a387d11e4fcaf89e82029eb3489"
+    },
+    "sensitivities": {
+      "bytes": 1016,
+      "path": "examples/thesis_sensitivities.csv",
+      "sha256": "ab0a6a3d0a7f0bc9c9044b924a0d0eab5a9bbb34fb7de8fd9ceb92cae3a0b59d"
+    }
+  },
+  "title": "Static Portfolio Exposure Map"
+}

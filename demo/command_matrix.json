@@ -1,6 +1,6 @@
 {
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
-  "command_count": 18,
+  "command_count": 20,
   "commands": [
     {
       "command": "build-packet",
@@ -42,13 +42,37 @@
     {
       "command": "static-dashboard",
       "inputs": [
-        "examples/macro_events.csv or bundled macro_events.csv"
+        "examples/macro_events.csv plus optional bundled sensitivity and exposure fixtures"
       ],
       "outputs": [
         "demo/static_dashboard.html"
       ],
-      "purpose": "Render a no-JavaScript HTML view of the packet and review ledger.",
+      "purpose": "Render a no-JavaScript HTML view of the packet, review ledger, and static sensitivity summaries.",
       "safety": "Static local rendering only."
+    },
+    {
+      "command": "thesis-impact-brief",
+      "inputs": [
+        "examples/thesis_sensitivities.csv or bundled thesis_sensitivities.csv"
+      ],
+      "outputs": [
+        "demo/thesis_impact_brief.md",
+        "demo/thesis_impact_brief.json"
+      ],
+      "purpose": "Summarize synthetic thesis sensitivity rows by thesis, policy area, and scenario axis.",
+      "safety": "Descriptive static sensitivity mapping only; no forecast, advice, or trade instruction."
+    },
+    {
+      "command": "exposure-map",
+      "inputs": [
+        "examples/portfolio_exposures.csv and examples/thesis_sensitivities.csv or bundled fixtures"
+      ],
+      "outputs": [
+        "demo/exposure_map.md",
+        "demo/exposure_map.json"
+      ],
+      "purpose": "Map synthetic portfolio exposure rows to static thesis sensitivity axes.",
+      "safety": "Reports exposure coverage and static scores only; no allocation target or recommendation."
     },
     {
       "command": "case-gallery",

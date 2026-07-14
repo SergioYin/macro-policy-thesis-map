@@ -41,6 +41,8 @@ def test_dashboard_manifest_maturity_and_selfcheck(tmp_path):
     maturity_md = tmp_path / "maturity.md"
 
     assert main(["static-dashboard", "--root", str(ROOT), "--out-html", str(dashboard)]) == 0
+    assert main(["thesis-impact-brief", "--root", str(ROOT)]) == 0
+    assert main(["exposure-map", "--root", str(ROOT)]) == 0
     assert main(["case-gallery", "--root", str(ROOT)]) == 0
     assert main(["visual-receipt", "--root", str(ROOT)]) == 0
     assert main(["release-manifest", "--root", str(ROOT), "--out-json", str(manifest_json), "--out-md", str(manifest_md)]) == 0
@@ -81,9 +83,24 @@ def test_fixture_doctor_and_schema_export(tmp_path):
     assert '"status": "pass"' in doctor_json.read_text(encoding="utf-8")
     assert "Fixture Doctor" in doctor_md.read_text(encoding="utf-8")
     schema_text = schema_json.read_text(encoding="utf-8")
-    assert '"schema_version": "0.3.0"' in schema_text
+    assert '"schema_version": "0.4.0"' in schema_text
     assert "confidence" in schema_text
     assert "Data Dictionary" in schema_md.read_text(encoding="utf-8")
+
+
+def test_thesis_impact_brief_and_exposure_map(tmp_path):
+    impact_json = tmp_path / "impact.json"
+    impact_md = tmp_path / "impact.md"
+    exposure_json = tmp_path / "exposure.json"
+    exposure_md = tmp_path / "exposure.md"
+
+    assert main(["thesis-impact-brief", "--root", str(ROOT), "--out-json", str(impact_json), "--out-md", str(impact_md)]) == 0
+    assert main(["exposure-map", "--root", str(ROOT), "--out-json", str(exposure_json), "--out-md", str(exposure_md)]) == 0
+
+    assert '"thesis_count": 4' in impact_json.read_text(encoding="utf-8")
+    assert "Static Thesis Impact Brief" in impact_md.read_text(encoding="utf-8")
+    assert '"matched_exposure_count": 5' in exposure_json.read_text(encoding="utf-8")
+    assert "Static Portfolio Exposure Map" in exposure_md.read_text(encoding="utf-8")
 
 
 def test_case_gallery_and_visual_receipt(tmp_path):
@@ -218,6 +235,8 @@ def test_public_readiness_blocks_incomplete_tree(tmp_path):
         (["compare-history"], "demo/history_comparison.json"),
         (["review-ledger"], "demo/review_ledger.json"),
         (["static-dashboard"], "demo/static_dashboard.html"),
+        (["thesis-impact-brief"], "demo/thesis_impact_brief.json"),
+        (["exposure-map"], "demo/exposure_map.json"),
         (["fixture-doctor"], "demo/fixture_doctor.json"),
         (["schema-export"], "demo/input_schema.json"),
         (["case-gallery"], "demo/case_gallery.json"),

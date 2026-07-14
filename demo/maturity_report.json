@@ -22,6 +22,14 @@
       "passed": true
     },
     {
+      "name": "sensitivity_layer",
+      "passed": true
+    },
+    {
+      "name": "exposure_layer",
+      "passed": true
+    },
+    {
       "name": "visual_receipt",
       "passed": true
     },
@@ -38,7 +46,7 @@
       "passed": true
     }
   ],
-  "max_score": 9,
-  "score": 9,
+  "max_score": 11,
+  "score": 11,
   "status": "ready"
 }

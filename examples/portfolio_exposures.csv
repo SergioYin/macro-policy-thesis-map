@@ -1,0 +1,6 @@
+portfolio_id,sleeve,exposure_id,policy_area,thesis_id,exposure_direction,exposure_score,rationale
+synthetic-core,rates-context,exp-001,monetary-policy,thesis-alpha,rate-sensitive,0.67,Synthetic exposure score for instruments described as rate-path sensitive
+synthetic-core,macro-cycle,exp-002,labor-market,thesis-beta,demand-linked,0.52,Synthetic exposure score for cyclical demand-channel monitoring
+synthetic-core,duration-context,exp-003,fiscal-policy,thesis-gamma,term-premium-linked,0.49,Synthetic exposure score for duration supply context
+synthetic-income,inflation-context,exp-004,inflation,thesis-delta,price-level-linked,0.57,Synthetic exposure score for inflation breadth context
+synthetic-income,macro-cycle,exp-005,labor-market,thesis-beta,wage-cost-linked,0.44,Synthetic exposure score for labor cost sensitivity context

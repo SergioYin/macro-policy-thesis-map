@@ -18,16 +18,20 @@ from .core import (
     compare_packets,
     diff_check,
     evidence_bundle,
+    exposure_map,
     fixture_doctor,
     input_schema,
     load_cases,
     load_events,
+    load_exposures,
+    load_sensitivities,
     maturity,
     public_findings,
     public_readiness,
     quickstart_check,
     release_manifest,
     review_ledger,
+    thesis_impact_brief,
 )
 from .io import read_json, resolve, write_json, write_text
 from .render import (
@@ -37,6 +41,7 @@ from .render import (
     case_gallery_md,
     dashboard_html,
     evidence_bundle_md,
+    exposure_map_md,
     fixture_doctor_md,
     input_schema_md,
     ledger_md,
@@ -45,6 +50,7 @@ from .render import (
     packet_md,
     public_readiness_md,
     quickstart_md,
+    thesis_impact_brief_md,
     visual_receipt_html,
     visual_receipt_md,
     visual_receipt_svg,
@@ -54,6 +60,8 @@ from .render import (
 DEFAULT_EVENTS = "examples/macro_events.csv"
 DEFAULT_PRIOR_EVENTS = "examples/prior_macro_events.csv"
 DEFAULT_CASES = "examples/public_macro_cases.csv"
+DEFAULT_SENSITIVITIES = "examples/thesis_sensitivities.csv"
+DEFAULT_EXPOSURES = "examples/portfolio_exposures.csv"
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -97,6 +105,21 @@ def build_parser() -> argparse.ArgumentParser:
     add_event_args(dashboard)
     dashboard.add_argument("--out-html", default="demo/static_dashboard.html")
     dashboard.set_defaults(func=cmd_static_dashboard)
+
+    impact = sub.add_parser("thesis-impact-brief", help="Build a static thesis sensitivity impact brief.")
+    impact.add_argument("--root", default=".")
+    impact.add_argument("--sensitivities", default=DEFAULT_SENSITIVITIES)
+    impact.add_argument("--out-md", default="demo/thesis_impact_brief.md")
+    impact.add_argument("--out-json", default="demo/thesis_impact_brief.json")
+    impact.set_defaults(func=cmd_thesis_impact_brief)
+
+    exposures = sub.add_parser("exposure-map", help="Build a static portfolio exposure map against thesis sensitivities.")
+    exposures.add_argument("--root", default=".")
+    exposures.add_argument("--sensitivities", default=DEFAULT_SENSITIVITIES)
+    exposures.add_argument("--exposures", default=DEFAULT_EXPOSURES)
+    exposures.add_argument("--out-md", default="demo/exposure_map.md")
+    exposures.add_argument("--out-json", default="demo/exposure_map.json")
+    exposures.set_defaults(func=cmd_exposure_map)
 
     gallery = sub.add_parser("case-gallery", help="Build a public-safe multi-region macro policy case gallery.")
     gallery.add_argument("--root", default=".")
@@ -223,7 +246,36 @@ def cmd_review_ledger(args: argparse.Namespace) -> int:
 def cmd_static_dashboard(args: argparse.Namespace) -> int:
     root, packet = packet_from_args(args)
     ledger = review_ledger(packet, 0.55)
-    write_text(resolve(root, args.out_html), dashboard_html(packet, ledger))
+    impact = None
+    exposures = None
+    try:
+        sensitivity_path, sensitivities = load_sensitivities_arg(root, DEFAULT_SENSITIVITIES)
+        impact = thesis_impact_brief(sensitivities, sensitivity_path)
+        exposure_path, exposure_rows = load_exposures_arg(root, DEFAULT_EXPOSURES)
+        exposures = exposure_map(exposure_rows, sensitivities, exposure_path, sensitivity_path)
+    except (OSError, ValueError):
+        impact = None
+        exposures = None
+    write_text(resolve(root, args.out_html), dashboard_html(packet, ledger, impact, exposures))
+    return 0
+
+
+def cmd_thesis_impact_brief(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    path, sensitivities = load_sensitivities_arg(root, args.sensitivities)
+    payload = thesis_impact_brief(sensitivities, path)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), thesis_impact_brief_md(payload))
+    return 0
+
+
+def cmd_exposure_map(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    sensitivity_path, sensitivities = load_sensitivities_arg(root, args.sensitivities)
+    exposure_path, exposures = load_exposures_arg(root, args.exposures)
+    payload = exposure_map(exposures, sensitivities, exposure_path, sensitivity_path)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), exposure_map_md(payload))
     return 0
 
 
@@ -357,8 +409,12 @@ def cmd_selfcheck(args: argparse.Namespace) -> int:
         root / "LICENSE",
         root / "pyproject.toml",
         root / "examples" / "macro_events.csv",
+        root / "examples" / "thesis_sensitivities.csv",
+        root / "examples" / "portfolio_exposures.csv",
         root / "src" / "macro_policy_thesis_map" / "examples" / "macro_events.csv",
         root / "src" / "macro_policy_thesis_map" / "examples" / "prior_macro_events.csv",
+        root / "src" / "macro_policy_thesis_map" / "examples" / "thesis_sensitivities.csv",
+        root / "src" / "macro_policy_thesis_map" / "examples" / "portfolio_exposures.csv",
         root / "tests" / "test_cli.py",
         root / "skills" / "agent" / "macro-policy-thesis-map" / "SKILL.md",
         root / "demo" / "quickstart_check.json",
@@ -370,6 +426,8 @@ def cmd_selfcheck(args: argparse.Namespace) -> int:
         root / "demo" / "input_schema.json",
         root / "demo" / "case_gallery.json",
         root / "demo" / "visual_receipt.json",
+        root / "demo" / "thesis_impact_brief.json",
+        root / "demo" / "exposure_map.json",
     ]
     missing = [str(path.relative_to(root)) for path in required if not path.exists()]
     readme = (root / "README.md").read_text(encoding="utf-8").lower() if (root / "README.md").exists() else ""
@@ -401,6 +459,26 @@ def load_cases_arg(root: Path, value: str, default_value: str) -> tuple[Path, li
     if value == default_value:
         with resources.as_file(bundled_event_resource(Path(default_value).name)) as bundled_path:
             return bundled_path, load_cases(bundled_path)
+    raise FileNotFoundError(path)
+
+
+def load_sensitivities_arg(root: Path, value: str) -> tuple[Path, list[dict[str, object]]]:
+    path = resolve(root, value)
+    if path.exists():
+        return path, load_sensitivities(path)
+    if value == DEFAULT_SENSITIVITIES:
+        with resources.as_file(bundled_event_resource(Path(DEFAULT_SENSITIVITIES).name)) as bundled_path:
+            return bundled_path, load_sensitivities(bundled_path)
+    raise FileNotFoundError(path)
+
+
+def load_exposures_arg(root: Path, value: str) -> tuple[Path, list[dict[str, object]]]:
+    path = resolve(root, value)
+    if path.exists():
+        return path, load_exposures(path)
+    if value == DEFAULT_EXPOSURES:
+        with resources.as_file(bundled_event_resource(Path(DEFAULT_EXPOSURES).name)) as bundled_path:
+            return bundled_path, load_exposures(bundled_path)
     raise FileNotFoundError(path)
 
 

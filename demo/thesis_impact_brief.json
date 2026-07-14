@@ -1,0 +1,153 @@
+{
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "fixture_type": "synthetic static thesis sensitivity examples",
+  "policy_area_count": 4,
+  "policy_areas": [
+    {
+      "average_impact_score": 0.61,
+      "axis_count": 1,
+      "policy_area": "fiscal-policy",
+      "thesis_count": 1
+    },
+    {
+      "average_impact_score": 0.69,
+      "axis_count": 1,
+      "policy_area": "inflation",
+      "thesis_count": 1
+    },
+    {
+      "average_impact_score": 0.59,
+      "axis_count": 2,
+      "policy_area": "labor-market",
+      "thesis_count": 1
+    },
+    {
+      "average_impact_score": 0.65,
+      "axis_count": 1,
+      "policy_area": "monetary-policy",
+      "thesis_count": 1
+    }
+  ],
+  "sensitivities": [
+    {
+      "confidence": 0.68,
+      "impact_direction": "relief",
+      "impact_score": 0.58,
+      "policy_area": "monetary-policy",
+      "rationale": "Synthetic row maps easier rate path language to reduced discount-rate pressure",
+      "sensitivity_axis": "rate-path",
+      "shock_label": "faster-easing",
+      "thesis_id": "thesis-alpha"
+    },
+    {
+      "confidence": 0.76,
+      "impact_direction": "pressure",
+      "impact_score": 0.72,
+      "policy_area": "monetary-policy",
+      "rationale": "Synthetic row maps tighter rate path language to valuation pressure in rate-sensitive thesis notes",
+      "sensitivity_axis": "rate-path",
+      "shock_label": "higher-for-longer",
+      "thesis_id": "thesis-alpha"
+    },
+    {
+      "confidence": 0.71,
+      "impact_direction": "moderation",
+      "impact_score": 0.63,
+      "policy_area": "labor-market",
+      "rationale": "Synthetic row links slower labor momentum to softer demand-channel framing",
+      "sensitivity_axis": "employment-momentum",
+      "shock_label": "cooling-labor",
+      "thesis_id": "thesis-beta"
+    },
+    {
+      "confidence": 0.66,
+      "impact_direction": "pressure",
+      "impact_score": 0.55,
+      "policy_area": "labor-market",
+      "rationale": "Synthetic row maps wage pressure to margin-channel monitoring",
+      "sensitivity_axis": "wage-pressure",
+      "shock_label": "firm-wage-costs",
+      "thesis_id": "thesis-beta"
+    },
+    {
+      "confidence": 0.74,
+      "impact_direction": "pressure",
+      "impact_score": 0.69,
+      "policy_area": "inflation",
+      "rationale": "Synthetic row maps services breadth to inflation persistence monitoring",
+      "sensitivity_axis": "inflation-breadth",
+      "shock_label": "sticky-services",
+      "thesis_id": "thesis-delta"
+    },
+    {
+      "confidence": 0.64,
+      "impact_direction": "pressure",
+      "impact_score": 0.61,
+      "policy_area": "fiscal-policy",
+      "rationale": "Synthetic row links duration supply context to term-premium monitoring",
+      "sensitivity_axis": "issuance-mix",
+      "shock_label": "long-duration-supply",
+      "thesis_id": "thesis-gamma"
+    }
+  ],
+  "sensitivity_count": 6,
+  "source": {
+    "bytes": 1016,
+    "path": "examples/thesis_sensitivities.csv",
+    "sha256": "ab0a6a3d0a7f0bc9c9044b924a0d0eab5a9bbb34fb7de8fd9ceb92cae3a0b59d"
+  },
+  "theses": [
+    {
+      "average_confidence": 0.72,
+      "average_impact_score": 0.65,
+      "axis_count": 1,
+      "directions": [
+        "pressure",
+        "relief"
+      ],
+      "policy_areas": [
+        "monetary-policy"
+      ],
+      "thesis_id": "thesis-alpha"
+    },
+    {
+      "average_confidence": 0.685,
+      "average_impact_score": 0.59,
+      "axis_count": 2,
+      "directions": [
+        "moderation",
+        "pressure"
+      ],
+      "policy_areas": [
+        "labor-market"
+      ],
+      "thesis_id": "thesis-beta"
+    },
+    {
+      "average_confidence": 0.74,
+      "average_impact_score": 0.69,
+      "axis_count": 1,
+      "directions": [
+        "pressure"
+      ],
+      "policy_areas": [
+        "inflation"
+      ],
+      "thesis_id": "thesis-delta"
+    },
+    {
+      "average_confidence": 0.64,
+      "average_impact_score": 0.61,
+      "axis_count": 1,
+      "directions": [
+        "pressure"
+      ],
+      "policy_areas": [
+        "fiscal-policy"
+      ],
+      "thesis_id": "thesis-gamma"
+    }
+  ],
+  "thesis_count": 4,
+  "title": "Static Thesis Impact Brief"
+}

@@ -6,7 +6,7 @@
     "Do not add live market data, broker actions, trading recommendations, or personalized advice.",
     "Treat review-ledger blockers as release blockers until the input text is revised."
   ],
-  "step_count": 5,
+  "step_count": 6,
   "steps": [
     {
       "command": "macro-policy-thesis-map command-matrix",
@@ -27,15 +27,21 @@
       "title": "Review evidence safety"
     },
     {
+      "command": "macro-policy-thesis-map thesis-impact-brief && macro-policy-thesis-map exposure-map",
+      "expected_result": "Synthetic sensitivity and exposure maps are written as Markdown and JSON.",
+      "step": 4,
+      "title": "Render static sensitivity and exposure layers"
+    },
+    {
       "command": "macro-policy-thesis-map public-readiness",
       "expected_result": "A public readiness report lists pass/fail gates.",
-      "step": 4,
+      "step": 5,
       "title": "Check public readiness"
     },
     {
       "command": "macro-policy-thesis-map selfcheck && macro-policy-thesis-map public-scan && macro-policy-thesis-map diff-check",
       "expected_result": "All commands exit successfully before sharing artifacts.",
-      "step": 5,
+      "step": 6,
       "title": "Run final local checks"
     }
   ]

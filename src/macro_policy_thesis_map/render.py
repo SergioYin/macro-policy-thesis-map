@@ -208,6 +208,108 @@ Region count: {payload['region_count']}
 """
 
 
+def thesis_impact_brief_md(payload: dict[str, Any]) -> str:
+    theses = [
+        [
+            item["thesis_id"],
+            ", ".join(item["policy_areas"]),
+            item["axis_count"],
+            f"{item['average_impact_score']:.3f}",
+            f"{item['average_confidence']:.3f}",
+            ", ".join(item["directions"]),
+        ]
+        for item in payload["theses"]
+    ]
+    areas = [[item["policy_area"], item["thesis_count"], item["axis_count"], f"{item['average_impact_score']:.3f}"] for item in payload["policy_areas"]]
+    rows = [
+        [
+            item["thesis_id"],
+            item["policy_area"],
+            item["sensitivity_axis"],
+            item["shock_label"],
+            item["impact_direction"],
+            f"{item['impact_score']:.3f}",
+            f"{item['confidence']:.3f}",
+            item["rationale"],
+        ]
+        for item in payload["sensitivities"]
+    ]
+    source = payload.get("source", {})
+    source_line = f"\nFixture hash: {source['sha256'][:16]}\n" if source else ""
+    return f"""# Static Thesis Impact Brief
+
+{payload['boundaries']}
+
+Fixture type: {payload['fixture_type']}
+
+Sensitivity count: {payload['sensitivity_count']}
+
+Thesis count: {payload['thesis_count']}
+
+Policy area count: {payload['policy_area_count']}
+{source_line}
+## Thesis Summary
+
+{table(["Thesis", "Policy areas", "Axes", "Avg impact", "Avg confidence", "Directions"], theses)}
+
+## Policy Area Summary
+
+{table(["Area", "Theses", "Axes", "Avg impact"], areas)}
+
+## Sensitivity Rows
+
+{table(["Thesis", "Area", "Axis", "Shock", "Direction", "Impact", "Confidence", "Rationale"], rows)}
+"""
+
+
+def exposure_map_md(payload: dict[str, Any]) -> str:
+    portfolios = [
+        [
+            item["portfolio_id"],
+            item["sleeve_count"],
+            item["exposure_count"],
+            item["matched_exposure_count"],
+            f"{item['average_exposure_score']:.3f}",
+            ", ".join(item["policy_areas"]),
+        ]
+        for item in payload["portfolios"]
+    ]
+    exposures = [
+        [
+            item["portfolio_id"],
+            item["sleeve"],
+            item["exposure_id"],
+            item["policy_area"],
+            item["thesis_id"],
+            item["exposure_direction"],
+            f"{item['exposure_score']:.3f}",
+            "yes" if item["sensitivity_match"] else "no",
+            item["rationale"],
+        ]
+        for item in payload["exposures"]
+    ]
+    return f"""# Static Portfolio Exposure Map
+
+{payload['boundaries']}
+
+Fixture type: {payload['fixture_type']}
+
+Portfolio count: {payload['portfolio_count']}
+
+Exposure count: {payload['exposure_count']}
+
+Matched exposure count: {payload['matched_exposure_count']}
+
+## Portfolio Summary
+
+{table(["Portfolio", "Sleeves", "Exposures", "Matched", "Avg exposure", "Policy areas"], portfolios)}
+
+## Exposure Rows
+
+{table(["Portfolio", "Sleeve", "Exposure", "Area", "Thesis", "Direction", "Score", "Sensitivity match", "Rationale"], exposures)}
+"""
+
+
 def evidence_bundle_md(payload: dict[str, Any]) -> str:
     artifacts = [[item["path"], item["bytes"], item["sha256"][:16]] for item in payload["artifacts"]]
     missing = [[item] for item in payload["missing"]] or [["none"]]
@@ -363,7 +465,7 @@ Step count: {payload['step_count']}
 """
 
 
-def dashboard_html(packet: dict[str, Any], ledger: dict[str, Any]) -> str:
+def dashboard_html(packet: dict[str, Any], ledger: dict[str, Any], impact: dict[str, Any] | None = None, exposures: dict[str, Any] | None = None) -> str:
     area_rows = "\n".join(
         f"<tr><td>{escape(item['policy_area'])}</td><td>{escape(item['dominant_direction'])}</td><td>{item['event_count']}</td><td>{item['average_confidence']:.3f}</td></tr>"
         for item in packet["policy_areas"]
@@ -372,6 +474,24 @@ def dashboard_html(packet: dict[str, Any], ledger: dict[str, Any]) -> str:
         f"<tr><td>{escape(item['severity'])}</td><td>{escape(item['policy_area'])}</td><td>{escape(item['finding'])}</td></tr>"
         for item in ledger["findings"]
     )
+    sensitivity_section = ""
+    if impact is not None:
+        thesis_rows = "\n".join(
+            f"<tr><td>{escape(item['thesis_id'])}</td><td>{escape(', '.join(item['policy_areas']))}</td><td>{item['axis_count']}</td><td>{item['average_impact_score']:.3f}</td></tr>"
+            for item in impact["theses"]
+        )
+        exposure_rows = ""
+        if exposures is not None:
+            exposure_rows = "\n".join(
+                f"<tr><td>{escape(item['portfolio_id'])}</td><td>{item['exposure_count']}</td><td>{item['matched_exposure_count']}</td><td>{item['average_exposure_score']:.3f}</td></tr>"
+                for item in exposures["portfolios"]
+            )
+        sensitivity_section = f"""
+<h2>Static Sensitivity Layer</h2>
+<p><a href="thesis_impact_brief.md">Thesis impact brief</a> and <a href="exposure_map.md">exposure map</a></p>
+<table><thead><tr><th>Thesis</th><th>Policy areas</th><th>Axes</th><th>Avg impact</th></tr></thead><tbody>{thesis_rows}</tbody></table>
+<h2>Static Exposure Layer</h2>
+<table><thead><tr><th>Portfolio</th><th>Exposures</th><th>Matched</th><th>Avg exposure</th></tr></thead><tbody>{exposure_rows}</tbody></table>"""
     return f"""<!doctype html>
 <html lang="en">
 <meta charset="utf-8">
@@ -389,6 +509,7 @@ th,td{{border:1px solid #d1d5db;padding:.55rem;text-align:left;vertical-align:to
 <table><thead><tr><th>Area</th><th>Direction</th><th>Events</th><th>Avg confidence</th></tr></thead><tbody>{area_rows}</tbody></table>
 <h2>Review Ledger</h2>
 <table><thead><tr><th>Severity</th><th>Area</th><th>Finding</th></tr></thead><tbody>{finding_rows}</tbody></table>
+{sensitivity_section}
 </main>
 </html>
 """

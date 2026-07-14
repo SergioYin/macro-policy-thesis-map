@@ -40,6 +40,26 @@ CASE_COLUMNS = [
     "route",
     "command",
 ]
+SENSITIVITY_COLUMNS = [
+    "thesis_id",
+    "policy_area",
+    "sensitivity_axis",
+    "shock_label",
+    "impact_direction",
+    "impact_score",
+    "confidence",
+    "rationale",
+]
+EXPOSURE_COLUMNS = [
+    "portfolio_id",
+    "sleeve",
+    "exposure_id",
+    "policy_area",
+    "thesis_id",
+    "exposure_direction",
+    "exposure_score",
+    "rationale",
+]
 EXPECTED_EVENTS = {"policy_signal", "macro_observation", "market_context", "thesis_note"}
 ADVICE_TERMS = ["buy", "sell", "hold", "target allocation", "price target", "guaranteed return", "prediction"]
 DEMO_ARTIFACTS = [
@@ -50,6 +70,10 @@ DEMO_ARTIFACTS = [
     "demo/review_ledger.md",
     "demo/review_ledger.json",
     "demo/static_dashboard.html",
+    "demo/thesis_impact_brief.md",
+    "demo/thesis_impact_brief.json",
+    "demo/exposure_map.md",
+    "demo/exposure_map.json",
     "demo/release_manifest.md",
     "demo/release_manifest.json",
     "demo/maturity_report.md",
@@ -98,10 +122,24 @@ COMMAND_SPECS = [
     },
     {
         "command": "static-dashboard",
-        "purpose": "Render a no-JavaScript HTML view of the packet and review ledger.",
-        "inputs": ["examples/macro_events.csv or bundled macro_events.csv"],
+        "purpose": "Render a no-JavaScript HTML view of the packet, review ledger, and static sensitivity summaries.",
+        "inputs": ["examples/macro_events.csv plus optional bundled sensitivity and exposure fixtures"],
         "outputs": ["demo/static_dashboard.html"],
         "safety": "Static local rendering only.",
+    },
+    {
+        "command": "thesis-impact-brief",
+        "purpose": "Summarize synthetic thesis sensitivity rows by thesis, policy area, and scenario axis.",
+        "inputs": ["examples/thesis_sensitivities.csv or bundled thesis_sensitivities.csv"],
+        "outputs": ["demo/thesis_impact_brief.md", "demo/thesis_impact_brief.json"],
+        "safety": "Descriptive static sensitivity mapping only; no forecast, advice, or trade instruction.",
+    },
+    {
+        "command": "exposure-map",
+        "purpose": "Map synthetic portfolio exposure rows to static thesis sensitivity axes.",
+        "inputs": ["examples/portfolio_exposures.csv and examples/thesis_sensitivities.csv or bundled fixtures"],
+        "outputs": ["demo/exposure_map.md", "demo/exposure_map.json"],
+        "safety": "Reports exposure coverage and static scores only; no allocation target or recommendation.",
     },
     {
         "command": "case-gallery",
@@ -273,6 +311,58 @@ def load_cases(path: Path) -> list[dict[str, Any]]:
             }
         )
     return sorted(cases, key=lambda item: (item["region"], item["case_id"]))
+
+
+def load_sensitivities(path: Path) -> list[dict[str, Any]]:
+    header, rows = read_csv_document(path)
+    missing = [column for column in SENSITIVITY_COLUMNS if column not in header]
+    if missing:
+        raise ValueError(f"{path} missing sensitivity columns: {', '.join(missing)}")
+    sensitivities: list[dict[str, Any]] = []
+    for index, row in enumerate(rows, start=2):
+        text = " ".join((row.get(column) or "") for column in SENSITIVITY_COLUMNS).lower()
+        for term in ADVICE_TERMS:
+            if term in text:
+                raise ValueError(f"{path}:{index} contains advice-like term {term!r}")
+        sensitivities.append(
+            {
+                "thesis_id": required(row, "thesis_id", path, index),
+                "policy_area": required(row, "policy_area", path, index),
+                "sensitivity_axis": required(row, "sensitivity_axis", path, index),
+                "shock_label": required(row, "shock_label", path, index),
+                "impact_direction": required(row, "impact_direction", path, index),
+                "impact_score": parse_float(row, "impact_score", path, index),
+                "confidence": parse_float(row, "confidence", path, index),
+                "rationale": required(row, "rationale", path, index),
+            }
+        )
+    return sorted(sensitivities, key=lambda item: (item["thesis_id"], item["policy_area"], item["sensitivity_axis"], item["shock_label"]))
+
+
+def load_exposures(path: Path) -> list[dict[str, Any]]:
+    header, rows = read_csv_document(path)
+    missing = [column for column in EXPOSURE_COLUMNS if column not in header]
+    if missing:
+        raise ValueError(f"{path} missing exposure columns: {', '.join(missing)}")
+    exposures: list[dict[str, Any]] = []
+    for index, row in enumerate(rows, start=2):
+        text = " ".join((row.get(column) or "") for column in EXPOSURE_COLUMNS).lower()
+        for term in ADVICE_TERMS:
+            if term in text:
+                raise ValueError(f"{path}:{index} contains advice-like term {term!r}")
+        exposures.append(
+            {
+                "portfolio_id": required(row, "portfolio_id", path, index),
+                "sleeve": required(row, "sleeve", path, index),
+                "exposure_id": required(row, "exposure_id", path, index),
+                "policy_area": required(row, "policy_area", path, index),
+                "thesis_id": required(row, "thesis_id", path, index),
+                "exposure_direction": required(row, "exposure_direction", path, index),
+                "exposure_score": parse_float(row, "exposure_score", path, index),
+                "rationale": required(row, "rationale", path, index),
+            }
+        )
+    return sorted(exposures, key=lambda item: (item["portfolio_id"], item["sleeve"], item["exposure_id"]))
 
 
 def fixture_doctor(path: Path, *, as_of: date, max_source_age_days: int) -> dict[str, Any]:
@@ -463,7 +553,7 @@ def input_schema() -> dict[str, Any]:
         },
     ]
     return {
-        "schema_version": "0.3.0",
+        "schema_version": "0.4.0",
         "format": "csv",
         "required_columns": EXPECTED_COLUMNS,
         "columns": columns,
@@ -531,6 +621,14 @@ def build_packet(events: list[dict[str, Any]], title: str) -> dict[str, Any]:
     }
 
 
+def source_record(path: Path) -> dict[str, Any]:
+    return {
+        "path": f"examples/{path.name}",
+        "bytes": path.stat().st_size,
+        "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+    }
+
+
 def case_gallery(cases: list[dict[str, Any]], source_path: Path | None = None) -> dict[str, Any]:
     by_region: dict[str, list[dict[str, Any]]] = {}
     for case in cases:
@@ -556,12 +654,97 @@ def case_gallery(cases: list[dict[str, Any]], source_path: Path | None = None) -
         "boundaries": DISCLAIMER,
     }
     if source_path is not None:
-        source_label = f"examples/{source_path.name}"
-        payload["source"] = {
-            "path": source_label,
-            "bytes": source_path.stat().st_size,
-            "sha256": hashlib.sha256(source_path.read_bytes()).hexdigest(),
-        }
+        payload["source"] = source_record(source_path)
+    return payload
+
+
+def thesis_impact_brief(sensitivities: list[dict[str, Any]], source_path: Path | None = None) -> dict[str, Any]:
+    by_thesis: dict[str, list[dict[str, Any]]] = {}
+    by_area: dict[str, list[dict[str, Any]]] = {}
+    for row in sensitivities:
+        by_thesis.setdefault(row["thesis_id"], []).append(row)
+        by_area.setdefault(row["policy_area"], []).append(row)
+    theses = []
+    for thesis_id, rows in sorted(by_thesis.items()):
+        theses.append(
+            {
+                "thesis_id": thesis_id,
+                "policy_areas": sorted({item["policy_area"] for item in rows}),
+                "axis_count": len({item["sensitivity_axis"] for item in rows}),
+                "average_impact_score": round(sum(item["impact_score"] for item in rows) / len(rows), 3),
+                "average_confidence": round(sum(item["confidence"] for item in rows) / len(rows), 3),
+                "directions": sorted({item["impact_direction"] for item in rows}),
+            }
+        )
+    areas = []
+    for policy_area, rows in sorted(by_area.items()):
+        areas.append(
+            {
+                "policy_area": policy_area,
+                "thesis_count": len({item["thesis_id"] for item in rows}),
+                "axis_count": len({item["sensitivity_axis"] for item in rows}),
+                "average_impact_score": round(sum(item["impact_score"] for item in rows) / len(rows), 3),
+            }
+        )
+    payload: dict[str, Any] = {
+        "title": "Static Thesis Impact Brief",
+        "fixture_type": "synthetic static thesis sensitivity examples",
+        "sensitivity_count": len(sensitivities),
+        "thesis_count": len(theses),
+        "policy_area_count": len(areas),
+        "theses": theses,
+        "policy_areas": areas,
+        "sensitivities": sensitivities,
+        "boundaries": DISCLAIMER,
+    }
+    if source_path is not None:
+        payload["source"] = source_record(source_path)
+    return payload
+
+
+def exposure_map(
+    exposures: list[dict[str, Any]],
+    sensitivities: list[dict[str, Any]],
+    exposure_path: Path | None = None,
+    sensitivity_path: Path | None = None,
+) -> dict[str, Any]:
+    sensitivity_index = {(item["thesis_id"], item["policy_area"]) for item in sensitivities}
+    rows = []
+    by_portfolio: dict[str, list[dict[str, Any]]] = {}
+    for exposure in exposures:
+        matched = (exposure["thesis_id"], exposure["policy_area"]) in sensitivity_index
+        row = {**exposure, "sensitivity_match": matched}
+        rows.append(row)
+        by_portfolio.setdefault(exposure["portfolio_id"], []).append(row)
+    portfolios = []
+    for portfolio_id, items in sorted(by_portfolio.items()):
+        portfolios.append(
+            {
+                "portfolio_id": portfolio_id,
+                "sleeve_count": len({item["sleeve"] for item in items}),
+                "exposure_count": len(items),
+                "matched_exposure_count": sum(1 for item in items if item["sensitivity_match"]),
+                "average_exposure_score": round(sum(item["exposure_score"] for item in items) / len(items), 3),
+                "policy_areas": sorted({item["policy_area"] for item in items}),
+            }
+        )
+    payload: dict[str, Any] = {
+        "title": "Static Portfolio Exposure Map",
+        "fixture_type": "synthetic static exposure examples",
+        "portfolio_count": len(portfolios),
+        "exposure_count": len(rows),
+        "matched_exposure_count": sum(1 for item in rows if item["sensitivity_match"]),
+        "portfolios": portfolios,
+        "exposures": rows,
+        "boundaries": DISCLAIMER,
+    }
+    sources: dict[str, Any] = {}
+    if exposure_path is not None:
+        sources["exposures"] = source_record(exposure_path)
+    if sensitivity_path is not None:
+        sources["sensitivities"] = source_record(sensitivity_path)
+    if sources:
+        payload["sources"] = sources
     return payload
 
 
@@ -572,8 +755,12 @@ def visual_receipt(root: Path, *, visual_format: str) -> dict[str, Any]:
         "README.md",
         "examples/macro_events.csv",
         "examples/public_macro_cases.csv",
+        "examples/thesis_sensitivities.csv",
+        "examples/portfolio_exposures.csv",
         "demo/thesis_packet.json",
         "demo/case_gallery.json",
+        "demo/thesis_impact_brief.json",
+        "demo/exposure_map.json",
         "demo/review_ledger.json",
         "demo/public_readiness.json",
     ]
@@ -585,6 +772,8 @@ def visual_receipt(root: Path, *, visual_format: str) -> dict[str, Any]:
         routes = [str(item["route"]) for item in gallery.get("cases", []) if isinstance(item, dict) and "route" in item]
     commands = [
         "macro-policy-thesis-map case-gallery --root .",
+        "macro-policy-thesis-map thesis-impact-brief --root .",
+        "macro-policy-thesis-map exposure-map --root .",
         f"macro-policy-thesis-map visual-receipt --root . --format {visual_format}",
         "macro-policy-thesis-map public-readiness --root .",
         "macro-policy-thesis-map diff-check --root .",
@@ -656,6 +845,8 @@ def maturity(root: Path) -> dict[str, Any]:
         ("license", root.joinpath("LICENSE").exists()),
         ("examples", any(root.joinpath("examples").glob("*"))),
         ("case_gallery", root.joinpath("examples/public_macro_cases.csv").exists() and root.joinpath("demo/case_gallery.json").exists()),
+        ("sensitivity_layer", root.joinpath("examples/thesis_sensitivities.csv").exists() and root.joinpath("demo/thesis_impact_brief.json").exists()),
+        ("exposure_layer", root.joinpath("examples/portfolio_exposures.csv").exists() and root.joinpath("demo/exposure_map.json").exists()),
         ("visual_receipt", root.joinpath("demo/visual_receipt.json").exists() and (root.joinpath("demo/visual_receipt.svg").exists() or root.joinpath("demo/visual_receipt.html").exists())),
         ("tests", any(root.joinpath("tests").glob("test_*.py"))),
         ("skill", root.joinpath("skills/agent/macro-policy-thesis-map/SKILL.md").exists()),
@@ -686,13 +877,28 @@ def quickstart_check(root: Path) -> dict[str, Any]:
         ("package_metadata_available", root.joinpath("pyproject.toml").exists(), "pyproject.toml"),
         ("example_events_available", root.joinpath("examples/macro_events.csv").exists(), "examples/macro_events.csv"),
         ("bundled_events_available", root.joinpath("src/macro_policy_thesis_map/examples/macro_events.csv").exists(), "src/macro_policy_thesis_map/examples/macro_events.csv"),
+        ("example_sensitivities_available", root.joinpath("examples/thesis_sensitivities.csv").exists(), "examples/thesis_sensitivities.csv"),
+        ("example_exposures_available", root.joinpath("examples/portfolio_exposures.csv").exists(), "examples/portfolio_exposures.csv"),
         ("skill_available", root.joinpath("skills/agent/macro-policy-thesis-map/SKILL.md").exists(), "skills/agent/macro-policy-thesis-map/SKILL.md"),
         ("tests_available", any(root.joinpath("tests").glob("test_*.py")), "tests/test_*.py"),
     ]
     commands = [
         spec
         for spec in COMMAND_SPECS
-        if spec["command"] in {"build-packet", "compare-history", "review-ledger", "fixture-doctor", "schema-export", "static-dashboard", "case-gallery", "visual-receipt", "quickstart-check", "command-matrix"}
+        if spec["command"] in {
+            "build-packet",
+            "compare-history",
+            "review-ledger",
+            "fixture-doctor",
+            "schema-export",
+            "static-dashboard",
+            "thesis-impact-brief",
+            "exposure-map",
+            "case-gallery",
+            "visual-receipt",
+            "quickstart-check",
+            "command-matrix",
+        }
     ]
     passed = sum(1 for _, ok, _ in checks)
     return {
@@ -719,6 +925,8 @@ def evidence_bundle(root: Path) -> dict[str, Any]:
         "examples/macro_events.csv",
         "examples/prior_macro_events.csv",
         "examples/public_macro_cases.csv",
+        "examples/thesis_sensitivities.csv",
+        "examples/portfolio_exposures.csv",
         "skills/agent/macro-policy-thesis-map/SKILL.md",
         "tests/test_cli.py",
         "tests/test_safety.py",
@@ -766,6 +974,8 @@ def public_readiness(root: Path) -> dict[str, Any]:
         "demo/fixture_doctor.json",
         "demo/input_schema.json",
         "demo/case_gallery.json",
+        "demo/thesis_impact_brief.json",
+        "demo/exposure_map.json",
         "demo/visual_receipt.json",
         "demo/evidence_bundle.json",
         "demo/cold_start_walkthrough.json",
@@ -811,12 +1021,18 @@ def cold_start_walkthrough() -> dict[str, Any]:
         },
         {
             "step": 4,
+            "title": "Render static sensitivity and exposure layers",
+            "command": "macro-policy-thesis-map thesis-impact-brief && macro-policy-thesis-map exposure-map",
+            "expected_result": "Synthetic sensitivity and exposure maps are written as Markdown and JSON.",
+        },
+        {
+            "step": 5,
             "title": "Check public readiness",
             "command": "macro-policy-thesis-map public-readiness",
             "expected_result": "A public readiness report lists pass/fail gates.",
         },
         {
-            "step": 5,
+            "step": 6,
             "title": "Run final local checks",
             "command": "macro-policy-thesis-map selfcheck && macro-policy-thesis-map public-scan && macro-policy-thesis-map diff-check",
             "expected_result": "All commands exit successfully before sharing artifacts.",
