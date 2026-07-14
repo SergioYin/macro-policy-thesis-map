@@ -58,6 +58,10 @@
       "passed": true
     },
     {
+      "name": "governance_attestation_layer",
+      "passed": false
+    },
+    {
       "name": "tests",
       "passed": true
     },
@@ -70,7 +74,7 @@
       "passed": true
     }
   ],
-  "max_score": 17,
+  "max_score": 18,
   "score": 17,
-  "status": "ready"
+  "status": "needs-review"
 }

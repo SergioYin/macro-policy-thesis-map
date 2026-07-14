@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.2.0
+Version: 1.3.0
 
 ```bash
 PYTHONPATH=src python -m macro_policy_thesis_map.cli fixture-doctor --root .
@@ -27,6 +27,10 @@ PYTHONPATH=src python -m macro_policy_thesis_map.cli citation-map --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli release-faq --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli artifact-index --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli evaluator-scorecard --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli boundary-attestation --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli provenance-ledger --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli reproducibility-recipe --root .
+PYTHONPATH=src python -m macro_policy_thesis_map.cli release-notes-draft --root .
 PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .
 PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .
 ```
@@ -56,4 +60,8 @@ PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .
 | demo/release_faq.md |
 | demo/artifact_index.md |
 | demo/evaluator_scorecard.md |
+| demo/boundary_attestation.md |
+| demo/provenance_ledger.md |
+| demo/reproducibility_recipe.md |
+| demo/release_notes_draft.md |
 | demo/troubleshoot.md |

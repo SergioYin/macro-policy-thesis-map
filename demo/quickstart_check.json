@@ -321,6 +321,34 @@
         "demo/evaluator_scorecard.md",
         "demo/evaluator_scorecard.json"
       ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli boundary-attestation --root .",
+      "expected_outputs": [
+        "demo/boundary_attestation.md",
+        "demo/boundary_attestation.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli provenance-ledger --root .",
+      "expected_outputs": [
+        "demo/provenance_ledger.md",
+        "demo/provenance_ledger.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli reproducibility-recipe --root .",
+      "expected_outputs": [
+        "demo/reproducibility_recipe.md",
+        "demo/reproducibility_recipe.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-notes-draft --root .",
+      "expected_outputs": [
+        "demo/release_notes_draft.md",
+        "demo/release_notes_draft.json"
+      ]
     }
   ],
   "status": "ready"

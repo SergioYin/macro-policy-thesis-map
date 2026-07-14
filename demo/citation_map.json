@@ -1,7 +1,7 @@
 {
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
   "citation_policy": "Every claim cites local repository artifacts only.",
-  "claim_count": 5,
+  "claim_count": 6,
   "claims": [
     {
       "citation_count": 2,
@@ -9,12 +9,12 @@
         {
           "bytes": 832,
           "path": "pyproject.toml",
-          "sha256": "d1f5f350cfc9b332d887010af8cd9842c5af8134ff3a8c5cfde9029dc9280db9"
+          "sha256": "4849cdc7abe57512c7af9ea404c3b28f342effb777c1be091d1dc16d5da4a179"
         },
         {
-          "bytes": 1952,
+          "bytes": 2099,
           "path": "demo/compatibility_report.json",
-          "sha256": "6c3056202895e6f5a1bd568172b8e43079af045fbfccff460d2a0515756886d6"
+          "sha256": "fbf928894bc1ca24f4f840941e816c6b0c2db18f390bfae5fa50e065bf1c6335"
         }
       ],
       "claim": "The project is a zero-dependency Python CLI.",
@@ -43,7 +43,7 @@
         {
           "bytes": 4685,
           "path": "demo/golden_fixtures.json",
-          "sha256": "f6c5648518f62a1b62e27cd625c43888fed57a1e1b5b4d2b016dcbef0127817b"
+          "sha256": "6918a9dc69858c8565e795f8722f51c2a7d114a7e20e3885ebc9293abdff6c84"
         }
       ],
       "claim": "The default examples are local static CSV fixtures.",
@@ -55,19 +55,19 @@
       "citation_count": 3,
       "citations": [
         {
-          "bytes": 20252,
+          "bytes": 22248,
           "path": "demo/command_matrix.json",
-          "sha256": "0eedc17d3bea61f2064371015e0f34cce899fead5034f7926566147fb62b7706"
+          "sha256": "7f61d38fdb211d1066160298b930582348c16e6a34a0f1edf3bf20f593ff19ee"
         },
         {
-          "bytes": 24304,
+          "bytes": 26413,
           "path": "demo/artifact_index.json",
-          "sha256": "1fe20b2960e171da6bbfcd6f7e3587706d39fac830f5910cffe969a8b271a1b1"
+          "sha256": "934fe0fd1b8ce7a2b941a902f91cf23a3c898d4ae95f4089ac81671f986e5960"
         },
         {
-          "bytes": 16603,
+          "bytes": 17914,
           "path": "demo/release_manifest.json",
-          "sha256": "50d89640ff5572c5e88d47e9a874ddb4c2144294ca7a7cdfd90f3c7c0c1c4bbb"
+          "sha256": "e209ffc1f60d18a80e27a7b4aed941574e443e839df617badefd2b0a95ab0951"
         }
       ],
       "claim": "The CLI writes deterministic Markdown, JSON, HTML, and SVG artifacts under demo/.",
@@ -79,9 +79,9 @@
       "citation_count": 4,
       "citations": [
         {
-          "bytes": 23575,
+          "bytes": 25101,
           "path": "tests/test_cli.py",
-          "sha256": "e4e74cefb38973a18b7461ad167385c2c5693f96a9a11c8ae53b10cab18e93c7"
+          "sha256": "dc9f2c894fc63c8db63844dcc7b8528db7ac4a1caa1a8210cce9c3aede6ff52f"
         },
         {
           "bytes": 1388,
@@ -89,14 +89,14 @@
           "sha256": "d50fc2a2e87e8002eb697b42e3562db830a56b9088734a50569f4ac39bef5d6c"
         },
         {
-          "bytes": 2275,
+          "bytes": 2966,
           "path": "demo/regression_summary.json",
-          "sha256": "784262d381778f1f4c214fd7747f90fdd7fa54bc003b495b795a11e26384eb8f"
+          "sha256": "75a04ffefd4176b1b3faa9e69930435f99b738d034cbb18a3f28279e134d7288"
         },
         {
-          "bytes": 3747,
+          "bytes": 5130,
           "path": "demo/trust_report.json",
-          "sha256": "90e576c5b652574486e45446fa16196f6cffdf7bb88dfde4949d6397e0f3007c"
+          "sha256": "34b2d1ecc00a6965271971435d403ad01ba99c4deca6196b8ff67ff8cae1daa3"
         }
       ],
       "claim": "Public release gates include tests, selfcheck, public scan, readiness, diff check, and wheel build.",
@@ -108,28 +108,57 @@
       "citation_count": 3,
       "citations": [
         {
-          "bytes": 17804,
+          "bytes": 19492,
           "path": "README.md",
-          "sha256": "2544bbba66b1aa8ff651fa828ac72b0c6cab5f833b73a3ab25e948e758a348ad"
+          "sha256": "7cd2fe9dcb70f4aee9fb9d3eaef0b7214f783abc0f750583e27b6f7e30e2d96d"
         },
         {
-          "bytes": 4226,
+          "bytes": 4591,
           "path": "skills/agent/macro-policy-thesis-map/SKILL.md",
-          "sha256": "482b63068e523668983de3377dd5debd6180200b44fbf9d4f7046dc8a8414ecb"
+          "sha256": "07299c071a787ed4c281df05d1e1cf265071a765e0e8d886ea92a8f9f311f1ae"
         },
         {
-          "bytes": 2116,
+          "bytes": 2301,
           "path": "demo/public_readiness.json",
-          "sha256": "ea95c96e19cefec90f6774d91e670ab20ad057bb120e1720d229639c69e5649e"
+          "sha256": "b2e51d04d172c6cac2fd6d55383fb11b1f88f07c250c8805e686b1db3b4d8807"
         }
       ],
       "claim": "Outputs are research-only and do not fetch live data or provide personalized financial advice.",
       "claim_id": "claim-005",
       "missing_count": 0,
       "producer_command": "public-readiness"
+    },
+    {
+      "citation_count": 4,
+      "citations": [
+        {
+          "bytes": 2101,
+          "path": "demo/boundary_attestation.json",
+          "sha256": "521ff58189d124c5ed59f3ef39609df71123e042e64448c1c288316be1a2a8ab"
+        },
+        {
+          "bytes": 25808,
+          "path": "demo/provenance_ledger.json",
+          "sha256": "b41da876e3c9d36b5ba5dbe641b153de3dc84e90b02f1003d4cc7b880cf4edac"
+        },
+        {
+          "bytes": 10241,
+          "path": "demo/reproducibility_recipe.json",
+          "sha256": "c171be145870f41202649004d51ded3e89698120fb6b32cabfaeb1ec95b0a891"
+        },
+        {
+          "bytes": 1922,
+          "path": "demo/release_notes_draft.json",
+          "sha256": "c1819fef3ab960e53f7d6f54fcbc87b684ba259d9fe816ea072a917c69d2aa8a"
+        }
+      ],
+      "claim": "The v1.3.0 governance layer records boundaries, provenance, reproducibility, and release notes locally.",
+      "claim_id": "claim-006",
+      "missing_count": 0,
+      "producer_command": "release-notes-draft"
     }
   ],
   "missing_count": 0,
   "title": "Citation Map",
-  "version": "1.2.0"
+  "version": "1.3.0"
 }

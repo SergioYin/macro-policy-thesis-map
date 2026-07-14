@@ -2,11 +2,11 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.2.0
+Version: 1.3.0
 
 Status: needs-review
 
-Gates: 7
+Gates: 8
 
 Manual gates: 2
 
@@ -22,6 +22,7 @@ Blocking gates: 1
 | release_manifest | pass | demo/release_manifest.json | Release artifact hashes are present. |
 | golden_fixtures | ready | demo/golden_fixtures.json | Fixture schema and hash inventory. |
 | trust_layer | needs-review | demo/evaluator_scorecard.json | Evaluator trust scorecard based on local artifacts. |
+| governance_attestation_layer | ready | demo/boundary_attestation.json, demo/provenance_ledger.json, demo/reproducibility_recipe.json, demo/release_notes_draft.json | Governance layer records boundaries, provenance, reproducibility, and release notes. |
 | wheel_build | manual | python -m build --wheel or build_backend.build_wheel | Offline wheel build should be run when build tooling is available. |
 
 ## Release Checks
@@ -34,3 +35,7 @@ Blocking gates: 1
 | PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root . |
 | PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root . |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli evaluator-scorecard --root . |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli boundary-attestation --root . |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli provenance-ledger --root . |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli reproducibility-recipe --root . |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli release-notes-draft --root . |

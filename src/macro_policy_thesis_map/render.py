@@ -1230,6 +1230,137 @@ Score: {payload['score']} / {payload['max_score']}
 """
 
 
+def boundary_attestation_md(payload: dict[str, Any]) -> str:
+    checks = [[item["name"], "pass" if item["passed"] else "review", ", ".join(item["evidence"]), item["attestation"]] for item in payload["checks"]]
+    unsupported = [[item] for item in payload["unsupported"]]
+    findings = [[item] for item in payload["public_scan_findings"]] or [["none"]]
+    return f"""# Boundary Attestation
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Status: {payload['status']}
+
+Passed: {payload['passed_count']} / {payload['check_count']}
+
+## Checks
+
+{table(["Check", "Result", "Evidence", "Attestation"], checks)}
+
+## Public Scan Findings
+
+{table(["Finding"], findings)}
+
+## Unsupported
+
+{table(["Surface"], unsupported)}
+"""
+
+
+def provenance_ledger_md(payload: dict[str, Any]) -> str:
+    sources = [[item["path"], item["bytes"], item["sha256"][:16]] for item in payload["sources"]]
+    missing_sources = [[item] for item in payload["missing_sources"]] or [["none"]]
+    artifacts = [[item["path"], item["status"], item["producer_command"], item["bytes"], item["sha256"][:16]] for item in payload["artifacts"]]
+    return f"""# Provenance Ledger
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Policy: {payload['ledger_policy']}
+
+Sources: {payload['source_count']}
+
+Artifacts present: {payload['present_artifact_count']} / {payload['artifact_count']}
+
+Missing artifacts: {payload['missing_artifact_count']}
+
+## Sources
+
+{table(["Path", "Bytes", "SHA-256 prefix"], sources)}
+
+## Missing Sources
+
+{table(["Path"], missing_sources)}
+
+## Artifacts
+
+{table(["Path", "Status", "Producer", "Bytes", "SHA-256 prefix"], artifacts)}
+"""
+
+
+def reproducibility_recipe_md(payload: dict[str, Any]) -> str:
+    steps = [[item["step"], item["command"], item["expected"]] for item in payload["steps"]]
+    gates = [[item] for item in payload["release_gates"]]
+    controls = [[item] for item in payload["determinism_controls"]]
+    unsupported = [[item] for item in payload["unsupported"]]
+    return f"""# Reproducibility Recipe
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Policy: {payload['recipe_policy']}
+
+Steps: {payload['step_count']}
+
+## Regeneration Steps
+
+{table(["Step", "Command", "Expected"], steps)}
+
+## Release Gates
+
+{table(["Command"], gates)}
+
+## Determinism Controls
+
+{table(["Control"], controls)}
+
+## Unsupported
+
+{table(["Surface"], unsupported)}
+"""
+
+
+def release_notes_draft_md(payload: dict[str, Any]) -> str:
+    highlights = [[item] for item in payload["highlights"]]
+    artifacts = [[item] for item in payload["artifact_links"]]
+    gates = [[key, value] for key, value in payload["gate_summary"].items()]
+    commands = [[item] for item in payload["verification_commands"]]
+    upgrades = [[item] for item in payload["upgrade_notes"]]
+    return f"""# Release Notes Draft
+
+{payload['boundaries']}
+
+Version: {payload['version']}
+
+Release: {payload['release_name']}
+
+Status: {payload['status']}
+
+## Highlights
+
+{table(["Highlight"], highlights)}
+
+## Governance Artifacts
+
+{table(["Path"], artifacts)}
+
+## Gate Summary
+
+{table(["Gate", "Value"], gates)}
+
+## Verification Commands
+
+{table(["Command"], commands)}
+
+## Upgrade Notes
+
+{table(["Note"], upgrades)}
+"""
+
+
 def public_doc_html(payload: dict[str, Any], body_rows: list[tuple[str, list[list[Any]], list[str]]]) -> str:
     sections = []
     for title, rows, headers in body_rows:

@@ -12,7 +12,7 @@
       "theme": "Public docs"
     },
     {
-      "acceptance": "workflow_protocol.json remains backwards-readable by agents using protocol_id macro-policy-thesis-map.v1.2.",
+      "acceptance": "workflow_protocol.json remains backwards-readable by agents using protocol_id macro-policy-thesis-map.v1.3.",
       "excluded": [
         "remote orchestration",
         "repository workflow files"
@@ -58,5 +58,5 @@
   ],
   "roadmap_count": 4,
   "title": "Roadmap Next",
-  "version": "1.2.0"
+  "version": "1.3.0"
 }

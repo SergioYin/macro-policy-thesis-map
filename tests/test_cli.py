@@ -102,7 +102,7 @@ def test_fixture_doctor_and_schema_export(tmp_path):
     assert '"status": "pass"' in doctor_json.read_text(encoding="utf-8")
     assert "Fixture Doctor" in doctor_md.read_text(encoding="utf-8")
     schema_text = schema_json.read_text(encoding="utf-8")
-    assert '"schema_version": "1.2.0"' in schema_text
+    assert '"schema_version": "1.3.0"' in schema_text
     assert "confidence" in schema_text
     assert "Data Dictionary" in schema_md.read_text(encoding="utf-8")
 
@@ -129,6 +129,31 @@ def test_operator_usability_surfaces(tmp_path):
     assert "fixture-doctor --root ." in snippet_md.read_text(encoding="utf-8")
     assert "CLI Help Export" in help_md.read_text(encoding="utf-8")
     assert "troubleshoot" in help_json.read_text(encoding="utf-8")
+
+
+def test_governance_attestation_commands(tmp_path):
+    boundary_json = tmp_path / "boundary.json"
+    boundary_md = tmp_path / "boundary.md"
+    provenance_json = tmp_path / "provenance.json"
+    provenance_md = tmp_path / "provenance.md"
+    recipe_json = tmp_path / "recipe.json"
+    recipe_md = tmp_path / "recipe.md"
+    notes_json = tmp_path / "notes.json"
+    notes_md = tmp_path / "notes.md"
+
+    assert main(["boundary-attestation", "--root", str(ROOT), "--out-json", str(boundary_json), "--out-md", str(boundary_md)]) == 0
+    assert main(["provenance-ledger", "--root", str(ROOT), "--out-json", str(provenance_json), "--out-md", str(provenance_md)]) == 0
+    assert main(["reproducibility-recipe", "--root", str(ROOT), "--out-json", str(recipe_json), "--out-md", str(recipe_md)]) == 0
+    assert main(["release-notes-draft", "--root", str(ROOT), "--out-json", str(notes_json), "--out-md", str(notes_md)]) == 0
+
+    assert '"status": "attested"' in boundary_json.read_text(encoding="utf-8")
+    assert "Boundary Attestation" in boundary_md.read_text(encoding="utf-8")
+    assert "producer_command" in provenance_json.read_text(encoding="utf-8")
+    assert "Provenance Ledger" in provenance_md.read_text(encoding="utf-8")
+    assert "release_gates" in recipe_json.read_text(encoding="utf-8")
+    assert "Reproducibility Recipe" in recipe_md.read_text(encoding="utf-8")
+    assert "v1.3.0 governance" in notes_json.read_text(encoding="utf-8")
+    assert "Release Notes Draft" in notes_md.read_text(encoding="utf-8")
 
 
 def test_thesis_impact_brief_and_exposure_map(tmp_path):
@@ -273,7 +298,7 @@ def test_release_owner_promotion_pack_commands(tmp_path):
     assert main(["release-deck", "--root", str(ROOT), "--out-json", str(deck_json), "--out-md", str(deck_md)]) == 0
     assert main(["bundle-export", "--root", str(ROOT), "--out-json", str(export_json), "--out-md", str(export_md)]) == 0
 
-    assert '"version": "1.2.0"' in adoption_json.read_text(encoding="utf-8")
+    assert '"version": "1.3.0"' in adoption_json.read_text(encoding="utf-8")
     assert "cold_user_next_actions" in adoption_json.read_text(encoding="utf-8")
     assert "maturity_mapping" in scorecard_json.read_text(encoding="utf-8")
     assert "Release Owner Promotion Deck" in deck_md.read_text(encoding="utf-8")
@@ -344,7 +369,7 @@ def test_public_protocol_layer_commands(tmp_path):
     assert "data_contracts" in api_json.read_text(encoding="utf-8")
     assert "base_event_csv" in api_md.read_text(encoding="utf-8")
     assert "<html" in api_html.read_text(encoding="utf-8")
-    assert "macro-policy-thesis-map.v1.2" in protocol_json.read_text(encoding="utf-8")
+    assert "macro-policy-thesis-map.v1.3" in protocol_json.read_text(encoding="utf-8")
     assert "Stop Conditions" in protocol_md.read_text(encoding="utf-8")
     assert "<html" in protocol_html.read_text(encoding="utf-8")
     assert '"recipe_count": 4' in pack_json.read_text(encoding="utf-8")

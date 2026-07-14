@@ -4,7 +4,7 @@ Research-only static analysis. Not investment advice. This tool does not fetch l
 
 Status: ready
 
-Passed: 11 / 11
+Passed: 12 / 12
 
 ## Checks
 
@@ -19,6 +19,7 @@ Passed: 11 / 11
 | public_evaluator_hardening | pass | Benchmark, integration, compatibility, maintainer, golden fixture, and regression summary artifacts are present. |
 | public_protocol_layer | pass | Landing, API reference, workflow protocol, example pack, and roadmap HTML artifacts are present. |
 | public_trust_layer | pass | Trust report, citation map, release FAQ, artifact index, and evaluator scorecard artifacts are present. |
+| governance_attestation_layer | pass | Boundary, provenance, reproducibility, and release notes draft artifacts are present. |
 | no_workflow_files | pass | No repository workflow files are required for public evaluation. |
 | zero_dependency_package | pass | Package declares no runtime dependencies. |
 

@@ -33,21 +33,31 @@
     },
     {
       "detail": "Research-only boundaries are documented in human and agent surfaces.",
-      "evidence": "README.md, skills/agent/macro-policy-thesis-map/SKILL.md, demo/release_faq.json",
+      "evidence": "README.md, skills/agent/macro-policy-thesis-map/SKILL.md, demo/release_faq.json, demo/boundary_attestation.json",
       "name": "boundaries_visible",
+      "passed": true
+    },
+    {
+      "detail": "v1.3.0 governance artifacts are available for public release review.",
+      "evidence": "demo/boundary_attestation.json, demo/provenance_ledger.json, demo/reproducibility_recipe.json, demo/release_notes_draft.json",
+      "name": "governance_layer_present",
       "passed": true
     }
   ],
-  "max_score": 6,
+  "max_score": 7,
   "recommended_order": [
     "trust-report",
     "citation-map",
     "release-faq",
     "artifact-index",
-    "evaluator-scorecard"
+    "evaluator-scorecard",
+    "boundary-attestation",
+    "provenance-ledger",
+    "reproducibility-recipe",
+    "release-notes-draft"
   ],
-  "score": 5,
+  "score": 6,
   "status": "needs-review",
   "title": "Evaluator Scorecard",
-  "version": "1.2.0"
+  "version": "1.3.0"
 }

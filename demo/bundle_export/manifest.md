@@ -2,13 +2,13 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.2.0
+Version: 1.3.0
 
 Status: ready
 
 Export root: demo/bundle_export
 
-Artifact count: 64
+Artifact count: 72
 
 Missing count: 0
 
@@ -29,6 +29,10 @@ Missing count: 0
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli release-faq --root . |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli artifact-index --root . |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli evaluator-scorecard --root . |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli boundary-attestation --root . |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli provenance-ledger --root . |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli reproducibility-recipe --root . |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli release-notes-draft --root . |
 | PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root . |
 | PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root . |
 
@@ -43,66 +47,74 @@ Missing count: 0
 | Path | Bytes | SHA-256 prefix |
 | --- | --- | --- |
 | LICENSE | 1066 | b13dc350cd48500c |
-| README.md | 17804 | 2544bbba66b1aa8f |
-| demo/adoption_notes.json | 7151 | aff676f77aee44d0 |
-| demo/adoption_notes.md | 4423 | fe6d64b24f2e5dfc |
-| demo/api_reference.html | 13422 | d2dc00f8b6a91f2c |
-| demo/api_reference.json | 41652 | 459ceec67aa61f46 |
-| demo/api_reference.md | 18635 | 96426334358080c1 |
-| demo/artifact_index.json | 24304 | 1fe20b2960e171da |
-| demo/artifact_index.md | 8896 | fc183b4389f29d28 |
-| demo/assumption_registry.json | 2500 | de075c9b3fb8f456 |
-| demo/assumption_registry.md | 1980 | 0300d98f2f5eecaf |
-| demo/benchmark_suite.json | 3043 | 6ee09b77f1d4f5aa |
-| demo/benchmark_suite.md | 1916 | 28305b62f844c032 |
-| demo/citation_map.json | 4645 | cb3e09d776b4e334 |
-| demo/citation_map.md | 1690 | d3e655c739c17fc5 |
+| README.md | 19492 | 7cd2fe9dcb70f4ae |
+| demo/adoption_notes.json | 8176 | 3d0e67cdfe090f33 |
+| demo/adoption_notes.md | 5020 | 9eea9e54f61edd24 |
+| demo/api_reference.html | 14498 | cc1aa66e9fe4c257 |
+| demo/api_reference.json | 45374 | 9babdb9e89dfc5ee |
+| demo/api_reference.md | 20311 | 37910cc4f52c4724 |
+| demo/artifact_index.json | 26413 | 934fe0fd1b8ce7a2 |
+| demo/artifact_index.md | 9685 | a2201ada7f3d20bb |
+| demo/assumption_registry.json | 2500 | 496daa362b79b90a |
+| demo/assumption_registry.md | 1980 | 3321107de459893a |
+| demo/benchmark_suite.json | 3043 | 4a16814969e6dd12 |
+| demo/benchmark_suite.md | 1916 | 9037acb0cc47a879 |
+| demo/boundary_attestation.json | 2101 | 521ff58189d124c5 |
+| demo/boundary_attestation.md | 1485 | 488105fdb8470163 |
+| demo/citation_map.json | 5681 | 84ae750e57985800 |
+| demo/citation_map.md | 2016 | eef84eac5b04c46c |
 | demo/cold_start_walkthrough.json | 4825 | 7b3233c8a2ac3343 |
 | demo/cold_start_walkthrough.md | 3810 | 0d646cc4c4b95db0 |
-| demo/command_matrix.json | 20252 | 0eedc17d3bea61f2 |
-| demo/command_matrix.md | 13509 | b2a1218e98d1247f |
-| demo/compatibility_report.json | 1952 | 6c3056202895e6f5 |
-| demo/compatibility_report.md | 1357 | 0cc97f2bfa740961 |
-| demo/data_dictionary_diff.json | 3472 | 41ecef87918921c8 |
-| demo/data_dictionary_diff.md | 2177 | 43080d5bc3d487d0 |
-| demo/evaluator_scorecard.json | 1762 | a9406e7b779c266d |
-| demo/evaluator_scorecard.md | 1335 | 743673aa00d75e1c |
-| demo/evidence_bundle.json | 17114 | 8d272626babf708f |
-| demo/evidence_bundle.md | 7440 | 8d884012f27cf1ce |
-| demo/example_pack.html | 2945 | 5d6bc3fe906edec4 |
-| demo/example_pack.json | 3795 | 7cb7f9c3f2b0fc25 |
-| demo/example_pack.md | 2132 | e5b600b5a1f1a446 |
-| demo/golden_fixtures.json | 4685 | f6c5648518f62a1b |
-| demo/golden_fixtures.md | 1287 | e3b9cc07f8f7402c |
-| demo/integration_cookbook.json | 3546 | 8a9ed4d4f1bc0b6f |
-| demo/integration_cookbook.md | 2480 | 64d584a9f491472a |
-| demo/landing_page.html | 3860 | 178a338dc19a2efd |
-| demo/landing_page.json | 6046 | 1d5dd327d5deed49 |
-| demo/landing_page.md | 3222 | 08ae9bad5f9805c9 |
-| demo/maintainer_guide.json | 2430 | de0a35b7e0901089 |
-| demo/maintainer_guide.md | 2160 | 5c6bcce3dfeca5f2 |
-| demo/maturity_report.json | 1456 | 73c8213cb4b0c095 |
-| demo/maturity_report.md | 765 | 00e1d5ed1876aacd |
-| demo/public_readiness.json | 2116 | ea95c96e19cefec9 |
-| demo/public_readiness.md | 1542 | c63bce85990b63aa |
-| demo/regression_summary.json | 2275 | 784262d381778f1f |
-| demo/regression_summary.md | 1711 | 8d15612225ea8c07 |
-| demo/release_deck.json | 5691 | 420bdf25da7ddda5 |
-| demo/release_deck.md | 2962 | 900134012ffabe7c |
-| demo/release_faq.json | 2295 | 5aafef8f95cd0962 |
-| demo/release_faq.md | 1537 | ed5a3bf8f0daa89e |
-| demo/release_manifest.json | 16603 | 50d89640ff5572c5 |
-| demo/release_manifest.md | 6127 | cb923c1602ee4ba2 |
-| demo/reviewer_scorecard.json | 7955 | 8c95b1f77db408b1 |
-| demo/reviewer_scorecard.md | 3272 | 3db888fd7be90d4d |
-| demo/roadmap_next.html | 2785 | 22fec239e7beb50f |
-| demo/roadmap_next.json | 2452 | 3928f2c8b8502c9a |
-| demo/roadmap_next.md | 1954 | e20df3db1b243b32 |
-| demo/scenario_library.json | 2903 | a10db1111ec03d96 |
-| demo/scenario_library.md | 1936 | 0402d234f5250f31 |
-| demo/trust_report.json | 3747 | 90e576c5b6525744 |
-| demo/trust_report.md | 2303 | ab9572cb36631edc |
-| demo/workflow_protocol.html | 2971 | b981e3bbeb799bc4 |
-| demo/workflow_protocol.json | 3557 | d9e8eb649bda291f |
-| demo/workflow_protocol.md | 2397 | 9511beb364af7159 |
-| pyproject.toml | 832 | d1f5f350cfc9b332 |
+| demo/command_matrix.json | 22248 | 7f61d38fdb211d10 |
+| demo/command_matrix.md | 14929 | 87185ae268bfd471 |
+| demo/compatibility_report.json | 2099 | fbf928894bc1ca24 |
+| demo/compatibility_report.md | 1447 | e6914baf5ca32fd4 |
+| demo/data_dictionary_diff.json | 3472 | 510e5713493d6f3d |
+| demo/data_dictionary_diff.md | 2177 | a64ba918055b0779 |
+| demo/evaluator_scorecard.json | 2214 | 79c7961fbc7b64f0 |
+| demo/evaluator_scorecard.md | 1715 | b5a82ced9745cbaf |
+| demo/evidence_bundle.json | 18426 | a3c4962c0db96247 |
+| demo/evidence_bundle.md | 7920 | 823ab11f86ad42ee |
+| demo/example_pack.html | 2945 | 6f32417150ffa6a7 |
+| demo/example_pack.json | 3795 | b2704c9a6deba147 |
+| demo/example_pack.md | 2132 | 8b6c0b536f95affb |
+| demo/golden_fixtures.json | 4685 | 6918a9dc69858c85 |
+| demo/golden_fixtures.md | 1287 | 82b2d1c321ff99c4 |
+| demo/integration_cookbook.json | 3546 | 25d215e91152aa50 |
+| demo/integration_cookbook.md | 2480 | f62ac0e3e755c8be |
+| demo/landing_page.html | 3860 | 07cb9a57d8c08c24 |
+| demo/landing_page.json | 6046 | 23e0a951b8946771 |
+| demo/landing_page.md | 3222 | 0e6eb500c7da3765 |
+| demo/maintainer_guide.json | 2540 | 6713131f87a78e8c |
+| demo/maintainer_guide.md | 2278 | 7547ea596e8676b8 |
+| demo/maturity_report.json | 1544 | 16497ee75188fbd0 |
+| demo/maturity_report.md | 814 | 506b76e3b333931b |
+| demo/provenance_ledger.json | 25808 | b41da876e3c9d36b |
+| demo/provenance_ledger.md | 9743 | 2fccd87b38b1ff54 |
+| demo/public_readiness.json | 2301 | b2e51d04d172c6ca |
+| demo/public_readiness.md | 1670 | e5868de7e7b0f263 |
+| demo/regression_summary.json | 2966 | 75a04ffefd4176b1 |
+| demo/regression_summary.md | 2312 | 54f5fe8515bb49b9 |
+| demo/release_deck.json | 6468 | 1b87f79cfb7a9378 |
+| demo/release_deck.md | 3314 | 7755b41b93712a03 |
+| demo/release_faq.json | 2778 | e1d0a5c2660c6411 |
+| demo/release_faq.md | 1852 | ad7ac666d3b4ac69 |
+| demo/release_manifest.json | 17914 | e209ffc1f60d18a8 |
+| demo/release_manifest.md | 6606 | c12d005415172ec5 |
+| demo/release_notes_draft.json | 1922 | c1819fef3ab960e5 |
+| demo/release_notes_draft.md | 1880 | ebab1c802f5e5710 |
+| demo/reproducibility_recipe.json | 10241 | c171be145870f412 |
+| demo/reproducibility_recipe.md | 7352 | 6056669713187aee |
+| demo/reviewer_scorecard.json | 8950 | 7bf5681c80f5dfc4 |
+| demo/reviewer_scorecard.md | 3677 | 6c6b03c36d672eb4 |
+| demo/roadmap_next.html | 2785 | 60e1592f07e31b4c |
+| demo/roadmap_next.json | 2452 | 6a5aec3071917e7e |
+| demo/roadmap_next.md | 1954 | 15e06375f6dcb59d |
+| demo/scenario_library.json | 2903 | 8997f1e9baaefcfa |
+| demo/scenario_library.md | 1936 | bf179298255b14bd |
+| demo/trust_report.json | 5130 | edf2cf57246dad6e |
+| demo/trust_report.md | 3128 | 795a095cfcc4f35a |
+| demo/workflow_protocol.html | 2971 | 63f520952f7c3eed |
+| demo/workflow_protocol.json | 3557 | 01116e3fb6b402c8 |
+| demo/workflow_protocol.md | 2397 | bf183dd8ad9a4577 |
+| pyproject.toml | 832 | 4849cdc7abe57512 |

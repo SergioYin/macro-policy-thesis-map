@@ -62,3 +62,7 @@ Passed: 8 / 8
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli release-faq --root . | demo/release_faq.md, demo/release_faq.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli artifact-index --root . | demo/artifact_index.md, demo/artifact_index.json |
 | PYTHONPATH=src python -m macro_policy_thesis_map.cli evaluator-scorecard --root . | demo/evaluator_scorecard.md, demo/evaluator_scorecard.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli boundary-attestation --root . | demo/boundary_attestation.md, demo/boundary_attestation.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli provenance-ledger --root . | demo/provenance_ledger.md, demo/provenance_ledger.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli reproducibility-recipe --root . | demo/reproducibility_recipe.md, demo/reproducibility_recipe.json |
+| PYTHONPATH=src python -m macro_policy_thesis_map.cli release-notes-draft --root . | demo/release_notes_draft.md, demo/release_notes_draft.json |

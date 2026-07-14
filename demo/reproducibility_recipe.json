@@ -1,0 +1,270 @@
+{
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "determinism_controls": [
+    "JSON writer sorts keys.",
+    "Markdown tables are generated from sorted command metadata and local file records.",
+    "Release manifest is written after generated governance artifacts settle.",
+    "diff-check compares SHA-256 values from the saved release manifest."
+  ],
+  "recipe_policy": "Run from a source checkout with static files only; commands do not require network access.",
+  "release_gates": [
+    "PYTHONPATH=src python -m pytest",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
+    "python -c \"import build_backend; build_backend.build_wheel('dist')\""
+  ],
+  "step_count": 48,
+  "steps": [
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli build-packet --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 1
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli compare-history --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 2
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli review-ledger --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 3
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli static-dashboard --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 4
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli thesis-impact-brief --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 5
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli exposure-map --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 6
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli scenario-library --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 7
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli assumption-registry --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 8
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli data-dictionary-diff --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 9
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli case-gallery --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 10
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli visual-receipt --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 11
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli fixture-doctor --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 12
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli schema-export --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 13
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 14
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli docs-export --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 15
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli readme-snippet --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 16
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli cli-help --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 17
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli maturity-report --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 18
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli quickstart-check --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 19
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli command-matrix --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 20
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli adoption-notes --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 21
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli reviewer-scorecard --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 22
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-deck --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 23
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli bundle-export --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 24
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli evidence-bundle --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 25
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli public-readiness --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 26
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli benchmark-suite --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 27
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli integration-cookbook --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 28
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli compatibility-report --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 29
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli maintainer-guide --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 30
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli golden-fixtures --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 31
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli regression-summary --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 32
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli landing-page --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 33
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli api-reference --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 34
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli workflow-protocol --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 35
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli example-pack --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 36
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli roadmap-next --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 37
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli trust-report --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 38
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli citation-map --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 39
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-faq --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 40
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli artifact-index --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 41
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli evaluator-scorecard --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 42
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli boundary-attestation --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 43
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli provenance-ledger --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 44
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli reproducibility-recipe --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 45
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-notes-draft --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 46
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli cold-start-walkthrough --root .",
+      "expected": "deterministic demo artifact update",
+      "step": 47
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-manifest --root .",
+      "expected": "release manifest records settled hashes",
+      "step": 48
+    }
+  ],
+  "title": "Reproducibility Recipe",
+  "unsupported": [
+    "live data refresh",
+    "private storage",
+    "workflow automation",
+    "broker access",
+    "investment advice"
+  ],
+  "version": "1.3.0"
+}

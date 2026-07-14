@@ -1,34 +1,34 @@
 {
   "artifacts": [
     {
-      "bytes": 37394,
+      "bytes": 41652,
       "path": "demo/api_reference.json",
-      "sha256": "7b89c11e4d5e9b450d4c1c66cf2f17065d6f9474e1c7dee1c53b82ed4d7db9ac"
+      "sha256": "459ceec67aa61f4606b6b006b9ea176cc0d37bc9d631a3edc7df9f8297064a44"
     },
     {
       "bytes": 3795,
       "path": "demo/example_pack.json",
-      "sha256": "2a5f299bb12a9fe674c93a404f3b9d02aee910468937fe4257b0744c230559ca"
+      "sha256": "7cb7f9c3f2b0fc254f4306ed01bf7b5dbfe6c294b1ec20a7ce4d37852b270f54"
     },
     {
       "bytes": 3860,
       "path": "demo/landing_page.html",
-      "sha256": "bae50ffd300c50f3bac3ded2cfc10fe8c12fe46dc11a4b4e966a698a21d58be9"
+      "sha256": "178a338dc19a2efdf4993e63aedcf822ef7616773846136b9776661be4a22f7b"
     },
     {
-      "bytes": 1923,
+      "bytes": 2116,
       "path": "demo/public_readiness.json",
-      "sha256": "15d96adf743682bef08d102ae5ec93be95b0a8c49568f421a10722d398f20619"
+      "sha256": "ea95c96e19cefec90f6774d91e670ab20ad057bb120e1720d229639c69e5649e"
     },
     {
-      "bytes": 15025,
+      "bytes": 16603,
       "path": "demo/release_manifest.json",
-      "sha256": "17e1b952fe3b5010b1a6c7e259968cdbb20ba5e31e2884c0895993531261d8e4"
+      "sha256": "03b5c9180070cde6ac40f8bd4105dffe49ed00333f1c49713c63897b6e676809"
     },
     {
       "bytes": 3557,
       "path": "demo/workflow_protocol.json",
-      "sha256": "8a210ce7d2934354fb151cd64aa9a15ed570e82c6f039c748ea8fe89c3b035a7"
+      "sha256": "d9e8eb649bda291ffbf8f4ec7e951a4e2c9fdde5124bc829f94eac6ecc0b2658"
     }
   ],
   "audience": [
@@ -161,5 +161,5 @@
   ],
   "tagline": "Static macro policy notes in; neutral thesis evidence packets out.",
   "title": "Macro Policy Thesis Map",
-  "version": "1.2.0"
+  "version": "1.3.0"
 }

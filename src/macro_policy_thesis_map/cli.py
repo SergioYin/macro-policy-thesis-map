@@ -17,6 +17,7 @@ from .core import (
     artifact_index,
     assumption_registry,
     benchmark_suite,
+    boundary_attestation,
     bundle_export,
     case_gallery,
     citation_map,
@@ -46,11 +47,14 @@ from .core import (
     public_findings,
     public_readiness,
     quickstart_check,
+    provenance_ledger,
+    reproducibility_recipe,
     roadmap_next,
     readme_snippet,
     regression_summary,
     release_faq,
     release_manifest,
+    release_notes_draft,
     release_deck,
     reviewer_scorecard,
     review_ledger,
@@ -102,13 +106,17 @@ from .render import (
     compatibility_report_md,
     data_dictionary_diff_md,
     artifact_index_md,
+    boundary_attestation_md,
     evaluator_scorecard_md,
     golden_fixtures_md,
     integration_cookbook_md,
     maintainer_guide_md,
     regression_summary_md,
     release_faq_md,
+    provenance_ledger_md,
+    reproducibility_recipe_md,
     release_deck_md,
+    release_notes_draft_md,
     reviewer_scorecard_md,
     scenario_library_md,
     workflow_protocol_html,
@@ -430,6 +438,30 @@ def build_parser() -> argparse.ArgumentParser:
     evaluator.add_argument("--out-md", default="demo/evaluator_scorecard.md")
     evaluator.add_argument("--out-json", default="demo/evaluator_scorecard.json")
     evaluator.set_defaults(func=cmd_evaluator_scorecard)
+
+    boundary = sub.add_parser("boundary-attestation", help="Write public static finance boundary attestation.")
+    boundary.add_argument("--root", default=".")
+    boundary.add_argument("--out-md", default="demo/boundary_attestation.md")
+    boundary.add_argument("--out-json", default="demo/boundary_attestation.json")
+    boundary.set_defaults(func=cmd_boundary_attestation)
+
+    provenance = sub.add_parser("provenance-ledger", help="Write local artifact provenance ledger with hashes.")
+    provenance.add_argument("--root", default=".")
+    provenance.add_argument("--out-md", default="demo/provenance_ledger.md")
+    provenance.add_argument("--out-json", default="demo/provenance_ledger.json")
+    provenance.set_defaults(func=cmd_provenance_ledger)
+
+    recipe = sub.add_parser("reproducibility-recipe", help="Write deterministic local regeneration recipe.")
+    recipe.add_argument("--root", default=".")
+    recipe.add_argument("--out-md", default="demo/reproducibility_recipe.md")
+    recipe.add_argument("--out-json", default="demo/reproducibility_recipe.json")
+    recipe.set_defaults(func=cmd_reproducibility_recipe)
+
+    notes = sub.add_parser("release-notes-draft", help="Write deterministic v1.3.0 release notes draft.")
+    notes.add_argument("--root", default=".")
+    notes.add_argument("--out-md", default="demo/release_notes_draft.md")
+    notes.add_argument("--out-json", default="demo/release_notes_draft.json")
+    notes.set_defaults(func=cmd_release_notes_draft)
     return parser
 
 
@@ -828,6 +860,38 @@ def cmd_evaluator_scorecard(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_boundary_attestation(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = boundary_attestation(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), boundary_attestation_md(payload))
+    return 0
+
+
+def cmd_provenance_ledger(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = provenance_ledger(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), provenance_ledger_md(payload))
+    return 0
+
+
+def cmd_reproducibility_recipe(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = reproducibility_recipe()
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), reproducibility_recipe_md(payload))
+    return 0
+
+
+def cmd_release_notes_draft(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = release_notes_draft(root)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), release_notes_draft_md(payload))
+    return 0
+
+
 def cmd_public_scan(args: argparse.Namespace) -> int:
     findings = public_findings(Path(args.root))
     if findings:
@@ -894,6 +958,10 @@ def cmd_selfcheck(args: argparse.Namespace) -> int:
         root / "demo" / "release_faq.json",
         root / "demo" / "artifact_index.json",
         root / "demo" / "evaluator_scorecard.json",
+        root / "demo" / "boundary_attestation.json",
+        root / "demo" / "provenance_ledger.json",
+        root / "demo" / "reproducibility_recipe.json",
+        root / "demo" / "release_notes_draft.json",
         root / "demo" / "fixture_doctor.json",
         root / "demo" / "input_schema.json",
         root / "demo" / "troubleshoot.json",

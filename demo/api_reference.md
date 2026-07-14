@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Version: 1.2.0
+Version: 1.3.0
 
 CLI: `macro-policy-thesis-map`
 
@@ -55,6 +55,10 @@ Python module: `macro_policy_thesis_map.cli`
 | release-faq | macro-policy-thesis-map release-faq --root . | Write a public release FAQ for first-time GitHub visitors and evaluators. | demo/release_faq.md, demo/release_faq.json |
 | artifact-index | macro-policy-thesis-map artifact-index --root . | Index deterministic public demo artifacts by format, producer command, size, and hash. | demo/artifact_index.md, demo/artifact_index.json |
 | evaluator-scorecard | macro-policy-thesis-map evaluator-scorecard --root . | Score public evaluator readiness across trust, citations, artifacts, tests, and safety boundaries. | demo/evaluator_scorecard.md, demo/evaluator_scorecard.json |
+| boundary-attestation | macro-policy-thesis-map boundary-attestation --root . | Attest static finance boundaries, zero-dependency packaging, public scan status, and absent workflows. | demo/boundary_attestation.md, demo/boundary_attestation.json |
+| provenance-ledger | macro-policy-thesis-map provenance-ledger --root . | Record producer commands, artifact hashes, and local source evidence for public demo outputs. | demo/provenance_ledger.md, demo/provenance_ledger.json |
+| reproducibility-recipe | macro-policy-thesis-map reproducibility-recipe --root . | Publish a deterministic local regeneration order and release verification recipe. | demo/reproducibility_recipe.md, demo/reproducibility_recipe.json |
+| release-notes-draft | macro-policy-thesis-map release-notes-draft --root . | Draft v1.3.0 public release notes from local artifacts, governance layer, and release gates. | demo/release_notes_draft.md, demo/release_notes_draft.json |
 | cold-start-walkthrough | macro-policy-thesis-map cold-start-walkthrough --root . | Generate a deterministic first-run walkthrough for public evaluators. | demo/cold_start_walkthrough.md, demo/cold_start_walkthrough.json |
 | public-scan | macro-policy-thesis-map public-scan --root . | Scan publishable text for private names, paths, and credential-shaped terms. | stdout pass/fail |
 | diff-check | macro-policy-thesis-map diff-check --root . | Compare the saved release manifest against current file hashes. | stdout pass/fail |
@@ -163,6 +167,14 @@ Python module: `macro_policy_thesis_map.cli`
 | demo/artifact_index.json | json | artifact-index | deterministic local output |
 | demo/evaluator_scorecard.md | md | evaluator-scorecard | deterministic local output |
 | demo/evaluator_scorecard.json | json | evaluator-scorecard | deterministic local output |
+| demo/boundary_attestation.md | md | boundary-attestation | deterministic local output |
+| demo/boundary_attestation.json | json | boundary-attestation | deterministic local output |
+| demo/provenance_ledger.md | md | provenance-ledger | deterministic local output |
+| demo/provenance_ledger.json | json | provenance-ledger | deterministic local output |
+| demo/reproducibility_recipe.md | md | reproducibility-recipe | deterministic local output |
+| demo/reproducibility_recipe.json | json | reproducibility-recipe | deterministic local output |
+| demo/release_notes_draft.md | md | release-notes-draft | deterministic local output |
+| demo/release_notes_draft.json | json | release-notes-draft | deterministic local output |
 | demo/cold_start_walkthrough.md | md | cold-start-walkthrough | deterministic local output |
 | demo/cold_start_walkthrough.json | json | cold-start-walkthrough | deterministic local output |
 

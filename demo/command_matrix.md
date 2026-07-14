@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Command count: 47
+Command count: 51
 
 | Command | Purpose | Inputs | Outputs | Safety |
 | --- | --- | --- | --- | --- |
@@ -49,6 +49,10 @@ Command count: 47
 | release-faq | Write a public release FAQ for first-time GitHub visitors and evaluators. | built-in public questions, command metadata, local artifact availability | demo/release_faq.md, demo/release_faq.json | FAQ text stays descriptive, local, static, and research-only. |
 | artifact-index | Index deterministic public demo artifacts by format, producer command, size, and hash. | demo artifacts and command metadata | demo/artifact_index.md, demo/artifact_index.json | Indexes local files only; no upload destination, workflow, or private storage reference. |
 | evaluator-scorecard | Score public evaluator readiness across trust, citations, artifacts, tests, and safety boundaries. | trust report, citation map, artifact index, public readiness, tests, README | demo/evaluator_scorecard.md, demo/evaluator_scorecard.json | Scores local release evidence only and does not provide financial advice. |
+| boundary-attestation | Attest static finance boundaries, zero-dependency packaging, public scan status, and absent workflows. | README, skill docs, pyproject.toml, public scan, demo artifacts | demo/boundary_attestation.md, demo/boundary_attestation.json | Documents public static boundaries only; no live data, private references, workflows, broker actions, or advice. |
+| provenance-ledger | Record producer commands, artifact hashes, and local source evidence for public demo outputs. | command metadata, demo artifacts, examples, README, tests | demo/provenance_ledger.md, demo/provenance_ledger.json | Uses local paths and hashes only; no hosted, private, workflow, or external provenance references. |
+| reproducibility-recipe | Publish a deterministic local regeneration order and release verification recipe. | command metadata, governance artifacts, release gates | demo/reproducibility_recipe.md, demo/reproducibility_recipe.json | Local command recipe only; excludes network access, private tools, workflows, live data, and finance actions. |
+| release-notes-draft | Draft v1.3.0 public release notes from local artifacts, governance layer, and release gates. | governance artifacts, command matrix, readiness, regression summary | demo/release_notes_draft.md, demo/release_notes_draft.json | Draft notes are descriptive release metadata only and contain no advice, private references, or workflow steps. |
 | cold-start-walkthrough | Generate a deterministic first-run walkthrough for public evaluators. | built-in command metadata | demo/cold_start_walkthrough.md, demo/cold_start_walkthrough.json | Uses local static commands and bundled examples. |
 | public-scan | Scan publishable text for private names, paths, and credential-shaped terms. | repository text files | stdout pass/fail | Fails closed when a private or credential-shaped token is found. |
 | diff-check | Compare the saved release manifest against current file hashes. | demo/release_manifest.json, repository files | stdout pass/fail | Detects artifact drift using static local hashes only. |

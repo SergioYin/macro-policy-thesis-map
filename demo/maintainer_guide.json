@@ -24,6 +24,10 @@
     "release-faq",
     "artifact-index",
     "evaluator-scorecard",
+    "boundary-attestation",
+    "provenance-ledger",
+    "reproducibility-recipe",
+    "release-notes-draft",
     "benchmark-suite",
     "integration-cookbook",
     "compatibility-report",
@@ -72,5 +76,5 @@
     }
   ],
   "title": "Maintainer Guide",
-  "version": "1.2.0"
+  "version": "1.3.0"
 }

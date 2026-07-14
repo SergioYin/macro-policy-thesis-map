@@ -140,6 +140,14 @@ DEMO_ARTIFACTS = [
     "demo/artifact_index.json",
     "demo/evaluator_scorecard.md",
     "demo/evaluator_scorecard.json",
+    "demo/boundary_attestation.md",
+    "demo/boundary_attestation.json",
+    "demo/provenance_ledger.md",
+    "demo/provenance_ledger.json",
+    "demo/reproducibility_recipe.md",
+    "demo/reproducibility_recipe.json",
+    "demo/release_notes_draft.md",
+    "demo/release_notes_draft.json",
     "demo/fixture_doctor.md",
     "demo/fixture_doctor.json",
     "demo/input_schema.md",
@@ -459,6 +467,34 @@ COMMAND_SPECS = [
         "inputs": ["trust report, citation map, artifact index, public readiness, tests, README"],
         "outputs": ["demo/evaluator_scorecard.md", "demo/evaluator_scorecard.json"],
         "safety": "Scores local release evidence only and does not provide financial advice.",
+    },
+    {
+        "command": "boundary-attestation",
+        "purpose": "Attest static finance boundaries, zero-dependency packaging, public scan status, and absent workflows.",
+        "inputs": ["README, skill docs, pyproject.toml, public scan, demo artifacts"],
+        "outputs": ["demo/boundary_attestation.md", "demo/boundary_attestation.json"],
+        "safety": "Documents public static boundaries only; no live data, private references, workflows, broker actions, or advice.",
+    },
+    {
+        "command": "provenance-ledger",
+        "purpose": "Record producer commands, artifact hashes, and local source evidence for public demo outputs.",
+        "inputs": ["command metadata, demo artifacts, examples, README, tests"],
+        "outputs": ["demo/provenance_ledger.md", "demo/provenance_ledger.json"],
+        "safety": "Uses local paths and hashes only; no hosted, private, workflow, or external provenance references.",
+    },
+    {
+        "command": "reproducibility-recipe",
+        "purpose": "Publish a deterministic local regeneration order and release verification recipe.",
+        "inputs": ["command metadata, governance artifacts, release gates"],
+        "outputs": ["demo/reproducibility_recipe.md", "demo/reproducibility_recipe.json"],
+        "safety": "Local command recipe only; excludes network access, private tools, workflows, live data, and finance actions.",
+    },
+    {
+        "command": "release-notes-draft",
+        "purpose": "Draft v1.3.0 public release notes from local artifacts, governance layer, and release gates.",
+        "inputs": ["governance artifacts, command matrix, readiness, regression summary"],
+        "outputs": ["demo/release_notes_draft.md", "demo/release_notes_draft.json"],
+        "safety": "Draft notes are descriptive release metadata only and contain no advice, private references, or workflow steps.",
     },
     {
         "command": "cold-start-walkthrough",
@@ -1332,7 +1368,7 @@ def workflow_protocol() -> dict[str, Any]:
     return {
         "title": "Workflow Protocol",
         "version": __version__,
-        "protocol_id": "macro-policy-thesis-map.v1.2",
+        "protocol_id": "macro-policy-thesis-map.v1.3",
         "purpose": "Reusable local protocol for agents generating static macro-policy evidence maps.",
         "phases": phases,
         "agent_contract": {
@@ -1427,7 +1463,7 @@ def roadmap_next() -> dict[str, Any]:
             "roadmap_id": "next-002",
             "theme": "Agent reuse",
             "item": "Stabilize protocol JSON field names before adding optional adapters.",
-            "acceptance": "workflow_protocol.json remains backwards-readable by agents using protocol_id macro-policy-thesis-map.v1.2.",
+            "acceptance": "workflow_protocol.json remains backwards-readable by agents using protocol_id macro-policy-thesis-map.v1.3.",
             "excluded": ["remote orchestration", "repository workflow files"],
         },
         {
@@ -1508,6 +1544,12 @@ def trust_report(root: Path) -> dict[str, Any]:
             "evidence": [".github/workflows"],
             "trust_reason": "Evaluation does not depend on hidden CI or repository automation.",
         },
+        {
+            "name": "governance_attestation_layer",
+            "passed": all(root.joinpath(path).exists() for path in ["demo/boundary_attestation.json", "demo/provenance_ledger.json", "demo/reproducibility_recipe.json", "demo/release_notes_draft.json"]),
+            "evidence": ["demo/boundary_attestation.json", "demo/provenance_ledger.json", "demo/reproducibility_recipe.json", "demo/release_notes_draft.json"],
+            "trust_reason": "Governance evidence is recorded as local deterministic artifacts.",
+        },
     ]
     artifacts = records_for_existing(
         root,
@@ -1520,6 +1562,10 @@ def trust_report(root: Path) -> dict[str, Any]:
             "demo/public_readiness.json",
             "demo/release_manifest.json",
             "demo/evidence_bundle.json",
+            "demo/boundary_attestation.json",
+            "demo/provenance_ledger.json",
+            "demo/reproducibility_recipe.json",
+            "demo/release_notes_draft.json",
         ],
     )
     passed = sum(1 for item in checks if item["passed"])
@@ -1538,6 +1584,10 @@ def trust_report(root: Path) -> dict[str, Any]:
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli boundary-attestation --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli provenance-ledger --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli reproducibility-recipe --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-notes-draft --root .",
         ],
         "boundaries": DISCLAIMER,
     }
@@ -1574,6 +1624,12 @@ def citation_map(root: Path) -> dict[str, Any]:
             "claim": "Outputs are research-only and do not fetch live data or provide personalized financial advice.",
             "citations": ["README.md", "skills/agent/macro-policy-thesis-map/SKILL.md", "demo/public_readiness.json"],
             "producer_command": "public-readiness",
+        },
+        {
+            "claim_id": "claim-006",
+            "claim": "The v1.3.0 governance layer records boundaries, provenance, reproducibility, and release notes locally.",
+            "citations": ["demo/boundary_attestation.json", "demo/provenance_ledger.json", "demo/reproducibility_recipe.json", "demo/release_notes_draft.json"],
+            "producer_command": "release-notes-draft",
         },
     ]
     rows = []
@@ -1625,6 +1681,12 @@ def release_faq(root: Path) -> dict[str, Any]:
             "question": "What is intentionally unsupported?",
             "answer": "Live feeds, workflow automation, broker connections, trade actions, return predictions, and personalized financial advice.",
             "local_citations": ["README.md", "demo/roadmap_next.md", "skills/agent/macro-policy-thesis-map/SKILL.md"],
+        },
+        {
+            "question_id": "faq-006",
+            "question": "Where is the governance and attestation layer?",
+            "answer": "Use boundary-attestation, provenance-ledger, reproducibility-recipe, and release-notes-draft for v1.3.0 governance evidence.",
+            "local_citations": ["demo/boundary_attestation.md", "demo/provenance_ledger.md", "demo/reproducibility_recipe.md", "demo/release_notes_draft.md"],
         },
     ]
     for item in questions:
@@ -1709,12 +1771,15 @@ def evaluator_scorecard(root: Path) -> dict[str, Any]:
         },
         {
             "name": "boundaries_visible",
-            "passed": all(
-                root.joinpath(path).exists()
-                for path in ["README.md", "skills/agent/macro-policy-thesis-map/SKILL.md", "demo/release_faq.json"]
-            ),
-            "evidence": "README.md, skills/agent/macro-policy-thesis-map/SKILL.md, demo/release_faq.json",
+            "passed": all(root.joinpath(path).exists() for path in ["README.md", "skills/agent/macro-policy-thesis-map/SKILL.md", "demo/release_faq.json", "demo/boundary_attestation.json"]),
+            "evidence": "README.md, skills/agent/macro-policy-thesis-map/SKILL.md, demo/release_faq.json, demo/boundary_attestation.json",
             "detail": "Research-only boundaries are documented in human and agent surfaces.",
+        },
+        {
+            "name": "governance_layer_present",
+            "passed": all(root.joinpath(path).exists() for path in ["demo/boundary_attestation.json", "demo/provenance_ledger.json", "demo/reproducibility_recipe.json", "demo/release_notes_draft.json"]),
+            "evidence": "demo/boundary_attestation.json, demo/provenance_ledger.json, demo/reproducibility_recipe.json, demo/release_notes_draft.json",
+            "detail": "v1.3.0 governance artifacts are available for public release review.",
         },
     ]
     score = sum(1 for item in checks if item["passed"])
@@ -1725,7 +1790,189 @@ def evaluator_scorecard(root: Path) -> dict[str, Any]:
         "score": score,
         "max_score": len(checks),
         "checks": checks,
-        "recommended_order": ["trust-report", "citation-map", "release-faq", "artifact-index", "evaluator-scorecard"],
+        "recommended_order": ["trust-report", "citation-map", "release-faq", "artifact-index", "evaluator-scorecard", "boundary-attestation", "provenance-ledger", "reproducibility-recipe", "release-notes-draft"],
+        "boundaries": DISCLAIMER,
+    }
+
+
+def boundary_attestation(root: Path) -> dict[str, Any]:
+    readme = root.joinpath("README.md").read_text(encoding="utf-8") if root.joinpath("README.md").exists() else ""
+    skill = root.joinpath("skills/agent/macro-policy-thesis-map/SKILL.md").read_text(encoding="utf-8") if root.joinpath("skills/agent/macro-policy-thesis-map/SKILL.md").exists() else ""
+    pyproject = root.joinpath("pyproject.toml").read_text(encoding="utf-8") if root.joinpath("pyproject.toml").exists() else ""
+    public_scan_findings = public_findings(root)
+    checks = [
+        {
+            "name": "static_research_boundaries",
+            "passed": all(term in readme.lower() for term in ["does not fetch live data", "connect to brokers", "place orders", "recommend buys", "predict returns"]),
+            "evidence": ["README.md"],
+            "attestation": "README states the finance boundary before command usage.",
+        },
+        {
+            "name": "agent_skill_boundaries",
+            "passed": all(term in skill.lower() for term in ["live data", "broker", "personalized advice"]),
+            "evidence": ["skills/agent/macro-policy-thesis-map/SKILL.md"],
+            "attestation": "Agent protocol preserves static, research-only behavior.",
+        },
+        {
+            "name": "zero_runtime_dependencies",
+            "passed": "dependencies = []" in pyproject,
+            "evidence": ["pyproject.toml"],
+            "attestation": "Runtime dependency list is empty.",
+        },
+        {
+            "name": "public_scan_clean",
+            "passed": not public_scan_findings,
+            "evidence": ["public-scan"],
+            "attestation": "No private term or credential-shaped finding was detected in public text.",
+        },
+        {
+            "name": "no_workflow_files",
+            "passed": not root.joinpath(".github/workflows").exists(),
+            "evidence": [".github/workflows"],
+            "attestation": "Release verification is local and does not rely on repository workflow files.",
+        },
+        {
+            "name": "synthetic_static_fixtures",
+            "passed": all(root.joinpath(path).exists() for path in ["examples/macro_events.csv", "examples/public_macro_cases.csv", "examples/thesis_sensitivities.csv", "examples/portfolio_exposures.csv"]),
+            "evidence": ["examples/macro_events.csv", "examples/public_macro_cases.csv", "examples/thesis_sensitivities.csv", "examples/portfolio_exposures.csv"],
+            "attestation": "Default finance examples are committed static fixtures.",
+        },
+    ]
+    return {
+        "title": "Boundary Attestation",
+        "version": __version__,
+        "status": "attested" if all(item["passed"] for item in checks) else "needs-review",
+        "check_count": len(checks),
+        "passed_count": sum(1 for item in checks if item["passed"]),
+        "checks": checks,
+        "public_scan_findings": public_scan_findings,
+        "unsupported": ["live data fetching", "broker connections", "orders", "recommendations", "return predictions", "personalized financial advice", "workflow automation", "private references"],
+        "boundaries": DISCLAIMER,
+    }
+
+
+def provenance_ledger(root: Path) -> dict[str, Any]:
+    by_output = {
+        output: spec["command"]
+        for spec in COMMAND_SPECS
+        for output in spec["outputs"]
+        if output.startswith("demo/")
+    }
+    source_paths = [
+        "README.md",
+        "pyproject.toml",
+        "skills/agent/macro-policy-thesis-map/SKILL.md",
+        "tests/test_cli.py",
+        "tests/test_safety.py",
+        "examples/macro_events.csv",
+        "examples/prior_macro_events.csv",
+        "examples/public_macro_cases.csv",
+        "examples/thesis_sensitivities.csv",
+        "examples/portfolio_exposures.csv",
+    ]
+    artifacts = []
+    for relative in sorted(set(DEMO_ARTIFACTS) | set(by_output)):
+        path = root / relative
+        record = file_record(root, path) if path.exists() and path.is_file() else {"path": relative, "bytes": 0, "sha256": "", "status": "missing"}
+        artifacts.append({**record, "producer_command": by_output.get(relative, "release artifact"), "status": record.get("status", "present")})
+    sources = records_for_existing(root, source_paths)
+    missing_sources = [path for path in source_paths if not root.joinpath(path).exists()]
+    return {
+        "title": "Provenance Ledger",
+        "version": __version__,
+        "ledger_policy": "All provenance entries are local repository paths with deterministic SHA-256 hashes.",
+        "source_count": len(sources),
+        "missing_source_count": len(missing_sources),
+        "artifact_count": len(artifacts),
+        "present_artifact_count": sum(1 for item in artifacts if item["status"] == "present"),
+        "missing_artifact_count": sum(1 for item in artifacts if item["status"] == "missing"),
+        "sources": sources,
+        "missing_sources": missing_sources,
+        "artifacts": artifacts,
+        "boundaries": DISCLAIMER,
+    }
+
+
+def reproducibility_recipe() -> dict[str, Any]:
+    generate_commands = [
+        spec["command"]
+        for spec in COMMAND_SPECS
+        if any(output.startswith("demo/") for output in spec["outputs"]) and spec["command"] not in {"release-manifest"}
+    ]
+    release_gates = [
+        "PYTHONPATH=src python -m pytest",
+        "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
+        "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
+        "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
+        "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
+        "python -c \"import build_backend; build_backend.build_wheel('dist')\"",
+    ]
+    steps = [
+        {"step": index, "command": f"PYTHONPATH=src python -m macro_policy_thesis_map.cli {command} --root .", "expected": "deterministic demo artifact update"}
+        for index, command in enumerate(generate_commands, start=1)
+    ]
+    steps.append({"step": len(steps) + 1, "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-manifest --root .", "expected": "release manifest records settled hashes"})
+    return {
+        "title": "Reproducibility Recipe",
+        "version": __version__,
+        "recipe_policy": "Run from a source checkout with static files only; commands do not require network access.",
+        "step_count": len(steps),
+        "steps": steps,
+        "release_gates": release_gates,
+        "determinism_controls": [
+            "JSON writer sorts keys.",
+            "Markdown tables are generated from sorted command metadata and local file records.",
+            "Release manifest is written after generated governance artifacts settle.",
+            "diff-check compares SHA-256 values from the saved release manifest.",
+        ],
+        "unsupported": ["live data refresh", "private storage", "workflow automation", "broker access", "investment advice"],
+        "boundaries": DISCLAIMER,
+    }
+
+
+def release_notes_draft(root: Path) -> dict[str, Any]:
+    readiness = read_optional_json(root / "demo/public_readiness.json")
+    regression = read_optional_json(root / "demo/regression_summary.json")
+    boundary = read_optional_json(root / "demo/boundary_attestation.json")
+    provenance = read_optional_json(root / "demo/provenance_ledger.json")
+    recipe = read_optional_json(root / "demo/reproducibility_recipe.json")
+    return {
+        "title": "Release Notes Draft",
+        "version": __version__,
+        "release_name": "v1.3.0 governance and attestation layer",
+        "status": "ready" if readiness.get("status") == "ready" and boundary.get("status") == "attested" else "needs-review",
+        "highlights": [
+            "Added boundary-attestation for explicit static finance, zero-dependency, public scan, and no-workflow checks.",
+            "Added provenance-ledger for local source and demo artifact hashes with producer commands.",
+            "Added reproducibility-recipe for deterministic regeneration order and release gates.",
+            "Added release-notes-draft so public release notes cite local governance artifacts.",
+        ],
+        "artifact_links": [
+            "demo/boundary_attestation.md",
+            "demo/provenance_ledger.md",
+            "demo/reproducibility_recipe.md",
+            "demo/release_notes_draft.md",
+        ],
+        "gate_summary": {
+            "public_readiness_status": readiness.get("status", "missing"),
+            "regression_status": regression.get("status", "missing"),
+            "boundary_status": boundary.get("status", "missing"),
+            "provenance_present_artifacts": provenance.get("present_artifact_count", 0),
+            "reproducibility_steps": recipe.get("step_count", 0),
+        },
+        "verification_commands": [
+            "PYTHONPATH=src python -m pytest",
+            "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
+            "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
+            "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
+            "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
+            "python -c \"import build_backend; build_backend.build_wheel('dist')\"",
+        ],
+        "upgrade_notes": [
+            "Runtime dependencies remain empty.",
+            "Default finance fixtures remain static and synthetic.",
+            "No workflow files, private references, live data, broker actions, or finance advice were added.",
+        ],
         "boundaries": DISCLAIMER,
     }
 
@@ -1793,6 +2040,7 @@ def maturity(root: Path) -> dict[str, Any]:
         ("public_evaluator_hardening", all(root.joinpath(path).exists() for path in ["demo/benchmark_suite.json", "demo/integration_cookbook.json", "demo/compatibility_report.json", "demo/maintainer_guide.json", "demo/golden_fixtures.json", "demo/regression_summary.json"])),
         ("public_protocol_layer", all(root.joinpath(path).exists() for path in ["demo/landing_page.json", "demo/api_reference.json", "demo/workflow_protocol.json", "demo/example_pack.json", "demo/roadmap_next.json"])),
         ("public_trust_layer", all(root.joinpath(path).exists() for path in ["demo/trust_report.json", "demo/citation_map.json", "demo/release_faq.json", "demo/artifact_index.json", "demo/evaluator_scorecard.json"])),
+        ("governance_attestation_layer", all(root.joinpath(path).exists() for path in ["demo/boundary_attestation.json", "demo/provenance_ledger.json", "demo/reproducibility_recipe.json", "demo/release_notes_draft.json"])),
         ("tests", any(root.joinpath("tests").glob("test_*.py"))),
         ("skill", root.joinpath("skills/agent/macro-policy-thesis-map/SKILL.md").exists()),
         ("no_workflows", not root.joinpath(".github/workflows").exists()),
@@ -1858,6 +2106,10 @@ def quickstart_check(root: Path) -> dict[str, Any]:
             "release-faq",
             "artifact-index",
             "evaluator-scorecard",
+            "boundary-attestation",
+            "provenance-ledger",
+            "reproducibility-recipe",
+            "release-notes-draft",
             "case-gallery",
             "visual-receipt",
             "troubleshoot",
@@ -1990,6 +2242,10 @@ def docs_export(root: Path) -> dict[str, Any]:
         ("Release FAQ", "demo/release_faq.md", "First-time evaluator questions with local citations."),
         ("Artifact index", "demo/artifact_index.md", "Demo artifact producers, formats, sizes, and hashes."),
         ("Evaluator scorecard", "demo/evaluator_scorecard.md", "Public evaluator readiness scorecard."),
+        ("Boundary attestation", "demo/boundary_attestation.md", "Static finance boundary and public release attestation."),
+        ("Provenance ledger", "demo/provenance_ledger.md", "Local source and artifact hash provenance."),
+        ("Reproducibility recipe", "demo/reproducibility_recipe.md", "Deterministic regeneration order and release gates."),
+        ("Release notes draft", "demo/release_notes_draft.md", "v1.3.0 public release notes draft."),
         ("Troubleshooting", "demo/troubleshoot.md", "Operator diagnostics and recovery steps."),
         ("CLI help", "demo/cli_help.md", "Deterministic command usage lines."),
         ("README snippet", "demo/readme_snippet.md", "Compact copyable quickstart snippet."),
@@ -2044,6 +2300,10 @@ def readme_snippet() -> dict[str, Any]:
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-faq --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli artifact-index --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli evaluator-scorecard --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli boundary-attestation --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli provenance-ledger --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli reproducibility-recipe --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-notes-draft --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli troubleshoot --root .",
         "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
     ]
@@ -2051,7 +2311,7 @@ def readme_snippet() -> dict[str, Any]:
         "title": "README Snippet",
         "version": __version__,
         "commands": commands,
-        "outputs": ["demo/thesis_packet.md", "demo/review_ledger.md", "demo/scenario_library.md", "demo/assumption_registry.md", "demo/data_dictionary_diff.md", "demo/benchmark_suite.md", "demo/integration_cookbook.md", "demo/compatibility_report.md", "demo/maintainer_guide.md", "demo/golden_fixtures.md", "demo/regression_summary.md", "demo/landing_page.md", "demo/api_reference.md", "demo/workflow_protocol.md", "demo/example_pack.md", "demo/roadmap_next.md", "demo/trust_report.md", "demo/citation_map.md", "demo/release_faq.md", "demo/artifact_index.md", "demo/evaluator_scorecard.md", "demo/troubleshoot.md"],
+        "outputs": ["demo/thesis_packet.md", "demo/review_ledger.md", "demo/scenario_library.md", "demo/assumption_registry.md", "demo/data_dictionary_diff.md", "demo/benchmark_suite.md", "demo/integration_cookbook.md", "demo/compatibility_report.md", "demo/maintainer_guide.md", "demo/golden_fixtures.md", "demo/regression_summary.md", "demo/landing_page.md", "demo/api_reference.md", "demo/workflow_protocol.md", "demo/example_pack.md", "demo/roadmap_next.md", "demo/trust_report.md", "demo/citation_map.md", "demo/release_faq.md", "demo/artifact_index.md", "demo/evaluator_scorecard.md", "demo/boundary_attestation.md", "demo/provenance_ledger.md", "demo/reproducibility_recipe.md", "demo/release_notes_draft.md", "demo/troubleshoot.md"],
         "snippet": "\n".join(commands),
         "boundaries": DISCLAIMER,
     }
@@ -2186,6 +2446,10 @@ def public_readiness(root: Path) -> dict[str, Any]:
         "demo/release_faq.json",
         "demo/artifact_index.json",
         "demo/evaluator_scorecard.json",
+        "demo/boundary_attestation.json",
+        "demo/provenance_ledger.json",
+        "demo/reproducibility_recipe.json",
+        "demo/release_notes_draft.json",
         "demo/adoption_notes.json",
         "demo/reviewer_scorecard.json",
         "demo/release_deck.json",
@@ -2201,6 +2465,7 @@ def public_readiness(root: Path) -> dict[str, Any]:
         ("public_evaluator_hardening", all(root.joinpath(path).exists() for path in ["demo/benchmark_suite.json", "demo/integration_cookbook.json", "demo/compatibility_report.json", "demo/maintainer_guide.json", "demo/golden_fixtures.json", "demo/regression_summary.json"]), "Benchmark, integration, compatibility, maintainer, golden fixture, and regression summary artifacts are present."),
         ("public_protocol_layer", all(root.joinpath(path).exists() for path in ["demo/landing_page.html", "demo/api_reference.html", "demo/workflow_protocol.html", "demo/example_pack.html", "demo/roadmap_next.html"]), "Landing, API reference, workflow protocol, example pack, and roadmap HTML artifacts are present."),
         ("public_trust_layer", all(root.joinpath(path).exists() for path in ["demo/trust_report.json", "demo/citation_map.json", "demo/release_faq.json", "demo/artifact_index.json", "demo/evaluator_scorecard.json"]), "Trust report, citation map, release FAQ, artifact index, and evaluator scorecard artifacts are present."),
+        ("governance_attestation_layer", all(root.joinpath(path).exists() for path in ["demo/boundary_attestation.json", "demo/provenance_ledger.json", "demo/reproducibility_recipe.json", "demo/release_notes_draft.json"]), "Boundary, provenance, reproducibility, and release notes draft artifacts are present."),
         ("no_workflow_files", not root.joinpath(".github/workflows").exists(), "No repository workflow files are required for public evaluation."),
         ("zero_dependency_package", "dependencies = []" in root.joinpath("pyproject.toml").read_text(encoding="utf-8") if root.joinpath("pyproject.toml").exists() else False, "Package declares no runtime dependencies."),
     ]
@@ -2334,6 +2599,7 @@ def compatibility_report(root: Path) -> dict[str, Any]:
         ("public_artifacts", all(root.joinpath(path).exists() for path in ["demo/command_matrix.json", "demo/public_readiness.json", "demo/golden_fixtures.json"]), "Public evaluator artifacts are present."),
         ("protocol_artifacts", all(root.joinpath(path).exists() for path in ["demo/landing_page.json", "demo/api_reference.json", "demo/workflow_protocol.json", "demo/example_pack.json", "demo/roadmap_next.json"]), "Public protocol layer artifacts are present."),
         ("trust_artifacts", all(root.joinpath(path).exists() for path in ["demo/trust_report.json", "demo/citation_map.json", "demo/release_faq.json", "demo/artifact_index.json", "demo/evaluator_scorecard.json"]), "Public trust layer artifacts are present."),
+        ("governance_artifacts", all(root.joinpath(path).exists() for path in ["demo/boundary_attestation.json", "demo/provenance_ledger.json", "demo/reproducibility_recipe.json", "demo/release_notes_draft.json"]), "Governance and attestation layer artifacts are present."),
         ("no_workflows", not root.joinpath(".github/workflows").exists(), "No workflow files are required."),
     ]
     return {
@@ -2386,6 +2652,10 @@ def maintainer_guide() -> dict[str, Any]:
         "release-faq",
         "artifact-index",
         "evaluator-scorecard",
+        "boundary-attestation",
+        "provenance-ledger",
+        "reproducibility-recipe",
+        "release-notes-draft",
         "benchmark-suite",
         "integration-cookbook",
         "compatibility-report",
@@ -2468,6 +2738,7 @@ def regression_summary(root: Path) -> dict[str, Any]:
         {"name": "release_manifest", "status": "pass" if root.joinpath("demo/release_manifest.json").exists() else "missing", "evidence": "demo/release_manifest.json", "detail": "Release artifact hashes are present."},
         {"name": "golden_fixtures", "status": read_optional_json(root / "demo/golden_fixtures.json").get("status", "missing"), "evidence": "demo/golden_fixtures.json", "detail": "Fixture schema and hash inventory."},
         {"name": "trust_layer", "status": read_optional_json(root / "demo/evaluator_scorecard.json").get("status", "missing"), "evidence": "demo/evaluator_scorecard.json", "detail": "Evaluator trust scorecard based on local artifacts."},
+        {"name": "governance_attestation_layer", "status": "ready" if all(root.joinpath(path).exists() for path in ["demo/boundary_attestation.json", "demo/provenance_ledger.json", "demo/reproducibility_recipe.json", "demo/release_notes_draft.json"]) else "missing", "evidence": "demo/boundary_attestation.json, demo/provenance_ledger.json, demo/reproducibility_recipe.json, demo/release_notes_draft.json", "detail": "Governance layer records boundaries, provenance, reproducibility, and release notes."},
         {"name": "wheel_build", "status": "manual", "evidence": "python -m build --wheel or build_backend.build_wheel", "detail": "Offline wheel build should be run when build tooling is available."},
     ]
     blocking = [item for item in gates if item["status"] not in {"pass", "ready", "manual"}]
@@ -2486,6 +2757,10 @@ def regression_summary(root: Path) -> dict[str, Any]:
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-readiness --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli evaluator-scorecard --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli boundary-attestation --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli provenance-ledger --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli reproducibility-recipe --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-notes-draft --root .",
         ],
         "boundaries": DISCLAIMER,
     }
@@ -2652,6 +2927,10 @@ def adoption_notes(root: Path) -> dict[str, Any]:
             "demo/release_faq.json",
             "demo/artifact_index.json",
             "demo/evaluator_scorecard.json",
+            "demo/boundary_attestation.json",
+            "demo/provenance_ledger.json",
+            "demo/reproducibility_recipe.json",
+            "demo/release_notes_draft.json",
         ],
     )
     next_actions = [
@@ -2678,6 +2957,10 @@ def adoption_notes(root: Path) -> dict[str, Any]:
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-faq --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli artifact-index --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli evaluator-scorecard --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli boundary-attestation --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli provenance-ledger --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli reproducibility-recipe --root .",
+        "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-notes-draft --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli cli-help --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli reviewer-scorecard --root .",
         "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-deck --root .",
@@ -2718,6 +3001,7 @@ def reviewer_scorecard(root: Path) -> dict[str, Any]:
         ("public_trust_layer", ["public_trust_layer"], "Trust report, citation map, release FAQ, artifact index, and evaluator scorecard are present."),
         ("public_package", ["package", "readme", "license", "skill"], "Package metadata, docs, license, and agent skill are present."),
         ("verification", ["tests", "no_workflows"], "Tests exist and no workflow files are required."),
+        ("governance_attestation_layer", ["governance_attestation_layer"], "Boundary, provenance, reproducibility, and release-note artifacts are present."),
         ("public_readiness", [], "Public readiness command reports ready."),
     ]
     maturity_checks = {item["name"]: bool(item["passed"]) for item in maturity_payload.get("checks", []) if isinstance(item, dict)}
@@ -2765,6 +3049,10 @@ def reviewer_scorecard(root: Path) -> dict[str, Any]:
             "demo/release_faq.json",
             "demo/artifact_index.json",
             "demo/evaluator_scorecard.json",
+            "demo/boundary_attestation.json",
+            "demo/provenance_ledger.json",
+            "demo/reproducibility_recipe.json",
+            "demo/release_notes_draft.json",
             "demo/troubleshoot.json",
             "demo/docs_export.json",
             "demo/readme_snippet.json",
@@ -2820,6 +3108,7 @@ def release_deck(root: Path) -> dict[str, Any]:
                 "Maturity mapping covers static inputs, review controls, package evidence, verification, and readiness",
                 "Public hardening covers benchmark, integration, compatibility, maintainer, fixture, and regression surfaces",
                 "Protocol layer covers public landing, API contracts, agent protocol, example recipes, and roadmap constraints",
+                "Governance layer covers boundary attestation, provenance, reproducibility, and release notes draft",
             ],
         },
         {
@@ -2862,6 +3151,10 @@ def release_deck(root: Path) -> dict[str, Any]:
             "demo/release_faq.json",
             "demo/artifact_index.json",
             "demo/evaluator_scorecard.json",
+            "demo/boundary_attestation.json",
+            "demo/provenance_ledger.json",
+            "demo/reproducibility_recipe.json",
+            "demo/release_notes_draft.json",
         ],
     )
     return {
@@ -2941,6 +3234,14 @@ def bundle_export(root: Path) -> dict[str, Any]:
             "demo/artifact_index.json",
             "demo/evaluator_scorecard.md",
             "demo/evaluator_scorecard.json",
+            "demo/boundary_attestation.md",
+            "demo/boundary_attestation.json",
+            "demo/provenance_ledger.md",
+            "demo/provenance_ledger.json",
+            "demo/reproducibility_recipe.md",
+            "demo/reproducibility_recipe.json",
+            "demo/release_notes_draft.md",
+            "demo/release_notes_draft.json",
     ]
     artifacts = records_for_existing(root, include)
     missing = [path for path in include if not root.joinpath(path).exists()]
@@ -2967,6 +3268,10 @@ def bundle_export(root: Path) -> dict[str, Any]:
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-faq --root .",
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli artifact-index --root .",
             "PYTHONPATH=src python -m macro_policy_thesis_map.cli evaluator-scorecard --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli boundary-attestation --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli provenance-ledger --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli reproducibility-recipe --root .",
+            "PYTHONPATH=src python -m macro_policy_thesis_map.cli release-notes-draft --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root .",
             "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli diff-check --root .",
         ],
