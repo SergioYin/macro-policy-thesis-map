@@ -1,0 +1,160 @@
+{
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "command_count": 13,
+  "commands": [
+    {
+      "command": "build-packet",
+      "inputs": [
+        "examples/macro_events.csv or bundled macro_events.csv"
+      ],
+      "outputs": [
+        "demo/thesis_packet.md",
+        "demo/thesis_packet.json"
+      ],
+      "purpose": "Build the primary thesis evidence packet from static CSV events.",
+      "safety": "Static research output with no live data, orders, or recommendations."
+    },
+    {
+      "command": "compare-history",
+      "inputs": [
+        "examples/macro_events.csv",
+        "examples/prior_macro_events.csv or bundled examples"
+      ],
+      "outputs": [
+        "demo/history_comparison.md",
+        "demo/history_comparison.json"
+      ],
+      "purpose": "Compare current and prior static policy event sets.",
+      "safety": "Reports structural deltas only; does not forecast policy or market outcomes."
+    },
+    {
+      "command": "review-ledger",
+      "inputs": [
+        "examples/macro_events.csv or bundled macro_events.csv"
+      ],
+      "outputs": [
+        "demo/review_ledger.md",
+        "demo/review_ledger.json"
+      ],
+      "purpose": "Flag low-confidence areas and advice-like terms in supplied evidence.",
+      "safety": "Raises review findings instead of rewriting evidence into advice."
+    },
+    {
+      "command": "static-dashboard",
+      "inputs": [
+        "examples/macro_events.csv or bundled macro_events.csv"
+      ],
+      "outputs": [
+        "demo/static_dashboard.html"
+      ],
+      "purpose": "Render a no-JavaScript HTML view of the packet and review ledger.",
+      "safety": "Static local rendering only."
+    },
+    {
+      "command": "release-manifest",
+      "inputs": [
+        "repository files"
+      ],
+      "outputs": [
+        "demo/release_manifest.md",
+        "demo/release_manifest.json"
+      ],
+      "purpose": "Record deterministic paths, sizes, and hashes for release artifacts.",
+      "safety": "Excludes generated manifest self-hashes."
+    },
+    {
+      "command": "maturity-report",
+      "inputs": [
+        "repository files"
+      ],
+      "outputs": [
+        "demo/maturity_report.md",
+        "demo/maturity_report.json"
+      ],
+      "purpose": "Score basic release-readiness evidence in the source tree.",
+      "safety": "Checks packaging, examples, tests, skill docs, and absence of workflow files."
+    },
+    {
+      "command": "quickstart-check",
+      "inputs": [
+        "repository files and bundled examples"
+      ],
+      "outputs": [
+        "demo/quickstart_check.md",
+        "demo/quickstart_check.json"
+      ],
+      "purpose": "Show whether a fresh evaluator can run the documented starter commands.",
+      "safety": "Checks command availability and expected artifacts without network access."
+    },
+    {
+      "command": "command-matrix",
+      "inputs": [
+        "built-in command metadata"
+      ],
+      "outputs": [
+        "demo/command_matrix.md",
+        "demo/command_matrix.json"
+      ],
+      "purpose": "Publish a neutral map of CLI commands, inputs, outputs, and safety posture.",
+      "safety": "Documents capabilities without private references or operational workflows."
+    },
+    {
+      "command": "evidence-bundle",
+      "inputs": [
+        "examples, demo artifacts, README, tests, skill docs"
+      ],
+      "outputs": [
+        "demo/evidence_bundle.md",
+        "demo/evidence_bundle.json"
+      ],
+      "purpose": "Collect public evaluation artifacts and source fixture hashes in one bundle.",
+      "safety": "Includes hashes and static summaries only."
+    },
+    {
+      "command": "public-readiness",
+      "inputs": [
+        "repository files, demo artifacts, public scan"
+      ],
+      "outputs": [
+        "demo/public_readiness.md",
+        "demo/public_readiness.json"
+      ],
+      "purpose": "Summarize public release readiness gates and blockers.",
+      "safety": "Requires public scan pass and explicit static research boundaries."
+    },
+    {
+      "command": "cold-start-walkthrough",
+      "inputs": [
+        "built-in command metadata"
+      ],
+      "outputs": [
+        "demo/cold_start_walkthrough.md",
+        "demo/cold_start_walkthrough.json"
+      ],
+      "purpose": "Generate a deterministic first-run walkthrough for public evaluators.",
+      "safety": "Uses local static commands and bundled examples."
+    },
+    {
+      "command": "public-scan",
+      "inputs": [
+        "repository text files"
+      ],
+      "outputs": [
+        "stdout pass/fail"
+      ],
+      "purpose": "Scan publishable text for private names, paths, and credential-shaped terms.",
+      "safety": "Fails closed when a private or credential-shaped token is found."
+    },
+    {
+      "command": "selfcheck",
+      "inputs": [
+        "repository files"
+      ],
+      "outputs": [
+        "stdout pass/fail"
+      ],
+      "purpose": "Run source-tree checks for files, boundaries, and public scan status.",
+      "safety": "Fails closed when required public release evidence is missing."
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "checks": [
+    {
+      "name": "package",
+      "passed": true
+    },
+    {
+      "name": "readme",
+      "passed": true
+    },
+    {
+      "name": "license",
+      "passed": true
+    },
+    {
+      "name": "examples",
+      "passed": true
+    },
+    {
+      "name": "tests",
+      "passed": true
+    },
+    {
+      "name": "skill",
+      "passed": true
+    },
+    {
+      "name": "no_workflows",
+      "passed": true
+    }
+  ],
+  "max_score": 7,
+  "score": 7,
+  "status": "ready"
+}

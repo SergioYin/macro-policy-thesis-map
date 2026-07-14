@@ -1,0 +1,41 @@
+{
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "comparison_count": 5,
+  "rows": [
+    {
+      "current_direction": "tighter",
+      "event_delta": 0,
+      "policy_area": "credit-conditions",
+      "prior_direction": "tighter",
+      "status": "carried"
+    },
+    {
+      "current_direction": "neutral",
+      "event_delta": 1,
+      "policy_area": "financial-regulation",
+      "prior_direction": null,
+      "status": "added"
+    },
+    {
+      "current_direction": "expansive",
+      "event_delta": 0,
+      "policy_area": "fiscal-policy",
+      "prior_direction": "neutral",
+      "status": "carried"
+    },
+    {
+      "current_direction": "moderating",
+      "event_delta": 0,
+      "policy_area": "labor-market",
+      "prior_direction": "firm",
+      "status": "carried"
+    },
+    {
+      "current_direction": "restrictive",
+      "event_delta": 0,
+      "policy_area": "monetary-policy",
+      "prior_direction": "restrictive",
+      "status": "carried"
+    }
+  ]
+}

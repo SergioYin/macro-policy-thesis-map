@@ -1,0 +1,144 @@
+{
+  "artifact_count": 26,
+  "artifacts": [
+    {
+      "bytes": 1066,
+      "path": "LICENSE",
+      "sha256": "b13dc350cd48500c97d419a02e3bf37135989e60b46e1d99231103e0b04e780a"
+    },
+    {
+      "bytes": 4390,
+      "path": "README.md",
+      "sha256": "c4d575f562ea8ecd44a4677ce2598c3588d78e860ae5aab89a4db90c49558a23"
+    },
+    {
+      "bytes": 1779,
+      "path": "demo/cold_start_walkthrough.json",
+      "sha256": "ee40792bca26463229aaf7f669c992a553359941b2715520e5215194b85779b6"
+    },
+    {
+      "bytes": 1428,
+      "path": "demo/cold_start_walkthrough.md",
+      "sha256": "ba0d6054b07d14478f85c1b1849fa1da7dc628fd51778893a7eeb6c1cca55faa"
+    },
+    {
+      "bytes": 5286,
+      "path": "demo/command_matrix.json",
+      "sha256": "68d9c3ebab2455df5f41effc912612eb816f3bfd90e58a3f4479f28e708b11d5"
+    },
+    {
+      "bytes": 3489,
+      "path": "demo/command_matrix.md",
+      "sha256": "207ad6ae66933ad27f8fc3bee381f8f94fa4af8471a359435c34b14ef9d0a9da"
+    },
+    {
+      "bytes": 1197,
+      "path": "demo/history_comparison.json",
+      "sha256": "999b0f50d04e7fa9d8c8e8ace0e996ea5ecac115b8901bc9f29e221af03dfa05"
+    },
+    {
+      "bytes": 635,
+      "path": "demo/history_comparison.md",
+      "sha256": "aaa45f9f26551651831ab4b800b170a51b81e68e4cd331ec9e25d6d7a8ec1b8e"
+    },
+    {
+      "bytes": 751,
+      "path": "demo/maturity_report.json",
+      "sha256": "95ffd9f66a8c4dad245abb21d8c0ed5bc594f6fcc4338fce65f24afe2c8de3a3"
+    },
+    {
+      "bytes": 460,
+      "path": "demo/maturity_report.md",
+      "sha256": "8850dc801c71ba166da7f69ee9c9181b531c8668aedaa2f918f16c43f8e39f66"
+    },
+    {
+      "bytes": 1045,
+      "path": "demo/public_readiness.json",
+      "sha256": "68a0662b5c8edda6adca2281b1974898962d22d6acf2e337f7fb5efef4b6e4f0"
+    },
+    {
+      "bytes": 813,
+      "path": "demo/public_readiness.md",
+      "sha256": "f1e4c523709bc2e874ef740c9890bce744929448cd601bb4b049eaba20730ed8"
+    },
+    {
+      "bytes": 2343,
+      "path": "demo/quickstart_check.json",
+      "sha256": "0de35007cafbfeeee8ad082c4a12423fdbc475d11ee0cb6c4bf2c38c011ee51d"
+    },
+    {
+      "bytes": 1570,
+      "path": "demo/quickstart_check.md",
+      "sha256": "6ab5605789954b69ef41603deafcda2833e460c55bbbbbc99f61258832163f50"
+    },
+    {
+      "bytes": 432,
+      "path": "demo/review_ledger.json",
+      "sha256": "d4f558b50d9e8366a7643dbbdd90e60af0132fcea8bafb978819d6322a40be1a"
+    },
+    {
+      "bytes": 367,
+      "path": "demo/review_ledger.md",
+      "sha256": "c19af376680eae282b8c653c74d3e59d1b971fa4fb576c8949ae3a5401a60e1f"
+    },
+    {
+      "bytes": 1532,
+      "path": "demo/static_dashboard.html",
+      "sha256": "87f6bc077919ddaa56e419d2e9243735846eab7cb4a17ab408f3faff86e5ce23"
+    },
+    {
+      "bytes": 3659,
+      "path": "demo/thesis_packet.json",
+      "sha256": "21afd1a6478ca24314acad778cc1a07cd9ba7a0099af0afe54397d876a5d12a9"
+    },
+    {
+      "bytes": 1401,
+      "path": "demo/thesis_packet.md",
+      "sha256": "03769420c7f8360437e866116870ebd7fc88431cd96a088d215063b503385406"
+    },
+    {
+      "bytes": 906,
+      "path": "examples/macro_events.csv",
+      "sha256": "b7410919d62dd4e390bfb147959ba1e7b0410d2ab87cd4bd41af55557875303c"
+    },
+    {
+      "bytes": 715,
+      "path": "examples/prior_macro_events.csv",
+      "sha256": "95f9b30ce6f88581ea9ef431b885aef3941181a587eaa36ae9a39e19ad3026ed"
+    },
+    {
+      "bytes": 819,
+      "path": "pyproject.toml",
+      "sha256": "5e7386bd01cb4d9b512f518cc705349518c9859edfed9b9501330563ab39723b"
+    },
+    {
+      "bytes": 1376,
+      "path": "skills/agent/macro-policy-thesis-map/SKILL.md",
+      "sha256": "b2be0b261de9cddde674cbbc6025f47d555cffc766f5465acdfa05d19229eb81"
+    },
+    {
+      "bytes": 1433,
+      "path": "tests/test_build_backend.py",
+      "sha256": "151d9fd461f74348cf2214424edb2652ebbb7c8a256d7acb97ee38a253ade2f9"
+    },
+    {
+      "bytes": 4887,
+      "path": "tests/test_cli.py",
+      "sha256": "4d39fc932313138ca5e8e08579a74af8b69a8476f4eb1fd51e8022a7bd54a391"
+    },
+    {
+      "bytes": 1388,
+      "path": "tests/test_safety.py",
+      "sha256": "d50fc2a2e87e8002eb697b42e3562db830a56b9088734a50569f4ac39bef5d6c"
+    }
+  ],
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "evaluation_commands": [
+    "PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_safety.py",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli selfcheck --root .",
+    "PYTHONPATH=src python -B -m macro_policy_thesis_map.cli public-scan --root ."
+  ],
+  "missing": [],
+  "missing_count": 0,
+  "status": "ready"
+}

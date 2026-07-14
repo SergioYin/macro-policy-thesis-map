@@ -1,0 +1,29 @@
+[build-system]
+requires = []
+build-backend = "build_backend"
+backend-path = ["."]
+
+[project]
+name = "macro-policy-thesis-map"
+version = "0.1.0"
+description = "Zero-dependency static macro policy thesis mapping CLI."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "Macro Policy Thesis Map Contributors" }]
+keywords = ["macro", "policy", "research", "thesis", "static-analysis"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Office/Business :: Financial",
+]
+dependencies = []
+
+[project.scripts]
+macro-policy-thesis-map = "macro_policy_thesis_map.cli:main"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

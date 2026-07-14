@@ -1,0 +1,81 @@
+{
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "check_count": 6,
+  "checks": [
+    {
+      "name": "readme_available",
+      "passed": true,
+      "path": "README.md"
+    },
+    {
+      "name": "package_metadata_available",
+      "passed": true,
+      "path": "pyproject.toml"
+    },
+    {
+      "name": "example_events_available",
+      "passed": true,
+      "path": "examples/macro_events.csv"
+    },
+    {
+      "name": "bundled_events_available",
+      "passed": true,
+      "path": "src/macro_policy_thesis_map/examples/macro_events.csv"
+    },
+    {
+      "name": "skill_available",
+      "passed": true,
+      "path": "skills/agent/macro-policy-thesis-map/SKILL.md"
+    },
+    {
+      "name": "tests_available",
+      "passed": true,
+      "path": "tests/test_*.py"
+    }
+  ],
+  "passed_count": 6,
+  "starter_commands": [
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli build-packet --root .",
+      "expected_outputs": [
+        "demo/thesis_packet.md",
+        "demo/thesis_packet.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli compare-history --root .",
+      "expected_outputs": [
+        "demo/history_comparison.md",
+        "demo/history_comparison.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli review-ledger --root .",
+      "expected_outputs": [
+        "demo/review_ledger.md",
+        "demo/review_ledger.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli static-dashboard --root .",
+      "expected_outputs": [
+        "demo/static_dashboard.html"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli quickstart-check --root .",
+      "expected_outputs": [
+        "demo/quickstart_check.md",
+        "demo/quickstart_check.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli command-matrix --root .",
+      "expected_outputs": [
+        "demo/command_matrix.md",
+        "demo/command_matrix.json"
+      ]
+    }
+  ],
+  "status": "ready"
+}

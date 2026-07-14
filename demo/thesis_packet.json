@@ -1,0 +1,132 @@
+{
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "channel_counts": {
+    "capital-rules": 1,
+    "discount-rate": 1,
+    "issuance": 1,
+    "term-premium": 1,
+    "wage-growth": 1
+  },
+  "event_count": 5,
+  "evidence": [
+    {
+      "channel": "discount-rate",
+      "confidence": 0.72,
+      "date": "2026-06-01",
+      "direction": "restrictive",
+      "event_type": "policy_signal",
+      "evidence": "Policy language stayed cautious while acknowledging slower inflation",
+      "policy_area": "monetary-policy",
+      "source": "central-bank-summary",
+      "thesis_link": "thesis-alpha"
+    },
+    {
+      "channel": "wage-growth",
+      "confidence": 0.64,
+      "date": "2026-06-03",
+      "direction": "moderating",
+      "event_type": "macro_observation",
+      "evidence": "Wage growth cooled in the supplied static release summary",
+      "policy_area": "labor-market",
+      "source": "statistical-release",
+      "thesis_link": "thesis-alpha"
+    },
+    {
+      "channel": "term-premium",
+      "confidence": 0.58,
+      "date": "2026-06-05",
+      "direction": "tighter",
+      "event_type": "market_context",
+      "evidence": "Longer maturity yields remained elevated in the fixture snapshot",
+      "policy_area": "credit-conditions",
+      "source": "public-yield-table",
+      "thesis_link": "thesis-beta"
+    },
+    {
+      "channel": "issuance",
+      "confidence": 0.61,
+      "date": "2026-06-10",
+      "direction": "expansive",
+      "event_type": "thesis_note",
+      "evidence": "Planned issuance calendar stayed above prior fixture baseline",
+      "policy_area": "fiscal-policy",
+      "source": "research-note",
+      "thesis_link": "thesis-gamma"
+    },
+    {
+      "channel": "capital-rules",
+      "confidence": 0.56,
+      "date": "2026-06-12",
+      "direction": "neutral",
+      "event_type": "policy_signal",
+      "evidence": "Consultation dates were unchanged in the static policy calendar",
+      "policy_area": "financial-regulation",
+      "source": "regulatory-calendar",
+      "thesis_link": "thesis-beta"
+    }
+  ],
+  "policy_area_count": 5,
+  "policy_areas": [
+    {
+      "average_confidence": 0.58,
+      "channels": [
+        "term-premium"
+      ],
+      "dominant_direction": "tighter",
+      "event_count": 1,
+      "policy_area": "credit-conditions",
+      "thesis_links": [
+        "thesis-beta"
+      ]
+    },
+    {
+      "average_confidence": 0.56,
+      "channels": [
+        "capital-rules"
+      ],
+      "dominant_direction": "neutral",
+      "event_count": 1,
+      "policy_area": "financial-regulation",
+      "thesis_links": [
+        "thesis-beta"
+      ]
+    },
+    {
+      "average_confidence": 0.61,
+      "channels": [
+        "issuance"
+      ],
+      "dominant_direction": "expansive",
+      "event_count": 1,
+      "policy_area": "fiscal-policy",
+      "thesis_links": [
+        "thesis-gamma"
+      ]
+    },
+    {
+      "average_confidence": 0.64,
+      "channels": [
+        "wage-growth"
+      ],
+      "dominant_direction": "moderating",
+      "event_count": 1,
+      "policy_area": "labor-market",
+      "thesis_links": [
+        "thesis-alpha"
+      ]
+    },
+    {
+      "average_confidence": 0.72,
+      "channels": [
+        "discount-rate"
+      ],
+      "dominant_direction": "restrictive",
+      "event_count": 1,
+      "policy_area": "monetary-policy",
+      "thesis_links": [
+        "thesis-alpha"
+      ]
+    }
+  ],
+  "title": "Macro Policy Thesis Map"
+}

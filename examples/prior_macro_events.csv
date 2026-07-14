@@ -1,0 +1,5 @@
+date,event_type,source,policy_area,channel,direction,confidence,evidence,thesis_link
+2026-05-01,policy_signal,central-bank-summary,monetary-policy,discount-rate,restrictive,0.69,Policy language emphasized patience in the prior fixture,thesis-alpha
+2026-05-04,macro_observation,statistical-release,labor-market,wage-growth,firm,0.60,Wage growth was still firm in the prior static release summary,thesis-alpha
+2026-05-07,market_context,public-yield-table,credit-conditions,term-premium,tighter,0.55,Longer maturity yields were elevated in the prior fixture snapshot,thesis-beta
+2026-05-12,thesis_note,research-note,fiscal-policy,issuance,neutral,0.57,Issuance calendar matched the prior baseline fixture,thesis-gamma

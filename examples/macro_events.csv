@@ -1,0 +1,6 @@
+date,event_type,source,policy_area,channel,direction,confidence,evidence,thesis_link
+2026-06-01,policy_signal,central-bank-summary,monetary-policy,discount-rate,restrictive,0.72,Policy language stayed cautious while acknowledging slower inflation,thesis-alpha
+2026-06-03,macro_observation,statistical-release,labor-market,wage-growth,moderating,0.64,Wage growth cooled in the supplied static release summary,thesis-alpha
+2026-06-05,market_context,public-yield-table,credit-conditions,term-premium,tighter,0.58,Longer maturity yields remained elevated in the fixture snapshot,thesis-beta
+2026-06-10,thesis_note,research-note,fiscal-policy,issuance,expansive,0.61,Planned issuance calendar stayed above prior fixture baseline,thesis-gamma
+2026-06-12,policy_signal,regulatory-calendar,financial-regulation,capital-rules,neutral,0.56,Consultation dates were unchanged in the static policy calendar,thesis-beta
