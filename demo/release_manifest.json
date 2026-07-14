@@ -1,10 +1,10 @@
 {
-  "artifact_count": 36,
+  "artifact_count": 40,
   "artifacts": [
     {
-      "bytes": 4390,
+      "bytes": 5224,
       "path": "README.md",
-      "sha256": "c4d575f562ea8ecd44a4677ce2598c3588d78e860ae5aab89a4db90c49558a23"
+      "sha256": "073eff2da23f9462f2aeeb1130b1b4de28e691fcf04f93a24478d8e67fd63f40"
     },
     {
       "bytes": 1066,
@@ -14,7 +14,7 @@
     {
       "bytes": 819,
       "path": "pyproject.toml",
-      "sha256": "5e7386bd01cb4d9b512f518cc705349518c9859edfed9b9501330563ab39723b"
+      "sha256": "195eaf0aba7decbf40c64353db32cbe297b54d983593caa0146b53b3b898f511"
     },
     {
       "bytes": 906,
@@ -37,24 +37,34 @@
       "sha256": "ba0d6054b07d14478f85c1b1849fa1da7dc628fd51778893a7eeb6c1cca55faa"
     },
     {
-      "bytes": 5286,
+      "bytes": 6104,
       "path": "demo/command_matrix.json",
-      "sha256": "68d9c3ebab2455df5f41effc912612eb816f3bfd90e58a3f4479f28e708b11d5"
+      "sha256": "5960ca2ba344a9b556e50c3fae018f59c545e24f9359dae3f9b98c598fcaa392"
     },
     {
-      "bytes": 3489,
+      "bytes": 4019,
       "path": "demo/command_matrix.md",
-      "sha256": "207ad6ae66933ad27f8fc3bee381f8f94fa4af8471a359435c34b14ef9d0a9da"
+      "sha256": "68b74a65236420ef6c4a297d8a34b33d82170d652139c492c220398d0e218f18"
     },
     {
-      "bytes": 4766,
+      "bytes": 5392,
       "path": "demo/evidence_bundle.json",
-      "sha256": "184371adb75065f95235045ae49f78c054beedd1da14d5ed94468fe8026e0fe7"
+      "sha256": "f2b74c6f83036db95999655e5831f8393385dea89ad57241036841cae66dd544"
     },
     {
-      "bytes": 2120,
+      "bytes": 2330,
       "path": "demo/evidence_bundle.md",
-      "sha256": "b2a6be0d6848dabc875dc3952d4e79cac7cff160d6cd4a83b1f9d95869a740c5"
+      "sha256": "771ff5cc8897c2573b3fd5722bc02a5a4bf9969ea604fd3f483ddf45daa4bd97"
+    },
+    {
+      "bytes": 985,
+      "path": "demo/fixture_doctor.json",
+      "sha256": "56410778254836def7ff35b8ac9a2aaef5d6a37feca1523411852a80d41c0a15"
+    },
+    {
+      "bytes": 534,
+      "path": "demo/fixture_doctor.md",
+      "sha256": "6c06972b77c0882aa39ee96843a398c1c8a0d5d1b2ed645d634cbbdf77314314"
     },
     {
       "bytes": 1197,
@@ -65,6 +75,16 @@
       "bytes": 635,
       "path": "demo/history_comparison.md",
       "sha256": "aaa45f9f26551651831ab4b800b170a51b81e68e4cd331ec9e25d6d7a8ec1b8e"
+    },
+    {
+      "bytes": 2845,
+      "path": "demo/input_schema.json",
+      "sha256": "9ee4a9cb5d432e5e5cf5e03a7d9f51851a3626a53178cee8c5f38f2afda7b747"
+    },
+    {
+      "bytes": 1997,
+      "path": "demo/input_schema.md",
+      "sha256": "a671bf406c29454097b667af5143e2f69648b24a308fdaaafec81c83d000df9b"
     },
     {
       "bytes": 751,
@@ -87,14 +107,14 @@
       "sha256": "f1e4c523709bc2e874ef740c9890bce744929448cd601bb4b049eaba20730ed8"
     },
     {
-      "bytes": 2343,
+      "bytes": 2768,
       "path": "demo/quickstart_check.json",
-      "sha256": "0de35007cafbfeeee8ad082c4a12423fdbc475d11ee0cb6c4bf2c38c011ee51d"
+      "sha256": "d36c69880cd7e6b0ea7a33b9b641eced7581953af5ec0b6453cb89f60e993ffa"
     },
     {
-      "bytes": 1570,
+      "bytes": 1829,
       "path": "demo/quickstart_check.md",
-      "sha256": "6ab5605789954b69ef41603deafcda2833e460c55bbbbbc99f61258832163f50"
+      "sha256": "daa6596265be5f716999e5a2c3c15dfca78699f79ea41dc1114511a8a8b07eee"
     },
     {
       "bytes": 432,
@@ -124,7 +144,7 @@
     {
       "bytes": 62,
       "path": "src/macro_policy_thesis_map/__init__.py",
-      "sha256": "ce1998f3bcaf3a4cda5df446cc47c4600fe4b32ff7574c561370f14f293195dd"
+      "sha256": "83d741262e8290480e5e669a24d4f64b028c6777bff4c147115a012c984b1b0f"
     },
     {
       "bytes": 107,
@@ -132,14 +152,14 @@
       "sha256": "4ba15da101940e0d0059daf89b19cf80a190a08f5d9920bb94f8e4cab14647ce"
     },
     {
-      "bytes": 12093,
+      "bytes": 14294,
       "path": "src/macro_policy_thesis_map/cli.py",
-      "sha256": "8bf57418506395652b34da0af7e622ab0e270e8aac75c196efb280a4f9ada324"
+      "sha256": "e668f395947aa7b91e5a6d297e6257d339275e9ac5fb6c8ccd7ab0ecaf84d54d"
     },
     {
-      "bytes": 20929,
+      "bytes": 29713,
       "path": "src/macro_policy_thesis_map/core.py",
-      "sha256": "4b9f25fa8e25a8924bb77736b402016527659e59133051c1c8ceb1911da8a836"
+      "sha256": "801bc52be404b61fc01397614cde455b3fdc5f549beb6769df632006de63a8d1"
     },
     {
       "bytes": 906,
@@ -152,14 +172,14 @@
       "sha256": "95f9b30ce6f88581ea9ef431b885aef3941181a587eaa36ae9a39e19ad3026ed"
     },
     {
-      "bytes": 1148,
+      "bytes": 1336,
       "path": "src/macro_policy_thesis_map/io.py",
-      "sha256": "afb3a0b99fe74e88862f8c5892032abeba1618caf58bdaab3322ce3778684f4b"
+      "sha256": "c4d91c67dfa724ccdd669e797d159c69564b647c4891f8b13c96d0612cf4bf9b"
     },
     {
-      "bytes": 6368,
+      "bytes": 7837,
       "path": "src/macro_policy_thesis_map/render.py",
-      "sha256": "addb7d291ed8f1fb2a22b95c9829a2aac1e81bad6d6fd6a0404520141545fea3"
+      "sha256": "aaa8d69051d3ffff1f3b21da7bcac766cb16573638e9681dcdf315018a70d813"
     },
     {
       "bytes": 1433,
@@ -167,9 +187,9 @@
       "sha256": "151d9fd461f74348cf2214424edb2652ebbb7c8a256d7acb97ee38a253ade2f9"
     },
     {
-      "bytes": 4887,
+      "bytes": 6718,
       "path": "tests/test_cli.py",
-      "sha256": "4d39fc932313138ca5e8e08579a74af8b69a8476f4eb1fd51e8022a7bd54a391"
+      "sha256": "a835a4a8a388efc878729fcddba5cf0b6226a9627d136c8767424adf1097fea7"
     },
     {
       "bytes": 1388,
@@ -177,9 +197,9 @@
       "sha256": "d50fc2a2e87e8002eb697b42e3562db830a56b9088734a50569f4ac39bef5d6c"
     },
     {
-      "bytes": 1376,
+      "bytes": 1661,
       "path": "skills/agent/macro-policy-thesis-map/SKILL.md",
-      "sha256": "b2be0b261de9cddde674cbbc6025f47d555cffc766f5465acdfa05d19229eb81"
+      "sha256": "0c25ad89d79a6a41785b052df2c04d2637cad07af9c6584851c63075d5958059"
     }
   ],
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice."

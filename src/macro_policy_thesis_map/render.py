@@ -53,6 +53,66 @@ def ledger_md(payload: dict[str, Any]) -> str:
 """
 
 
+def fixture_doctor_md(payload: dict[str, Any]) -> str:
+    rows = [
+        [item["severity"], item.get("row"), item["check"], item.get("source", ""), item.get("policy_area", ""), item["finding"]]
+        for item in payload["findings"]
+    ]
+    return f"""# Fixture Doctor
+
+{payload['boundaries']}
+
+Status: {payload['status']}
+
+Rows checked: {payload['row_count']}
+
+Blockers: {payload['blocker_count']}
+
+Reviews: {payload['review_count']}
+
+As of: {payload['as_of']}
+
+Max source age days: {payload['max_source_age_days']}
+
+{table(["Severity", "Row", "Check", "Source", "Area", "Finding"], rows)}
+"""
+
+
+def input_schema_md(payload: dict[str, Any]) -> str:
+    rows = [
+        [
+            item["name"],
+            item["type"],
+            "yes" if item["required"] else "no",
+            item.get("format", ""),
+            item.get("minimum", ""),
+            item.get("maximum", ""),
+            ", ".join(item.get("allowed_values", [])),
+            item["description"],
+        ]
+        for item in payload["columns"]
+    ]
+    controls = [[item] for item in payload["quality_controls"]]
+    return f"""# Input Schema
+
+{payload['boundaries']}
+
+Schema version: {payload['schema_version']}
+
+Format: {payload['format']}
+
+Required columns: {", ".join(payload['required_columns'])}
+
+## Data Dictionary
+
+{table(["Column", "Type", "Required", "Format", "Min", "Max", "Allowed values", "Description"], rows)}
+
+## Quality Controls
+
+{table(["Control"], controls)}
+"""
+
+
 def manifest_md(payload: dict[str, Any]) -> str:
     rows = [[item["path"], item["bytes"], item["sha256"][:16]] for item in payload["artifacts"]]
     return f"""# Release Manifest

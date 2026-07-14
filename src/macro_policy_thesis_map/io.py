@@ -27,11 +27,17 @@ def write_text(path: Path, content: str) -> None:
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:
+    _, rows = read_csv_document(path)
+    return rows
+
+
+def read_csv_document(path: Path) -> tuple[list[str], list[dict[str, str]]]:
     with path.open(newline="", encoding="utf-8") as handle:
-        rows = list(csv.DictReader(handle))
+        reader = csv.DictReader(handle)
+        rows = list(reader)
     if not rows:
         raise ValueError(f"{path} has no rows")
-    return rows
+    return list(reader.fieldnames or []), rows
 
 
 def resolve(root: Path, value: str) -> Path:

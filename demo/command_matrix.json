@@ -1,6 +1,6 @@
 {
   "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
-  "command_count": 13,
+  "command_count": 15,
   "commands": [
     {
       "command": "build-packet",
@@ -49,6 +49,30 @@
       ],
       "purpose": "Render a no-JavaScript HTML view of the packet and review ledger.",
       "safety": "Static local rendering only."
+    },
+    {
+      "command": "fixture-doctor",
+      "inputs": [
+        "examples/macro_events.csv or bundled macro_events.csv"
+      ],
+      "outputs": [
+        "demo/fixture_doctor.md",
+        "demo/fixture_doctor.json"
+      ],
+      "purpose": "Validate static CSV fixtures for columns, event types, confidence bounds, stale dates, and advice-like terms.",
+      "safety": "Reports data-quality blockers before evidence is rendered."
+    },
+    {
+      "command": "schema-export",
+      "inputs": [
+        "built-in schema metadata"
+      ],
+      "outputs": [
+        "demo/input_schema.md",
+        "demo/input_schema.json"
+      ],
+      "purpose": "Export the machine-readable input schema and data dictionary.",
+      "safety": "Documents accepted static inputs without connecting to external systems."
     },
     {
       "command": "release-manifest",

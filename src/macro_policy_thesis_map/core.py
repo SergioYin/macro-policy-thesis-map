@@ -3,10 +3,11 @@
 from __future__ import annotations
 
 import hashlib
+from datetime import date
 from pathlib import Path
 from typing import Any
 
-from .io import read_csv
+from .io import read_csv, read_csv_document
 
 
 DISCLAIMER = (
@@ -15,6 +16,17 @@ DISCLAIMER = (
     "predict returns, or produce personalized financial advice."
 )
 
+EXPECTED_COLUMNS = [
+    "date",
+    "event_type",
+    "source",
+    "policy_area",
+    "channel",
+    "direction",
+    "confidence",
+    "evidence",
+    "thesis_link",
+]
 EXPECTED_EVENTS = {"policy_signal", "macro_observation", "market_context", "thesis_note"}
 ADVICE_TERMS = ["buy", "sell", "hold", "target allocation", "price target", "guaranteed return", "prediction"]
 DEMO_ARTIFACTS = [
@@ -39,6 +51,10 @@ DEMO_ARTIFACTS = [
     "demo/public_readiness.json",
     "demo/cold_start_walkthrough.md",
     "demo/cold_start_walkthrough.json",
+    "demo/fixture_doctor.md",
+    "demo/fixture_doctor.json",
+    "demo/input_schema.md",
+    "demo/input_schema.json",
 ]
 COMMAND_SPECS = [
     {
@@ -68,6 +84,20 @@ COMMAND_SPECS = [
         "inputs": ["examples/macro_events.csv or bundled macro_events.csv"],
         "outputs": ["demo/static_dashboard.html"],
         "safety": "Static local rendering only.",
+    },
+    {
+        "command": "fixture-doctor",
+        "purpose": "Validate static CSV fixtures for columns, event types, confidence bounds, stale dates, and advice-like terms.",
+        "inputs": ["examples/macro_events.csv or bundled macro_events.csv"],
+        "outputs": ["demo/fixture_doctor.md", "demo/fixture_doctor.json"],
+        "safety": "Reports data-quality blockers before evidence is rendered.",
+    },
+    {
+        "command": "schema-export",
+        "purpose": "Export the machine-readable input schema and data dictionary.",
+        "inputs": ["built-in schema metadata"],
+        "outputs": ["demo/input_schema.md", "demo/input_schema.json"],
+        "safety": "Documents accepted static inputs without connecting to external systems.",
     },
     {
         "command": "release-manifest",
@@ -168,6 +198,210 @@ def load_events(path: Path) -> list[dict[str, Any]]:
             }
         )
     return sorted(events, key=lambda item: (item["date"], item["policy_area"], item["source"]))
+
+
+def fixture_doctor(path: Path, *, as_of: date, max_source_age_days: int) -> dict[str, Any]:
+    header, rows = read_csv_document(path)
+    findings: list[dict[str, Any]] = []
+    missing_columns = [column for column in EXPECTED_COLUMNS if column not in header]
+    extra_columns = [column for column in header if column not in EXPECTED_COLUMNS]
+    if missing_columns:
+        findings.append(
+            {
+                "severity": "blocker",
+                "row": None,
+                "check": "columns",
+                "finding": f"Missing required columns: {', '.join(missing_columns)}",
+            }
+        )
+    if extra_columns:
+        findings.append(
+            {
+                "severity": "review",
+                "row": None,
+                "check": "columns",
+                "finding": f"Unexpected columns: {', '.join(extra_columns)}",
+            }
+        )
+    for index, row in enumerate(rows, start=2):
+        row_context = {"row": index, "source": (row.get("source") or "").strip(), "policy_area": (row.get("policy_area") or "").strip()}
+        kind = (row.get("event_type") or "").strip()
+        if kind not in EXPECTED_EVENTS:
+            findings.append(
+                {
+                    **row_context,
+                    "severity": "blocker",
+                    "check": "event_type",
+                    "finding": f"Unsupported event_type {kind!r}",
+                }
+            )
+        raw_confidence = (row.get("confidence") or "").strip()
+        try:
+            confidence = float(raw_confidence)
+        except ValueError:
+            findings.append(
+                {
+                    **row_context,
+                    "severity": "blocker",
+                    "check": "confidence",
+                    "finding": f"Invalid confidence {raw_confidence!r}",
+                }
+            )
+        else:
+            if confidence < 0 or confidence > 1:
+                findings.append(
+                    {
+                        **row_context,
+                        "severity": "blocker",
+                        "check": "confidence",
+                        "finding": f"Confidence {confidence:g} is outside 0..1",
+                    }
+                )
+        raw_date = (row.get("date") or "").strip()
+        try:
+            event_date = date.fromisoformat(raw_date)
+        except ValueError:
+            findings.append(
+                {
+                    **row_context,
+                    "severity": "blocker",
+                    "check": "source_date",
+                    "finding": f"Invalid ISO date {raw_date!r}",
+                }
+            )
+        else:
+            age_days = (as_of - event_date).days
+            if age_days < 0:
+                findings.append(
+                    {
+                        **row_context,
+                        "severity": "blocker",
+                        "check": "source_date",
+                        "finding": f"Source date {raw_date} is after as-of date {as_of.isoformat()}",
+                    }
+                )
+            elif age_days > max_source_age_days:
+                findings.append(
+                    {
+                        **row_context,
+                        "severity": "review",
+                        "check": "source_date",
+                        "finding": f"Source date {raw_date} is {age_days} days old; limit is {max_source_age_days}",
+                    }
+                )
+        text = f"{row.get('evidence') or ''} {row.get('thesis_link') or ''}".lower()
+        for term in ADVICE_TERMS:
+            if term in text:
+                findings.append(
+                    {
+                        **row_context,
+                        "severity": "blocker",
+                        "check": "advice_terms",
+                        "finding": f"Advice-like term present: {term}",
+                    }
+                )
+    blocker_count = sum(1 for item in findings if item["severity"] == "blocker")
+    review_count = sum(1 for item in findings if item["severity"] == "review")
+    return {
+        "status": "pass" if blocker_count == 0 else "blocked",
+        "path": str(path),
+        "as_of": as_of.isoformat(),
+        "max_source_age_days": max_source_age_days,
+        "row_count": len(rows),
+        "expected_columns": EXPECTED_COLUMNS,
+        "actual_columns": header,
+        "blocker_count": blocker_count,
+        "review_count": review_count,
+        "finding_count": len(findings),
+        "findings": findings
+        or [
+            {
+                "severity": "pass",
+                "row": None,
+                "check": "all",
+                "finding": "Fixture passed static finance-domain quality controls",
+            }
+        ],
+        "boundaries": DISCLAIMER,
+    }
+
+
+def input_schema() -> dict[str, Any]:
+    columns = [
+        {
+            "name": "date",
+            "type": "date",
+            "required": True,
+            "format": "YYYY-MM-DD",
+            "description": "Publication or observation date for the static source row.",
+        },
+        {
+            "name": "event_type",
+            "type": "string",
+            "required": True,
+            "allowed_values": sorted(EXPECTED_EVENTS),
+            "description": "Classification of the supplied macro or policy evidence.",
+        },
+        {
+            "name": "source",
+            "type": "string",
+            "required": True,
+            "description": "Short static source label, such as a release, calendar, or research note identifier.",
+        },
+        {
+            "name": "policy_area",
+            "type": "string",
+            "required": True,
+            "description": "Policy or macro area being mapped, for example monetary-policy or labor-market.",
+        },
+        {
+            "name": "channel",
+            "type": "string",
+            "required": True,
+            "description": "Transmission channel or metric represented by the row.",
+        },
+        {
+            "name": "direction",
+            "type": "string",
+            "required": True,
+            "description": "Neutral analyst label for the supplied evidence direction.",
+        },
+        {
+            "name": "confidence",
+            "type": "number",
+            "required": True,
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Static analyst confidence in the row's evidence mapping, bounded from 0 to 1.",
+        },
+        {
+            "name": "evidence",
+            "type": "string",
+            "required": True,
+            "description": "Concise neutral evidence summary. Advice-like terms are treated as doctor blockers.",
+        },
+        {
+            "name": "thesis_link",
+            "type": "string",
+            "required": True,
+            "description": "Stable local thesis identifier used to group evidence.",
+        },
+    ]
+    return {
+        "schema_version": "0.2.0",
+        "format": "csv",
+        "required_columns": EXPECTED_COLUMNS,
+        "columns": columns,
+        "quality_controls": [
+            "CSV header must contain every required column.",
+            "event_type must be one of the allowed values.",
+            "confidence must parse as a number from 0 to 1 inclusive.",
+            "date must parse as ISO YYYY-MM-DD and should not be stale relative to the configured as-of date.",
+            "evidence and thesis_link should not contain advice-like terms.",
+        ],
+        "advice_like_terms": ADVICE_TERMS,
+        "boundaries": DISCLAIMER,
+    }
 
 
 def required(row: dict[str, str], field: str, path: Path, index: int) -> str:
@@ -307,7 +541,11 @@ def quickstart_check(root: Path) -> dict[str, Any]:
         ("skill_available", root.joinpath("skills/agent/macro-policy-thesis-map/SKILL.md").exists(), "skills/agent/macro-policy-thesis-map/SKILL.md"),
         ("tests_available", any(root.joinpath("tests").glob("test_*.py")), "tests/test_*.py"),
     ]
-    commands = [spec for spec in COMMAND_SPECS if spec["command"] in {"build-packet", "compare-history", "review-ledger", "static-dashboard", "quickstart-check", "command-matrix"}]
+    commands = [
+        spec
+        for spec in COMMAND_SPECS
+        if spec["command"] in {"build-packet", "compare-history", "review-ledger", "fixture-doctor", "schema-export", "static-dashboard", "quickstart-check", "command-matrix"}
+    ]
     passed = sum(1 for _, ok, _ in checks)
     return {
         "status": "ready" if passed == len(checks) else "needs-review",
@@ -375,6 +613,8 @@ def public_readiness(root: Path) -> dict[str, Any]:
         "demo/maturity_report.json",
         "demo/quickstart_check.json",
         "demo/command_matrix.json",
+        "demo/fixture_doctor.json",
+        "demo/input_schema.json",
         "demo/evidence_bundle.json",
         "demo/cold_start_walkthrough.json",
     ]

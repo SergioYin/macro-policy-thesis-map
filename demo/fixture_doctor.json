@@ -1,0 +1,41 @@
+{
+  "actual_columns": [
+    "date",
+    "event_type",
+    "source",
+    "policy_area",
+    "channel",
+    "direction",
+    "confidence",
+    "evidence",
+    "thesis_link"
+  ],
+  "as_of": "2026-07-15",
+  "blocker_count": 0,
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "expected_columns": [
+    "date",
+    "event_type",
+    "source",
+    "policy_area",
+    "channel",
+    "direction",
+    "confidence",
+    "evidence",
+    "thesis_link"
+  ],
+  "finding_count": 0,
+  "findings": [
+    {
+      "check": "all",
+      "finding": "Fixture passed static finance-domain quality controls",
+      "row": null,
+      "severity": "pass"
+    }
+  ],
+  "max_source_age_days": 45,
+  "path": "examples/macro_events.csv",
+  "review_count": 0,
+  "row_count": 5,
+  "status": "pass"
+}

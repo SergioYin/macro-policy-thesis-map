@@ -1,5 +1,5 @@
 {
-  "artifact_count": 26,
+  "artifact_count": 30,
   "artifacts": [
     {
       "bytes": 1066,
@@ -7,9 +7,9 @@
       "sha256": "b13dc350cd48500c97d419a02e3bf37135989e60b46e1d99231103e0b04e780a"
     },
     {
-      "bytes": 4390,
+      "bytes": 5224,
       "path": "README.md",
-      "sha256": "c4d575f562ea8ecd44a4677ce2598c3588d78e860ae5aab89a4db90c49558a23"
+      "sha256": "073eff2da23f9462f2aeeb1130b1b4de28e691fcf04f93a24478d8e67fd63f40"
     },
     {
       "bytes": 1779,
@@ -22,14 +22,24 @@
       "sha256": "ba0d6054b07d14478f85c1b1849fa1da7dc628fd51778893a7eeb6c1cca55faa"
     },
     {
-      "bytes": 5286,
+      "bytes": 6104,
       "path": "demo/command_matrix.json",
-      "sha256": "68d9c3ebab2455df5f41effc912612eb816f3bfd90e58a3f4479f28e708b11d5"
+      "sha256": "5960ca2ba344a9b556e50c3fae018f59c545e24f9359dae3f9b98c598fcaa392"
     },
     {
-      "bytes": 3489,
+      "bytes": 4019,
       "path": "demo/command_matrix.md",
-      "sha256": "207ad6ae66933ad27f8fc3bee381f8f94fa4af8471a359435c34b14ef9d0a9da"
+      "sha256": "68b74a65236420ef6c4a297d8a34b33d82170d652139c492c220398d0e218f18"
+    },
+    {
+      "bytes": 985,
+      "path": "demo/fixture_doctor.json",
+      "sha256": "56410778254836def7ff35b8ac9a2aaef5d6a37feca1523411852a80d41c0a15"
+    },
+    {
+      "bytes": 534,
+      "path": "demo/fixture_doctor.md",
+      "sha256": "6c06972b77c0882aa39ee96843a398c1c8a0d5d1b2ed645d634cbbdf77314314"
     },
     {
       "bytes": 1197,
@@ -40,6 +50,16 @@
       "bytes": 635,
       "path": "demo/history_comparison.md",
       "sha256": "aaa45f9f26551651831ab4b800b170a51b81e68e4cd331ec9e25d6d7a8ec1b8e"
+    },
+    {
+      "bytes": 2845,
+      "path": "demo/input_schema.json",
+      "sha256": "9ee4a9cb5d432e5e5cf5e03a7d9f51851a3626a53178cee8c5f38f2afda7b747"
+    },
+    {
+      "bytes": 1997,
+      "path": "demo/input_schema.md",
+      "sha256": "a671bf406c29454097b667af5143e2f69648b24a308fdaaafec81c83d000df9b"
     },
     {
       "bytes": 751,
@@ -62,14 +82,14 @@
       "sha256": "f1e4c523709bc2e874ef740c9890bce744929448cd601bb4b049eaba20730ed8"
     },
     {
-      "bytes": 2343,
+      "bytes": 2768,
       "path": "demo/quickstart_check.json",
-      "sha256": "0de35007cafbfeeee8ad082c4a12423fdbc475d11ee0cb6c4bf2c38c011ee51d"
+      "sha256": "d36c69880cd7e6b0ea7a33b9b641eced7581953af5ec0b6453cb89f60e993ffa"
     },
     {
-      "bytes": 1570,
+      "bytes": 1829,
       "path": "demo/quickstart_check.md",
-      "sha256": "6ab5605789954b69ef41603deafcda2833e460c55bbbbbc99f61258832163f50"
+      "sha256": "daa6596265be5f716999e5a2c3c15dfca78699f79ea41dc1114511a8a8b07eee"
     },
     {
       "bytes": 432,
@@ -109,12 +129,12 @@
     {
       "bytes": 819,
       "path": "pyproject.toml",
-      "sha256": "5e7386bd01cb4d9b512f518cc705349518c9859edfed9b9501330563ab39723b"
+      "sha256": "195eaf0aba7decbf40c64353db32cbe297b54d983593caa0146b53b3b898f511"
     },
     {
-      "bytes": 1376,
+      "bytes": 1661,
       "path": "skills/agent/macro-policy-thesis-map/SKILL.md",
-      "sha256": "b2be0b261de9cddde674cbbc6025f47d555cffc766f5465acdfa05d19229eb81"
+      "sha256": "0c25ad89d79a6a41785b052df2c04d2637cad07af9c6584851c63075d5958059"
     },
     {
       "bytes": 1433,
@@ -122,9 +142,9 @@
       "sha256": "151d9fd461f74348cf2214424edb2652ebbb7c8a256d7acb97ee38a253ade2f9"
     },
     {
-      "bytes": 4887,
+      "bytes": 6718,
       "path": "tests/test_cli.py",
-      "sha256": "4d39fc932313138ca5e8e08579a74af8b69a8476f4eb1fd51e8022a7bd54a391"
+      "sha256": "a835a4a8a388efc878729fcddba5cf0b6226a9627d136c8767424adf1097fea7"
     },
     {
       "bytes": 1388,

@@ -65,6 +65,46 @@ def test_promotion_readiness_commands_write_public_artifacts(tmp_path):
     assert "static commands" in cold_md.read_text(encoding="utf-8")
 
 
+def test_fixture_doctor_and_schema_export(tmp_path):
+    doctor_json = tmp_path / "doctor.json"
+    doctor_md = tmp_path / "doctor.md"
+    schema_json = tmp_path / "schema.json"
+    schema_md = tmp_path / "schema.md"
+
+    assert main(["fixture-doctor", "--root", str(ROOT), "--out-json", str(doctor_json), "--out-md", str(doctor_md)]) == 0
+    assert main(["schema-export", "--root", str(ROOT), "--out-json", str(schema_json), "--out-md", str(schema_md)]) == 0
+
+    assert '"status": "pass"' in doctor_json.read_text(encoding="utf-8")
+    assert "Fixture Doctor" in doctor_md.read_text(encoding="utf-8")
+    schema_text = schema_json.read_text(encoding="utf-8")
+    assert '"schema_version": "0.2.0"' in schema_text
+    assert "confidence" in schema_text
+    assert "Data Dictionary" in schema_md.read_text(encoding="utf-8")
+
+
+def test_fixture_doctor_blocks_bad_finance_fixture(tmp_path):
+    fixture = tmp_path / "bad.csv"
+    fixture.write_text(
+        "\n".join(
+            [
+                "date,event_type,source,policy_area,channel,direction,confidence,evidence,thesis_link",
+                "2026-04-01,trade_call,source,monetary-policy,discount-rate,restrictive,1.5,Buy now,thesis-alpha",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    out_json = tmp_path / "doctor.json"
+    out_md = tmp_path / "doctor.md"
+
+    assert main(["fixture-doctor", "--root", str(tmp_path), "--events", "bad.csv", "--out-json", str(out_json), "--out-md", str(out_md)]) == 1
+    text = out_json.read_text(encoding="utf-8")
+    assert '"status": "blocked"' in text
+    assert "event_type" in text
+    assert "Confidence 1.5 is outside 0..1" in text
+    assert "Advice-like term present: buy" in text
+
+
 def test_evidence_bundle_and_public_readiness_surfaces(tmp_path):
     bundle_json = tmp_path / "bundle.json"
     bundle_md = tmp_path / "bundle.md"
@@ -94,6 +134,8 @@ def test_public_readiness_blocks_incomplete_tree(tmp_path):
         (["compare-history"], "demo/history_comparison.json"),
         (["review-ledger"], "demo/review_ledger.json"),
         (["static-dashboard"], "demo/static_dashboard.html"),
+        (["fixture-doctor"], "demo/fixture_doctor.json"),
+        (["schema-export"], "demo/input_schema.json"),
         (["quickstart-check"], "demo/quickstart_check.json"),
         (["command-matrix"], "demo/command_matrix.json"),
         (["cold-start-walkthrough"], "demo/cold_start_walkthrough.json"),

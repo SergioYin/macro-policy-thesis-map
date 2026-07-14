@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+from datetime import date
 from importlib import resources
 import sys
 from pathlib import Path
@@ -15,6 +16,8 @@ from .core import (
     command_matrix,
     compare_packets,
     evidence_bundle,
+    fixture_doctor,
+    input_schema,
     load_events,
     maturity,
     public_findings,
@@ -30,6 +33,8 @@ from .render import (
     comparison_md,
     dashboard_html,
     evidence_bundle_md,
+    fixture_doctor_md,
+    input_schema_md,
     ledger_md,
     manifest_md,
     maturity_md,
@@ -84,6 +89,20 @@ def build_parser() -> argparse.ArgumentParser:
     add_event_args(dashboard)
     dashboard.add_argument("--out-html", default="demo/static_dashboard.html")
     dashboard.set_defaults(func=cmd_static_dashboard)
+
+    doctor = sub.add_parser("fixture-doctor", help="Validate static CSV fixtures for finance-domain quality controls.")
+    add_event_args(doctor)
+    doctor.add_argument("--as-of", default="2026-07-15", help="ISO date used for stale-source checks.")
+    doctor.add_argument("--max-source-age-days", type=int, default=45)
+    doctor.add_argument("--out-md", default="demo/fixture_doctor.md")
+    doctor.add_argument("--out-json", default="demo/fixture_doctor.json")
+    doctor.set_defaults(func=cmd_fixture_doctor)
+
+    schema = sub.add_parser("schema-export", help="Export the machine-readable input schema and data dictionary.")
+    schema.add_argument("--root", default=".")
+    schema.add_argument("--out-md", default="demo/input_schema.md")
+    schema.add_argument("--out-json", default="demo/input_schema.json")
+    schema.set_defaults(func=cmd_schema_export)
 
     manifest = sub.add_parser("release-manifest", help="Build a deterministic public release manifest.")
     manifest.add_argument("--root", default=".")
@@ -180,6 +199,30 @@ def cmd_static_dashboard(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_fixture_doctor(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    path = resolve(root, args.events)
+    if path.exists():
+        payload = fixture_doctor(path, as_of=date.fromisoformat(args.as_of), max_source_age_days=args.max_source_age_days)
+    elif args.events == DEFAULT_EVENTS:
+        resource = bundled_event_resource(Path(DEFAULT_EVENTS).name)
+        with resources.as_file(resource) as bundled_path:
+            payload = fixture_doctor(bundled_path, as_of=date.fromisoformat(args.as_of), max_source_age_days=args.max_source_age_days)
+    else:
+        raise FileNotFoundError(path)
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), fixture_doctor_md(payload))
+    return 0 if payload["status"] == "pass" else 1
+
+
+def cmd_schema_export(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    payload = input_schema()
+    write_json(resolve(root, args.out_json), payload)
+    write_text(resolve(root, args.out_md), input_schema_md(payload))
+    return 0
+
+
 def cmd_release_manifest(args: argparse.Namespace) -> int:
     root = Path(args.root)
     payload = release_manifest(root)
@@ -262,6 +305,8 @@ def cmd_selfcheck(args: argparse.Namespace) -> int:
         root / "demo" / "evidence_bundle.json",
         root / "demo" / "public_readiness.json",
         root / "demo" / "cold_start_walkthrough.json",
+        root / "demo" / "fixture_doctor.json",
+        root / "demo" / "input_schema.json",
     ]
     missing = [str(path.relative_to(root)) for path in required if not path.exists()]
     readme = (root / "README.md").read_text(encoding="utf-8").lower() if (root / "README.md").exists() else ""
@@ -287,11 +332,15 @@ def load_events_arg(root: Path, value: str, default_value: str) -> list[dict[str
 
 
 def load_bundled_events(filename: str) -> list[dict[str, object]]:
+    with resources.as_file(bundled_event_resource(filename)) as path:
+        return load_events(path)
+
+
+def bundled_event_resource(filename: str):
     resource = resources.files("macro_policy_thesis_map").joinpath("examples", filename)
     if not resource.is_file():
         raise FileNotFoundError(f"bundled example {filename} is missing")
-    with resources.as_file(resource) as path:
-        return load_events(path)
+    return resource
 
 
 def load_packet(path: Path) -> dict[str, object]:

@@ -2,7 +2,7 @@
 
 Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.
 
-Command count: 13
+Command count: 15
 
 | Command | Purpose | Inputs | Outputs | Safety |
 | --- | --- | --- | --- | --- |
@@ -10,6 +10,8 @@ Command count: 13
 | compare-history | Compare current and prior static policy event sets. | examples/macro_events.csv, examples/prior_macro_events.csv or bundled examples | demo/history_comparison.md, demo/history_comparison.json | Reports structural deltas only; does not forecast policy or market outcomes. |
 | review-ledger | Flag low-confidence areas and advice-like terms in supplied evidence. | examples/macro_events.csv or bundled macro_events.csv | demo/review_ledger.md, demo/review_ledger.json | Raises review findings instead of rewriting evidence into advice. |
 | static-dashboard | Render a no-JavaScript HTML view of the packet and review ledger. | examples/macro_events.csv or bundled macro_events.csv | demo/static_dashboard.html | Static local rendering only. |
+| fixture-doctor | Validate static CSV fixtures for columns, event types, confidence bounds, stale dates, and advice-like terms. | examples/macro_events.csv or bundled macro_events.csv | demo/fixture_doctor.md, demo/fixture_doctor.json | Reports data-quality blockers before evidence is rendered. |
+| schema-export | Export the machine-readable input schema and data dictionary. | built-in schema metadata | demo/input_schema.md, demo/input_schema.json | Documents accepted static inputs without connecting to external systems. |
 | release-manifest | Record deterministic paths, sizes, and hashes for release artifacts. | repository files | demo/release_manifest.md, demo/release_manifest.json | Excludes generated manifest self-hashes. |
 | maturity-report | Score basic release-readiness evidence in the source tree. | repository files | demo/maturity_report.md, demo/maturity_report.json | Checks packaging, examples, tests, skill docs, and absence of workflow files. |
 | quickstart-check | Show whether a fresh evaluator can run the documented starter commands. | repository files and bundled examples | demo/quickstart_check.md, demo/quickstart_check.json | Checks command availability and expected artifacts without network access. |

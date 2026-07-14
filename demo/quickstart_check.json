@@ -63,6 +63,20 @@
       ]
     },
     {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli fixture-doctor --root .",
+      "expected_outputs": [
+        "demo/fixture_doctor.md",
+        "demo/fixture_doctor.json"
+      ]
+    },
+    {
+      "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli schema-export --root .",
+      "expected_outputs": [
+        "demo/input_schema.md",
+        "demo/input_schema.json"
+      ]
+    },
+    {
       "command": "PYTHONPATH=src python -m macro_policy_thesis_map.cli quickstart-check --root .",
       "expected_outputs": [
         "demo/quickstart_check.md",

@@ -1,0 +1,97 @@
+{
+  "advice_like_terms": [
+    "buy",
+    "sell",
+    "hold",
+    "target allocation",
+    "price target",
+    "guaranteed return",
+    "prediction"
+  ],
+  "boundaries": "Research-only static analysis. Not investment advice. This tool does not fetch live data, connect to brokers, place orders, recommend buys, sells, holds, target allocations, or trades, predict returns, or produce personalized financial advice.",
+  "columns": [
+    {
+      "description": "Publication or observation date for the static source row.",
+      "format": "YYYY-MM-DD",
+      "name": "date",
+      "required": true,
+      "type": "date"
+    },
+    {
+      "allowed_values": [
+        "macro_observation",
+        "market_context",
+        "policy_signal",
+        "thesis_note"
+      ],
+      "description": "Classification of the supplied macro or policy evidence.",
+      "name": "event_type",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "description": "Short static source label, such as a release, calendar, or research note identifier.",
+      "name": "source",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "description": "Policy or macro area being mapped, for example monetary-policy or labor-market.",
+      "name": "policy_area",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "description": "Transmission channel or metric represented by the row.",
+      "name": "channel",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "description": "Neutral analyst label for the supplied evidence direction.",
+      "name": "direction",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "description": "Static analyst confidence in the row's evidence mapping, bounded from 0 to 1.",
+      "maximum": 1,
+      "minimum": 0,
+      "name": "confidence",
+      "required": true,
+      "type": "number"
+    },
+    {
+      "description": "Concise neutral evidence summary. Advice-like terms are treated as doctor blockers.",
+      "name": "evidence",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "description": "Stable local thesis identifier used to group evidence.",
+      "name": "thesis_link",
+      "required": true,
+      "type": "string"
+    }
+  ],
+  "format": "csv",
+  "quality_controls": [
+    "CSV header must contain every required column.",
+    "event_type must be one of the allowed values.",
+    "confidence must parse as a number from 0 to 1 inclusive.",
+    "date must parse as ISO YYYY-MM-DD and should not be stale relative to the configured as-of date.",
+    "evidence and thesis_link should not contain advice-like terms."
+  ],
+  "required_columns": [
+    "date",
+    "event_type",
+    "source",
+    "policy_area",
+    "channel",
+    "direction",
+    "confidence",
+    "evidence",
+    "thesis_link"
+  ],
+  "schema_version": "0.2.0"
+}
